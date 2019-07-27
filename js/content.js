@@ -4,6 +4,23 @@ $(window).ready(function(){
 
 		console.log("chrome extension go")
 
+   		function getRandomToken() {
+   		    var randomPool = new Uint8Array(16);
+   		    crypto.getRandomValues(randomPool);
+   		    var hex = '';
+   		    for (var i = 0; i < randomPool.length; ++i) {
+   		        hex += randomPool[i].toString(16);
+   		    }
+   		    return hex;
+   		}
+   		var userId_r = getRandomToken();
+		if (localStorage.getItem('userId_r') == null) {
+            localStorage.setItem('userId_r', userId_r);
+        }
+
+   		console.log('$$$$$$$$$$$$$$$', userId_r);
+   		console.log('$$$$$$$$$$$$$$$', localStorage.getItem('userId_r'));
+
 		function gotMessage(message,sender,sendResponse){
 			document.getElementById("enterAddressFullName").value=message.customerName
 			document.getElementById("enterAddressAddressLine1").value=message.addressLine1
@@ -25,20 +42,15 @@ $(window).ready(function(){
 				chrome.runtime.sendMessage({ notifications: "createOrder", message: cartDetails}, function (response) {
 						//console.log(response.data);
 				});
-
-
 			})
 
 			var element = '<button id="dummyButton">Dummy</button>'
 			$('#nav-inner').prepend(element)
-
-
 		}
 
 		$('body').on('click', '#sc-buy-box-ptc-button', function(){
 
 			console.log('checkout clicked')
-
 
 			console.log($('.sc-list-item').length);
 
@@ -84,29 +96,18 @@ $(window).ready(function(){
 						'productQuantity' : productQuantity,
 
 						'productImage' : productImage
-
-
 					}
 
 					cartArray.push(cartProduct);
 
 					console.log(cartArray);
-				}	
-
-
+				}
 			}
-
 			// chrome.runtime.sendMessage({ notifications: "createOrder", message: cartArray}, function (response) {
 			// 		//console.log(response.data);
 			// });
-
 			localStorage.setItem('cartItems-LetsGoShip', JSON.stringify(cartArray));
-			
-
-
 		})
-
-
 		// Run below code when extension is on amazon site
 		if(window.location.toString().match('^https://www.amazon.com/')){
 
@@ -116,7 +117,6 @@ $(window).ready(function(){
 
 		   			$("body").prepend(data);
 
-
 				})
 
 				var pageMaskElement = '<div id="page-mask" style="position: fixed;left: 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: none;"></div>'
@@ -125,8 +125,8 @@ $(window).ready(function(){
 
 				$('#companyLogo').ready(function(){
 
-
 					var logo = "chrome-extension://" + chrome.runtime.id + "/images/topbarLogo.png";
+
 					console.log(logo)
 
 					setTimeout(function(){
@@ -134,7 +134,7 @@ $(window).ready(function(){
 						$('#companyLogo').attr('src',logo);
 
 					}, 2000)
-					
+
 				})
 
 				var details={
@@ -173,8 +173,6 @@ $(window).ready(function(){
 					// }
 				})
 
-
-
 				$('#viewCartIcon').ready(function(){
 
 						var cartIcon = "chrome-extension://" + chrome.runtime.id + "/images/cartIcon.png";
@@ -186,14 +184,13 @@ $(window).ready(function(){
 
 							var notificationProducts = JSON.parse(localStorage.getItem('cartDetails'))
 
-							if(notificationProducts.length > 0){
+                            if(notificationProducts.length > 0){
 
 									$('#companyNotification').css('display', 'block');
 
 									var tempCount = 0;
 
 									for(i=0; i<notificationProducts.length; i++){
-
 
 											tempCount = tempCount + notificationProducts[i].itemCount
 
@@ -205,26 +202,12 @@ $(window).ready(function(){
 									$('#companyNotification').text(tempCount);
 							}
 
+                            $('body').on('click', '#viewCartIcon', function(){
 
-									$('#viewCartIcon').hover(hoverIn, hoverOut);
-
-									$('#viewCartModal').mouseleave(function(){
-
-										$('#viewCartModal').css('display','none');
-										$('#page-mask').css('display', 'none')
-									})
-
-									function hoverOut(){
-
-
-									}
-
-									function hoverIn(){
-
-											$('#cartDetailSection').empty();
+										$('#cartDetailSection').empty();
 
 										var cartProducts = JSON.parse(localStorage.getItem('cartDetails'))
-
+										console.log("product>>>>>>>>>>", cartProducts);
 										if(cartProducts == null ){
 
 											console.log('nothing in cart')
@@ -232,40 +215,38 @@ $(window).ready(function(){
 											$('#subtotal').text(0);
 
 											$('#viewCartModal').toggle();
+
 										} else {
 
-													console.log(cartProducts);
+											var subtotal = 0;
 
-													var subtotal = 0;
-														
-																subtotal = parseInt(subtotal)
-																
-																for(i=0; i<cartProducts.length; i++){
+											subtotal = parseInt(subtotal)
 
-																	subtotal = subtotal + parseFloat(cartProducts[i].productPrice)
+											for(i=0; i<cartProducts.length; i++){
 
-																	console.log(cartProducts[i].productPrice);
+												subtotal = subtotal + parseFloat(cartProducts[i].productPrice)
 
-																}
+												console.log(cartProducts[i].productPrice);
 
-																console.log(subtotal)
+											}
 
-																subtotal = subtotal.toFixed(2);
+											console.log(subtotal)
 
-																$('#subtotal').text(subtotal);
+											subtotal = subtotal.toFixed(2);
 
-																if(subtotal == 0){
+											$('#subtotal').text(subtotal);
 
-																	var element = "<div id='emptyCartMM'><hr style='margin-top: 15px; margin-bottom: 20px;'><div>Your Cart is Empty</div></div>"
+											if(subtotal == 0){
 
-																	$('#cartDetailSection').prepend(element);
+												var element = "<div id='emptyCartMM'><hr style='margin-top: 15px; margin-bottom: 20px;'><div>Your Cart is Empty</div></div>"
 
-																	$('#checkOut').css('display','none');
+												$('#cartDetailSection').prepend(element);
 
-																	$('#viewCartModal').css('height', '512px');
+												('#checkOut').css('display','none');
 
-																}
+												$('#viewCartModal').css('height', '512px');
 
+											}
 
 												for (var i = 0; i < cartProducts.length; i++) {
 
@@ -280,14 +261,14 @@ $(window).ready(function(){
 															var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProducts[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProducts[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProducts[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProducts[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProducts[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
 
 														} else if (cartProducts[i].productColor == "") {
-															
+
 															$('#checkOut').css('display','block');
 															$('#emptyCartMM').css('display','none');
 
 															$('#viewCartModal').css('height', '575px');
 
 															var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProducts[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProducts[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: "+cartProducts[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProducts[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProducts[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProducts[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-														
+
 														} else if (cartProducts[i].productSize =="") {
 
 															$('#checkOut').css('display','block');
@@ -295,45 +276,40 @@ $(window).ready(function(){
 
 															$('#viewCartModal').css('height', '575px');
 
-															var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProducts[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProducts[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProducts[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProducts[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProducts[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProducts[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";						
-														
+															var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProducts[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProducts[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProducts[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProducts[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProducts[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProducts[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+
 														} else{
-														
+
 															$('#checkOut').css('display','block');
 															$('#emptyCartMM').css('display','none');
 
 															$('#viewCartModal').css('height', '575px');
 
 															var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProducts[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProducts[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProducts[i].productColor+"</div><div>Size: "+cartProducts[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProducts[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProducts[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProducts[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-														
-														}
-														
-														$('#cartDetailSection').prepend(element);
-														
-													}
 
+														}
+
+														$('#cartDetailSection').prepend(element);
+
+													}
 
 													$('#viewCartModal').toggle();
 
-													$('#page-mask').css('display', 'block')
+													if ($('#viewCartModal').is(":visible")) {
+                                                        $('#page-mask').css('display', 'block');
+													} else {
+                                                        $('#page-mask').css('display', 'none');
+													}
 													console.log($('#viewCartModal').css("display"));
-
 
 													console.log('view cart click')
 
 													console.log("remove button ready")
-
 										}
-
-
-									}
+									});
 
 						}, 2000)
-
-						
-
 				})
-				
 
 				$('#viewCart').ready(function(){
 
@@ -343,31 +319,27 @@ $(window).ready(function(){
 
 						$('#page-mask').css('display', 'none')
 
-
 					})
 
-					// $('#viewCartModal').mouseleave(function(){
+					$('#viewCartModal').mouseleave(function(){
 
-					// 	$('#viewCartModal').css('display', 'none');
+						$('#viewCartModal').css('display', 'none');
+                        $('#page-mask').css('display', 'none');
 
-					// })
+					})
 
 					// localStorage.setItem('viewCartState', 'false');
 
-					
-					
-
-					$('body').on('click', '#viewCartIcon', function(){
-
-						localStorage.setItem('lastPageCompany', location.href )
-
-						chrome.runtime.sendMessage({greeting: "updateLastPageCompany", data: location.href }, function(response) {
-										  console.log(response.farewell);
-						});
-
-
-						window.open('https://letsgoship.com')
-					})
+					// $('body').on('click', '#checkout', function(){
+					//
+					// 	localStorage.setItem('lastPageCompany', location.href )
+					//
+					// 	chrome.runtime.sendMessage({greeting: "updateLastPageCompany", data: location.href }, function(response) {
+					// 					  console.log(response.farewell);
+					// 	});
+					//
+					// 	window.open('http://localhost:8000/checkout')
+					// })
 
 					$('body').on('click', '#checkOut', function(){
 
@@ -379,28 +351,63 @@ $(window).ready(function(){
 
 						chrome.runtime.sendMessage({greeting: "sendShoppingCartDetails", data: JSON.parse(localStorage.getItem('cartDetails')) }, function(response){
 
-							
+
 						})
 
-						// window.open('https://letsgoship.com')
+						var checkoutInfo = JSON.parse(localStorage.getItem('cartDetails'));
+						var userId = localStorage.getItem('userId_r');
+                        $.ajax({
+                            url: 'https://cors-anywhere.herokuapp.com/https://749c6434.ngrok.io/api/checkout/saveTemp',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {
+                                "checkoutInfo": checkoutInfo,
+                                "userId": userId
+                            },
+                            success: function (data) {
+                                console.log(data);
+                                if (data) {
+                                    window.open('http://749c6434.ngrok.io/checkout/' + userId);
+                                }
+                            }
+                        });
 					})
 
 					$('body').on('click', '#addToCart-checkOut', function(){
 
-						localStorage.setItem('lastPageCompany', location.href )
+                        localStorage.setItem('lastPageCompany', location.href )
 
-						chrome.runtime.sendMessage({greeting: "updateLastPageCompany", data: location.href }, function(response) {
-										  console.log(response.farewell);
-						});
+                        chrome.runtime.sendMessage({greeting: "updateLastPageCompany", data: location.href }, function(response) {
+                            console.log(response.farewell);
+                        });
 
-						window.open('https://letsgoship.com')
-					})					
-				
+                        chrome.runtime.sendMessage({greeting: "sendShoppingCartDetails", data: JSON.parse(localStorage.getItem('cartDetails')) }, function(response){
+
+
+                        })
+
+                        var checkoutInfo = JSON.parse(localStorage.getItem('cartDetails'));
+                        var userId = localStorage.getItem('userId_r');
+                        $.ajax({
+                            url: 'https://cors-anywhere.herokuapp.com/https://749c6434.ngrok.io/api/checkout/saveTemp',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {
+                                "checkoutInfo": checkoutInfo,
+                                "userId": userId
+                            },
+                            success: function (data) {
+                                console.log(data);
+                                if (data) {
+                                    window.open('http://749c6434.ngrok.io/checkout/' + userId);
+                                }
+                            }
+                        });
+                    })
+
 				})
 
-
 				$('#cartDetailSection').ready(function(){
-
 
 						$('body').on('click', '.removeItem', function(event){
 
@@ -417,15 +424,12 @@ $(window).ready(function(){
 									// remove item from list if item count gets to zero
 									if (count == 0) {
 
-
 										console.log('minimum count should be 1 item')
-									
 
 									} else {
-
 										console.log('item removed')
 
-										productList[$(this).siblings('.itemCount').attr('id')].itemCount = count; 
+										productList[$(this).siblings('.itemCount').attr('id')].itemCount = count;
 
 										localStorage.setItem('cartDetails', JSON.stringify(productList));
 
@@ -441,9 +445,7 @@ $(window).ready(function(){
 										// updating product price
 												var oldPrice = productList[$(this).siblings('.itemCount').attr('id')].productPrice;
 
-
 												oldPrice = parseFloat(oldPrice);
-
 
 												count = parseInt(count);
 
@@ -453,19 +455,17 @@ $(window).ready(function(){
 
 												productList[$(this).siblings('.itemCount').attr('id')].productPrice = newPrice;
 
-
 												localStorage.setItem('cartDetails', JSON.stringify(productList));
 
 												// setting value in eventpage local storage
 												chrome.runtime.sendMessage({greeting: "setCartDetails", data: productList }, function(response) {
 												  console.log(response.farewell);
 												});
-
 												// udpating subtotal
 												var subtotal = 0;
-												
+
 												subtotal = parseInt(subtotal)
-												
+
 												for(i=0; i<productList.length; i++){
 
 													subtotal = subtotal + parseFloat(productList[i].productPrice)
@@ -486,13 +486,10 @@ $(window).ready(function(){
 
 												for(i=0; i<productList.length; i++){
 
-
 													tempCount = tempCount + productList[i].itemCount
-
 												}
 
 										$('#companyNotification').text(tempCount);
-
 
 										$('#cartDetailSection').empty();
 
@@ -502,15 +499,12 @@ $(window).ready(function(){
 
 										console.log(cartProductsPostRemove[0])
 
-
-
 										// for (var i = 0; i < cartProductsPostRemove.length; i++) {
 
 										// 	var element = "<div style='height: 180px;'><img src='"+cartProductsPostRemove[i].productImage+"' style='width: 100px; height: 100px; margin-top: 5px; position: absolute;' /><button id='"+i+"' class='removeButton' style='margin-top: 110px;'>Remove</button><div style='float: right; width: 484px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><div>color: "+cartProductsPostRemove[i].productColor+"</div><div>Price: "+cartProductsPostRemove[i].productPrice+"</div><div>Size: "+cartProductsPostRemove[i].productSize+"</div><a href='"+cartProductsPostRemove[i].productPage+"'>Amazon</a><div>No. of items: </div><div style='border: 1px solid black;width: 50px;padding-left: 7px;'><span class='removeItem'>-</span><span class='itemCount' id='"+i+"'>"+cartProductsPostRemove[i].itemCount+"</span><span style='cursor: pointer;' class='addItem'>+</span></div></div></div>";
 
-
 										// 	$('#cartDetailSection').prepend(element);
-											
+
 										// }
 
 										for (var i = 0; i < cartProductsPostRemove.length; i++) {
@@ -520,24 +514,21 @@ $(window).ready(function(){
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
 
 												} else if (cartProductsPostRemove[i].productColor == "") {
-													
+
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-												
+
 												} else if (cartProductsPostRemove[i].productSize =="") {
 
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";						
-												
+													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+
 												} else{
-												
+
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-												
+
 												}
-												
+
 												$('#cartDetailSection').prepend(element);
-												
 										}
-
-
 									}
 						})
 
@@ -575,7 +566,6 @@ $(window).ready(function(){
 
 										for(i=0; i<productList.length; i++){
 
-
 											tempCount = tempCount + productList[i].itemCount
 
 										}
@@ -603,29 +593,28 @@ $(window).ready(function(){
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
 
 												} else if (cartProductsPostRemove[i].productColor == "") {
-													
+
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-												
+
 												} else if (cartProductsPostRemove[i].productSize =="") {
 
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";						
-												
+													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+
 												} else{
-												
+
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-												
 												}
-												
+
 												$('#cartDetailSection').prepend(element);
-												
+
 										}
 
 									} else {
 
 										console.log('item added')
 
-										productList[$(this).siblings('.itemCount').attr('id')].itemCount = count; 
-										
+										productList[$(this).siblings('.itemCount').attr('id')].itemCount = count;
+
 										$(this).siblings('.itemCount').text(count)
 
 										var oldPrice = productList[$(this).siblings('.itemCount').attr('id')].productPrice;
@@ -655,9 +644,8 @@ $(window).ready(function(){
 
 										// 	var element = "<div style='height: 180px;'><img src='"+productList[i].productImage+"' style='width: 100px; height: 100px; margin-top: 5px; position: absolute;' /><button id='"+i+"' class='removeButton' style='margin-top: 110px;'>Remove</button><div style='float: right; width: 484px;'><div>Title: "+productList[i].productTitle+"</div><div>color: "+productList[i].productColor+"</div><div>Price: "+productList[i].productPrice+"</div><div>Size: "+productList[i].productSize+"</div><a href='"+productList[i].productPage+"'>Amazon</a><div>No. of items: </div><div style='border: 1px solid black;width: 50px;padding-left: 7px;'><span class='removeItem'>-</span><span class='itemCount' id='"+i+"'>"+productList[i].itemCount+"</span><span style='cursor: pointer;' class='addItem'>+</span></div></div></div>";
 
-
 										// 	$('#cartDetailSection').prepend(element);
-											
+
 										// }
 
 										for (var i = 0; i < productList.length; i++) {
@@ -667,28 +655,28 @@ $(window).ready(function(){
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+productList[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+productList[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+productList[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+productList[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+productList[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
 
 												} else if (productList[i].productColor == "") {
-													
+
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+productList[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+productList[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: "+productList[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+productList[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+productList[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+productList[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-												
+
 												} else if (productList[i].productSize =="") {
 
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+productList[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+productList[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+productList[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+productList[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+productList[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+productList[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";						
-												
+													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+productList[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+productList[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+productList[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+productList[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+productList[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+productList[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+
 												} else{
-												
+
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+productList[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+productList[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+productList[i].productColor+"</div><div>Size: "+productList[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+productList[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+productList[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+productList[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-												
+
 												}
-												
+
 												$('#cartDetailSection').prepend(element);
-												
+
 										}
 
 										// udpating subtotal
 										var subtotal = 0;
-										
+
 										subtotal = parseInt(subtotal)
-										
+
 										for(i=0; i<productList.length; i++){
 
 											subtotal = subtotal + parseFloat(productList[i].productPrice)
@@ -709,13 +697,11 @@ $(window).ready(function(){
 
 										for(i=0; i<productList.length; i++){
 
-
 											tempCount = tempCount + productList[i].itemCount
 
 										}
 
 										$('#companyNotification').text(tempCount);
-
 
 									}
 						})
@@ -743,7 +729,6 @@ $(window).ready(function(){
 
 										// $('#companyNotification').text(productList.length);
 
-
 										if(productList.length == 0){
 
 											$('#companyNotification').css('display', 'none');
@@ -753,9 +738,9 @@ $(window).ready(function(){
 										} else {
 
 												var subtotal = 0;
-										
+
 												subtotal = parseInt(subtotal)
-												
+
 												for(i=0; i<productList.length; i++){
 
 													subtotal = subtotal + parseFloat(productList[i].productPrice)
@@ -777,13 +762,8 @@ $(window).ready(function(){
 
 												for(i=0; i<productList.length; i++){
 
-
 													tempCount = tempCount + productList[i].itemCount
-
 												}
-
-
-
 
 												$('#companyNotification').text(tempCount);
 										}
@@ -803,36 +783,29 @@ $(window).ready(function(){
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
 
 												} else if (cartProductsPostRemove[i].productColor == "") {
-													
+
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-												
+
 												} else if (cartProductsPostRemove[i].productSize =="") {
 
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";						
-												
+													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+
 												} else{
-												
+
 													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-												
+
 												}
-												
 												$('#cartDetailSection').prepend(element);
-												
 										}
-
 								})
-
 				})
-
 					$('.removeButton').on('click', function(){
 
 						console.log($(this).attr('id'));
 					})
-				
 
-				$(document).mouseup(function(e) 
+				$(document).mouseup(function(e)
 				{
-
 
 				    var container = $("#addToCartModal");
 
@@ -843,8 +816,8 @@ $(window).ready(function(){
 				    	$('#page-mask').css('display', 'none')
 				    } else
 				    // if the target of the click isn't the container nor a descendant of the container
-				    (!container.is(e.target) && container.has(e.target).length === 0) 
-				    {	
+				    (!container.is(e.target) && container.has(e.target).length === 0)
+				    {
 				        container.hide();
 				        $('#page-mask').css('display', 'none')
 				    }
@@ -854,7 +827,7 @@ $(window).ready(function(){
 
 				// 	var container2 = $('#viewCartModal');
 
-				// 	(!container2.is(e.target) && container2.has(e.target).length === 0) 
+				// 	(!container2.is(e.target) && container2.has(e.target).length === 0)
 				//     {
 				//         container2.hide();
 				//     }
@@ -917,118 +890,118 @@ $(window).ready(function(){
 
 							}
 
-							
+
 							if($.trim($('#productTitle').text()) !== '')
-								
+
 							{// Check if cartdetails exist and not empty
 
 
 											if (localStorage.getItem('cartDetails') && JSON.parse(localStorage.getItem('cartDetails')).length>0 ) {
-							
+
 												var productListPostAdd = JSON.parse(localStorage.getItem('cartDetails'))
-							
+
 												var sameProductSKU = false;
 												console.log('inside')
 												for(i=0;i< productListPostAdd.length; i++){
-							
+
 													console.log('loop')
 														// check if product already in cart
-							
+
 														console.log(productDetails.productPage)
 														console.log(productListPostAdd[i].productPage)
-							
+
 														console.log(productDetails.productSKU)
-							
+
 														console.log(productListPostAdd[i].productSKU)
-							
+
 														if (productDetails.productSKU == productListPostAdd[i].productSKU ) {
-							
+
 															sameProductSKU = true;
-							
+
 															console.log('same product')
 															var newItemCount = productListPostAdd[i].itemCount + 1;
-							
-							
+
+
 															productListPostAdd[i].itemCount = newItemCount;
-							
+
 															newItemCount = parseInt(newItemCount);
-							
+
 															console.log(newItemCount)
-														
+
 															var oldPrice = productListPostAdd[i].productPrice;
-							
+
 															console.log("oldPrice " + oldPrice )
-															
+
 															oldPrice = parseFloat(oldPrice);
-							
+
 															console.log('old price ' + oldPrice)
-									
+
 															tempProductPrice = parseFloat(tempProductPrice);
-							
+
 															var newPrice = oldPrice + tempProductPrice;
-							
+
 															newPrice = newPrice.toFixed('2');
-							
+
 															productListPostAdd[i].productPrice = newPrice;
-							
+
 															console.log("newPrice " + newPrice)
-							
+
 															var subtotal = 0;
-															
+
 															subtotal = parseInt(subtotal)
-															
+
 															for(a=0; a<productListPostAdd.length; a++){
-							
+
 																subtotal = subtotal + parseFloat(productListPostAdd[a].productPrice)
-							
+
 																console.log(productListPostAdd[a].productPrice);
-							
+
 															}
-							
+
 															console.log(subtotal)
-							
+
 															$('#subtotal').text(subtotal);
-							
+
 															localStorage.setItem('cartDetails', JSON.stringify(productListPostAdd));
 
 															// setting value in eventpage local storage
 															chrome.runtime.sendMessage({greeting: "setCartDetails", data: productListPostAdd }, function(response) {
 															  console.log(response.farewell);
 															});
-							
-															$('#companyNotification').css('display', 'block');
-							
-															var tempCount = 0;
-							
-															for(j=0; j<productListPostAdd.length; j++){
-							
-																tempCount = tempCount + productListPostAdd[j].itemCount
-							
-															}
-							
-															$('#companyNotification').text(tempCount);
-															
 
-															$('#page-mask').css('display', 'block')							
+															$('#companyNotification').css('display', 'block');
+
+															var tempCount = 0;
+
+															for(j=0; j<productListPostAdd.length; j++){
+
+																tempCount = tempCount + productListPostAdd[j].itemCount
+
+															}
+
+															$('#companyNotification').text(tempCount);
+
+
+															$('#page-mask').css('display', 'block')
 															$('#addToCartModal').css('display','block');
-							
+
 															$('#addToCartProductDetail').css('display','block');
 															$('#addToCartTitle').text($.trim($('#productTitle').text()))
-															
+
 															$('#addToCartImage').attr('src',$('.a-dynamic-image').attr('src'));
-							
+
 															$('#addToCart-checkOut').css('display', 'block');
-							
+
 															$('#addToCartError').css('display', 'none');
-							
+
 															$('#addToCart-Ok').css('display', 'none');
-							
-							
-														} 
+
+
+														}
 												}
-							
+
 												if(sameProductSKU == false){
-							
+
 													if (productDetails.productSize == "Select") {
 																	$('#page-mask').css('display', 'block')
 																	$('#addToCartModal').css('display','block');
@@ -1037,9 +1010,9 @@ $(window).ready(function(){
 																	$('#addToCartError').text("Please select a product size.")
 																	$('#addToCart-Ok').css('display','block');
 																	$('#addToCart-checkOut').css('display','none');
-							
+
 																} else if (productDetails.productColor == "Select") {
-							
+
 																	$('#page-mask').css('display', 'block')
 																	$('#addToCartModal').css('display','block');
 																	$('#addToCartProductDetail').css('display','none');
@@ -1047,7 +1020,7 @@ $(window).ready(function(){
 																	$('#addToCartError').text("Please select a product color.");
 																	$('#addToCart-Ok').css('display','block');
 																	$('#addToCart-checkOut').css('display','none');
-							
+
 																} else if (productDetails.productPrice == '') {
 
 																	$('#page-mask').css('display', 'block')
@@ -1060,104 +1033,104 @@ $(window).ready(function(){
 
 
 																} else {
-							
+
 																		// $('#addToCart').text("Adding")
 												    		// 			$('#addToCart').attr("class","btn btn-warning btn-block mt-1 mr-3")
-							
+
 												    				// redundant check but good to take details
 																	if(localStorage.getItem('cartDetails')){
-							
+
 																		var cartDetails = JSON.parse(localStorage.getItem('cartDetails'))
-							
-																		
-							
+
+
+
 																		cartDetails.push(productDetails);
-							
+
 																		localStorage.setItem('cartDetails', JSON.stringify(cartDetails));
 
 																		// setting value in eventpage local storage
 																		chrome.runtime.sendMessage({greeting: "setCartDetails", data: cartDetails }, function(response) {
 																		  console.log(response.farewell);
 																		});
-							
-							
+
+
 																		// udpating subtotal
 																		var subtotal = 0;
-																		
+
 																		subtotal = parseInt(subtotal)
-																		
+
 																		for(k=0; k<cartDetails.length; k++){
-							
+
 																			subtotal = subtotal + parseFloat(cartDetails[k].productPrice)
-							
+
 																			console.log(cartDetails[k].productPrice);
-							
+
 																		}
-							
+
 																		subtotal = subtotal.toFixed(2);
 																		console.log(subtotal)
-							
+
 																		$('#subtotal').text(subtotal);
-							
-							
+
+
 																		// updating notification bubble count
 																		$('#companyNotification').css('display', 'block');
-							
+
 																		var tempCount = 0;
-							
+
 																		for(l=0; l<cartDetails.length; l++){
-							
-							
+
+
 																			tempCount = tempCount + cartDetails[l].itemCount
-							
+
 																		}
-							
+
 																		$('#companyNotification').text(tempCount);
-							
+
 																		$('#page-mask').css('display', 'block')
 																		$('#addToCartModal').css('display','block');
-							
+
 																		$('#addToCartProductDetail').css('display','block');
 																		$('#addToCartTitle').text($.trim($('#productTitle').text()))
-																		
+
 																		$('#addToCartImage').attr('src',$('.a-dynamic-image').attr('src'));
-							
+
 																		$('#addToCart-Ok').css('display','none');
 																		$('#addToCart-checkOut').css('display','block');
-							
+
 																		$('#addToCartError').css('display','none')
-																	
-							
-																	} 
-							
+
+
+																	}
+
 																}
 												}
-							
-											} else {
-							
-																		var cartDetails = []
-							
-																		cartDetails.push(productDetails);
-																		localStorage.setItem('cartDetails', JSON.stringify(cartDetails));
 
-																		// setting value in eventpage local storage
-																		chrome.runtime.sendMessage({greeting: "setCartDetails", data: cartDetails }, function(response) {
-																		  console.log(response.farewell);
-																		});
-							
-																		$('#companyNotification').css('display', 'block');
-																		$('#companyNotification').text(cartDetails.length);
-							
-																		$('#page-mask').css('display', 'block')
-																		$('#addToCartModal').css('display','block');
-							
-																		$('#addToCartProductDetail').css('display','block');
-																		$('#addToCartTitle').text($.trim($('#productTitle').text()))
-																		
-																		$('#addToCartImage').attr('src',$('.a-dynamic-image').attr('src'));
-							
-																		$('#addToCart-checkOut').css('display', 'block');
-																			
+											} else {
+
+											var cartDetails = []
+
+											cartDetails.push(productDetails);
+											localStorage.setItem('cartDetails', JSON.stringify(cartDetails));
+
+											// setting value in eventpage local storage
+											chrome.runtime.sendMessage({greeting: "setCartDetails", data: cartDetails }, function(response) {
+											  console.log(response.farewell);
+											});
+
+											$('#companyNotification').css('display', 'block');
+											$('#companyNotification').text(cartDetails.length);
+
+											$('#page-mask').css('display', 'block')
+											$('#addToCartModal').css('display','block');
+
+											$('#addToCartProductDetail').css('display','block');
+											$('#addToCartTitle').text($.trim($('#productTitle').text()))
+
+											$('#addToCartImage').attr('src',$('.a-dynamic-image').attr('src'));
+
+											$('#addToCart-checkOut').css('display', 'block');
+
 											}
 							} else{
 
@@ -1175,24 +1148,16 @@ $(window).ready(function(){
 
 						console.log(JSON.parse(localStorage.getItem('cartDetails')));
 
-
 						})
-						
+
 					} else {
 
 						$('#addToCartMM').css('opacity', '0.4');
 
 						console.log('adding opaciy')
-
 					}
-
 					console.log('add to cart button ready')
-
 				})
-				
-
 				console.log('consoling')
-
 		}
-
 })
