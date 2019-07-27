@@ -1,0 +1,38 @@
+{
+ "manifest_version":2,
+
+ "name":"LetsGoShip",
+
+ "version":"1",
+
+ "browser_action":{
+ 	"default_icon":"/images/logo.png",
+ 	"default_popup":"/html/landing.html",
+ 	"default_title":"A popup will come here."
+ },
+
+ "permissions": [
+    "activeTab", "http://ex.travelcast.us/api/*", "https://api.bigcommerce.com/stores/ptqw56w7uz/v2/*" , "webRequest", "webRequestBlocking" , "storage"
+ ],
+
+ "content_scripts": [
+  {
+	"matches": ["https://www.amazon.com/*"],
+	"js": ["/jquery-3.4.0.min.js", "/js/content.js"]
+  }],
+
+ "background":{
+ 	"scripts":["/jquery-3.4.0.min.js", "/js/background.js"]
+ },
+
+ "web_accessible_resources": [
+    "/html/topbar.html",
+    "/images/topbarLogo.png",
+    "/images/cartIcon.png",
+    "/images/success.png"
+  ],
+
+ "content_security_policy":  "script-src 'self' shippingProfile.html http://ex.travelcast.us/api/register?XDEBUG_SESSION_START=PHPSTORM https://code.jquery.com/jquery-3.3.1.slim.min.js https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js; object-src 'self'"
+}
+
+

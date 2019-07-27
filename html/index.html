@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Extension</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="				sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> 						<!-- Font-Awesome for Icons -->
+    <link rel="stylesheet" type="text/css" href="/css/styling.css">																<!-- Custom CSS -->
+</head>
+<body>
+	<div class="imageLogo"></div>	
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(255, 255, 255, 1);z-index: 100;top: 0.7em;">
+	    <button class="navbar-toggler" id="toggleButton" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNav">
+	        <ul class="navbar-nav ml-md-auto">
+	        	
+	            <!-- <li class="nav-item newmobile">
+	                <a class="nav-link" href="/html/localAddress.html"><strong>Your Local Address</strong></a>
+	            </li>
+	            <li class="nav-item newmobile">
+	                <a class="nav-link" href="/html/contactDetails.html"><strong>Your Contact Details</strong></a>
+	            </li>  -->
+	           <!--  <li class="nav-item newmobile">
+	                <a class="nav-link" href="/html/shippingProfile.html" id='shippingProfile'><strong>Your Shipping Profile</strong></a>
+	            </li> -->
+	            <li class="nav-item newmobile">
+	                <a class="nav-link" href="/html/contactUs.html"><strong>Contact Us</strong></a>
+	            </li>
+	           <!--  <li class="nav-item newmobile">
+	                <a class="nav-link" href="/html/usaAddress.html" id='usaAddress'><strong>Your USA Address</strong></a>
+	            </li> -->
+	           <!--  <li class="nav-item newmobile" id="logOutButton">
+	                <a class="nav-link" href="#"><strong>Logout</strong></a>
+	            </li> -->
+	        </ul>
+	    </div>
+	</nav>	
+
+<div class="container" id='signupLoginPage' style="display: block">
+	<div class="titleHeading"><h3 style="text-align: center;" id="titleHeadingId">Please Login</h3></div>
+	<div class="btn-group buttonClass" role="group" aria-label="Basic example">
+	  <button type="button" class="btn btn-primary" id="login">Login</button>
+	  <button type="button" class="btn btn-outline-primary" id="signup">Sign Up</button>
+	</div>
+
+<div class="passwordErrorHeading" id="passwordErrorHeading" style="display: none;"><h6 style="text-align: center;" >Minimum 6 characters password</h6></div>
+
+<div class="emailErrorHeading" id="emailErrorHeading" style="display: none;"><h6 style="text-align: center;" >Please enter valid email id</h6></div>
+
+<div class="successHeading" id="successHeading" style="display: none;"><h6 style="text-align: center;" >Successfully Signed Up</h6></div>
+
+	<div style="margin-top: 2em;" id="loginbody">
+		<form>
+		  <div>
+		  	<p>Email</p>
+		  	<div class="input-group mb-3 inputDiv errorLogin">
+  				<div class="input-group-prepend iconDiv">
+    				<span class="input-group-text iconSpan" id="basic-addon1"><i id="envelopeIcon" class="fas fa-envelope" style="color:rgb(35,119,255)"></i></span>
+  				</div>
+  				<input type="email" id="loginEmail" class="form-control inputClass" placeholder="capicreative@gmail.com" aria-label="Email" aria-describedby="basic-addon1">
+		  	</div>
+		  </div>	
+		  <div>
+		  	<p>Password</p>
+		  	<div class="input-group mb-3 inputDiv errorLogin">
+  				<div class="input-group-prepend iconDiv">
+    				<span class="input-group-text iconSpan" id="basic-addon1"><i id="lockIcon" class="fas fa-lock" style="color:rgb(35,119,255)"></i></span>
+  				</div>
+  				<input type="password" id="loginPass" class="form-control inputClass" placeholder="Enter Password Here" aria-label="Password" aria-describedby="basic-addon1">
+		  	</div>
+		  </div>	
+		  <a type="submit" id="loginButton" class="btn btn-primary submitButtonClass submitLoginForm" style="margin-bottom: 1.5rem;color: white;" href="#">Login Now</a>
+		</form>
+	</div>
+
+	<div style="margin-top: 1em;" id="signupbody">
+		<form>
+		  <div>
+		  	<p>Name</p>
+		  	<div class="input-group mb-3 inputDiv">
+  				<div class="input-group-prepend iconDiv">
+    				<span class="input-group-text iconSpan" id="basic-addon1"><i class="fas fa-user-circle" style="color:rgb(35,119,255)"></i></span>
+  				</div>
+  				<input type="text" class="form-control inputClass userName" placeholder="This is my Username" aria-label="Username" aria-describedby="basic-addon1">
+		  	</div>
+		  </div>
+		  <div>
+		  	<p>Email</p>
+		  	<div class="input-group mb-3 inputDiv errorSignUpEmail">
+  				<div class="input-group-prepend iconDiv">
+    				<span class="input-group-text iconSpan lockIcon signUpEmailLock" id="basic-addon1"><i class="fas fa-envelope" style="color:rgb(35,119,255)"></i></span>
+  				</div>
+  				<input type="email" class="form-control inputClass userEmail" placeholder="capicreative@gmail.com" aria-label="Email" aria-describedby="basic-addon1">
+		  	</div>
+		  </div>	
+		  <div>
+		  	<p>Password</p>
+		  	<div class="input-group mb-3 inputDiv errorSignUpPassword">
+  				<div class="input-group-prepend iconDiv">
+    				<span class="input-group-text iconSpan lockIcon" id="basic-addon1 signUpLockIcon"><i class="fas fa-lock" style="color:rgb(35,119,255)"></i></span>
+  				</div>
+  				<input type="password" class="form-control inputClass userPassword" placeholder="Enter Password Here" aria-label="Password" aria-describedby="basic-addon1">
+		  	</div>
+		  </div>
+		  <div>
+		  	<p>Confirm Password</p>
+		  	<div class="input-group mb-3 inputDiv errorSignUpPassword">
+  				<div class="input-group-prepend iconDiv">
+    				<span class="input-group-text iconSpan" id="basic-addon1 signUpLockIcon"><i class="fas fa-lock" style="color:rgb(35,119,255)"></i></span>
+  				</div>
+  				<input type="password" class="form-control inputClass" aria-label="Password" aria-describedby="basic-addon1">
+		  	</div>
+		  </div>	
+		  <div style="text-align: center;font-size: 0.9rem;">
+		  	By clicking "SUBMIT",I agree to the <span style="color:rgb(35, 119, 255)">Terms of Service.</span>
+		  </div>
+		  <button type="button" class="btn btn-primary submitButtonClass submitSignupForm" style="margin-bottom: 1.5rem;" href='#'>Sign Up Now</button>
+		</form>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="/js/myScript.js"></script>
+<script src="/js/login.js"></script>
+<script src="/js/logout.js"></script>
+<script type="text/javascript" src="/jquery-3.4.0.min.js"></script>
+</body>
+</html>
