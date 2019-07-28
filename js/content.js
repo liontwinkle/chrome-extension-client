@@ -13,13 +13,31 @@ $(window).ready(function(){
    		    }
    		    return hex;
    		}
-   		var userId_r = getRandomToken();
-		if (localStorage.getItem('userId_r') == null) {
-            localStorage.setItem('userId_r', userId_r);
+   		var random_id = getRandomToken();
+		if (localStorage.getItem('random_id') == null) {
+            localStorage.setItem('random_id', random_id);
         }
 
-   		console.log('$$$$$$$$$$$$$$$', userId_r);
-   		console.log('$$$$$$$$$$$$$$$', localStorage.getItem('userId_r'));
+   		console.log('$$$$$$$$$$$$$$$', random_id);
+   		console.log('$$$$$$$$$$$$$$$', localStorage.getItem('random_id'));
+    	var chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
+   		var string = '';
+    	for(var i=0; i<15; i++){
+        	string += chars[Math.floor(Math.random() * chars.length)];
+    	}
+    	var random_email= string + '@domain.com';
+
+    	if (localStorage.getItem('random_name') == null) {
+    		localStorage.setItem('random_name', string);
+		}
+		console.log('random_string', string);
+		console.log('random_string', localStorage.getItem('random_name'));
+
+    	if (localStorage.getItem('random_email') == null) {
+        	localStorage.setItem('random_email', random_email);
+    	}
+    	console.log('@@@@@@@@@@', string + '@domain.com');
+    	console.log('###########',localStorage.getItem('random_email') );
 
 		function gotMessage(message,sender,sendResponse){
 			document.getElementById("enterAddressFullName").value=message.customerName
@@ -354,20 +372,24 @@ $(window).ready(function(){
 
 						})
 
-						var checkoutInfo = JSON.parse(localStorage.getItem('cartDetails'));
-						var userId = localStorage.getItem('userId_r');
+						var products = JSON.parse(localStorage.getItem('cartDetails'));
+						var random_id = localStorage.getItem('random_id');
+						var random_name = localStorage.getItem('random_name');
+						var random_email = localStorage.getItem('random_email');
                         $.ajax({
-                            url: 'https://cors-anywhere.herokuapp.com/https://749c6434.ngrok.io/api/checkout/saveTemp',
+                            url: 'https://cors-anywhere.herokuapp.com/https://6cba750e.ngrok.io/api/checkout/saveProduct',
                             type: 'post',
                             dataType: 'json',
                             data: {
-                                "checkoutInfo": checkoutInfo,
-                                "userId": userId
+                                "product": products,
+                                "random_id": random_id,
+								"random_name": random_name,
+								"random_email": random_email
                             },
                             success: function (data) {
                                 console.log(data);
                                 if (data) {
-                                    window.open('http://749c6434.ngrok.io/checkout/' + userId);
+                                    window.open('http://6cba750e.ngrok.io/checkout/' + random_id);
                                 }
                             }
                         });
@@ -386,20 +408,24 @@ $(window).ready(function(){
 
                         })
 
-                        var checkoutInfo = JSON.parse(localStorage.getItem('cartDetails'));
-                        var userId = localStorage.getItem('userId_r');
+                        var products = JSON.parse(localStorage.getItem('cartDetails'));
+                        var random_id = localStorage.getItem('random_id');
+                        var random_name = localStorage.getItem('random_name');
+                        var random_email = localStorage.getItem('random_email');
                         $.ajax({
-                            url: 'https://cors-anywhere.herokuapp.com/https://749c6434.ngrok.io/api/checkout/saveTemp',
+                            url: 'https://cors-anywhere.herokuapp.com/https://6cba750e.ngrok.io/api/checkout/saveProduct',
                             type: 'post',
                             dataType: 'json',
                             data: {
-                                "checkoutInfo": checkoutInfo,
-                                "userId": userId
+                                "product": products,
+                                "random_id": random_id,
+                                "random_name": random_name,
+                                "random_email": random_email
                             },
                             success: function (data) {
                                 console.log(data);
                                 if (data) {
-                                    window.open('http://749c6434.ngrok.io/checkout/' + userId);
+                                    window.open('http://6cba750e.ngrok.io/checkout/' + random_id);
                                 }
                             }
                         });
