@@ -1,1189 +1,938 @@
 $(window).ready(function(){
 
-		chrome.runtime.onMessage.addListener(gotMessage);
-
-		console.log("chrome extension go")
-
-   		function getRandomToken() {
-   		    var randomPool = new Uint8Array(16);
-   		    crypto.getRandomValues(randomPool);
-   		    var hex = '';
-   		    for (var i = 0; i < randomPool.length; ++i) {
-   		        hex += randomPool[i].toString(16);
-   		    }
-   		    return hex;
-   		}
-   		var random_id = getRandomToken();
-		if (localStorage.getItem('random_id') == null) {
-            localStorage.setItem('random_id', random_id);
+    function viewCart(cartProductsPostRemove) {
+        for (var i = 0; i < cartProductsPostRemove.length; i++) {
+            if (cartProductsPostRemove[i].productColor === "" && cartProductsPostRemove[i].productSize == "") {
+                if (cartProductsPostRemove[i].productPage.slice(12, 14) == 'am') {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                } else if (cartProductsPostRemove[i].productPage.slice(12, 14) == 'ni') {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Nike</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                } else {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Ebay</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                }
+            } else if (!cartProductsPostRemove[i].productColor ) {
+                if (cartProductsPostRemove[i].productPage.slice(12, 14) == 'am') {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: " + cartProductsPostRemove[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                } else if (cartProductsPostRemove[i].productPage.slice(12, 14) == 'ni') {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: " + cartProductsPostRemove[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Nike</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                } else {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: " + cartProductsPostRemove[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Ebay</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                }
+            } else if (!cartProductsPostRemove[i].productSize ) {
+                if (cartProductsPostRemove[i].productPage.slice(12, 14) == 'am') {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProductsPostRemove[i].productColor + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                } else if (cartProductsPostRemove[i].productPage.slice(12, 14) == 'ni') {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProductsPostRemove[i].productColor + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Nike</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                } else {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProductsPostRemove[i].productColor + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Ebay</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                }
+            } else {
+                if (cartProductsPostRemove[i].productPage.slice(12, 14) == 'am') {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProductsPostRemove[i].productColor + "</div><div>Size: " + cartProductsPostRemove[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                } else if (cartProductsPostRemove[i].productPage.slice(12, 14) == 'ni') {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProductsPostRemove[i].productColor + "</div><div>Size: " + cartProductsPostRemove[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Nike</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                } else {
+                    var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProductsPostRemove[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProductsPostRemove[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProductsPostRemove[i].productColor + "</div><div>Size: " + cartProductsPostRemove[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProductsPostRemove[i].productPage + "'>From Ebay</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProductsPostRemove[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProductsPostRemove[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                }
+            }
+            $('#cartDetailSection').prepend(element);
         }
-
-   		console.log('$$$$$$$$$$$$$$$', random_id);
-   		console.log('$$$$$$$$$$$$$$$', localStorage.getItem('random_id'));
-    	var chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
-   		var string = '';
-    	for(var i=0; i<15; i++){
-        	string += chars[Math.floor(Math.random() * chars.length)];
-    	}
-    	var random_email= string + '@domain.com';
-
-    	if (localStorage.getItem('random_name') == null) {
-    		localStorage.setItem('random_name', string);
-		}
-		console.log('random_string', string);
-		console.log('random_string', localStorage.getItem('random_name'));
-
-    	if (localStorage.getItem('random_email') == null) {
-        	localStorage.setItem('random_email', random_email);
-    	}
-    	console.log('@@@@@@@@@@', string + '@domain.com');
-    	console.log('###########',localStorage.getItem('random_email') );
-
-		function gotMessage(message,sender,sendResponse){
-			document.getElementById("enterAddressFullName").value=message.customerName
-			document.getElementById("enterAddressAddressLine1").value=message.addressLine1
-			document.getElementById("enterAddressAddressLine2").value=message.addressLine2
-			document.getElementById("enterAddressCity").value=message.city
-			document.getElementById("enterAddressStateOrRegion").value=message.state
-			document.getElementById("enterAddressPostalCode").value=message.zip
-			document.getElementById("enterAddressPhoneNumber").value=message.phone
-		}
-
-		if(location.href == 'https://www.amazon.com/gp/buy/payselect/handlers/display.html?hasWorkingJavascript=1'){
-
-			$('body').on('click', '#dummyButton', function(){
-
-				console.log('make ajax call to place order');
-
-				var cartDetails = JSON.parse(localStorage.getItem("cartItems-LetsGoShip"));
-
-				chrome.runtime.sendMessage({ notifications: "createOrder", message: cartDetails}, function (response) {
-						//console.log(response.data);
-				});
-			})
-
-			var element = '<button id="dummyButton">Dummy</button>'
-			$('#nav-inner').prepend(element)
-		}
-
-		$('body').on('click', '#sc-buy-box-ptc-button', function(){
-
-			console.log('checkout clicked')
-
-			console.log($('.sc-list-item').length);
-
-			if(localStorage.getItem('cartItems-LetsGoShip')){
-
-					localStorage.removeItem('cartItems-LetsGoShip');
-
-			}
-
-			var cartArray = [];
-
-			for(i=0;i<$('.sc-list-item').length;i++){
-
-				if($($('.sc-list-item')[i]).attr('data-itemtype')=='active'){
-					var productSKU = $($('.sc-list-item')[i]).attr('data-asin');
-
-					console.log(productSKU);
-
-					var productTitle = $.trim($($('.sc-list-item')[i]).find('.sc-product-title').text());
-
-					console.log(productTitle);
-
-					var productPrice = $.trim($($('.sc-list-item')[i]).find('.sc-product-price').text());
-
-					console.log(productPrice);
-
-					var productQuantity = $.trim($($('.sc-list-item')[i]).find('.a-dropdown-prompt').text());
-
-					console.log(productQuantity);
-
-					var productImage = $($('.sc-list-item')[i]).find('.sc-product-image').attr('src')
-
-					console.log(productImage);
-
-					var cartProduct = {
-
-						"productSKU" : productSKU,
-
-						'productTitle' : productTitle,
-
-						'productPrice' : productPrice,
-
-						'productQuantity' : productQuantity,
-
-						'productImage' : productImage
-					}
-
-					cartArray.push(cartProduct);
-
-					console.log(cartArray);
-				}
-			}
-			// chrome.runtime.sendMessage({ notifications: "createOrder", message: cartArray}, function (response) {
-			// 		//console.log(response.data);
-			// });
-			localStorage.setItem('cartItems-LetsGoShip', JSON.stringify(cartArray));
-		})
-		// Run below code when extension is on amazon site
-		if(window.location.toString().match('^https://www.amazon.com/')){
-
-				console.log('loading in amazon webpage')
-
-				$.get("chrome-extension://" + chrome.runtime.id + "/html/topbar.html", function( data ) {
-
-		   			$("body").prepend(data);
-
-				})
-
-				var pageMaskElement = '<div id="page-mask" style="position: fixed;left: 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: none;"></div>'
-
-				$('body').append(pageMaskElement)
-
-				$('#companyLogo').ready(function(){
-
-					var logo = "chrome-extension://" + chrome.runtime.id + "/images/topbarLogo.png";
-
-					console.log(logo)
-
-					setTimeout(function(){
-
-						$('#companyLogo').attr('src',logo);
-
-					}, 2000)
-
-				})
-
-				var details={
-						name:$("#productTitle").innerText,
-						price:$("#priceblock_ourprice").innerText,
-						color:$("#variation_color_name .selection").innerText,
-						size:$("#variation_size_name .selection").innerText,
-						style:$("#variation_style_name .selection").innerText,
-				}
-				$("#addButton").on("click",function(){
-					console.log(details)
-					chrome.runtime.sendMessage(details)
-				})
-
-				$('#companyNotification').ready(function(){
-
-					var notificationProducts = JSON.parse(localStorage.getItem('cartDetails'))
-
-					// if(notificationProducts.length > 0){
-
-					// 		$('#companyNotification').css('display', 'block');
-
-					// 		var tempCount = 0;
-
-					// 		for(i=0; i<notificationProducts.length; i++){
-
-
-					// 				tempCount = tempCount + notificationProducts[i].itemCount
-
-					// 				console.log(notificationProducts[i].itemCount)
-					// 		}
-
-					// 		console.log(tempCount)
-
-					// 		$('#companyNotification').text(tempCount);
-					// }
-				})
-
-				$('#viewCartIcon').ready(function(){
-
-						var cartIcon = "chrome-extension://" + chrome.runtime.id + "/images/cartIcon.png";
-						console.log(cartIcon)
-
-						setTimeout(function(){
-
-							$('#viewCartIcon').attr('src',cartIcon);
-
-							var notificationProducts = JSON.parse(localStorage.getItem('cartDetails'))
-
-                            if(notificationProducts.length > 0){
-
-									$('#companyNotification').css('display', 'block');
-
-									var tempCount = 0;
-
-									for(i=0; i<notificationProducts.length; i++){
-
-											tempCount = tempCount + notificationProducts[i].itemCount
-
-											console.log(notificationProducts[i].itemCount)
-									}
-
-									console.log(tempCount)
-
-									$('#companyNotification').text(tempCount);
-							}
-
-                            $('body').on('click', '#viewCartIcon', function(){
-
-										$('#cartDetailSection').empty();
-
-										var cartProducts = JSON.parse(localStorage.getItem('cartDetails'))
-										console.log("product>>>>>>>>>>", cartProducts);
-										if(cartProducts == null ){
-
-											console.log('nothing in cart')
-
-											$('#subtotal').text(0);
-
-											$('#viewCartModal').toggle();
-
-										} else {
-
-											var subtotal = 0;
-
-											subtotal = parseInt(subtotal)
-
-											for(i=0; i<cartProducts.length; i++){
-
-												subtotal = subtotal + parseFloat(cartProducts[i].productPrice)
-
-												console.log(cartProducts[i].productPrice);
-
-											}
-
-											console.log(subtotal)
-
-											subtotal = subtotal.toFixed(2);
-
-											$('#subtotal').text(subtotal);
-
-											if(subtotal == 0){
-
-												var element = "<div id='emptyCartMM'><hr style='margin-top: 15px; margin-bottom: 20px;'><div>Your Cart is Empty</div></div>"
-
-												$('#cartDetailSection').prepend(element);
-
-												('#checkOut').css('display','none');
-
-												$('#viewCartModal').css('height', '512px');
-
-											}
-
-												for (var i = 0; i < cartProducts.length; i++) {
-
-														if (cartProducts[i].productColor == "" && cartProducts[i].productSize =="") {
-
-															$('#checkOut').css('display','block');
-
-															$('#emptyCartMM').css('display','none');
-
-															$('#viewCartModal').css('height', '575px');
-
-															var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProducts[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProducts[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProducts[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProducts[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProducts[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-														} else if (cartProducts[i].productColor == "") {
-
-															$('#checkOut').css('display','block');
-															$('#emptyCartMM').css('display','none');
-
-															$('#viewCartModal').css('height', '575px');
-
-															var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProducts[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProducts[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: "+cartProducts[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProducts[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProducts[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProducts[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-														} else if (cartProducts[i].productSize =="") {
-
-															$('#checkOut').css('display','block');
-															$('#emptyCartMM').css('display','none');
-
-															$('#viewCartModal').css('height', '575px');
-
-															var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProducts[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProducts[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProducts[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProducts[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProducts[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProducts[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-														} else{
-
-															$('#checkOut').css('display','block');
-															$('#emptyCartMM').css('display','none');
-
-															$('#viewCartModal').css('height', '575px');
-
-															var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProducts[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProducts[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProducts[i].productColor+"</div><div>Size: "+cartProducts[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProducts[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProducts[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProducts[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-														}
-
-														$('#cartDetailSection').prepend(element);
-
-													}
-
-													$('#viewCartModal').toggle();
-
-													if ($('#viewCartModal').is(":visible")) {
-                                                        $('#page-mask').css('display', 'block');
-													} else {
-                                                        $('#page-mask').css('display', 'none');
-													}
-													console.log($('#viewCartModal').css("display"));
-
-													console.log('view cart click')
-
-													console.log("remove button ready")
-										}
-									});
-
-						}, 2000)
-				})
-
-				$('#viewCart').ready(function(){
-
-					$('#viewCart-continueShopping').on('click', function(){
-
-						$('#viewCartModal').css('display','none');
-
-						$('#page-mask').css('display', 'none')
-
-					})
-
-					$('#viewCartModal').mouseleave(function(){
-
-						$('#viewCartModal').css('display', 'none');
+    }
+    function goCheckout() {
+        chrome.storage.local.set({lastPageCompany: location.href}, function () {});
+        chrome.runtime.sendMessage({
+            greeting: "updateLastPageCompany",
+            data: location.href
+        }, function (response) {});
+        chrome.storage.local.get(['cartDetails'], function (result) {
+            var products = JSON.parse(result.cartDetails);
+            chrome.runtime.sendMessage({
+                greeting: "sendShoppingCartDetails",
+                data: products
+            }, function (response) {});
+            chrome.storage.local.get(['random_id', 'random_name', 'random_email'], function (result) {
+                var random_id = result.random_id;
+                var random_name = result.random_name;
+                var random_email = result.random_email;
+                $.ajax({
+                    url: 'https://cors-anywhere.herokuapp.com/https://2cd7bf1c.ngrok.io/api/checkout/saveProduct',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        "product": products,
+                        "random_id": random_id,
+                        "random_name": random_name,
+                        "random_email": random_email
+                    },
+                    success: function (data) {
+                        if (data) {
+                            window.open('http://2cd7bf1c.ngrok.io/checkout/' + random_id);
+                        }
+                    }
+                });
+            });
+        });
+    }
+
+    if (window.location.toString().match('^https://www.amazon.com/') || window.location.toString().match('^https://www.nike.com/') || window.location.toString().match('^https://www.ebay.com/')) {
+        $.get("chrome-extension://" + chrome.runtime.id + "/html/topbar.html", function (data) {
+            $("body").prepend(data);
+        });
+        var pageMaskElement = '<div id="page-mask" style="position: fixed;left: 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: none;"></div>'
+
+        $('body').append(pageMaskElement);
+        $('#companyLogo').ready(function () {
+            var logo = "chrome-extension://" + chrome.runtime.id + "/images/topbarLogo.png";
+            setTimeout(function () {
+                $('#companyLogo').attr('src', logo);
+                $('#amazon').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/amazon.png");
+                $('#ebay').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/ebay.png");
+                $('#nike').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/nike.png");
+            }, 200)
+        });
+
+        $('#viewCartIcon').ready(function () {
+
+            var cartIcon = "chrome-extension://" + chrome.runtime.id + "/images/cartIcon.png";
+
+            setTimeout(function () {
+                $('#viewCartIcon').attr('src', cartIcon);
+                chrome.storage.local.get(['cartDetails'], function (result) {
+                    var notificationProducts = JSON.parse(result.cartDetails);
+                    if (notificationProducts.length > 0) {
+                        $('#companyNotification').css('display', 'block');
+                        var tempCount = 0;
+                        for (i = 0; i < notificationProducts.length; i++) {
+                            tempCount = tempCount + notificationProducts[i].itemCount
+                        }
+                        $('#companyNotification').text(tempCount);
+                    }
+                });
+
+                $('body').on('click', '#viewCartIcon', function () {
+
+                    $('#cartDetailSection').empty();
+                    chrome.storage.local.get(['cartDetails'], function (result) {
+                        var cartProducts = JSON.parse(result.cartDetails);
+                        if (cartProducts == null) {
+                            $('#subtotal').text(0);
+                            $('#viewCartModal').toggle();
+                        }
+                        else {
+                            var subtotal = 0;
+                            subtotal = parseInt(subtotal);
+                            for (i = 0; i < cartProducts.length; i++) {
+                                subtotal = subtotal + parseFloat(cartProducts[i].productPrice);
+                            }
+                            subtotal = subtotal.toFixed(2);
+                            $('#subtotal').text(subtotal);
+                            if (subtotal == 0) {
+                                var element = "<div id='emptyCartMM'><hr style='margin-top: 15px; margin-bottom: 20px;'><div>Your Cart is Empty</div></div>"
+                                $('#cartDetailSection').prepend(element);
+                                $('#checkOut').css('display', 'none');
+                                $('#viewCartModal').css('height', '512px');
+                            }
+                            for (var i = 0; i < cartProducts.length; i++) {
+                                if ((cartProducts[i].productColor == "" || cartProducts[i].productColor === 'null') &&
+                                    (cartProducts[i].productSize == "" || cartProducts[i].productSize === 'null' )) {
+                                    $('#checkOut').css('display', 'block');
+                                    $('#emptyCartMM').css('display', 'none');
+                                    $('#viewCartModal').css('height', '575px');
+                                    if (cartProducts[i].productPage.slice(12, 14) == 'am') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    } else if (cartProducts[i].productPage.slice(12, 14) == 'ni') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Nike</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    } else if (cartProducts[i].productPage.slice(12, 14) == 'eb') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Ebay</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    }
+                                } else if (!cartProducts[i].productColor) {
+                                    $('#checkOut').css('display', 'block');
+                                    $('#emptyCartMM').css('display', 'none');
+                                    $('#viewCartModal').css('height', '575px');
+                                    if (cartProducts[i].productPage.slice(12, 14) == 'am') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: " + cartProducts[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    } else if (cartProducts[i].productPage.slice(12, 14) == 'ni') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: " + cartProducts[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Nike</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    } else if (cartProducts[i].productPage.slice(12, 14) == 'eb') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: " + cartProducts[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Ebay</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    }
+                                } else if (!cartProducts[i].productSize) {
+                                    $('#checkOut').css('display', 'block');
+                                    $('#emptyCartMM').css('display', 'none');
+                                    $('#viewCartModal').css('height', '575px');
+                                    if (cartProducts[i].productPage.slice(12, 14) == 'am') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProducts[i].productColor + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    } else if (cartProducts[i].productPage.slice(12, 14) == 'ni') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProducts[i].productColor + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Nike</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    } else if (cartProducts[i].productPage.slice(12, 14) == 'eb') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProducts[i].productColor + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Ebay</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    }
+                                } else {
+                                    $('#checkOut').css('display', 'block');
+                                    $('#emptyCartMM').css('display', 'none');
+                                    $('#viewCartModal').css('height', '575px');
+                                    if (cartProducts[i].productPage.slice(12, 14) == 'am') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProducts[i].productColor + "</div><div>Size: " + cartProducts[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    }
+                                    else if (cartProducts[i].productPage.slice(12, 14) == 'ni') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProducts[i].productColor + "</div><div>Size: " + cartProducts[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Nike</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    }
+                                    else if (cartProducts[i].productPage.slice(12, 14) == 'eb') {
+                                        var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: " + cartProducts[i].productColor + "</div><div>Size: " + cartProducts[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Ebay</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
+                                    }
+                                }
+                                $('#cartDetailSection').prepend(element);
+                            }
+
+                             if ($('#viewCartModal').css('display') === 'none'){
+                                 $('#viewCartModal').css('display', 'block');
+                                 $('#page-mask').css('display', 'block')
+                             }
+                             else if ($('#viewCartModal').css('display') === 'block'){
+                                 $('#viewCartModal').css('display', 'none');
+                             }
+                        }
+                    });
+
+                    $('#viewCart-continueShopping').on('click', function () {
+                        $('#viewCartModal').css('display', 'none');
+                        $('#page-mask').css('display', 'none')
+                    });
+
+                    $('.go-shipping').off('click');
+                    $('.go-shipping').on('click', function () {
+                        goCheckout();
+                        });
+
+                    $("body").on('click', function (e) {
+                        var left = 1 * $("#viewCartModal")[0].offsetLeft;
+                        var right = left + 1 * $("#viewCartModal")[0].offsetWidth;
+                        var top = 1 * $("#viewCartModal")[0].offsetTop;
+                        var bottom = top + 1 * $("#viewCartModal")[0].offsetHeight;
+                        var posX = 1 * e.pageX;
+                        var posY = 1 * e.pageY;
+                        if (posX >= left && posX <= right && posY >= top && posY <= bottom) {
+                            $('#viewCartModal').css('display', 'block');
+                            $('#page-mask').css('display', 'block')
+                        } else {
+                            $('#viewCartModal').css('display', 'none');
+                        }
+                    });
+                });
+            }, 200)
+        });
+
+        $('#cartDetailSection').ready(function () {
+            $('body').on('click','.removeItem', function (event) {
+                const id = $(this).siblings('.itemCount').attr('id');
+                chrome.storage.local.get(['cartDetails'], function (result) {
+                    var productList = JSON.parse(result.cartDetails);
+                    var count = productList[id].itemCount;
+                    count--;
+                    if (count > 0) {
+                        productList[id].itemCount = count;
+                        chrome.storage.local.set({'cartDetails': JSON.stringify(productList)}, function () {                        });
+                        chrome.runtime.sendMessage({
+                            greeting: "setCartDetails",
+                            data: productList
+                        }, function (response) {
+                        });
+                        $(this).siblings('.itemCount').text(count);
+                        var oldPrice = productList[id].productPrice;
+                        oldPrice = parseFloat(oldPrice);
+                        count = parseInt(count);
+                        var newPrice = oldPrice - oldPrice / (count + 1);
+                        newPrice = newPrice.toFixed('2');
+                        productList[id].productPrice = newPrice;
+                        chrome.storage.local.set({'cartDetails': JSON.stringify(productList)}, function () {
+                        });
+                        chrome.runtime.sendMessage({
+                            greeting: "setCartDetails",
+                            data: productList
+                        }, function (response) {
+                        });
+                        var subtotal = 0;
+                        subtotal = parseInt(subtotal);
+                        for (i = 0; i < productList.length; i++) {
+                            subtotal = subtotal + parseFloat(productList[i].productPrice);
+                        }
+                        subtotal = subtotal.toFixed(2);
+                        $('#subtotal').text(subtotal);
+                        $('#companyNotification').css('display', 'block');
+                        var tempCount = 0;
+                        for (i = 0; i < productList.length; i++) {
+                            tempCount = tempCount + productList[i].itemCount
+                        }
+                        $('#companyNotification').text(tempCount);
+
+                        $('#cartDetailSection').empty();
+
+                        chrome.storage.local.get(['cartDetails'], function (result) {
+                            var cartProductsPostRemove = JSON.parse(result.cartDetails);
+                            viewCart(cartProductsPostRemove);
+                        });
+                    }
+                })
+            });
+            $('body').on('click', '.addItem', function (event) {
+                const id = $(this).siblings('.itemCount').attr('id');
+                chrome.storage.local.get(['cartDetails'], function (result) {
+                    var productList = JSON.parse(result.cartDetails);
+                    var count = productList[id].itemCount;
+                    count++;
+                    if (count == 0) {
+                        productList.splice(id, 1);
+                        chrome.storage.local.set({cartDetails: JSON.stringify(productList)}, function () {
+                        });
+                        chrome.runtime.sendMessage({
+                            greeting: "setCartDetails",
+                            data: productList
+                        }, function (response) {
+                        });
+                        $('#companyNotification').css('display', 'block');
+                        var tempCount = 0;
+                        for (i = 0; i < productList.length; i++) {
+                            tempCount = tempCount + productList[i].itemCount
+                        }
+                        $('#companyNotification').text(tempCount);
+                        if (productList.length == 0) {
+                            $('#companyNotification').css('display', 'none');
+                        }
+                        $('#cartDetailSection').empty();
+                        chrome.storage.local.get(['cartDtails'], function (result) {
+                            var cartProductsPostRemove = JSON.parse(result.cartDetails);
+                            viewCart(cartProductsPostRemove);
+                        });
+                    }
+                    else {
+                        productList[id].itemCount = count;
+                        $(this).siblings('.itemCount').text(count);
+                        var oldPrice = productList[id].productPrice;
+                        oldPrice = parseFloat(oldPrice);
+                        var count = count;
+                        count = parseInt(count);
+                        var newPrice = oldPrice + oldPrice / (count - 1);
+                        newPrice = newPrice.toFixed(2);
+                        productList[id].productPrice = newPrice;
+                        chrome.storage.local.set({cartDetails: JSON.stringify(productList)}, function () {
+                        });
+                        chrome.runtime.sendMessage({
+                            greeting: "setCartDetails",
+                            data: productList
+                        }, function (response) {
+                        });
+                        $('#cartDetailSection').empty();
+                        viewCart(productList);
+                        var subtotal = 0;
+                        subtotal = parseInt(subtotal);
+                        for (i = 0; i < productList.length; i++) {
+                            subtotal = subtotal + parseFloat(productList[i].productPrice)
+                        }
+                        subtotal = subtotal.toFixed(2);
+                        $('#subtotal').text(subtotal);
+                        $('#companyNotification').css('display', 'block');
+                        var tempCount = 0;
+                        for (i = 0; i < productList.length; i++) {
+                            tempCount = tempCount + productList[i].itemCount
+                        }
+                        $('#companyNotification').text(tempCount);
+                    }
+                });
+            });
+            $('body').on('click', '.removeButton', function (event) {
+                const id = $(this).attr('id');
+                chrome.storage.local.get(['cartDetails'], function (result) {
+                    var productList = JSON.parse(result.cartDetails);
+                    productList.splice(id, 1);
+                    chrome.storage.local.set({cartDetails: JSON.stringify(productList)}, function () {});
+                    chrome.runtime.sendMessage({greeting: "setCartDetails", data: productList}, function (response) {});
+                    if (productList.length == 0) {
+                        $('#companyNotification').css('display', 'none');
+                        $('#subtotal').text(0);
+                    }
+                    else {
+                        var subtotal = 0;
+                        subtotal = parseInt(subtotal);
+                        for (i = 0; i < productList.length; i++) {
+                            subtotal = subtotal + parseFloat(productList[i].productPrice)
+                        }
+                        subtotal = subtotal.toFixed(2);
+                        $('#subtotal').text(subtotal);
+                        $('#companyNotification').css('display', 'block');
+                        var tempCount = 0;
+                        for (i = 0; i < productList.length; i++) {
+                            tempCount = tempCount + productList[i].itemCount
+                        }
+                        $('#companyNotification').text(tempCount);
+                    }
+                    $('#cartDetailSection').empty();
+
+                    chrome.storage.local.get(['cartDetails'], function (result) {
+                        var cartProductsPostRemove = JSON.parse(result.cartDetails);
+                        viewCart(cartProductsPostRemove);
+                    });
+                });
+            });
+        });
+
+        $(document).on('click', function (e) {
+            var container = $("#addToCartModal");
+            container.css('display', 'none');
+            $('#page-mask').css('display', 'none');
+
+        });
+
+        $('#addToCartMM').ready(function () {
+
+            if (($.trim($('#productTitle').text()) !== '')
+                || ($.trim($('#itemTitle').text()) !== '')
+                || ($.trim($('#pdp_product_title').text()) !== '')) {
+                $('body').on('click', '#addToCartMM', function () {
+
+                    $('#addToCart-continueShopping').on('click', function () {
                         $('#page-mask').css('display', 'none');
+                        $('#addToCartModal').hide();
+                    });
+                    $('#addToCart-Ok').on('click', function () {
+                        $('#page-mask').css('display', 'none');
+                        $('#addToCartModal').hide();
+                    });
+                    $('.go-shipping').off('click');
+                    $('.go-shipping').on('click', function () {
+                        goCheckout();
+                    });
+                    $("#addToCartModal").on('click', function (e) {
+                        e.stopPropagation();
+                    });
 
-					})
-
-					// localStorage.setItem('viewCartState', 'false');
-
-					// $('body').on('click', '#checkout', function(){
-					//
-					// 	localStorage.setItem('lastPageCompany', location.href )
-					//
-					// 	chrome.runtime.sendMessage({greeting: "updateLastPageCompany", data: location.href }, function(response) {
-					// 					  console.log(response.farewell);
-					// 	});
-					//
-					// 	window.open('http://localhost:8000/checkout')
-					// })
-
-					$('body').on('click', '#checkOut', function(){
-
-						localStorage.setItem('lastPageCompany', location.href )
-
-						chrome.runtime.sendMessage({greeting: "updateLastPageCompany", data: location.href }, function(response) {
-										  console.log(response.farewell);
-						});
-
-						chrome.runtime.sendMessage({greeting: "sendShoppingCartDetails", data: JSON.parse(localStorage.getItem('cartDetails')) }, function(response){
-
-
-						})
-
-						var products = JSON.parse(localStorage.getItem('cartDetails'));
-						var random_id = localStorage.getItem('random_id');
-						var random_name = localStorage.getItem('random_name');
-						var random_email = localStorage.getItem('random_email');
-                        $.ajax({
-                            url: 'https://cors-anywhere.herokuapp.com/https://6cba750e.ngrok.io/api/checkout/saveProduct',
-                            type: 'post',
-                            dataType: 'json',
-                            data: {
-                                "product": products,
-                                "random_id": random_id,
-								"random_name": random_name,
-								"random_email": random_email
-                            },
-                            success: function (data) {
-                                console.log(data);
-                                if (data) {
-                                    window.open('http://6cba750e.ngrok.io/checkout/' + random_id);
+                    $('#successIcon').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/success.png");
+                    var productDetails = {};
+                    if ($.trim($('#productTitle').text()) !== '') {
+                        var tempProductPrice = $('#priceblock_ourprice').text();
+                        tempProductPrice = tempProductPrice.replace('$', '');
+                        productDetails = {
+                            'productTitle': $.trim($('#productTitle').text()),
+                            'productPrice': tempProductPrice,
+                            'productImage': $('.a-dynamic-image').attr('src'),
+                            'productColor': $.trim($('#variation_color_name').find('.selection').text()),
+                            'productPage': location.href,
+                            'productSize': $.trim($('#dropdown_selected_size_name').find('.a-dropdown-prompt').text()),
+                            'itemCount': 1,
+                            'productSKU': location.href
+                        }
+                    } else if ($.trim($('#pdp_product_title').text()) !== '') {
+                        var tempProductPrice = $("[data-test = product-price]").text();
+                        tempProductPrice = tempProductPrice.replace('€', '');
+                        tempProductPrice = parseInt(tempProductPrice).toFixed(2);
+                        var productName = $.trim($('#pdp_product_title').text());
+                        var sizeExist = $("input[name=skuAndSize]").val();
+                        var sizeTemp = $("input[name=skuAndSize]:checked").val();
+                        var size = sizeExist ? ((sizeTemp) ? sizeTemp.split(':')[1] : 'select') : '';
+                        var colorExist = $("a[aria-selected=false]").attr('title');
+                        var color = colorExist ? ($("a[aria-selected=true]").attr('title')) : null;
+                        productDetails = {
+                            'productTitle': productName,
+                            'productPrice': tempProductPrice,
+                            'productImage': $.trim($("[alt^='" + productName + "']").attr('src')),
+                            'productColor': color,
+                            'productPage': location.href,
+                            'productSize': size,
+                            'itemCount': 1,
+                            'productSKU': location.href
+                        };
+                    }
+                    else if ($.trim($('#itemTitle').text()) !== '') {
+                        var tempProductPrice = $.trim($('#prcIsum').html());
+                        var regex = /[+-]?\d+(\.\d+)?/g;
+                        var tempProductPrice = tempProductPrice.match(regex).map(function (v) {
+                            return parseFloat(v);
+                        })[0];
+                        var productName = $.trim($('#itemTitle').text());
+                        var colorExist = $.trim($('#msku-sel-1[name="Color"]').text()) || $.trim($('#msku-sel-1[name="Colors"]').text());
+                        var sizeExist = $.trim($('#msku-sel-1[name="Size"]').text()) || $.trim($('#msku-sel-1[name="Modle"]').text());
+                        productDetails = {
+                            'productTitle': productName,
+                            'productPrice': tempProductPrice,
+                            'productImage': $.trim($("#icImg").attr('src')),
+                            'productColor': colorExist ? ($.trim($('#msku-sel-1[name="Color"] option:selected').text()) || $.trim($('#msku-sel-1[name="Colors"] option:selected').text())) : null,
+                            'productPage': location.href,
+                            'productSize': sizeExist ? (($.trim($('#msku-sel-1[name="Size"] option:selected').text()) || $.trim($('#msku-sel-1[name="Modle"] option:selected').text()))) : null,
+                            'itemCount': 1,
+                            'productSKU': location.href
+                        }
+                    }
+                    if ($.trim($('#productTitle').text()) !== '') {
+                        chrome.storage.local.get(['cartDetails'], function (result) {
+                            if (result && result.cartDetails && JSON.parse(result.cartDetails).length > 0) {
+                                var productListPostAdd = JSON.parse(result.cartDetails);
+                                var sameProductSKU = false;
+                                for (i = 0; i < productListPostAdd.length; i++) {
+                                    if ((productDetails.productSKU === productListPostAdd[i].productSKU)
+                                        && (productDetails.productColor === productListPostAdd[i].productColor)
+                                        && (productDetails.productSize === productListPostAdd[i].productSize)) {
+                                        sameProductSKU = true;
+                                        var newItemCount = productListPostAdd[i].itemCount + 1;
+                                        productListPostAdd[i].itemCount = newItemCount;
+                                        newItemCount = parseInt(newItemCount);
+                                        var oldPrice = productListPostAdd[i].productPrice;
+                                        oldPrice = parseFloat(oldPrice);
+                                        tempProductPrice = parseFloat(tempProductPrice);
+                                        var newPrice = oldPrice + tempProductPrice;
+                                        newPrice = newPrice.toFixed('2');
+                                        productListPostAdd[i].productPrice = newPrice;
+                                        var subtotal = 0;
+                                        subtotal = parseInt(subtotal);
+                                        for (a = 0; a < productListPostAdd.length; a++) {
+                                            subtotal = subtotal + parseFloat(productListPostAdd[a].productPrice)
+                                        }
+                                        $('#subtotal').text(subtotal);
+                                        chrome.storage.local.set({cartDetails: JSON.stringify(productListPostAdd)}, function () {});
+                                        chrome.runtime.sendMessage({
+                                            greeting: "setCartDetails",
+                                            data: productListPostAdd
+                                        }, function (response) {});
+                                        $('#companyNotification').css('display', 'block');
+                                        var tempCount = 0;
+                                        for (j = 0; j < productListPostAdd.length; j++) {
+                                            tempCount = tempCount + productListPostAdd[j].itemCount
+                                        }
+                                        $('#companyNotification').text(tempCount);
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'block');
+                                        $('#addToCartTitle').text($.trim($('#productTitle').text()));
+                                        $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
+                                        $('#addToCart-checkOut').css('display', 'block');
+                                        $('#addToCartError').css('display', 'none');
+                                        $('#addToCart-Ok').css('display', 'none');
+                                    }
+                                }
+                                if (sameProductSKU == false) {
+                                    if (productDetails.productSize === "Select") {
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'none');
+                                        $('#addToCartError').css('display', 'block');
+                                        $('#addToCartError').text("Please select a product size.");
+                                        $('#addToCart-Ok').css('display', 'block');
+                                        $('#addToCart-checkOut').css('display', 'none');
+                                    } else if (productDetails.productColor === "Select") {
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'none');
+                                        $('#addToCartError').css('display', 'block');
+                                        $('#addToCartError').text("Please select a product color.");
+                                        $('#addToCart-Ok').css('display', 'block');
+                                        $('#addToCart-checkOut').css('display', 'none');
+                                    } else if (productDetails.productPrice == '') {
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'none');
+                                        $('#addToCartError').css('display', 'block');
+                                        $('#addToCartError').text("Please select a product with price.");
+                                        $('#addToCart-Ok').css('display', 'block');
+                                        $('#addToCart-checkOut').css('display', 'none');
+                                    } else {
+                                        chrome.storage.local.get(['cartDetails'], function (result) {
+                                            if (result) {
+                                                var cartDetails = JSON.parse(result.cartDetails);
+                                                cartDetails.push(productDetails);
+                                                chrome.storage.local.set({cartDetails: JSON.stringify(cartDetails)}, function () {});
+                                                chrome.runtime.sendMessage({
+                                                    greeting: "setCartDetails",
+                                                    data: cartDetails
+                                                }, function (response) {});
+                                                var subtotal = 0;
+                                                subtotal = parseInt(subtotal)
+                                                for (k = 0; k < cartDetails.length; k++) {
+                                                    subtotal = subtotal + parseFloat(cartDetails[k].productPrice)
+                                                }
+                                                subtotal = subtotal.toFixed(2);
+                                                $('#subtotal').text(subtotal);
+                                                $('#companyNotification').css('display', 'block');
+                                                var tempCount = 0;
+                                                for (l = 0; l < cartDetails.length; l++) {
+                                                    tempCount = tempCount + cartDetails[l].itemCount
+                                                }
+                                                $('#companyNotification').text(tempCount);
+                                                $('#page-mask').css('display', 'block');
+                                                $('#addToCartModal').css('display', 'block');
+                                                $('#addToCartProductDetail').css('display', 'block');
+                                                $('#addToCartTitle').text($.trim($('#productTitle').text()));
+                                                $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
+                                                $('#addToCart-Ok').css('display', 'none');
+                                                $('#addToCart-checkOut').css('display', 'block');
+                                                $('#addToCartError').css('display', 'none')
+                                            }
+                                        });
+                                    }
                                 }
                             }
-                        });
-					})
-
-					$('body').on('click', '#addToCart-checkOut', function(){
-
-                        localStorage.setItem('lastPageCompany', location.href )
-
-                        chrome.runtime.sendMessage({greeting: "updateLastPageCompany", data: location.href }, function(response) {
-                            console.log(response.farewell);
-                        });
-
-                        chrome.runtime.sendMessage({greeting: "sendShoppingCartDetails", data: JSON.parse(localStorage.getItem('cartDetails')) }, function(response){
-
-
+                            else {
+                                if (productDetails.productSize === "Select") {
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'none');
+                                    $('#addToCartError').css('display', 'block');
+                                    $('#addToCartError').text("Please select a product size.");
+                                    $('#addToCart-Ok').css('display', 'block');
+                                    $('#addToCart-checkOut').css('display', 'none');
+                                } else if (productDetails.productColor === "Select") {
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'none');
+                                    $('#addToCartError').css('display', 'block');
+                                    $('#addToCartError').text("Please select a product color.");
+                                    $('#addToCart-Ok').css('display', 'block');
+                                    $('#addToCart-checkOut').css('display', 'none');
+                                } else if (productDetails.productPrice == '') {
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'none');
+                                    $('#addToCartError').css('display', 'block');
+                                    $('#addToCartError').text("Please select a product with price.");
+                                    $('#addToCart-Ok').css('display', 'block');
+                                    $('#addToCart-checkOut').css('display', 'none');
+                                } else {
+                                    var cartDetails = [];
+                                    cartDetails.push(productDetails);
+                                    chrome.storage.local.set({cartDetails: JSON.stringify(cartDetails)}, function () {});
+                                    chrome.storage.local.get(['cartDetails'], function (result) {});
+                                    chrome.runtime.sendMessage({
+                                        greeting: "setCartDetails",
+                                        data: cartDetails
+                                    }, function (response) {});
+                                    $('#companyNotification').css('display', 'block');
+                                    $('#companyNotification').text(cartDetails.length);
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'block');
+                                    $('#addToCartTitle').text($.trim($('#productTitle').text()));
+                                    $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
+                                    $('#addToCart-checkOut').css('display', 'block');
+                                }
+                            }
                         })
-
-                        var products = JSON.parse(localStorage.getItem('cartDetails'));
-                        var random_id = localStorage.getItem('random_id');
-                        var random_name = localStorage.getItem('random_name');
-                        var random_email = localStorage.getItem('random_email');
-                        $.ajax({
-                            url: 'https://cors-anywhere.herokuapp.com/https://6cba750e.ngrok.io/api/checkout/saveProduct',
-                            type: 'post',
-                            dataType: 'json',
-                            data: {
-                                "product": products,
-                                "random_id": random_id,
-                                "random_name": random_name,
-                                "random_email": random_email
-                            },
-                            success: function (data) {
-                                console.log(data);
-                                if (data) {
-                                    window.open('http://6cba750e.ngrok.io/checkout/' + random_id);
+                    }
+                    else if (($.trim($('#pdp_product_title').text()) !== '')) {
+                        chrome.storage.local.get(['cartDetails'], function (result) {
+                            if (result && result.cartDetails && JSON.parse(result.cartDetails).length > 0) {
+                                var productListPostAdd = JSON.parse(result.cartDetails);
+                                var sameProductSKU = false;
+                                for (i = 0; i < productListPostAdd.length; i++) {
+                                    if ((productDetails.productSKU === productListPostAdd[i].productSKU)
+                                        && (productDetails.productColor === productListPostAdd[i].productColor)
+                                        && (productDetails.productSize === productListPostAdd[i].productSize)) {
+                                        sameProductSKU = true;
+                                        var newItemCount = productListPostAdd[i].itemCount + 1;
+                                        productListPostAdd[i].itemCount = newItemCount;
+                                        newItemCount = parseInt(newItemCount);
+                                        var oldPrice = productListPostAdd[i].productPrice;
+                                        oldPrice = parseFloat(oldPrice);
+                                        tempProductPrice = parseFloat(tempProductPrice);
+                                        var newPrice = oldPrice + tempProductPrice;
+                                        newPrice = newPrice.toFixed('2');
+                                        productListPostAdd[i].productPrice = newPrice;
+                                        var subtotal = 0;
+                                        subtotal = parseInt(subtotal)
+                                        for (a = 0; a < productListPostAdd.length; a++) {
+                                            subtotal = subtotal + parseFloat(productListPostAdd[a].productPrice)
+                                        }
+                                        $('#subtotal').text(subtotal);
+                                        chrome.storage.local.set({cartDetails: JSON.stringify(productListPostAdd)}, function () {});
+                                        chrome.runtime.sendMessage({
+                                            greeting: "setCartDetails",
+                                            data: productListPostAdd
+                                        }, function (response) {});
+                                        $('#companyNotification').css('display', 'block');
+                                        var tempCount = 0;
+                                        for (j = 0; j < productListPostAdd.length; j++) {
+                                            tempCount = tempCount + productListPostAdd[j].itemCount
+                                        }
+                                        $('#companyNotification').text(tempCount);
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'block');
+                                        $('#addToCartTitle').text($.trim($('#pdp_product_title').text()));
+                                        $('#addToCartImage').attr('src', $.trim($("[alt^='" + productName + "']").attr('src')));
+                                        $('#addToCart-checkOut').css('display', 'block');
+                                        $('#addToCartError').css('display', 'none');
+                                        $('#addToCart-Ok').css('display', 'none');
+                                    }
+                                }
+                                if (sameProductSKU == false) {
+                                    if (productDetails.productSize === 'select') {
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'none');
+                                        $('#addToCartError').css('display', 'block');
+                                        $('#addToCartError').text("Please select a product size.");
+                                        $('#addToCart-Ok').css('display', 'block');
+                                        $('#addToCart-checkOut').css('display', 'none');
+                                    } else if (productDetails.productColor === '') {
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'none');
+                                        $('#addToCartError').css('display', 'block');
+                                        $('#addToCartError').text("Please select a product color.");
+                                        $('#addToCart-Ok').css('display', 'block');
+                                        $('#addToCart-checkOut').css('display', 'none');
+                                    } else if (productDetails.productPrice === '') {
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'none');
+                                        $('#addToCartError').css('display', 'block');
+                                        $('#addToCartError').text("Please select a product with price.");
+                                        $('#addToCart-Ok').css('display', 'block');
+                                        $('#addToCart-checkOut').css('display', 'none');
+                                    } else {
+                                        chrome.storage.local.get(['cartDetails'], function (result) {
+                                            if (result) {
+                                                var cartDetails = JSON.parse(result.cartDetails);
+                                                cartDetails.push(productDetails);
+                                                chrome.storage.local.set({cartDetails: JSON.stringify(cartDetails)}, function () {});
+                                                chrome.runtime.sendMessage({
+                                                    greeting: "setCartDetails",
+                                                    data: cartDetails
+                                                }, function (response) {});
+                                                var subtotal = 0;
+                                                subtotal = parseInt(subtotal);
+                                                for (k = 0; k < cartDetails.length; k++) {
+                                                    subtotal = subtotal + parseFloat(cartDetails[k].productPrice);
+                                                }
+                                                subtotal = subtotal.toFixed(2);
+                                                $('#subtotal').text(subtotal);
+                                                $('#companyNotification').css('display', 'block');
+                                                var tempCount = 0;
+                                                for (l = 0; l < cartDetails.length; l++) {
+                                                    tempCount = tempCount + cartDetails[l].itemCount
+                                                }
+                                                $('#companyNotification').text(tempCount);
+                                                $('#page-mask').css('display', 'block');
+                                                $('#addToCartModal').css('display', 'block');
+                                                $('#addToCartProductDetail').css('display', 'block');
+                                                $('#addToCartTitle').text($.trim($('#pdp_product_title').text()));
+                                                $('#addToCartImage').attr('src', $.trim($("[alt^='" + productName + "']").attr('src')));
+                                                $('#addToCart-Ok').css('display', 'none');
+                                                $('#addToCart-checkOut').css('display', 'block');
+                                                $('#addToCartError').css('display', 'none')
+                                            }
+                                        });
+                                    }
                                 }
                             }
-                        });
-                    })
-
-				})
-
-				$('#cartDetailSection').ready(function(){
-
-						$('body').on('click', '.removeItem', function(event){
-
-									console.log('remove Item');
-
-									console.log($(this).siblings('.itemCount').attr('id'));
-
-									var productList = JSON.parse(localStorage.getItem('cartDetails'));
-
-									var count = productList[$(this).siblings('.itemCount').attr('id')].itemCount
-
-									count--
-
-									// remove item from list if item count gets to zero
-									if (count == 0) {
-
-										console.log('minimum count should be 1 item')
-
-									} else {
-										console.log('item removed')
-
-										productList[$(this).siblings('.itemCount').attr('id')].itemCount = count;
-
-										localStorage.setItem('cartDetails', JSON.stringify(productList));
-
-										// setting value in eventpage local storage
-										chrome.runtime.sendMessage({greeting: "setCartDetails", data: productList }, function(response) {
-										  console.log(response.farewell);
-										});
-
-										chrome.runtime.sendMessage
-
-										$(this).siblings('.itemCount').text(count)
-
-										// updating product price
-												var oldPrice = productList[$(this).siblings('.itemCount').attr('id')].productPrice;
-
-												oldPrice = parseFloat(oldPrice);
-
-												count = parseInt(count);
-
-												var newPrice = oldPrice - oldPrice/(count + 1)
-
-												newPrice = newPrice.toFixed('2');
-
-												productList[$(this).siblings('.itemCount').attr('id')].productPrice = newPrice;
-
-												localStorage.setItem('cartDetails', JSON.stringify(productList));
-
-												// setting value in eventpage local storage
-												chrome.runtime.sendMessage({greeting: "setCartDetails", data: productList }, function(response) {
-												  console.log(response.farewell);
-												});
-												// udpating subtotal
-												var subtotal = 0;
-
-												subtotal = parseInt(subtotal)
-
-												for(i=0; i<productList.length; i++){
-
-													subtotal = subtotal + parseFloat(productList[i].productPrice)
-
-													console.log(productList[i].productPrice);
-
-												}
-
-												console.log(subtotal)
-
-												subtotal = subtotal.toFixed(2);
-
-												$('#subtotal').text(subtotal);
-
-										$('#companyNotification').css('display', 'block');
-
-												var tempCount = 0;
-
-												for(i=0; i<productList.length; i++){
-
-													tempCount = tempCount + productList[i].itemCount
-												}
-
-										$('#companyNotification').text(tempCount);
-
-										$('#cartDetailSection').empty();
-
-										var cartProductsPostRemove = JSON.parse(localStorage.getItem('cartDetails'))
-
-										console.log(cartProductsPostRemove);
-
-										console.log(cartProductsPostRemove[0])
-
-										// for (var i = 0; i < cartProductsPostRemove.length; i++) {
-
-										// 	var element = "<div style='height: 180px;'><img src='"+cartProductsPostRemove[i].productImage+"' style='width: 100px; height: 100px; margin-top: 5px; position: absolute;' /><button id='"+i+"' class='removeButton' style='margin-top: 110px;'>Remove</button><div style='float: right; width: 484px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><div>color: "+cartProductsPostRemove[i].productColor+"</div><div>Price: "+cartProductsPostRemove[i].productPrice+"</div><div>Size: "+cartProductsPostRemove[i].productSize+"</div><a href='"+cartProductsPostRemove[i].productPage+"'>Amazon</a><div>No. of items: </div><div style='border: 1px solid black;width: 50px;padding-left: 7px;'><span class='removeItem'>-</span><span class='itemCount' id='"+i+"'>"+cartProductsPostRemove[i].itemCount+"</span><span style='cursor: pointer;' class='addItem'>+</span></div></div></div>";
-
-										// 	$('#cartDetailSection').prepend(element);
-
-										// }
-
-										for (var i = 0; i < cartProductsPostRemove.length; i++) {
-
-												if (cartProductsPostRemove[i].productColor == "" && cartProductsPostRemove[i].productSize =="") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else if (cartProductsPostRemove[i].productColor == "") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else if (cartProductsPostRemove[i].productSize =="") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else{
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												}
-
-												$('#cartDetailSection').prepend(element);
-										}
-									}
-						})
-
-						// add item count for a product in a cart
-
-						$('body').on('click', '.addItem', function(event){
-
-									console.log('add Item');
-
-									console.log($(this).siblings('.itemCount').attr('id'));
-
-									var productList = JSON.parse(localStorage.getItem('cartDetails'));
-
-									var count = productList[$(this).siblings('.itemCount').attr('id')].itemCount
-
-									count++
-
-									// redundant code
-									if (count == 0) {
-
-										productList.splice($(this).siblings('.itemCount').attr('id'), 1);
-
-										console.log(productList);
-
-										localStorage.setItem('cartDetails', JSON.stringify(productList));
-
-										// setting value in eventpage local storage
-										chrome.runtime.sendMessage({greeting: "setCartDetails", data: productList }, function(response) {
-										  console.log(response.farewell);
-										});
-
-										$('#companyNotification').css('display', 'block');
-
-										var tempCount = 0;
-
-										for(i=0; i<productList.length; i++){
-
-											tempCount = tempCount + productList[i].itemCount
-
-										}
-
-										$('#companyNotification').text(tempCount);
-
-
-										if(productList.length == 0){
-
-											$('#companyNotification').css('display', 'none');
-										}
-
-										$('#cartDetailSection').empty();
-
-										var cartProductsPostRemove = JSON.parse(localStorage.getItem('cartDetails'))
-
-										console.log(cartProductsPostRemove);
-
-										console.log(cartProductsPostRemove[0])
-
-										for (var i = 0; i < cartProductsPostRemove.length; i++) {
-
-												if (cartProductsPostRemove[i].productColor == "" && cartProductsPostRemove[i].productSize =="") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else if (cartProductsPostRemove[i].productColor == "") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else if (cartProductsPostRemove[i].productSize =="") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else{
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-												}
-
-												$('#cartDetailSection').prepend(element);
-
-										}
-
-									} else {
-
-										console.log('item added')
-
-										productList[$(this).siblings('.itemCount').attr('id')].itemCount = count;
-
-										$(this).siblings('.itemCount').text(count)
-
-										var oldPrice = productList[$(this).siblings('.itemCount').attr('id')].productPrice;
-
-										oldPrice = parseFloat(oldPrice);
-
-										var count = count;
-
-										count = parseInt(count);
-
-										var newPrice = oldPrice + oldPrice/(count-1)
-
-										newPrice = newPrice.toFixed(2);
-
-										productList[$(this).siblings('.itemCount').attr('id')].productPrice = newPrice;
-
-										localStorage.setItem('cartDetails', JSON.stringify(productList));
-
-										// setting value in eventpage local storage
-										chrome.runtime.sendMessage({greeting: "setCartDetails", data: productList }, function(response) {
-										  console.log(response.farewell);
-										});
-
-										$('#cartDetailSection').empty();
-
-										// for (var i = 0; i < productList.length; i++) {
-
-										// 	var element = "<div style='height: 180px;'><img src='"+productList[i].productImage+"' style='width: 100px; height: 100px; margin-top: 5px; position: absolute;' /><button id='"+i+"' class='removeButton' style='margin-top: 110px;'>Remove</button><div style='float: right; width: 484px;'><div>Title: "+productList[i].productTitle+"</div><div>color: "+productList[i].productColor+"</div><div>Price: "+productList[i].productPrice+"</div><div>Size: "+productList[i].productSize+"</div><a href='"+productList[i].productPage+"'>Amazon</a><div>No. of items: </div><div style='border: 1px solid black;width: 50px;padding-left: 7px;'><span class='removeItem'>-</span><span class='itemCount' id='"+i+"'>"+productList[i].itemCount+"</span><span style='cursor: pointer;' class='addItem'>+</span></div></div></div>";
-
-										// 	$('#cartDetailSection').prepend(element);
-
-										// }
-
-										for (var i = 0; i < productList.length; i++) {
-
-												if (productList[i].productColor == "" && productList[i].productSize =="") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+productList[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+productList[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+productList[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+productList[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+productList[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else if (productList[i].productColor == "") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+productList[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+productList[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: "+productList[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+productList[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+productList[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+productList[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else if (productList[i].productSize =="") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+productList[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+productList[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+productList[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+productList[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+productList[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+productList[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else{
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+productList[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+productList[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+productList[i].productColor+"</div><div>Size: "+productList[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+productList[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+productList[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+productList[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												}
-
-												$('#cartDetailSection').prepend(element);
-
-										}
-
-										// udpating subtotal
-										var subtotal = 0;
-
-										subtotal = parseInt(subtotal)
-
-										for(i=0; i<productList.length; i++){
-
-											subtotal = subtotal + parseFloat(productList[i].productPrice)
-
-											console.log(productList[i].productPrice);
-
-										}
-
-										subtotal = subtotal.toFixed(2)
-										console.log(subtotal)
-
-										$('#subtotal').text(subtotal);
-
-										// showing notification bubble count
-										$('#companyNotification').css('display', 'block');
-
-										var tempCount = 0;
-
-										for(i=0; i<productList.length; i++){
-
-											tempCount = tempCount + productList[i].itemCount
-
-										}
-
-										$('#companyNotification').text(tempCount);
-
-									}
-						})
-
-						$('body').on('click', '.removeButton', function(event) {
-
-										console.log('remove click')
-
-										console.log($(this).attr('id'));
-
-										console.log($(this).attr('id'));
-
-										var productList = JSON.parse(localStorage.getItem('cartDetails'));
-
-										productList.splice($(this).attr('id'), 1);
-
-										console.log(productList);
-
-										localStorage.setItem('cartDetails', JSON.stringify(productList));
-
-										// setting value in eventpage local storage
-										chrome.runtime.sendMessage({greeting: "setCartDetails", data: productList }, function(response) {
-										  console.log(response.farewell);
-										});
-
-										// $('#companyNotification').text(productList.length);
-
-										if(productList.length == 0){
-
-											$('#companyNotification').css('display', 'none');
-
-											$('#subtotal').text(0);
-
-										} else {
-
-												var subtotal = 0;
-
-												subtotal = parseInt(subtotal)
-
-												for(i=0; i<productList.length; i++){
-
-													subtotal = subtotal + parseFloat(productList[i].productPrice)
-
-													console.log(productList[i].productPrice);
-
-												}
-
-												console.log(subtotal)
-
-												subtotal = subtotal.toFixed(2);
-
-												$('#subtotal').text(subtotal);
-
-
-												$('#companyNotification').css('display', 'block');
-
-												var tempCount = 0;
-
-												for(i=0; i<productList.length; i++){
-
-													tempCount = tempCount + productList[i].itemCount
-												}
-
-												$('#companyNotification').text(tempCount);
-										}
-
-										$('#cartDetailSection').empty();
-
-										var cartProductsPostRemove = JSON.parse(localStorage.getItem('cartDetails'))
-
-										console.log(cartProductsPostRemove);
-
-										console.log(cartProductsPostRemove[0])
-
-										for (var i = 0; i < cartProductsPostRemove.length; i++) {
-
-												if (cartProductsPostRemove[i].productColor == "" && cartProductsPostRemove[i].productSize =="") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else if (cartProductsPostRemove[i].productColor == "") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else if (cartProductsPostRemove[i].productSize =="") {
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												} else{
-
-													var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img src='"+cartProductsPostRemove[i].productImage+"'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: "+cartProductsPostRemove[i].productTitle+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>color: "+cartProductsPostRemove[i].productColor+"</div><div>Size: "+cartProductsPostRemove[i].productSize+"</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='"+cartProductsPostRemove[i].productPage+"'>From Amazon</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='"+i+"' style='border: 1px solid black; padding: 2px 7px;'>"+cartProductsPostRemove[i].itemCount+"</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ "+cartProductsPostRemove[i].productPrice+"</div><button id='"+i+"' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
-
-												}
-												$('#cartDetailSection').prepend(element);
-										}
-								})
-				})
-					$('.removeButton').on('click', function(){
-
-						console.log($(this).attr('id'));
-					})
-
-				$(document).mouseup(function(e)
-				{
-
-				    var container = $("#addToCartModal");
-
-				    var continueShopping = $('#addToCart-continueShopping')
-
-				    if(continueShopping.is(e.target)){
-				    	container.hide()
-				    	$('#page-mask').css('display', 'none')
-				    } else
-				    // if the target of the click isn't the container nor a descendant of the container
-				    (!container.is(e.target) && container.has(e.target).length === 0)
-				    {
-				        container.hide();
-				        $('#page-mask').css('display', 'none')
-				    }
-				});
-
-				// $(document).mouseup(function(e){
-
-				// 	var container2 = $('#viewCartModal');
-
-				// 	(!container2.is(e.target) && container2.has(e.target).length === 0)
-				//     {
-				//         container2.hide();
-				//     }
-
-				// })
-
-				$('#addToCartMM').on('click', '#addToCart-continueShopping', function(){
-
-						$('#page-mask').css('display', 'none')
-						$('#addToCartModal').hide();
-
-						console.log('hide modal')
-					})
-
-				$('#addToCartMM').ready(function(){
-
-					if($.trim($('#productTitle').text()) !== ''){
-
-						console.log('this is a product page')
-
-						// Do something when add to cart button is clicked
-						$('body').on('click', '#addToCartMM', function(){
-
-
-							$('#successIcon').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/success.png")
-							console.log('add to cart clicking')
-
-							console.log($.trim($('#productTitle').text()));
-							console.log($('#priceblock_ourprice').text());
-							console.log($('.a-dynamic-image').attr('src'));
-							console.log($.trim($('#dropdown_selected_size_name').find('.a-dropdown-prompt').text()));
-							console.log($.trim($('#variation_color_name').find('.selection').text()));
-
-							// console.log($('#usedPitchPrice').find('.price-large').text())
-
-							console.log($.trim($('#variation_color_name').find('.a-form-label').text()) + $.trim($('#variation_color_name').find('.selection').text()));
-
-							console.log($.type($.trim($('#dropdown_selected_size_name').find('.a-dropdown-prompt').text())));
-
-							console.log(location.href);
-
-							var tempProductPrice = $('#priceblock_ourprice').text();
-
-							tempProductPrice = tempProductPrice.replace('$', '');
-
-							var productSKU = $('#addToCart').children('#ASIN').attr('value');
-
-							console.log(productSKU);
-
-							var productDetails = {
-
-								'productTitle': $.trim($('#productTitle').text()),
-								'productPrice': tempProductPrice,
-								'productImage': $('.a-dynamic-image').attr('src'),
-								'productColor': $.trim($('#variation_color_name').find('.selection').text()),
-								'productPage': location.href,
-								'productSize': $.trim($('#dropdown_selected_size_name').find('.a-dropdown-prompt').text()),
-								'itemCount': 1,
-								'productSKU': $('#addToCart').children('#ASIN').attr('value')
-
-							}
-
-
-							if($.trim($('#productTitle').text()) !== '')
-
-							{// Check if cartdetails exist and not empty
-
-
-											if (localStorage.getItem('cartDetails') && JSON.parse(localStorage.getItem('cartDetails')).length>0 ) {
-
-												var productListPostAdd = JSON.parse(localStorage.getItem('cartDetails'))
-
-												var sameProductSKU = false;
-												console.log('inside')
-												for(i=0;i< productListPostAdd.length; i++){
-
-													console.log('loop')
-														// check if product already in cart
-
-														console.log(productDetails.productPage)
-														console.log(productListPostAdd[i].productPage)
-
-														console.log(productDetails.productSKU)
-
-														console.log(productListPostAdd[i].productSKU)
-
-														if (productDetails.productSKU == productListPostAdd[i].productSKU ) {
-
-															sameProductSKU = true;
-
-															console.log('same product')
-															var newItemCount = productListPostAdd[i].itemCount + 1;
-
-
-															productListPostAdd[i].itemCount = newItemCount;
-
-															newItemCount = parseInt(newItemCount);
-
-															console.log(newItemCount)
-
-															var oldPrice = productListPostAdd[i].productPrice;
-
-															console.log("oldPrice " + oldPrice )
-
-															oldPrice = parseFloat(oldPrice);
-
-															console.log('old price ' + oldPrice)
-
-															tempProductPrice = parseFloat(tempProductPrice);
-
-															var newPrice = oldPrice + tempProductPrice;
-
-															newPrice = newPrice.toFixed('2');
-
-															productListPostAdd[i].productPrice = newPrice;
-
-															console.log("newPrice " + newPrice)
-
-															var subtotal = 0;
-
-															subtotal = parseInt(subtotal)
-
-															for(a=0; a<productListPostAdd.length; a++){
-
-																subtotal = subtotal + parseFloat(productListPostAdd[a].productPrice)
-
-																console.log(productListPostAdd[a].productPrice);
-
-															}
-
-															console.log(subtotal)
-
-															$('#subtotal').text(subtotal);
-
-															localStorage.setItem('cartDetails', JSON.stringify(productListPostAdd));
-
-															// setting value in eventpage local storage
-															chrome.runtime.sendMessage({greeting: "setCartDetails", data: productListPostAdd }, function(response) {
-															  console.log(response.farewell);
-															});
-
-															$('#companyNotification').css('display', 'block');
-
-															var tempCount = 0;
-
-															for(j=0; j<productListPostAdd.length; j++){
-
-																tempCount = tempCount + productListPostAdd[j].itemCount
-
-															}
-
-															$('#companyNotification').text(tempCount);
-
-
-															$('#page-mask').css('display', 'block')
-															$('#addToCartModal').css('display','block');
-
-															$('#addToCartProductDetail').css('display','block');
-															$('#addToCartTitle').text($.trim($('#productTitle').text()))
-
-															$('#addToCartImage').attr('src',$('.a-dynamic-image').attr('src'));
-
-															$('#addToCart-checkOut').css('display', 'block');
-
-															$('#addToCartError').css('display', 'none');
-
-															$('#addToCart-Ok').css('display', 'none');
-
-
-														}
-												}
-
-												if(sameProductSKU == false){
-
-													if (productDetails.productSize == "Select") {
-																	$('#page-mask').css('display', 'block')
-																	$('#addToCartModal').css('display','block');
-																	$('#addToCartProductDetail').css('display','none');
-																	$('#addToCartError').css('display','block');
-																	$('#addToCartError').text("Please select a product size.")
-																	$('#addToCart-Ok').css('display','block');
-																	$('#addToCart-checkOut').css('display','none');
-
-																} else if (productDetails.productColor == "Select") {
-
-																	$('#page-mask').css('display', 'block')
-																	$('#addToCartModal').css('display','block');
-																	$('#addToCartProductDetail').css('display','none');
-																	$('#addToCartError').css('display','block');
-																	$('#addToCartError').text("Please select a product color.");
-																	$('#addToCart-Ok').css('display','block');
-																	$('#addToCart-checkOut').css('display','none');
-
-																} else if (productDetails.productPrice == '') {
-
-																	$('#page-mask').css('display', 'block')
-																	$('#addToCartModal').css('display','block');
-																	$('#addToCartProductDetail').css('display','none');
-																	$('#addToCartError').css('display','block');
-																	$('#addToCartError').text("Please select a product with price.");
-																	$('#addToCart-Ok').css('display','block');
-																	$('#addToCart-checkOut').css('display','none');
-
-
-																} else {
-
-																		// $('#addToCart').text("Adding")
-												    		// 			$('#addToCart').attr("class","btn btn-warning btn-block mt-1 mr-3")
-
-												    				// redundant check but good to take details
-																	if(localStorage.getItem('cartDetails')){
-
-																		var cartDetails = JSON.parse(localStorage.getItem('cartDetails'))
-
-
-
-																		cartDetails.push(productDetails);
-
-																		localStorage.setItem('cartDetails', JSON.stringify(cartDetails));
-
-																		// setting value in eventpage local storage
-																		chrome.runtime.sendMessage({greeting: "setCartDetails", data: cartDetails }, function(response) {
-																		  console.log(response.farewell);
-																		});
-
-
-																		// udpating subtotal
-																		var subtotal = 0;
-
-																		subtotal = parseInt(subtotal)
-
-																		for(k=0; k<cartDetails.length; k++){
-
-																			subtotal = subtotal + parseFloat(cartDetails[k].productPrice)
-
-																			console.log(cartDetails[k].productPrice);
-
-																		}
-
-																		subtotal = subtotal.toFixed(2);
-																		console.log(subtotal)
-
-																		$('#subtotal').text(subtotal);
-
-
-																		// updating notification bubble count
-																		$('#companyNotification').css('display', 'block');
-
-																		var tempCount = 0;
-
-																		for(l=0; l<cartDetails.length; l++){
-
-
-																			tempCount = tempCount + cartDetails[l].itemCount
-
-																		}
-
-																		$('#companyNotification').text(tempCount);
-
-																		$('#page-mask').css('display', 'block')
-																		$('#addToCartModal').css('display','block');
-
-																		$('#addToCartProductDetail').css('display','block');
-																		$('#addToCartTitle').text($.trim($('#productTitle').text()))
-
-																		$('#addToCartImage').attr('src',$('.a-dynamic-image').attr('src'));
-
-																		$('#addToCart-Ok').css('display','none');
-																		$('#addToCart-checkOut').css('display','block');
-
-																		$('#addToCartError').css('display','none')
-
-
-																	}
-
-																}
-												}
-
-											} else {
-
-											var cartDetails = []
-
-											cartDetails.push(productDetails);
-											localStorage.setItem('cartDetails', JSON.stringify(cartDetails));
-
-											// setting value in eventpage local storage
-											chrome.runtime.sendMessage({greeting: "setCartDetails", data: cartDetails }, function(response) {
-											  console.log(response.farewell);
-											});
-
-											$('#companyNotification').css('display', 'block');
-											$('#companyNotification').text(cartDetails.length);
-
-											$('#page-mask').css('display', 'block')
-											$('#addToCartModal').css('display','block');
-
-											$('#addToCartProductDetail').css('display','block');
-											$('#addToCartTitle').text($.trim($('#productTitle').text()))
-
-											$('#addToCartImage').attr('src',$('.a-dynamic-image').attr('src'));
-
-											$('#addToCart-checkOut').css('display', 'block');
-
-											}
-							} else{
-
-								console.log('not a product page')
-
-								$('#page-mask').css('display', 'block')
-								$('#addToCartModal').css('display','block');
-								$('#addToCartProductDetail').css('display','none');
-								$('#addToCartError').css('display','block');
-								$('#addToCartError').text("Please select a product.")
-								$('#addToCart-Ok').css('display','block');
-								$('#addToCart-checkOut').css('display','none');
-
-							}
-
-						console.log(JSON.parse(localStorage.getItem('cartDetails')));
-
-						})
-
-					} else {
-
-						$('#addToCartMM').css('opacity', '0.4');
-
-						console.log('adding opaciy')
-					}
-					console.log('add to cart button ready')
-				})
-				console.log('consoling')
-		}
-})
+                            else {
+                                if (productDetails.productSize === 'select') {
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'none');
+                                    $('#addToCartError').css('display', 'block');
+                                    $('#addToCartError').text("Please select a product size.");
+                                    $('#addToCart-Ok').css('display', 'block');
+                                    $('#addToCart-checkOut').css('display', 'none');
+                                } else if (productDetails.productColor === '') {
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'none');
+                                    $('#addToCartError').css('display', 'block');
+                                    $('#addToCartError').text("Please select a product color.");
+                                    $('#addToCart-Ok').css('display', 'block');
+                                    $('#addToCart-checkOut').css('display', 'none');
+                                } else if (productDetails.productPrice === '') {
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'none');
+                                    $('#addToCartError').css('display', 'block');
+                                    $('#addToCartError').text("Please select a product with price.");
+                                    $('#addToCart-Ok').css('display', 'block');
+                                    $('#addToCart-checkOut').css('display', 'none');
+                                } else {
+                                    var cartDetails = [];
+                                    cartDetails.push(productDetails);
+                                    chrome.storage.local.set({cartDetails: JSON.stringify(cartDetails)}, function () {});
+                                    chrome.storage.local.get(['cartDetails'], function (result) {});
+                                    chrome.runtime.sendMessage({
+                                        greeting: "setCartDetails",
+                                        data: cartDetails
+                                    }, function (response) {});
+                                    $('#companyNotification').css('display', 'block');
+                                    $('#companyNotification').text(cartDetails.length);
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'block');
+                                    $('#addToCartTitle').text($.trim($('#pdp_product_title').text()));
+                                    $('#addToCartImage').attr('src', $.trim($("[alt^='" + productName + "']").attr('src')));
+                                    $('#addToCart-checkOut').css('display', 'block');
+                                }
+                            }
+                        })
+                    }
+                    else if (($.trim($('#itemTitle').text()) !== '')) {
+                        chrome.storage.local.get(['cartDetails'], function (result) {
+                            if (result && result.cartDetails && JSON.parse(result.cartDetails).length > 0) {
+                                var productListPostAdd = JSON.parse(result.cartDetails);
+                                var sameProductSKU = false;
+                                for (i = 0; i < productListPostAdd.length; i++) {
+                                    if ((productDetails.productSKU === productListPostAdd[i].productSKU)
+                                        && (productDetails.productColor === productListPostAdd[i].productColor)
+                                        && (productDetails.productSize === productListPostAdd[i].productSize)) {
+                                        sameProductSKU = true;
+                                        var newItemCount = productListPostAdd[i].itemCount + 1;
+                                        productListPostAdd[i].itemCount = newItemCount;
+                                        newItemCount = parseInt(newItemCount);
+                                        var oldPrice = productListPostAdd[i].productPrice;
+                                        oldPrice = parseFloat(oldPrice);
+                                        tempProductPrice = parseFloat(tempProductPrice);
+                                        var newPrice = oldPrice + tempProductPrice;
+                                        newPrice = newPrice.toFixed('2');
+                                        productListPostAdd[i].productPrice = newPrice;
+                                        var subtotal = 0;
+                                        subtotal = parseInt(subtotal);
+                                        for (a = 0; a < productListPostAdd.length; a++) {
+                                            subtotal = subtotal + parseFloat(productListPostAdd[a].productPrice)
+                                        }
+                                        $('#subtotal').text(subtotal);
+                                        chrome.storage.local.set({cartDetails: JSON.stringify(productListPostAdd)}, function () {});
+                                        chrome.runtime.sendMessage({
+                                            greeting: "setCartDetails",
+                                            data: productListPostAdd
+                                        }, function (response) {});
+                                        $('#companyNotification').css('display', 'block');
+                                        var tempCount = 0;
+                                        for (j = 0; j < productListPostAdd.length; j++) {
+                                            tempCount = tempCount + productListPostAdd[j].itemCount
+                                        }
+                                        $('#companyNotification').text(tempCount);
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'block');
+                                        $('#addToCartTitle').text($.trim($('#itemTitle').text()));
+                                        $('#addToCartImage').attr('src', $.trim($("#icImg").attr('src')));
+                                        $('#addToCart-checkOut').css('display', 'block');
+                                        $('#addToCartError').css('display', 'none');
+                                        $('#addToCart-Ok').css('display', 'none');
+                                    }
+                                }
+                                if (sameProductSKU == false) {
+                                    if (productDetails.productSize === '' || productDetails.productSize === '- Select -') {
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'none');
+                                        $('#addToCartError').css('display', 'block');
+                                        $('#addToCartError').text("Please select a product size.");
+                                        $('#addToCart-Ok').css('display', 'block');
+                                        $('#addToCart-checkOut').css('display', 'none');
+                                    } else if (productDetails.productColor === '' || productDetails.productColor === '- Select -') {
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'none');
+                                        $('#addToCartError').css('display', 'block');
+                                        $('#addToCartError').text("Please select a product color.");
+                                        $('#addToCart-Ok').css('display', 'block');
+                                        $('#addToCart-checkOut').css('display', 'none');
+                                    } else if (productDetails.productPrice === '') {
+                                        $('#page-mask').css('display', 'block');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'none');
+                                        $('#addToCartError').css('display', 'block');
+                                        $('#addToCartError').text("Please select a product with price.");
+                                        $('#addToCart-Ok').css('display', 'block');
+                                        $('#addToCart-checkOut').css('display', 'none');
+                                    } else {
+                                        chrome.storage.local.get(['cartDetails'], function (result) {
+                                            if (result) {
+                                                var cartDetails = JSON.parse(result.cartDetails);
+                                                cartDetails.push(productDetails);
+                                                chrome.storage.local.set({cartDetails: JSON.stringify(cartDetails)}, function () {});
+                                                chrome.runtime.sendMessage({
+                                                    greeting: "setCartDetails",
+                                                    data: cartDetails
+                                                }, function (response) {});
+                                                var subtotal = 0;
+                                                subtotal = parseInt(subtotal);
+                                                for (k = 0; k < cartDetails.length; k++) {
+                                                    subtotal = subtotal + parseFloat(cartDetails[k].productPrice)
+                                                }
+                                                subtotal = subtotal.toFixed(2);
+                                                $('#subtotal').text(subtotal);
+                                                $('#companyNotification').css('display', 'block');
+                                                var tempCount = 0;
+                                                for (l = 0; l < cartDetails.length; l++) {
+                                                    tempCount = tempCount + cartDetails[l].itemCount
+                                                }
+                                                $('#companyNotification').text(tempCount);
+                                                $('#page-mask').css('display', 'block');
+                                                $('#addToCartModal').css('display', 'block');
+                                                $('#addToCartProductDetail').css('display', 'block');
+                                                $('#addToCartTitle').text($.trim($('#itemTitle').text()));
+                                                $('#addToCartImage').attr('src', $.trim($("#icImg").attr('src')));
+                                                $('#addToCart-Ok').css('display', 'none');
+                                                $('#addToCart-checkOut').css('display', 'block');
+                                                $('#addToCartError').css('display', 'none')
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+                            else {
+                                if (productDetails.productSize === "- Select -") {
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'none');
+                                    $('#addToCartError').css('display', 'block');
+                                    $('#addToCartError').text("Please select a product size.");
+                                    $('#addToCart-Ok').css('display', 'block');
+                                    $('#addToCart-checkOut').css('display', 'none');
+                                } else if (productDetails.productColor === "- Select -") {
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'none');
+                                    $('#addToCartError').css('display', 'block');
+                                    $('#addToCartError').text("Please select a product color.");
+                                    $('#addToCart-Ok').css('display', 'block');
+                                    $('#addToCart-checkOut').css('display', 'none');
+                                } else if (productDetails.productPrice === '') {
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'none');
+                                    $('#addToCartError').css('display', 'block');
+                                    $('#addToCartError').text("Please select a product with price.");
+                                    $('#addToCart-Ok').css('display', 'block');
+                                    $('#addToCart-checkOut').css('display', 'none');
+                                } else {
+                                    var cartDetails = [];
+                                    cartDetails.push(productDetails);
+                                    chrome.storage.local.set({cartDetails: JSON.stringify(cartDetails)}, function () {});
+                                    chrome.storage.local.get(['cartDetails'], function (result) {});
+                                    chrome.runtime.sendMessage({
+                                        greeting: "setCartDetails",
+                                        data: cartDetails
+                                    }, function (response) {});
+                                    $('#companyNotification').css('display', 'block');
+                                    $('#companyNotification').text(cartDetails.length);
+                                    $('#page-mask').css('display', 'block');
+                                    $('#addToCartModal').css('display', 'block');
+                                    $('#addToCartProductDetail').css('display', 'block');
+                                    $('#addToCartTitle').text($.trim($('#pdp_product_title').text()));
+                                    $('#addToCartImage').attr('src', $.trim($("#icImg").attr('src')));
+                                    $('#addToCart-checkOut').css('display', 'block');
+                                }
+                            }
+                        })
+                    }
+                    else {
+                        $('#page-mask').css('display', 'block');
+                        $('#addToCartModal').css('display', 'block');
+                        $('#addToCartProductDetail').css('display', 'none');
+                        $('#addToCartError').css('display', 'block');
+                        $('#addToCartError').text("Please select a product.");
+                        $('#addToCart-Ok').css('display', 'block');
+                        $('#addToCart-checkOut').css('display', 'none');
+                    }
+                })
+            } else {
+                $('#addToCartMM').css('opacity', '0.4');
+            }
+        });
+    }
+});

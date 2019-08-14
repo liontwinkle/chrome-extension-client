@@ -32,7 +32,7 @@
     margin-bottom: -20px;
     margin-top: 10px;
 }
- 
+
 .buttonClass{
     width:100%;
     margin-top: 0.2em;
@@ -79,15 +79,18 @@ body{
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(89, 152, 247); 
+  background: rgb(89, 152, 247);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(33, 103, 209); 
+  background: rgb(33, 103, 209);
+}
+#img_wrapper img{
+    max-width: 100%;
 }
