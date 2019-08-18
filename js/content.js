@@ -55,7 +55,7 @@ $(window).ready(function(){
                 var random_name = result.random_name;
                 var random_email = result.random_email;
                 $.ajax({
-                    url: 'https://cors-anywhere.herokuapp.com/https://2cd7bf1c.ngrok.io/api/checkout/saveProduct',
+                    url: 'https://cors-anywhere.herokuapp.com/https://68d25f9f.ngrok.io/api/checkout/saveProduct',
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -66,7 +66,7 @@ $(window).ready(function(){
                     },
                     success: function (data) {
                         if (data) {
-                            window.open('http://2cd7bf1c.ngrok.io/checkout/' + random_id);
+                            window.open('http://68d25f9f.ngrok.io/checkout/' + random_id);
                         }
                     }
                 });
@@ -78,7 +78,7 @@ $(window).ready(function(){
         $.get("chrome-extension://" + chrome.runtime.id + "/html/topbar.html", function (data) {
             $("body").prepend(data);
         });
-        var pageMaskElement = '<div id="page-mask" style="position: fixed;left: 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: none;"></div>'
+        var pageMaskElement = '<div id="page-mask" style="position: fixed;left: 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: none; z-index: 100;"></div>'
 
         $('body').append(pageMaskElement);
         $('#companyLogo').ready(function () {
@@ -133,8 +133,9 @@ $(window).ready(function(){
                                 $('#viewCartModal').css('height', '512px');
                             }
                             for (var i = 0; i < cartProducts.length; i++) {
-                                if ((cartProducts[i].productColor == "" || cartProducts[i].productColor === 'null') &&
-                                    (cartProducts[i].productSize == "" || cartProducts[i].productSize === 'null' )) {
+                                if ((!cartProducts[i].productColor && !cartProducts[i].productSize) ||
+                                    ((cartProducts[i].productColor == "" || cartProducts[i].productColor === 'null') &&
+                                    (cartProducts[i].productSize == "" || cartProducts[i].productSize === 'null' ))) {
                                     $('#checkOut').css('display', 'block');
                                     $('#emptyCartMM').css('display', 'none');
                                     $('#viewCartModal').css('height', '575px');
@@ -145,7 +146,7 @@ $(window).ready(function(){
                                     } else if (cartProducts[i].productPage.slice(12, 14) == 'eb') {
                                         var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Ebay</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
                                     }
-                                } else if (!cartProducts[i].productColor) {
+                                } else if ((cartProducts[i].productColor == "" || cartProducts[i].productColor === 'null') || !cartProducts[i].productColor) {
                                     $('#checkOut').css('display', 'block');
                                     $('#emptyCartMM').css('display', 'none');
                                     $('#viewCartModal').css('height', '575px');
@@ -156,7 +157,7 @@ $(window).ready(function(){
                                     } else if (cartProducts[i].productPage.slice(12, 14) == 'eb') {
                                         var element = "<hr style='margin-top: 15px; margin-bottom: 20px;'><div style='height: 225px;'><div style='float: left; width: 100px; height: 100px; margin-top: 5px;'><img style='max-width: 100%;' src='" + cartProducts[i].productImage + "'/></div><div style='float: right;'><div style='float: left; width: 284px;'><div>Title: " + cartProducts[i].productTitle + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><div>Size: " + cartProducts[i].productSize + "</div><hr style='margin-top: 5px; margin-bottom: 5px'><a href='" + cartProducts[i].productPage + "'>From Ebay</a><div style='display: block; margin-top: 4px;'><span class='removeItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style='border: 1px solid black; padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='border: 1px solid black;padding: 2px 10px;background: rgb(220,220,220);cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div>$ " + cartProducts[i].productPrice + "</div><button id='" + i + "' class='removeButton btn btn-outline-secondary' style='margin-top: 110px;'>Remove</button></div></div></div>";
                                     }
-                                } else if (!cartProducts[i].productSize) {
+                                } else if ((cartProducts[i].productSize == "" || cartProducts[i].productSize === 'null' ) || !cartProducts[i].productSize) {
                                     $('#checkOut').css('display', 'block');
                                     $('#emptyCartMM').css('display', 'none');
                                     $('#viewCartModal').css('height', '575px');
@@ -408,8 +409,22 @@ $(window).ready(function(){
                     $('#successIcon').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/success.png");
                     var productDetails = {};
                     if ($.trim($('#productTitle').text()) !== '') {
-                        var tempProductPrice = $('#priceblock_ourprice').text();
-                        tempProductPrice = tempProductPrice.replace('$', '');
+                        var isLargeValue = $('.price-large').text();
+                        var tempProductPrice = "";
+                        if( isLargeValue ){
+                            var optionValue = $('input[name=BuyboxType]:checked').val();
+                            var selClass = "#new-button-price";
+                            if( optionValue === 'new'){
+                                selClass = "#new-button-price";
+                            }else{
+                                selClass = "#used-button-price";
+                            }
+                            tempProductPrice = $(selClass+" .majorValue").text()+"."+$(selClass+" .minorValue").text()
+                            console.log(tempProductPrice);
+                        }else{
+                            tempProductPrice = $('#priceblock_ourprice').text();
+                            tempProductPrice = tempProductPrice.replace('$', '');
+                        }
                         productDetails = {
                             'productTitle': $.trim($('#productTitle').text()),
                             'productPrice': tempProductPrice,
