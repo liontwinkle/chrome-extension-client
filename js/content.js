@@ -55,7 +55,8 @@ $(window).ready(function(){
                 var random_name = result.random_name;
                 var random_email = result.random_email;
                 $.ajax({
-                    url: 'https://cors-anywhere.herokuapp.com/https://68d25f9f.ngrok.io/api/checkout/saveProduct',
+                    url: 'https://cors-anywhere.herokuapp.com/https://3694467d.ngrok.io/api/checkout/saveProduct',
+                    url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveProduct',
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -66,7 +67,7 @@ $(window).ready(function(){
                     },
                     success: function (data) {
                         if (data) {
-                            window.open('http://68d25f9f.ngrok.io/checkout/' + random_id);
+                            window.open('https://ex.travelcast.us/checkout/' + random_id);
                         }
                     }
                 });
