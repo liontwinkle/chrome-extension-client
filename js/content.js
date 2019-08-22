@@ -463,8 +463,7 @@ $(window).ready(function(){
                         productDetails = {
                             'productTitle': productName,
                             'productPrice': tempProductPrice,
-                            'productImage': attr('src', $('.a-dynamic-image').attr('src')),
-                            // 'productImage': $.trim($("[alt^='" + productName + "']").attr('src')),
+                            'productImage': $.trim($("[alt^='" + productName + "']").attr('src')),
                             'productColor': color,
                             'productPage': location.href,
                             'productSize': size,
@@ -685,8 +684,7 @@ $(window).ready(function(){
                                         $('#addToCartModal').css('display', 'block');
                                         $('#addToCartProductDetail').css('display', 'block');
                                         $('#addToCartTitle').text($.trim($('#pdp_product_title').text()));
-                                        // $('#addToCartImage').attr('src', $.trim($("[alt^='" + productName + "']").attr('src')));
-                                        $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
+                                        $('#addToCartImage').attr('src', $.trim($("[alt^='" + productName + "']").attr('src')));
                                         $('#addToCart-checkOut').css('display', 'block');
                                         $('#addToCartError').css('display', 'none');
                                         $('#addToCart-Ok').css('display', 'none');
@@ -744,8 +742,7 @@ $(window).ready(function(){
                                                 $('#addToCartModal').css('display', 'block');
                                                 $('#addToCartProductDetail').css('display', 'block');
                                                 $('#addToCartTitle').text($.trim($('#pdp_product_title').text()));
-                                                $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
-                                                // $('#addToCartImage').attr('src', $.trim($("[alt^='" + productName + "']").attr('src')));
+                                                $('#addToCartImage').attr('src', $.trim($("[alt^='" + productName + "']").attr('src')));
                                                 $('#addToCart-Ok').css('display', 'none');
                                                 $('#addToCart-checkOut').css('display', 'block');
                                                 $('#addToCartError').css('display', 'none')
@@ -794,8 +791,7 @@ $(window).ready(function(){
                                     $('#addToCartModal').css('display', 'block');
                                     $('#addToCartProductDetail').css('display', 'block');
                                     $('#addToCartTitle').text($.trim($('#pdp_product_title').text()));
-                                    $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
-                                    // $('#addToCartImage').attr('src', $.trim($("[alt^='" + productName + "']").attr('src')));
+                                    $('#addToCartImage').attr('src', $.trim($("[alt^='" + productName + "']").attr('src')));
                                     $('#addToCart-checkOut').css('display', 'block');
                                 }
                             }
