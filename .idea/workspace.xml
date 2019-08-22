@@ -63,7 +63,7 @@
         <counts>
           <entry key="css" value="29" />
           <entry key="html" value="336" />
-          <entry key="js" value="5383" />
+          <entry key="js" value="5398" />
           <entry key="json" value="27" />
           <entry key="txt" value="50" />
         </counts>
@@ -73,7 +73,7 @@
           <entry key="CSS" value="29" />
           <entry key="HTML" value="337" />
           <entry key="JSON" value="27" />
-          <entry key="JavaScript" value="5382" />
+          <entry key="JavaScript" value="5397" />
           <entry key="PLAIN_TEXT" value="50" />
         </counts>
       </usages-collector>
@@ -124,8 +124,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/content.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="64" column="52" lean-forward="true" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
+            <state relative-caret-position="299">
+              <caret line="444" column="61" lean-forward="true" selection-start-line="444" selection-start-column="61" selection-end-line="444" selection-end-column="61" />
               <folding>
                 <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
@@ -287,6 +287,7 @@
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#20439#40940#0" />
                 <element signature="n#style#0;n#hr#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
@@ -447,6 +448,12 @@
                 <element signature="n#style#0;n#span#2;n#div#3;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#41093#43799#0" />
+                <element signature="e#43865#47325#0" />
+                <element signature="e#47396#49193#0" />
+                <element signature="e#65537#68988#0" />
+                <element signature="e#81540#93914#0" />
+                <element signature="e#93940#94465#0" />
               </folding>
             </state>
           </provider>
@@ -668,12 +675,12 @@
       <workItem from="1566282778379" duration="8913000" />
       <workItem from="1566361585056" duration="12260000" />
       <workItem from="1566400214282" duration="4510000" />
-      <workItem from="1566453146949" duration="3755000" />
+      <workItem from="1566453146949" duration="5344000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189413000" />
+    <option name="totallyTimeSpent" value="191002000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -788,8 +795,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/content.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="64" column="52" lean-forward="true" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
+        <state relative-caret-position="299">
+          <caret line="444" column="61" lean-forward="true" selection-start-line="444" selection-start-column="61" selection-end-line="444" selection-end-column="61" />
           <folding>
             <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
@@ -951,6 +958,7 @@
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#20439#40940#0" />
             <element signature="n#style#0;n#hr#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
@@ -1111,6 +1119,12 @@
             <element signature="n#style#0;n#span#2;n#div#3;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#41093#43799#0" />
+            <element signature="e#43865#47325#0" />
+            <element signature="e#47396#49193#0" />
+            <element signature="e#65537#68988#0" />
+            <element signature="e#81540#93914#0" />
+            <element signature="e#93940#94465#0" />
           </folding>
         </state>
       </provider>
