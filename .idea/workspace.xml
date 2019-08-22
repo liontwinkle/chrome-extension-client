@@ -63,7 +63,7 @@
         <counts>
           <entry key="css" value="29" />
           <entry key="html" value="336" />
-          <entry key="js" value="5225" />
+          <entry key="js" value="5383" />
           <entry key="json" value="27" />
           <entry key="txt" value="50" />
         </counts>
@@ -73,13 +73,13 @@
           <entry key="CSS" value="29" />
           <entry key="HTML" value="337" />
           <entry key="JSON" value="27" />
-          <entry key="JavaScript" value="5224" />
+          <entry key="JavaScript" value="5382" />
           <entry key="PLAIN_TEXT" value="50" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.117" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.2" value="1" />
@@ -87,11 +87,13 @@
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.36" value="1" />
+          <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.41" value="1" />
+          <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.43" value="1" />
           <entry key="project.open.time.55" value="1" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -122,8 +124,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/content.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-660">
-              <caret line="145" column="37" lean-forward="true" selection-start-line="145" selection-start-column="37" selection-end-line="145" selection-end-column="37" />
+            <state relative-caret-position="350">
+              <caret line="64" column="52" lean-forward="true" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
               <folding>
                 <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
@@ -131,7 +133,7 @@
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#hr#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#hr#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -445,19 +447,6 @@
                 <element signature="n#style#0;n#span#2;n#div#3;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#42861#45567#0" />
-                <element signature="e#45633#49093#0" />
-                <element signature="e#49164#50961#0" />
-                <element signature="e#52461#54122#0" />
-                <element signature="e#54179#55521#0" />
-                <element signature="e#55590#57082#0" />
-                <element signature="e#57235#69413#0" />
-                <element signature="e#60915#65872#0" />
-                <element signature="e#62412#63076#0" />
-                <element signature="e#63184#65798#0" />
-                <element signature="e#65936#69387#0" />
-                <element signature="e#69601#81845#0" />
-                <element signature="e#82025#94290#0" />
               </folding>
             </state>
           </provider>
@@ -531,7 +520,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.go</find>
       <find>addToCartMM</find>
       <find>viewCart-continueShopping</find>
       <find>stopPropagation</find>
@@ -552,7 +540,6 @@
       <find>price</find>
       <find>#price</find>
       <find>fixme</find>
-      <find>https</find>
       <find>offset</find>
       <find>viewCart</find>
       <find>addtocartmm</find>
@@ -561,6 +548,8 @@
       <find>margin-top: 5px; margin-bottom: 5px</find>
       <find>display: block; margin-top: 4px;</find>
       <find>display: block; margin-top: 10px;</find>
+      <find>addToCartModal</find>
+      <find>https</find>
     </findStrings>
     <replaceStrings>
       <replace>float: left; width: 100px; height: 100px; margin-top: 5px;' id='img_wrapper'</replace>
@@ -677,12 +666,14 @@
       <workItem from="1566158223372" duration="3781000" />
       <workItem from="1566164019983" duration="1106000" />
       <workItem from="1566282778379" duration="8913000" />
-      <workItem from="1566361585056" duration="9641000" />
+      <workItem from="1566361585056" duration="12260000" />
+      <workItem from="1566400214282" duration="4510000" />
+      <workItem from="1566453146949" duration="3755000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178529000" />
+    <option name="totallyTimeSpent" value="189413000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -797,8 +788,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/content.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-660">
-          <caret line="145" column="37" lean-forward="true" selection-start-line="145" selection-start-column="37" selection-end-line="145" selection-end-column="37" />
+        <state relative-caret-position="350">
+          <caret line="64" column="52" lean-forward="true" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
           <folding>
             <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
@@ -806,7 +797,7 @@
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#hr#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#hr#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -1120,19 +1111,6 @@
             <element signature="n#style#0;n#span#2;n#div#3;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#42861#45567#0" />
-            <element signature="e#45633#49093#0" />
-            <element signature="e#49164#50961#0" />
-            <element signature="e#52461#54122#0" />
-            <element signature="e#54179#55521#0" />
-            <element signature="e#55590#57082#0" />
-            <element signature="e#57235#69413#0" />
-            <element signature="e#60915#65872#0" />
-            <element signature="e#62412#63076#0" />
-            <element signature="e#63184#65798#0" />
-            <element signature="e#65936#69387#0" />
-            <element signature="e#69601#81845#0" />
-            <element signature="e#82025#94290#0" />
           </folding>
         </state>
       </provider>
