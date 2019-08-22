@@ -463,7 +463,8 @@ $(window).ready(function(){
                         productDetails = {
                             'productTitle': productName,
                             'productPrice': tempProductPrice,
-                            'productImage': $.trim($("[alt^='" + productName + "']").attr('src')),
+                            'productImage': attr('src', $('.a-dynamic-image').attr('src')),
+                            // 'productImage': $.trim($("[alt^='" + productName + "']").attr('src')),
                             'productColor': color,
                             'productPage': location.href,
                             'productSize': size,
