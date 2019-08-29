@@ -459,7 +459,7 @@ $(window).ready(function(){
                         tempProductPrice = tempProductPrice.replace('$', '');
                         tempProductPrice = parseInt(tempProductPrice).toFixed(2);
                         var productName = $.trim($('#pdp_product_title').text());
-                        var sizeExist = $("input[name=skuAndSize]").val();
+                        var sizeExist = $("input[name=skuAndSize]").attr("aria-label");
                         var sizeTemp = $("input[name=skuAndSize]:checked").attr("aria-label");
                         var size = sizeExist ? ((sizeTemp) ? sizeTemp : 'select') : '';
                         var colorExist = $("a[aria-selected=false]").attr('title');
