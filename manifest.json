@@ -7,6 +7,7 @@
 
  "browser_action":{
  	"default_icon":"/images/logo.png",
+   "default_popup":"/html/landing.html",
  	"default_title":"A popup will come here."
  },
 
@@ -21,11 +22,11 @@
       "https://www.nike.com/*",
       "https://www.ebay.com/*"
     ],
-	"js": ["/jquery-3.4.0.min.js", "/js/generate.js","/js/content.js"]
+	"js": ["/jquery-3.4.0.min.js", "/js/generate.js", "/js/content.js"]
   }],
 
  "background":{
- 	"scripts":["/jquery-3.4.0.min.js"]
+ 	"scripts":["/jquery-3.4.0.min.js", "/js/background.js"]
  },
 
  "web_accessible_resources": [

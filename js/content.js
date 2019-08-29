@@ -50,10 +50,11 @@ $(window).ready(function(){
                 greeting: "sendShoppingCartDetails",
                 data: products
             }, function (response) {});
-            chrome.storage.local.get(['random_id', 'random_name', 'random_email'], function (result) {
+            chrome.storage.local.get(['random_id', 'random_name', 'random_email', 'email'], function (result) {
                 var random_id = result.random_id;
                 var random_name = result.random_name;
                 var random_email = result.random_email;
+                var email = result.email;
                 $.ajax({
                     url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveProduct',
                     type: 'post',
@@ -62,11 +63,15 @@ $(window).ready(function(){
                         "product": products,
                         "random_id": random_id,
                         "random_name": random_name,
-                        "random_email": random_email
+                        "random_email": random_email,
+                        "email": email
                     },
                     success: function (data) {
                         if (data) {
-                            window.open('https://ex.travelcast.us/checkout/' + random_id);
+                            var ids = null;
+                            console.log(data.status[0]['product_id']);
+                            ids = data.status.map(status => status['product_id']).join(',');
+                            window.open('https://shipping10.mybigcommerce.com' + '?ids=' + ids);
                         }
                     }
                 });
@@ -453,11 +458,12 @@ $(window).ready(function(){
                     } else if ($.trim($('#pdp_product_title').text()) !== '') {
                         var tempProductPrice = $("[data-test = product-price]").text();
                         tempProductPrice = tempProductPrice.replace('€', '');
+                        tempProductPrice = tempProductPrice.replace('$', '');
                         tempProductPrice = parseInt(tempProductPrice).toFixed(2);
                         var productName = $.trim($('#pdp_product_title').text());
                         var sizeExist = $("input[name=skuAndSize]").val();
-                        var sizeTemp = $("input[name=skuAndSize]:checked").val();
-                        var size = sizeExist ? ((sizeTemp) ? sizeTemp.split(':')[1] : 'select') : '';
+                        var sizeTemp = $("input[name=skuAndSize]:checked").attr("aria-label");
+                        var size = sizeExist ? ((sizeTemp) ? sizeTemp : 'select') : '';
                         var colorExist = $("a[aria-selected=false]").attr('title');
                         var color = colorExist ? ($("a[aria-selected=true]").attr('title')) : null;
                         productDetails = {
