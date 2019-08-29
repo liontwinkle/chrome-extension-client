@@ -68,9 +68,7 @@ $(window).ready(function(){
                     },
                     success: function (data) {
                         if (data) {
-                            var ids = null;
-                            console.log(data.status[0]['product_id']);
-                            ids = data.status.map(status => status['product_id']).join(',');
+                            var ids = data.status.map(status => status['product_id']).join(',');
                             window.open('https://shipping10.mybigcommerce.com' + '?ids=' + ids);
                         }
                     }

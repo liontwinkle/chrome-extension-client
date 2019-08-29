@@ -11,7 +11,6 @@ $(window).ready(function(){
         if( (currentTabUrl.startsWith("https://www.amazon.com" )) || (currentTabUrl.startsWith("https://www.ebay.com" )) ||
             (currentTabUrl.startsWith("https://www.nike.com" )))
         {
-
             if(loggedIn === true){
                 window.location.href = '/html/orders.html'
             } else {
@@ -25,7 +24,6 @@ $(window).ready(function(){
             } else {
                 if(localStorage.getItem('lastUrl-letsGoShip')){
                     window.location.href = localStorage.getItem('lastUrl-letsGoShip');
-                    console.log('in last url else')
                 }
                 $('.loadingIcon').css('display','none');
             }
