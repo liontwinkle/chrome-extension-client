@@ -13,11 +13,12 @@
 <div class="container" id='signupLoginPage' style="display: block">
     <div class="titleHeading"><h3 style="text-align: center;" id="titleHeadingId">Please Login</h3></div>
     <div class="btn-group buttonClass" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" id="login">Login</button>
-        <button type="button" class="btn btn-outline-primary" id="signup">Sign Up</button>
+        <button type="button" class="btn btn-dark" id="login">Login</button>
+        <button type="button" class="btn btn-outline-dark" id="signup">Sign Up</button>
     </div>
     <div class="passwordErrorHeading" id="passwordErrorHeading" style="display: none;"><h6 style="text-align: center;" >Minimum 6 characters password</h6></div>
     <div class="emailErrorHeading" id="emailErrorHeading" style="display: none;"><h6 style="text-align: center;" >Please enter valid email id</h6></div>
+    <div class="pwdMatchErrorHeading" id="pwdMatchErrorHeading" style="display: none;"><h6>Passwords don't match</h6></div>
     <div class="successHeading" id="successHeading" style="display: none;"><h6 style="text-align: center;" >Successfully Signed Up</h6></div>
     <div style="margin-top: 2em;" id="loginbody">
         <form>
@@ -25,7 +26,7 @@
                 <p>Email</p>
                 <div class="input-group mb-3 inputDiv errorLogin">
                     <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan" ><i id="envelopeIcon" class="fas fa-envelope" style="color:rgb(35,119,255)"></i></span>
+                        <span class="input-group-text iconSpan" ><i id="envelopeIcon" class="fas fa-envelope" style="color:rgb(0,0,0)"></i></span>
                     </div>
                     <input type="email" id="loginEmail" class="form-control inputClass" placeholder="capicreative@gmail.com" aria-label="Email" >
                 </div>
@@ -34,12 +35,12 @@
                 <p>Password</p>
                 <div class="input-group mb-3 inputDiv errorLogin">
                     <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan"><i id="lockIcon" class="fas fa-lock" style="color:rgb(35,119,255)"></i></span>
+                        <span class="input-group-text iconSpan"><i id="lockIcon" class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>
                     </div>
                     <input type="password" id="loginPass" class="form-control inputClass" placeholder="Enter Password Here" aria-label="Password">
                 </div>
             </div>
-            <a type="submit" id="loginButton" class="btn btn-primary submitButtonClass submitLoginForm" style="margin-bottom: 1.5rem;color: white;" href="#">Login Now</a>
+            <a type="submit" id="loginButton" class="btn btn-dark submitButtonClass submitLoginForm" style="margin-bottom: 1.5rem;color: white;" href="#">Login Now</a>
         </form>
     </div>
     <div style="margin-top: 1em;" id="signupbody">
@@ -48,7 +49,7 @@
                 <p>Name</p>
                 <div class="input-group mb-3 inputDiv">
                     <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan"><i class="fas fa-user-circle" style="color:rgb(35,119,255)"></i></span>
+                        <span class="input-group-text iconSpan"><i class="fas fa-user-circle" style="color:rgb(0,0,0)"></i></span>
                     </div>
                     <input type="text" class="form-control inputClass userName" placeholder="This is my Username" aria-label="Username">
                 </div>
@@ -57,7 +58,7 @@
                 <p>Email</p>
                 <div class="input-group mb-3 inputDiv errorSignUpEmail">
                     <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan lockIcon signUpEmailLock"><i class="fas fa-envelope" style="color:rgb(35,119,255)"></i></span>
+                        <span class="input-group-text iconSpan lockIcon signUpEmailLock"><i class="fas fa-envelope" style="color:rgb(0,0,0)"></i></span>
                     </div>
                     <input type="email" class="form-control inputClass userEmail" placeholder="capicreative@gmail.com" aria-label="Email" >
                 </div>
@@ -66,7 +67,7 @@
                 <p>Password</p>
                 <div class="input-group mb-3 inputDiv errorSignUpPassword">
                     <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan lockIcon"><i class="fas fa-lock" style="color:rgb(35,119,255)"></i></span>
+                        <span class="input-group-text iconSpan lockIcon"><i class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>
                     </div>
                     <input type="password" class="form-control inputClass userPassword" placeholder="Enter Password Here" aria-label="Password">
                 </div>
@@ -75,12 +76,12 @@
                 <p>Confirm Password</p>
                 <div class="input-group mb-3 inputDiv errorSignUpPassword">
                     <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan"><i class="fas fa-lock" style="color:rgb(35,119,255)"></i></span>
+                        <span class="input-group-text iconSpan"><i class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>
                     </div>
-                    <input type="password" class="form-control inputClass" aria-label="Password">
+                    <input type="password" class="form-control inputClass confirmPassword" aria-label="Password">
                 </div>
             </div>
-            <button type="button" class="btn btn-primary submitButtonClass submitSignupForm" style="margin-bottom: 1.5rem;" href='#'>Sign Up Now</button>
+            <button type="button" class="btn btn-dark submitButtonClass submitSignupForm" style="margin-bottom: 1.5rem;" href='#'>Sign Up Now</button>
         </form>
     </div>
 </div>

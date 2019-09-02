@@ -38,42 +38,27 @@ chrome.runtime.onMessage.addListener(
                 });
 
             }).fail(function (info) {
-
-                chrome.runtime.sendMessage({response: "signUpFalse", data: info}, function (response) {
-
-                });
+                chrome.runtime.sendMessage({response: "signUpFalse", data: info}, function (response) {});
             });
         }
 
         if (request.notifications === "logIn") {
-
             $.ajax({
                 method: 'POST',
                 url: lgsBaseUrl + "login?XDEBUG_SESSION_START=PHPSTORM",
                 data: request.message,
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
+                headers: {"Content-Type": "application/x-www-form-urlencoded"}
             }).done(function (info) {
-
-                chrome.runtime.sendMessage({response: "signInTrue", data: info}, function (response) {
-
-                });
+                chrome.runtime.sendMessage({response: "signInTrue", data: info}, function (response) {});
 
             }).fail(function (info) {
-
-                chrome.runtime.sendMessage({response: "signInFalse", data: info}, function (response) {
-
-                });
+                chrome.runtime.sendMessage({response: "signInFalse", data: info}, function (response) {});
             });
         }
 
         if (request.notifications === "logOut") {
 
-            console.log(request.message);
-
             detailsObject = JSON.parse(localStorage.getItem('details'));
-
             $.ajax({
                 method: 'POST',
                 url: lgsBaseUrl + "logout?XDEBUG_SESSION_START=PHPSTORM",
@@ -82,21 +67,9 @@ chrome.runtime.onMessage.addListener(
                     "Authorization": "Bearer " + detailsObject.access_token
                 }
             }).done(function (info) {
-
-                console.log(info)
-
-                localStorage.removeItem('details')
-
+                localStorage.removeItem('details');
                 localStorage.setItem('loggedIn', 'false');
-
-                chrome.runtime.sendMessage({response: "signOutTrue", data: info}, function (response) {
-
-                });
-
-            }).fail(function (info) {
-
-                console.log(info);
-
-            });
+                chrome.runtime.sendMessage({response: "signOutTrue", data: info}, function (response) {                });
+            })
         }
     });

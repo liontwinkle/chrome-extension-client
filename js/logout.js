@@ -8,18 +8,16 @@ $(window).ready(function () {
     if (loggedIn === true) {
         $("#logOutButton").on("click", function () {
             localStorage.setItem('loggedIn', JSON.stringify(false));
-            // localStorage.removeItem('bcCustomerDetails');
+            chrome.storage.local.set({'loggedIn': JSON.stringify(false)}, function () {});
             window.location.href = "/html/index.html"
         })
     }
     var flag = false;
     $("#toggleButton1").on("click", function () {
         if (flag === false) {
-            $("#navCol1").css("background-color", "rgba(233, 299, 255, 0.95)");
             flag = !flag;
         }
         else if (flag === true) {
-            $("#navCol1").css("background-color", "rgba(233, 299, 255, 0)");
             flag = !flag
         }
     })

@@ -22,18 +22,18 @@ $(window).ready(function () {
         return hex;
     }
 
-    let random_id = getRandomToken();
+    // let random_id = getRandomToken();
     let rdKey = $.urlParam('rdKey');
     if (rdKey) {
         chrome.storage.local.set({'random_id': rdKey}, function () {
         });
     }
-    chrome.storage.local.get(['random_id'], function (result) {
-        if (!result.random_id) {
-            chrome.storage.local.set({'random_id': random_id}, function () {
-            });
-        }
-    });
+    // chrome.storage.local.get(['random_id'], function (result) {
+    //     if (!result.random_id) {
+    //         chrome.storage.local.set({'random_id': random_id}, function () {
+    //         });
+    //     }
+    // });
     let chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
     let string = '';
     for (let i = 0; i < 15; i++) {
