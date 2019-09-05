@@ -8,7 +8,8 @@ $(window).ready(function(){
     function callback(tabs) {
         var currentTabUrl = tabs[0].url;
 
-        if( (currentTabUrl.startsWith("https://www.amazon.com" )) || (currentTabUrl.startsWith("https://www.ebay.com" )) ||
+        if( (currentTabUrl.startsWith("https://www.amazon" )) ||
+            (currentTabUrl.startsWith("https://www.ebay.com" )) ||
             (currentTabUrl.startsWith("https://www.nike.com" )))
         {
             if(loggedIn === true){
