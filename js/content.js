@@ -53,7 +53,7 @@ $(window).ready(function(){
             chrome.storage.local.get(['email'], function (result) {
                 var email = result.email;
                 $.ajax({
-                    url: 'https://cors-anywhere.herokuapp.com/https://58bc1255.ngrok.io/api/checkout/saveProduct',
+                    url: 'https://cors-anywhere.herokuapp.com/https://5e5d12ff.ngrok.io/api/checkout/saveProduct',
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -63,7 +63,7 @@ $(window).ready(function(){
                     success: function (data) {
                         if (data) {
                             var ids = data.status.map(status => status['product_id']).join(',');
-                            window.open('https://shipping10.mybigcommerce.com' + '?ids=' + ids);
+                            window.open('https://shipping3.mybigcommerce.com' + '?ids=' + ids);
                         }
                     }
                 });
@@ -130,12 +130,7 @@ $(window).ready(function(){
                                 $('#currency').text(result.tempProductCurrencySymbol);
                             });
                             if (subtotal == 0) {
-                                chrome.storage.local.remove(['tempProductCurrencySymbol'], function (result) {
-                                });
-                                var element = "<div id='emptyCartMM'> <div>Your Cart is Empty</div></div>";
-                                $('#cartDetailSection').prepend(element);
-                                $('#checkOut').css('display', 'none');
-                                $('#viewCartModal').css('height', '512px');
+
                             }
                             for (var i = 0; i < cartProducts.length; i++) {
                                 if ((!cartProducts[i].productColor && !cartProducts[i].productSize) ||
@@ -423,8 +418,18 @@ $(window).ready(function(){
                         e.stopPropagation();
                     });
 
+                    $('#resetCurrency').on('click', function () {
+                        chrome.storage.local.remove(['tempProductCurrencySymbol'], function (result) {
+                        });
+                        var element = "<div id='emptyCartMM'> <div>Your Cart is Empty</div></div>";
+                        $('#cartDetailSection').prepend(element);
+                        $('#checkOut').css('display', 'none');
+                        $('#viewCartModal').css('height', '512px');
+                    });
+
                     $('#successIcon').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/success.png");
-                        chrome.storage.local.get(['loggedIn'], function (result) {
+
+                    chrome.storage.local.get(['loggedIn'], function (result) {
                             if (result.loggedIn === 'false') {
                                 $('#page-mask').css('display', 'block');
                                 $('#addToCartModal').css('display', 'block');
@@ -450,13 +455,17 @@ $(window).ready(function(){
                                         }
                                         tempProductPrice = $(selClass + " .majorValue").text() + "." + $(selClass + " .minorValue").text()
                                     } else {
-                                        tempProductPrice = $('#priceblock_ourprice').text();
-                                        tempProductPrice = tempProductPrice.replace(',', '');
+                                        var tempProduct = $('#priceblock_ourprice').text() || $('#priceblock_dealprice').text();
+                                        tempProductPrice = tempProduct.replace(',', '');
                                         var regex = /[+-]?\d+(\.\d+)?/g;
                                         tempProductPrice = tempProductPrice.match(regex)[0];
-                                        tempProductCurrencySymbol = $('#priceblock_ourprice').text().replace(',', '');
+                                        tempProductCurrencySymbol = tempProduct.replace(',', '');
                                         tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
                                         tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
+                                        if (tempProductCurrencySymbol == '€'){
+                                            tempProductPrice = tempProductPrice.replace('.', '');
+                                            tempProductPrice = tempProductPrice / 100;
+                                        }
                                     }
                                     console.log('tempProductCurrencySymbol', tempProductCurrencySymbol);
                                     if (tempProductCurrencySymbol == '$' ||
@@ -467,7 +476,7 @@ $(window).ready(function(){
                                                 chrome.storage.local.set({'tempProductCurrencySymbol': tempProductCurrencySymbol}, function () {
                                                 });
                                             }
-                                            if (result.tempProductCurrencySymbol == tempProductCurrencySymbol) {
+                                            if (result.tempProductCurrencySymbol === tempProductCurrencySymbol) {
                                                 productDetails = {
                                                     'productTitle': $.trim($('#productTitle').text()),
                                                     'productPrice': tempProductPrice,
@@ -523,6 +532,7 @@ $(window).ready(function(){
                                                                 $('#addToCartTitle').text($.trim($('#productTitle').text()));
                                                                 $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
                                                                 $('#addToCart-checkOut').css('display', 'block');
+                                                                $('#resetCurrency').css('display', 'none');
                                                                 $('#addToCartError').css('display', 'none');
                                                                 $('#addToCart-Ok').css('display', 'none');
                                                             }
@@ -588,6 +598,7 @@ $(window).ready(function(){
                                                                         $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
                                                                         $('#addToCart-Ok').css('display', 'none');
                                                                         $('#addToCart-checkOut').css('display', 'block');
+                                                                        $('#resetCurrency').css('display', 'none');
                                                                         $('#addToCartError').css('display', 'none');
                                                                     }
                                                                 });
@@ -643,6 +654,7 @@ $(window).ready(function(){
                                                             $('#addToCartTitle').text($.trim($('#productTitle').text()));
                                                             $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
                                                             $('#addToCart-checkOut').css('display', 'block');
+                                                            $('#resetCurrency').css('display', 'none');
                                                         }
                                                     }
                                                 })
@@ -653,7 +665,8 @@ $(window).ready(function(){
                                                 $("#successIcon").css('display', 'none');
                                                 $('#addToCartProductDetail').css('display', 'none');
                                                 $('#addToCartError').css('display', 'block');
-                                                $('#addToCartError').text("The currency doesn't not match.");
+                                                $('#addToCartError').html("The currency doesn't not match.</br> Do you want to reset your cart and continue?</br>");
+                                                $("#resetCurrency").css('display', 'block');
                                                 $('#addToCart-Ok').css('display', 'block');
                                                 $('#addToCart-checkOut').css('display', 'none');
                                             }
@@ -664,7 +677,7 @@ $(window).ready(function(){
                                         $("#successIcon").css('display', 'none');
                                         $('#addToCartProductDetail').css('display', 'none');
                                         $('#addToCartError').css('display', 'block');
-                                        $('#addToCartError').text("This currency is not allowed");
+                                        $('#addToCartError').html("This currency is not allowed </br> USD, EUR and GBP are available");
                                         $('#addToCart-Ok').css('display', 'block');
                                         $('#addToCart-checkOut').css('display', 'none');
                                     }
@@ -676,6 +689,8 @@ $(window).ready(function(){
                                     tempProductCurrencySymbol = $("[data-test = product-price]")[0].innerHTML.replace(',', '');
                                     tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
                                     tempProductCurrencySymbol = tempProductCurrencySymbol.replace(' ', '');
+                                    tempProductCurrencySymbol = tempProductCurrencySymbol.replace('GBP', '£');
+                                    console.log('tempProductCurrencySymbol-Ebay>>>>>>', tempProductCurrencySymbol);
                                     var productName = $.trim($('#pdp_product_title').text());
                                     var sizeExist = $("input[name=skuAndSize]").attr("aria-label");
                                     var sizeTemp = $("input[name=skuAndSize]:checked").attr("aria-label");
@@ -887,7 +902,7 @@ $(window).ready(function(){
                                         $("#successIcon").css('display', 'none');
                                         $('#addToCartProductDetail').css('display', 'none');
                                         $('#addToCartError').css('display', 'block');
-                                        $('#addToCartError').text("This currency is not allowed");
+                                        $('#addToCartError').html("This currency is not allowed </br> USD, EUR and GBP are available");
                                         $('#addToCart-Ok').css('display', 'block');
                                         $('#addToCart-checkOut').css('display', 'none');
                                     }
@@ -897,22 +912,25 @@ $(window).ready(function(){
                                     var tempProductPrice = $.trim($('#prcIsum').html());
                                     tempProductPrice = tempProductPrice.replace(',', '');
                                     var regex = /[+-]?\d+(\.\d+)?/g;
-                                    tempProductPrice = tempProductPrice.match(regex).map(function (v) {
-                                        return parseFloat(v);
-                                    })[0];
+                                    tempProductPrice = tempProductPrice.match(regex)[0];
                                     tempProductCurrencySymbol = $.trim($('#prcIsum').html()).replace(',', '');
                                     tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
                                     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('US', '');
                                     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('/ea', '');
+                                    tempProductCurrencySymbol = tempProductCurrencySymbol.replace('GBP', '£');
                                     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
-                                    if (tempProductCurrencySymbol == 'EUR'){
+                                    if (tempProductCurrencySymbol === 'EUR'){
                                         tempProductCurrencySymbol = '€';
                                     }
 
                                     console.log(tempProductCurrencySymbol);
                                     var productName = $.trim($('#itemTitle').text());
-                                    var colorExist = $.trim($('#msku-sel-1[name="Color"]').text()) || $.trim($('#msku-sel-1[name="Colors"]').text());
-                                    var sizeExist = $.trim($('#msku-sel-1[name="Size"]').text()) || $.trim($('#msku-sel-1[name="Modle"]').text());
+                                    var colorExist = $.trim($('#msku-sel-1[name="Color"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Colors"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Colour"]').text());
+                                    var sizeExist = $.trim($('#msku-sel-1[name="Size"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Modle"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Shoe Size"]').text());
                                     if (tempProductCurrencySymbol == '$' ||
                                         tempProductCurrencySymbol == '£' ||
                                         tempProductCurrencySymbol == '€') {
@@ -926,10 +944,16 @@ $(window).ready(function(){
                                                     'productTitle': productName,
                                                     'productPrice': tempProductPrice,
                                                     'productImage': $.trim($("#icImg").attr('src')),
-                                                    'productColor': colorExist ? ($.trim($('#msku-sel-1[name="Color"] option:selected').text()) || $.trim($('#msku-sel-1[name="Colors"] option:selected').text())) : null,
+                                                    'productColor': colorExist ? (
+                                                        $.trim($('#msku-sel-1[name="Color"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="Colors"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="Colour"] option:selected').text())) : null,
                                                     'productPage': location.href,
                                                     'productCurrency': tempProductCurrencySymbol,
-                                                    'productSize': sizeExist ? (($.trim($('#msku-sel-1[name="Size"] option:selected').text()) || $.trim($('#msku-sel-1[name="Modle"] option:selected').text()))) : null,
+                                                    'productSize': sizeExist ? (
+                                                        $.trim($('#msku-sel-1[name="Size"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="Modle"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="Shoe Size"] option:selected').text())) : null,
                                                     'itemCount': 1,
                                                     'productSKU': location.href
                                                 };
@@ -982,7 +1006,7 @@ $(window).ready(function(){
                                                 }
                                             }
                                             if (sameProductSKU == false) {
-                                                if (productDetails.productSize === '' || productDetails.productSize === '- Select -') {
+                                                if (productDetails.productSize === '' || productDetails.productSize === '- Select -' || productDetails.productSize === '- Selecteer -') {
                                                     $('#page-mask').css('display', 'block');
                                                     $('#addToCartModal').css('display', 'block');
                                                     $('#addToCartProductDetail').css('display', 'none');
@@ -991,7 +1015,7 @@ $(window).ready(function(){
                                                     $('#addToCart-Ok').css('display', 'block');
                                                     $('#addToCart-checkOut').css('display', 'none');
                                                     $("#successIcon").css('display', 'none');
-                                                } else if (productDetails.productColor === '' || productDetails.productColor === '- Select -') {
+                                                } else if (productDetails.productColor === '' || productDetails.productColor === '- Select -' || productDetails.productColor === '- Selecteer -') {
                                                     $('#page-mask').css('display', 'block');
                                                     $('#addToCartModal').css('display', 'block');
                                                     $('#addToCartProductDetail').css('display', 'none');
@@ -1049,7 +1073,7 @@ $(window).ready(function(){
                                             }
                                         }
                                         else {
-                                            if (productDetails.productSize === "- Select -") {
+                                            if (productDetails.productSize === "- Select -" || productDetails.productSize === "- Selecteer -") {
                                                 $('#page-mask').css('display', 'block');
                                                 $('#addToCartModal').css('display', 'block');
                                                 $('#addToCartProductDetail').css('display', 'none');
@@ -1058,7 +1082,7 @@ $(window).ready(function(){
                                                 $('#addToCart-Ok').css('display', 'block');
                                                 $("#successIcon").css('display', 'none');
                                                 $('#addToCart-checkOut').css('display', 'none');
-                                            } else if (productDetails.productColor === "- Select -") {
+                                            } else if (productDetails.productColor === "- Select -" || productDetails.productColor === "- Selecteer -") {
                                                 $('#page-mask').css('display', 'block');
                                                 $('#addToCartModal').css('display', 'block');
                                                 $('#addToCartProductDetail').css('display', 'none');
@@ -1118,7 +1142,7 @@ $(window).ready(function(){
                                         $("#successIcon").css('display', 'none');
                                         $('#addToCartProductDetail').css('display', 'none');
                                         $('#addToCartError').css('display', 'block');
-                                        $('#addToCartError').text("This currency is not allowed");
+                                        $('#addToCartError').html("This currency is not allowed </br> USD, EUR and GBP are available");
                                         $('#addToCart-Ok').css('display', 'block');
                                         $('#addToCart-checkOut').css('display', 'none');
                                     }

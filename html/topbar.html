@@ -24,8 +24,10 @@
                         justify-content: space-between;
                         ">
 
-        <div style="width: 127px; height: 54px; display: flex;">
-            <img id='companyLogo' src="#" style="margin: 6px 0 0 13px; width: 100%;"/>
+        <div style="display: flex;">
+            <a href="http://letsgoship.com/" target="_blank" style="width: 127px; height: 54px; display: flex;">
+                <img id='companyLogo' src="#" style="margin: 6px 0 0 13px; width: 100%;"/>
+            </a>
             <button type="button" id="browse-btn" data-toggle="modal" data-target="#go-ModalLong11"
                     style="
                 border: none;
@@ -64,8 +66,9 @@
             <div id="addToCartModal"
                  style="z-index: 500;position: absolute;margin-left: -110px;width: 340px;background-color: white;overflow: auto;display: none; top: 65px; border-radius: 4px; text-align: center; padding-bottom: 28px;">
                 <div><img id="successIcon" style="margin: 25px 0;" src="#"></div>
+
                 <div id="addToCartError"
-                     style="display: none; text-align: center; margin: 27px 0 20px 25px; font-size: 14px; font-weight: 600;"></div>
+                     style="display: none; text-align: center; margin: 27px 0 20px 0; font-size: 14px; font-weight: 600;"></div>
                 <div id="addToCartProductDetail" style="text-align: center; display: none; margin: 0 28px;">
                     <p id="addToCartTitle" style="padding: 0; font-size: 14px; line-height: 19px;">Title</p>
                     <div style="margin-top: 5px;color: rgba(163,163,163,1);	font-size: 13px;line-height: 16px;">Added
@@ -85,6 +88,9 @@
                         Proceed to Checkout
                     </button>
                 </div>
+                <button id="resetCurrency"
+                        class="btn btn-block"
+                        style="width:270px; height: 44px; border-radius: 4px; background: black; color: white; display: none; margin-left: 33px;">Reset</button>
                 <button id="addToCart-Ok" class="btn btn-block"
                         style="width:270px; height: 44px; border-radius: 4px; background: black; color: white; display: none; margin-left: 33px;">
                     OK

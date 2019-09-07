@@ -21,8 +21,7 @@
             /*background-color: rgba(233, 299, 255, 0.8);*/
             width: 100%;
             height: 23%;
-            top: 0rem;
-            height: 8rem;
+            top: 0;
             position: absolute;
             z-index: -3;
         }
@@ -36,13 +35,22 @@
         }
 
         .imageLogo {
-            background-image: url('/images/logo.png');
-            width: 180px;
-            height: 80px;
-            background-repeat: no-repeat;
-            background-position: center;
+            width: 210px;
+            height: 100px;
+            background: url('/images/logo.png') no-repeat center;
             margin: 30px auto;
             background-size: contain;
+        }
+
+        #logOutButtonImage {
+            width: 35px;
+            height: 50px;
+            background: url('/images/logout.png') no-repeat center;
+            background-size: contain;
+        }
+
+        #logOutButton:hover{
+            cursor: pointer;
         }
 
         li {
@@ -79,23 +87,17 @@
 </head>
 <body>
 <div class="blueBackground" id="blueBackground"></div>
-<div class="pageHead"><strong>Let's Go Ship</strong></div>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navCol1"
      style="background-color: rgba(233, 299, 255, 0);top: 0.7em;">
-    <button class="navbar-toggler" id="toggleButton1" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-md-auto">
-            <li class="nav-item newmobile" id="logOutButton">
-                <a class="nav-link" href="#"><strong style="font-size: 20px; padding: 10px;">Logout</strong></a>
-            </li>
-        </ul>
+    <div id="logOutButton" style="display: flex; flex-direction: column;position: absolute;right: 30px; top: 10px;">
+        <div id="logOutButtonImage"></div>
+        <div style="margin: -5px 0 0 -5px; font-size: 13px; font-weight: 700;">Log Out</div>
     </div>
 </nav>
 <div class="container" style="padding-bottom: 10px;">
-    <div style="text-align: center;margin-top: 3.5rem;"><i class="fas fa-user-circle iUser" style="color: rgba(0,0,0,0.7);"></i></div>
+    <div style="text-align: center;margin-top: 3.5rem;"><i class="fas fa-user-circle iUser"
+                                                           style="color: rgb(0,0,0);"></i></div>
+    <div id="user-name" style="text-align: center; font-size: 24px; padding: 30px 0 0 20px;">Welcome</div>
     <div class="imageLogo"></div>
 </div>
 

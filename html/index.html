@@ -10,17 +10,16 @@
 </head>
 <body>
 <div class="imageLogo"></div>
-<div class="container" id='signupLoginPage' style="display: block">
-    <div class="titleHeading"><h3 style="text-align: center;" id="titleHeadingId">Please Login</h3></div>
-    <div class="btn-group buttonClass" role="group" aria-label="Basic example">
+<div class="container" id='signupLoginPage' style="display: block; padding: 0 25px;">
+
+    <div class="btn-group buttonClass" role="group" aria-label="Basic example" style="margin-top: 120px;">
         <button type="button" class="btn btn-dark" id="login">Login</button>
         <button type="button" class="btn btn-outline-dark" id="signup">Sign Up</button>
     </div>
-    <div class="passwordErrorHeading" id="passwordErrorHeading" style="display: none;"><h6 style="text-align: center;" >Minimum 6 characters password</h6></div>
-    <div class="emailErrorHeading" id="emailErrorHeading" style="display: none;"><h6 style="text-align: center;" >Please enter valid email id</h6></div>
+    <div class="titleHeading"><h6 style="text-align: center; margin-top: 15px;" id="titleHeadingId">Please Login</h6></div>
     <div class="pwdMatchErrorHeading" id="pwdMatchErrorHeading" style="display: none;"><h6>Passwords don't match</h6></div>
     <div class="successHeading" id="successHeading" style="display: none;"><h6 style="text-align: center;" >Successfully Signed Up</h6></div>
-    <div style="margin-top: 2em;" id="loginbody">
+    <div style="margin-top: 1em;" id="loginbody">
         <form>
             <div>
                 <p>Email</p>
@@ -28,7 +27,7 @@
                     <div class="input-group-prepend iconDiv">
                         <span class="input-group-text iconSpan" ><i id="envelopeIcon" class="fas fa-envelope" style="color:rgb(0,0,0)"></i></span>
                     </div>
-                    <input type="email" id="loginEmail" class="form-control inputClass" placeholder="capicreative@gmail.com" aria-label="Email" >
+                    <input type="email" id="loginEmail" class="form-control inputClass" placeholder="creative@gmail.com" aria-label="Email" >
                 </div>
             </div>
             <div>
@@ -60,9 +59,10 @@
                     <div class="input-group-prepend iconDiv">
                         <span class="input-group-text iconSpan lockIcon signUpEmailLock"><i class="fas fa-envelope" style="color:rgb(0,0,0)"></i></span>
                     </div>
-                    <input type="email" class="form-control inputClass userEmail" placeholder="capicreative@gmail.com" aria-label="Email" >
+                    <input type="email" class="form-control inputClass userEmail" placeholder="creative@gmail.com" aria-label="Email" >
                 </div>
             </div>
+            <div class="passwordErrorHeading" id="passwordErrorHeading" style="display: none;"><h6 style="text-align: center;" >Minimum 6 characters password</h6></div>
             <div>
                 <p>Password</p>
                 <div class="input-group mb-3 inputDiv errorSignUpPassword">
@@ -72,6 +72,7 @@
                     <input type="password" class="form-control inputClass userPassword" placeholder="Enter Password Here" aria-label="Password">
                 </div>
             </div>
+            <div class="emailErrorHeading" id="emailErrorHeading" style="display: none;"><h6 style="text-align: center;" >Please enter valid email id</h6></div>
             <div>
                 <p>Confirm Password</p>
                 <div class="input-group mb-3 inputDiv errorSignUpPassword">

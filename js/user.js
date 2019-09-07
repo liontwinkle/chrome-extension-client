@@ -79,6 +79,7 @@ $(window).ready(function () {
             function (request, sender, sendResponse) {
                 if (request.response === "signInTrue") {
                     var responseData = request.data;
+                    $('#user-name').text('aaa');
                     chrome.storage.local.set({'email': responseData['user']['email']}, function () {});
                     if (responseData.access_token !== undefined) {
                         localStorage.setItem('loggedIn', 'true');

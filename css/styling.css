@@ -1,7 +1,7 @@
 .imageLogo{
     background-image: url('/images/logo.png');
-    width: 40%;
-    height: 5em;
+    width: 35%;
+    height: 7em;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -13,18 +13,16 @@
  }
 .titleHeading{
     color: black;
-    margin-top: 4.8rem;
+    margin-top: 10px;
 }
 
 .passwordErrorHeading{
     color: red;
-    /*margin-bottom: -20px;*/
     margin-top: 10px;
 }
 
 .emailErrorHeading{
     color: red;
-    /*margin-top: 30px;*/
 }
 
 .successHeading{
@@ -65,7 +63,6 @@ body{
 	width: 400px;
 	min-width: 400px;
 	font-family: Helvetica;
-    padding-top: 0.7em;
 }
 #signupbody{
 	display:none;
@@ -93,4 +90,7 @@ body{
 }
 #img_wrapper img{
     max-width: 100%;
+}
+.btn-dark{
+    background: black;
 }
