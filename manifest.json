@@ -20,7 +20,7 @@
 	"matches": [
       "https://www.amazon.com/*",
       "https://www.amazon.com.au/*",
-      "https://www.amazon.br/*",
+      "https://www.amazon.com.br/*",
       "https://www.amazon.ca/*",
       "https://www.amazon.cn/*",
       "https://www.amazon.de/*",
@@ -36,6 +36,8 @@
       "https://www.amazon.co.uk/*",
 
       "https://www.nike.com/*",
+      "https://www.nike.com.br/*",
+      "https://www.nike.com.hk/*",
 
       "https://www.ebay.com/*",
       "https://ar.ebay.com/*",

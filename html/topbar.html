@@ -14,61 +14,22 @@
 <body>
 
 <div style="height: 65px;" id="topbarContainer">
-    <div id="usShopping" style="
-                        background     : rgb(0, 0, 0);
-                        height         : 65px;
-                        position       : fixed;
-                        z-index        : 999999;
-                        width          : 100%;
-                        display        : flex;
-                        justify-content: space-between;
-                        ">
-
+    <div id="usShopping" style="background: rgb(0, 0, 0);height: 65px;position: fixed;z-index: 999999;width: 100%;display: flex;justify-content: space-between;">
         <div style="display: flex;">
             <a href="http://letsgoship.com/" target="_blank" style="width: 127px; height: 54px; display: flex;">
                 <img id='companyLogo' src="#" style="margin: 6px 0 0 13px; width: 100%;"/>
             </a>
-            <button type="button" id="browse-btn" data-toggle="modal" data-target="#go-ModalLong11"
-                    style="
-                border: none;
-                background: none;
-                margin-left: 20px;
-                ">
-           <span style="opacity: 0.7;
-                color: rgba(255,255,255,1);
-                font-family: 'Proxima Nova';
-                font-size: 14px;
-                font-weight: 600;
-                line-height: 17px;
-                padding-left: 13px;
-                border-left: 1px solid rgba(255,255,255,0.7);
-                ">Stores</span>
+            <button type="button" id="browse-btn" data-toggle="modal" data-target="#go-ModalLong11" style="border: none;background: none;margin-left: 20px;">
+           <span style="opacity: 0.7;color: rgba(255,255,255,1);font-size: 14px;font-weight: 600;line-height: 17px;padding-left: 13px;border-left: 1px solid rgba(255,255,255,0.7);">Stores</span>
             </button>
         </div>
-
-
         <div style="float: right;">
-            <button id="addToCartMM" class="btn btn-warning"
-                    style="
-                    background-color: #ffffff;
-                    float: left;
-                    width: 150px;
-                    height: 37px;
-                    border: none;
-                    border-radius: 4px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    margin-top: 14px;">
+            <button id="addToCartMM" class="btn btn-warning" style="background-color: #ffffff;float: left;width: 150px;height: 37px;border: none;border-radius: 4px;display: flex;justify-content: center;align-items: center; margin-top: 14px;">
                 <span style="font-weight: 600;font-size: 14px;line-height: 17px;letter-spacing: -0.5px;">View Items In Cart</span>
             </button>
-
-            <div id="addToCartModal"
-                 style="z-index: 500;position: absolute;margin-left: -110px;width: 340px;background-color: white;overflow: auto;display: none; top: 65px; border-radius: 4px; text-align: center; padding-bottom: 28px;">
+            <div id="addToCartModal" style="z-index: 500;position: absolute;margin-left: -110px;width: 340px;background-color: white;overflow: auto;display: none; top: 65px; border-radius: 4px; text-align: center; padding-bottom: 28px;">
                 <div><img id="successIcon" style="margin: 25px 0;" src="#"></div>
-
-                <div id="addToCartError"
-                     style="display: none; text-align: center; margin: 27px 0 20px 0; font-size: 14px; font-weight: 600;"></div>
+                <div id="addToCartError" style="display: none; text-align: center; margin: 27px 0 20px 0; font-size: 14px; font-weight: 600;"></div>
                 <div id="addToCartProductDetail" style="text-align: center; display: none; margin: 0 28px;">
                     <p id="addToCartTitle" style="padding: 0; font-size: 14px; line-height: 19px;">Title</p>
                     <div style="margin-top: 5px;color: rgba(163,163,163,1);	font-size: 13px;line-height: 16px;">Added
@@ -88,74 +49,39 @@
                         Proceed to Checkout
                     </button>
                 </div>
-                <button id="resetCurrency"
-                        class="btn btn-block"
-                        style="width:270px; height: 44px; border-radius: 4px; background: black; color: white; display: none; margin-left: 33px;">Reset</button>
-                <button id="addToCart-Ok" class="btn btn-block"
-                        style="width:270px; height: 44px; border-radius: 4px; background: black; color: white; display: none; margin-left: 33px;">
-                    OK
-                </button>
-
+                <div id="button-wrapper" style="display:flex; justify-content:space-between; padding: 0 33px">
+                    <button id="resetCurrency" class="btn btn-block" style="width:270px; height: 44px; border-radius: 4px; background: black; color: white; display: none; margin: 0;">Reset</button>
+                    <button id="addToCart-Ok" class="btn btn-block" style="width:270px; height: 44px; border-radius: 4px; background: black; color: white; display: none; margin: 0;">OK</button>
+                </div>
             </div>
-
             <div id="favouriteCart" style="float: left;margin-top: 16px;margin-left: 20px;">
                 <img id="favouriteIcon" src="#" class="mr-3 ml-1">
             </div>
             <div id="viewCart" style="float: right;margin-top: 18px;margin-right: 20px;">
                 <img id="viewCartIcon" src="#" class="mr-3 ml-1">
-                <span id="companyNotification"
-                      style="display: none;position: absolute;min-width: 7px;background-color: rgb(220, 53, 69);color: rgb(255, 255, 255);font-size: 13px; justify-content: center; align-items: center; border-radius: 50%;margin-left: 27px;margin-top: -34px; width: 20px; height: 20px;text-align: center"
-                      class="companyNotification">0</span>
-                <div id="viewCartModal"
-                     style="z-index: 500;position: absolute;top: 65px;right: 0;width: 320px;background-color: white;overflow: auto;height: calc(100vh - 65px);display: none; padding: 25px;">
+                <span id="companyNotification" style="display: none;position: absolute;min-width: 7px;background-color: rgb(220, 53, 69);color: rgb(255, 255, 255);font-size: 13px; justify-content: center; align-items: center; border-radius: 50%;margin-left: 27px;margin-top: -34px; width: 20px; height: 20px;text-align: center" class="companyNotification">0</span>
+                <div id="viewCartModal" style="z-index: 500;position: absolute;top: 65px;right: 0;width: 320px;background-color: white;overflow: auto;height: calc(100vh - 65px);display: none; padding: 25px;">
                     <div style="display: flex;">
-                        <div style="    text-align: center;
-                                        width: 50%;
-                                        align-items: center;
-                                        height: 38px;
-                                        display: flex;
-                                        justify-content: center;
-                                        font-size: 13px;
-                                        font-weight: 600;
-                                        line-height: 16px;
-                                        border-radius:  4px 0 0 4px;
-                                        background: #E2E5E6;">Shopping Cart
-                        </div>
-                        <div style="    text-align: center;
-                                        width: 50%;
-                                        align-items: center;
-                                        height: 38px;
-                                        display: flex;
-                                        justify-content: center;
-                                        border-radius: 0 4px 4px 0;
-                                        font-size: 13px;
-                                        font-weight: 600;
-                                        opacity: 0.4;
-                                        border: 1px solid #E2E5E6;
-                                        background: white;">Favourites
-                        </div>
+                        <div style="text-align: center; width: 50%; align-items: center; height: 38px; display: flex; justify-content: center; font-size: 13px; font-weight: 600; line-height: 16px; border-radius:  4px 0 0 4px; background: #E2E5E6;">Shopping Cart</div>
+                        <div style="text-align: center; width: 50%; align-items: center; height: 38px; display: flex; justify-content: center; border-radius: 0 4px 4px 0; font-size: 13px; font-weight: 600; opacity: 0.4; border: 1px solid #E2E5E6; background: white;">Favourites</div>
                     </div>
-                    <div style="padding: 20px 0 11px 0; border-bottom: 1px solid #D1D1D1;">
-                        <div style="display:flex; justify-content: space-between ">
-                            <div style="font-size: 16px;font-weight: 600;line-height: 20px;">Shopping Cart</div>
-                            <div style="font-size: 16px;font-weight: 600;line-height: 20px;"><span id="currency"></span><span id="subtotal"></span></div>
+                    <div>
+                        <div style="padding: 20px 0 11px 0; border-bottom: 1px solid #D1D1D1;">
+                            <div style="display:flex; justify-content: space-between ">
+                                <div style="font-size: 16px;font-weight: 600;line-height: 20px;">Shopping Cart</div>
+                                <div style="font-size: 16px;font-weight: 600;line-height: 20px;"><span id="currency"></span><span id="subtotal"></span></div>
+                            </div>
+                            <div style="display:flex; justify-content: space-between; padding-top: 7px">
+                                <div style="color: #A3A3A3;font-size: 13px;	line-height: 16px;">items</div>
+                                <div style="color: #A3A3A3;font-size: 13px;	line-height: 16px;">Subtotal</div>
+                            </div>
                         </div>
-                        <div style="display:flex; justify-content: space-between; padding-top: 7px">
-                            <div style="color: #A3A3A3;font-size: 13px;	line-height: 16px;">items</div>
-                            <div style="color: #A3A3A3;font-size: 13px;	line-height: 16px;">Subtotal</div>
-                        </div>
+                        <div id="cartDetailSection" style="display:flex; flex-direction: column; "></div>
+                        <button id="checkOut" class="btn go-shipping" style="background: black; color: white; margin: 25px 0 0 0; width: 100%">Proceed to Checkout</button>
                     </div>
-                    <div id="cartDetailSection"
-                         style="display:flex; flex-direction: column; "></div>
-                    <button id="checkOut" class="btn go-shipping"
-                            style="background: black; color: white; margin: 25px 0 0 0; width: 100%">Proceed to
-                        Checkout
-                    </button>
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>
 <div class="modal fade" id="go-Modal" style="z-index: 9999999;" tabindex="-1" role="dialog"
@@ -170,12 +96,9 @@
             </div>
             <div class="modal-body">
                 <div class="d-flex">
-                    <a href="https://www.amazon.com/" target="_blank" style="width: 33%"><img id="amazon" src="#"
-                                                                                              style="width: 100%"></a>
-                    <a href="https://www.ebay.com/" target="_blank" style="width: 33%"><img id="ebay" src="#"
-                                                                                            style="width: 100%"></a>
-                    <a href="https://www.nike.com" target="_blank" style="width: 33%"><img id="nike" src="#"
-                                                                                           style="width: 100%"></a>
+                    <a href="https://www.amazon.com/" target="_blank" style="width: 33%"><img id="amazon" src="#" style="width: 100%"></a>
+                    <a href="https://www.ebay.com/" target="_blank" style="width: 33%"><img id="ebay" src="#" style="width: 100%"></a>
+                    <a href="https://www.nike.com" target="_blank" style="width: 33%"><img id="nike" src="#" style="width: 100%"></a>
                 </div>
             </div>
         </div>
