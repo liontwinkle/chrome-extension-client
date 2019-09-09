@@ -10,7 +10,8 @@ $(window).ready(function(){
 
         if( (currentTabUrl.startsWith("https://www.amazon" )) ||
             (currentTabUrl.startsWith("https://www.ebay.com" )) ||
-            (currentTabUrl.startsWith("https://www.nike.com" )))
+            (currentTabUrl.includes('ebay'))||
+            (currentTabUrl.startsWith("https://www.nike" )))
         {
             if(loggedIn === true){
                 window.location.href = '/html/orders.html'
