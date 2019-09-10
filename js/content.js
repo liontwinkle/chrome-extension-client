@@ -162,15 +162,15 @@ $(window).ready(function(){
                                 tempProductCurrencySymbol = tempProduct.replace(',', '');
                                 tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
                                 tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
-                                if (tempProductCurrencySymbol == '€') {
+                                if (tempProductCurrencySymbol === '€') {
                                     tempProductPrice = tempProductPrice.replace('.', '');
                                     tempProductPrice = tempProductPrice / 100;
                                 }
                             }
                             console.log('tempProductCurrencySymbol', tempProductCurrencySymbol);
-                            if (tempProductCurrencySymbol == '$' ||
-                                tempProductCurrencySymbol == '£' ||
-                                tempProductCurrencySymbol == '€') {
+                            if (tempProductCurrencySymbol === '$' ||
+                                tempProductCurrencySymbol === '£' ||
+                                tempProductCurrencySymbol === '€') {
                                 chrome.storage.local.get(['tempProductCurrencySymbol'], function (result) {
                                     var isAdded = false;
                                     if (!result.tempProductCurrencySymbol) {
@@ -199,9 +199,6 @@ $(window).ready(function(){
                                                         && (productDetails.productColor === productListPostAdd[i].productColor)
                                                         && (productDetails.productSize === productListPostAdd[i].productSize)) {
                                                         sameProductSKU = true;
-                                                        // var newItemCount = productListPostAdd[i].itemCount + 1;
-                                                        // productListPostAdd[i].itemCount = newItemCount;
-                                                        // newItemCount = parseInt(newItemCount);
                                                         var oldPrice = productListPostAdd[i].productPrice;
                                                         oldPrice = parseFloat(oldPrice);
                                                         tempProductPrice = parseFloat(tempProductPrice);
@@ -355,9 +352,9 @@ $(window).ready(function(){
                             var size = sizeExist ? ((sizeTemp) ? sizeTemp : 'select') : '';
                             var colorExist = $("a[aria-selected=false]").attr('title');
                             var color = colorExist ? ($("a[aria-selected=true]").attr('title')) : null;
-                            if (tempProductCurrencySymbol == '$' ||
-                                tempProductCurrencySymbol == '£' ||
-                                tempProductCurrencySymbol == '€') {
+                            if (tempProductCurrencySymbol === '$' ||
+                                tempProductCurrencySymbol === '£' ||
+                                tempProductCurrencySymbol === '€') {
                                 chrome.storage.local.get(['tempProductCurrencySymbol'], function (result) {
                                     var isAdded = false;
                                     if (!result.tempProductCurrencySymbol) {
@@ -457,6 +454,7 @@ $(window).ready(function(){
                                                                     data: favCartDetails
                                                                 }, function (response) {
                                                                 });
+                                                                $("#favouriteIcon").attr('src', "chrome-extension://" + chrome.runtime.id + "/images/favouriteAdd.png");
                                                                 $('#companyNotification').text(tempCount);
                                                                 $('#page-mask').css('display', 'block');
                                                                 $("#successIcon").css('display', 'inline');
@@ -691,6 +689,7 @@ $(window).ready(function(){
                                                                     data: favCartDetails
                                                                 }, function (response) {
                                                                 });
+                                                                $("#favouriteIcon").attr('src', "chrome-extension://" + chrome.runtime.id + "/images/favouriteAdd.png");
                                                                 $('#companyNotification').text(tempCount);
                                                                 $('#page-mask').css('display', 'block');
                                                                 $('#addToCartModal').css('display', 'block');
