@@ -94,3 +94,7 @@ body{
 .btn-dark{
     background: black;
 }
+
+#cartButton:hover{
+    cursor: pointer;
+}

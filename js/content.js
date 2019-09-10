@@ -53,8 +53,8 @@ $(window).ready(function(){
             chrome.storage.local.get(['email'], function (result) {
                 var email = result.email;
                 $.ajax({
+                    // url: 'https://cors-anywhere.herokuapp.com/https://a1719b22.ngrok.io/api/checkout/saveProduct',
                     url: 'https://cors-anywhere.herokuapp.com/http://ex.travelcast.us/api/checkout/saveProduct',
-                    // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveProduct',
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -64,7 +64,8 @@ $(window).ready(function(){
                     success: function (data) {
                         if (data) {
                             var ids = data.status.map(status => status['product_id']).join(',');
-                            window.open('https://shipping3.mybigcommerce.com' + '?ids=' + ids);
+                            var counts = data.status.map(status => status['counts']).join(',');
+                            window.open('https://goshipping4.mybigcommerce.com' + '?ids=' + ids + '&counts=' + counts);
                         }
                     }
                 });

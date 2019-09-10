@@ -47,7 +47,7 @@ $(window).ready(function () {
                     $("#signupbody").css("display", "none");
                     $("#login").attr("class", "btn btn-dark");
                     $("#signup").attr("class", "btn btn-outline-dark");
-                    $('#successHeading').css('display', 'block');
+                    // $('#successHeading').css('display', 'block');
                     $('#emailErrorHeading').css('display', 'none');
                     $('#passwordErrorHeading').css('display', 'none');
                 }
