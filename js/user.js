@@ -2,8 +2,6 @@ $(window).ready(function () {
 
     localStorage.setItem('lastUrl-letsGoShip', '/html/index.html');
 
-    var userDetails = JSON.parse(localStorage.getItem('details'));
-
     $("#login").on("click", function () {
         $("#loginbody").css("display", "block");
         $("#signupbody").css("display", "none");
@@ -35,7 +33,7 @@ $(window).ready(function () {
             'email': $('.userEmail').val(),
             'password': $('.userPassword').val()
         };
-        if ($('.userPassword').val() !== $('.confirmPassword').val()){
+        if ($('.userPassword').val() !== $('.confirmPassword').val()) {
             $('#pwdMatchErrorHeading').css('display', 'block');
             $('#pwdMatchErrorHeading').css('color', 'red');
         }
@@ -88,14 +86,12 @@ $(window).ready(function () {
                         localStorage.setItem('details', JSON.stringify(request.data));
                         var currentTabUrl;
                         var query = {active: true, currentWindow: true};
-
                         function callback(tabs) {
-                            var currentTabUrl = tabs[0].url;
-                            if (currentTabUrl.startsWith("https://www.amazon.com"  )) {
+                            currentTabUrl = tabs[0].url;
+                            if ((currentTabUrl.startsWith("https://www.amazon.com")) ||
+                                (currentTabUrl.includes('ebay')) ||
+                                (currentTabUrl.startsWith("https://www.nike"))) {
                                 window.location.href = '/html/Orders.html';
-                                if (currentTabUrl.startsWith("https://www.amazon.com/gp/buy/addressselect/handlers/")) {
-                                    window.location.href = "/html/shippingProfile.html";
-                                }
                             }
                         }
                         chrome.tabs.query(query, callback);

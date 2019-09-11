@@ -12,13 +12,6 @@ chrome.runtime.onMessage.addListener(
                 headers: {
                     "Accept": "application/json"
                 }
-            }).done(function (info) {
-
-                console.log(info);
-
-            }).fail(function (info) {
-
-                console.log(info);
             })
         }
 
@@ -33,9 +26,7 @@ chrome.runtime.onMessage.addListener(
                 }
             }).done(function (info) {
 
-                chrome.runtime.sendMessage({response: "signUpTrue", data: info}, function (response) {
-
-                });
+                chrome.runtime.sendMessage({response: "signUpTrue", data: info}, function (response) {});
 
             }).fail(function (info) {
                 chrome.runtime.sendMessage({response: "signUpFalse", data: info}, function (response) {});
@@ -69,7 +60,7 @@ chrome.runtime.onMessage.addListener(
             }).done(function (info) {
                 localStorage.removeItem('details');
                 localStorage.setItem('loggedIn', 'false');
-                chrome.runtime.sendMessage({response: "signOutTrue", data: info}, function (response) {                });
+                chrome.runtime.sendMessage({response: "signOutTrue", data: info}, function (response) {});
             })
         }
     });

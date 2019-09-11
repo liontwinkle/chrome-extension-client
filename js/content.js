@@ -210,7 +210,7 @@ $(window).ready(function(){
                                                         $("#favouriteIcon").attr('src', "chrome-extension://" + chrome.runtime.id + "/images/favouriteAdd.png");
                                                     }
                                                 }
-                                                if (sameProductSKU == false) {
+                                                if (sameProductSKU === false) {
                                                     if (productDetails.productSize === "Select") {
                                                         $('#page-mask').css('display', 'block');
                                                         $("#successIcon").css('display', 'none');
@@ -1761,11 +1761,14 @@ $(window).ready(function(){
 
                                 }
                                 else if ($.trim($('#itemTitle').text()) !== '') {
-                                    var tempProductPrice = $.trim($('#prcIsum').html());
-                                    tempProductPrice = tempProductPrice.replace(',', '');
+                                    // var tempProductPrice1 = $.trim($('#prcIsum').html()) ||
+                                    //         $.trim($('#mm-saleDscPrc').html()) ||
+                                    //         $.trim($('#prcIsum_bidPrice').html());
+                                    var tempProductPrice1 = $("[itemprop = price]")[0].innerHTML;
+                                    tempProductPrice = tempProductPrice1.replace(',', '');
                                     var regex = /[+-]?\d+(\.\d+)?/g;
                                     tempProductPrice = tempProductPrice.match(regex)[0];
-                                    tempProductCurrencySymbol = $.trim($('#prcIsum').html()).replace(',', '');
+                                    tempProductCurrencySymbol = tempProductPrice1.replace(',', '');
                                     tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
                                     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('US', '');
                                     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('/ea', '');
@@ -1774,18 +1777,41 @@ $(window).ready(function(){
                                     if (tempProductCurrencySymbol === 'EUR'){
                                         tempProductCurrencySymbol = '€';
                                     }
-
                                     console.log(tempProductCurrencySymbol);
                                     var productName = $.trim($('#itemTitle').text());
                                     var colorExist = $.trim($('#msku-sel-1[name="Color"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="Color"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="color"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="color"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Main Colour"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="Main Colour"]').text()) ||
                                         $.trim($('#msku-sel-1[name="Colors"]').text()) ||
-                                        $.trim($('#msku-sel-1[name="Colour"]').text());
+                                        $.trim($('#msku-sel-2[name="Colors"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Colour"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="Colour"]').text());
                                     var sizeExist = $.trim($('#msku-sel-1[name="Size"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="Size"]').text()) ||
                                         $.trim($('#msku-sel-1[name="Modle"]').text()) ||
-                                        $.trim($('#msku-sel-1[name="Shoe Size"]').text());
-                                    if (tempProductCurrencySymbol == '$' ||
-                                        tempProductCurrencySymbol == '£' ||
-                                        tempProductCurrencySymbol == '€') {
+                                        $.trim($('#msku-sel-1[name="size"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="size"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Sizes"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="Sizes"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Size (Women\'s)"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="Size (Women\'s)"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Size (Men\'s)"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="Size (Men\'s)"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Style"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="Style"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Shoe Size"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="Light Source"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="Shoe Size"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="US Shoe Size (Men\'s)"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="US Shoe Size (Men\'s)"]').text()) ||
+                                        $.trim($('#msku-sel-1[name="US Shoe Size (Women\'s)"]').text()) ||
+                                        $.trim($('#msku-sel-2[name="US Shoe Size (Women\'s)"]').text());
+                                    if (tempProductCurrencySymbol === '$' ||
+                                        tempProductCurrencySymbol === '£' ||
+                                        tempProductCurrencySymbol === '€') {
                                         chrome.storage.local.get(['tempProductCurrencySymbol'], function (result) {
                                             var isAdded = false;
                                             if (!result.tempProductCurrencySymbol) {
@@ -1800,14 +1826,38 @@ $(window).ready(function(){
                                                     'productImage': $.trim($("#icImg").attr('src')),
                                                     'productColor': colorExist ? (
                                                         $.trim($('#msku-sel-1[name="Color"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="Color"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="color"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="color"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="Main Colour"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="Main Colour"] option:selected').text()) ||
                                                         $.trim($('#msku-sel-1[name="Colors"] option:selected').text()) ||
-                                                        $.trim($('#msku-sel-1[name="Colour"] option:selected').text())) : null,
+                                                        $.trim($('#msku-sel-2[name="Colors"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="Colour"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="Colour"] option:selected').text())) : null,
                                                     'productPage': location.href,
                                                     'productCurrency': tempProductCurrencySymbol,
                                                     'productSize': sizeExist ? (
                                                         $.trim($('#msku-sel-1[name="Size"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="Size"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="size"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="size"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="Sizes"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="Sizes"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="Size (Women\'s)"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="Size (Women\'s)"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="Size (Men\'s)"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="Size (Men\'s)"] option:selected').text()) ||
                                                         $.trim($('#msku-sel-1[name="Modle"] option:selected').text()) ||
-                                                        $.trim($('#msku-sel-1[name="Shoe Size"] option:selected').text())) : null,
+                                                        $.trim($('#msku-sel-2[name="Modle"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="Style"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="Style"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="US Shoe Size (Men\'s)"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="US Shoe Size (Men\'s)"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="US Shoe Size (Women\'s)"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="US Shoe Size (Women\'s)"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-1[name="Shoe Size"] option:selected').text()) ||
+                                                        $.trim($('#msku-sel-2[name="Shoe Size"] option:selected').text())) : null,
                                                     'itemCount': 1,
                                                     'productSKU': location.href
                                                 };
