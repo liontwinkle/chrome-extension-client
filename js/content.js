@@ -60,7 +60,7 @@ $(window).ready(function(){
                 var email = result.email;
                 $.ajax({
                     // url: 'https://cors-anywhere.herokuapp.com/https://a1719b22.ngrok.io/api/checkout/saveProduct',
-                    url: 'https://cors-anywhere.herokuapp.com/http://6993a35c.ngrok.io/api/checkout/saveProduct',
+                    url: 'https://cors-anywhere.herokuapp.com/http://ex.travelcast.us/api/checkout/saveProduct',
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -94,8 +94,8 @@ $(window).ready(function(){
                 var email = result.email;
                 console.log('email', email);
                 $.ajax({
-                    url: 'https://cors-anywhere.herokuapp.com/https://6993a35c.ngrok.io/api/checkout/saveFavorite',
-                    // url: 'https://cors-anywhere.herokuapp.com/http://ex.travelcast.us/api/checkout/saveFavorite',
+                    // url: 'https://cors-anywhere.herokuapp.com/https://6993a35c.ngrok.io/api/checkout/saveFavorite',
+                    url: 'https://cors-anywhere.herokuapp.com/http://ex.travelcast.us/api/checkout/saveFavorite',
                     type: 'post',
                     dataType: 'json',
                     data: {
