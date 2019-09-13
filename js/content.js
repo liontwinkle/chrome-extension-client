@@ -59,8 +59,8 @@ $(window).ready(function(){
             chrome.storage.local.get(['email'], function (result) {
                 var email = result.email;
                 $.ajax({
-                    // url: 'https://cors-anywhere.herokuapp.com/https://6993a35c.ngrok.io/api/checkout/saveProduct',
-                    url: 'https://cors-anywhere.herokuapp.com/http://ex.travelcast.us/api/checkout/saveProduct',
+                    // url: 'https://cors-anywhere.herokuapp.com/https://7e60f1f0.ngrok.io/api/checkout/saveProduct',
+                    url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveProduct',
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -94,8 +94,8 @@ $(window).ready(function(){
                 var email = result.email;
                 console.log('email', email);
                 $.ajax({
-                    // url: 'https://cors-anywhere.herokuapp.com/https://6993a35c.ngrok.io/api/checkout/saveFavorite',
-                    url: 'https://cors-anywhere.herokuapp.com/http://ex.travelcast.us/api/checkout/saveFavorite',
+                    // url: 'https://cors-anywhere.herokuapp.com/https://7e60f1f0.ngrok.io/api/checkout/saveFavorite',
+                    url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveFavorite',
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -195,7 +195,10 @@ $(window).ready(function(){
                                 }
                                 tempProductPrice = $(selClass + " .majorValue").text() + "." + $(selClass + " .minorValue").text()
                             } else {
-                                var tempProduct = $('#priceblock_ourprice').text() || $('#priceblock_dealprice').text();
+                                var tempProduct = $('#priceblock_ourprice').text() ||
+                                    $('#priceblock_dealprice').text() ||
+                                    $('#priceblock_saleprice').text() ||
+                                    $('#buyNew_noncbb span').text();;
                                 tempProductPrice = tempProduct.replace(',', '');
                                 var regex = /[+-]?\d+(\.\d+)?/g;
                                 tempProductPrice = tempProductPrice.match(regex)[0];
@@ -1310,7 +1313,11 @@ $(window).ready(function(){
                                     }
                                     tempProductPrice = $(selClass + " .majorValue").text() + "." + $(selClass + " .minorValue").text()
                                 } else {
-                                    var tempProduct = $('#priceblock_ourprice').text() || $('#priceblock_dealprice').text() || $('#priceblock_saleprice').text();
+                                    console.log( $('#buyNew_noncbb span').html());
+                                    var tempProduct = $('#priceblock_ourprice').text() ||
+                                        $('#priceblock_dealprice').text() ||
+                                        $('#priceblock_saleprice').text() ||
+                                        $('#buyNew_noncbb span').text();
                                     var splitIndex = tempProduct.indexOf("-");
                                     if ( splitIndex > 0) {
                                         tempProduct = tempProduct.slice(0, splitIndex - 1);
@@ -1318,7 +1325,7 @@ $(window).ready(function(){
                                     console.log('>>>>>>>>>>>', tempProduct);
                                     tempProductPrice = tempProduct.replace(',', '');
                                     var regex = /[+-]?\d+(\.\d+)?/g;
-                                    tempProductPrice = tempProductPrice.match(regex)[0];
+                                    tempProductPrice = tempProductPrice.match(regex) && tempProductPrice.match(regex)[0] || '' ;
                                     tempProductCurrencySymbol = tempProduct.replace(',', '');
                                     tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
                                     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
@@ -1326,13 +1333,14 @@ $(window).ready(function(){
                                         tempProductPrice = tempProductPrice.replace('.', '');
                                         tempProductPrice = tempProductPrice / 100;
                                     }
-                                    productCount = $('#quantity option:selected').text();
+                                    productCount = $('#quantity option:selected').text() || 1;
                                     console.log('>>>>>>>>>>>count', productCount);
                                 }
                                 console.log('tempProductCurrencySymbol', tempProductCurrencySymbol);
                                 if (tempProductCurrencySymbol == '$' ||
                                     tempProductCurrencySymbol == '£' ||
-                                    tempProductCurrencySymbol == '€') {
+                                    tempProductCurrencySymbol == '€')
+                                {
                                     chrome.storage.local.get(['tempProductCurrencySymbol'], function (result) {
                                         var isAdded = false;
                                         if (!result.tempProductCurrencySymbol) {
@@ -1820,7 +1828,11 @@ $(window).ready(function(){
 
                             }
                             else if ($.trim($('#itemTitle').text()) !== '') {
-                                var tempProductPrice1 = $("[itemprop = price]")[0].innerHTML;
+                                // $("[itemprop = price]")[0].innerHTML
+                                var tempProductPrice1 = $("[itemprop = price]") && $("[itemprop = price]").length > 0 && $("[itemprop = price]")[0].innerHTML ||
+                                    $.trim($('#prcIsum').html()) ||
+                                    $.trim($('#mm-saleDscPrc').html()) ||
+                                    $.trim($('#prcIsum_bidPrice').html());
                                 tempProductPrice = tempProductPrice1.replace(',', '');
                                 var regex = /[+-]?\d+(\.\d+)?/g;
                                 tempProductPrice = tempProductPrice.match(regex)[0];
