@@ -3,9 +3,8 @@ $(window).ready(function(){
         console.log('loggedIn>>>>>>>>>>>>>>>>>>>>>>>', result.loggedIn);
     });
 
-    $("#addToCart_feature_div").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid #f4d078; padding: 5px;margin-bottom: 10px;'>Add to LetsGoShip Cart</div>");
+    $("#addToCart_feature_div").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid #f4d078; padding: 7px;font-size: 14px; margin-bottom: 10px;'>Add to LetsGoShip Cart</div>");
     $("#binBtn_btn").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin-bottom: 10px;'>Add to LetsGoShip</div>");
-    $("div[data-browse-component=ATCButton]").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 30px; text-align: center; border:1px solid black; padding:18px 24px; font-size: 1.25rem;margin-bottom: 10px;'>Add to LetsGoShip Cart</div>");
 
     function viewCart(cartProductsPostRemove) {
         for (var i = 0; i < cartProductsPostRemove.length; i++) {
@@ -61,7 +60,7 @@ $(window).ready(function(){
                 var email = result.email;
                 $.ajax({
                     // url: 'https://cors-anywhere.herokuapp.com/https://a1719b22.ngrok.io/api/checkout/saveProduct',
-                    url: 'https://cors-anywhere.herokuapp.com/http://ex.travelcast.us/api/checkout/saveProduct',
+                    url: 'https://cors-anywhere.herokuapp.com/http://6993a35c.ngrok.io/api/checkout/saveProduct',
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -73,6 +72,39 @@ $(window).ready(function(){
                             var ids = data.status.map(status => status['product_id']).join(',');
                             var counts = data.status.map(status => status['counts']).join(',');
                             window.open('https://goshipping4.mybigcommerce.com' + '?ids=' + ids + '&counts=' + counts);
+                        }
+                    }
+                });
+            });
+        });
+    }
+    function favorite() {
+        chrome.storage.local.set({lastPageCompany: location.href}, function () {});
+        chrome.runtime.sendMessage({
+            greeting: "updateLastPageCompany",
+            data: location.href
+        }, function (response) {});
+        chrome.storage.local.get(['favCartDetails'], function (result) {
+            var favorites = JSON.parse(result.favCartDetails);
+            chrome.runtime.sendMessage({
+                greeting: "sendShoppingCartDetails",
+                data: favorites
+            }, function (response) {});
+            chrome.storage.local.get(['email'], function (result) {
+                var email = result.email;
+                console.log('email', email);
+                $.ajax({
+                    url: 'https://cors-anywhere.herokuapp.com/https://6993a35c.ngrok.io/api/checkout/saveFavorite',
+                    // url: 'https://cors-anywhere.herokuapp.com/http://ex.travelcast.us/api/checkout/saveFavorite',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        "favorite": favorites,
+                        "email": email
+                    },
+                    success: function (data) {
+                        if (data) {
+                            window.open('https://goshipping4.mybigcommerce.com/wishlist.php');
                         }
                     }
                 });
@@ -918,6 +950,9 @@ $(window).ready(function(){
                     $('.go-shipping').off('click');
                     $('.go-shipping').on('click', function () {
                         goCheckout();
+                    });
+                    $('#favWishList').on('click', function () {
+                        favorite();
                     });
 
                     if ($('#viewCartModal').css('display') === 'block') {
