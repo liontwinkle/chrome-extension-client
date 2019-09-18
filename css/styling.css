@@ -92,7 +92,7 @@ body{
     max-width: 100%;
 }
 .btn-dark{
-    background: black;
+    background: black !important;
 }
 
 #cartButton:hover{
