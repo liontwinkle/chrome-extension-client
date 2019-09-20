@@ -88,7 +88,9 @@
       "https://il.ebay.com/*",
       "https://www.ebay.ca/*",
       "https://www.gittigidiyor.com/*",
-      "https://www.ebay.com.au/*"
+      "https://www.ebay.com.au/*",
+
+      "https://www.fashionnova.com/*"
     ],
 	"js": ["/jquery-3.4.0.min.js", "/js/generate.js", "/js/content.js"]
   }],
