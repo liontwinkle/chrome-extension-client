@@ -90,7 +90,16 @@
       "https://www.gittigidiyor.com/*",
       "https://www.ebay.com.au/*",
 
-      "https://www.fashionnova.com/*"
+      "https://www.fashionnova.com/*",
+
+      "https://www.revolve.com/*",
+
+      "https://www.prettylittlething.com/*",
+
+      "https://colourpop.com/*",
+
+      "https://www.kyliecosmetics.com/*"
+
     ],
 	"js": ["/jquery-3.4.0.min.js", "/js/generate.js", "/js/content.js"]
   }],
