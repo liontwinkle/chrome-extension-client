@@ -67,8 +67,8 @@ $(window).ready(function(){
             chrome.storage.local.get(['email'], function (result) {
                 var email = result.email;
                 $.ajax({
-                    // url: 'https://cors-anywhere.herokuapp.com/https://e1676e34.ngrok.io/api/checkout/saveProduct',
-                    url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveProduct',
+                    url: 'https://cors-anywhere.herokuapp.com/https://57f6e4cd.ngrok.io/api/checkout/saveProduct',
+                    // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveProduct',
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -77,6 +77,8 @@ $(window).ready(function(){
                     },
                     success: function (data) {
                         if (data) {
+                            chrome.storage.local.remove(['cartDetails'], function (result) {
+                            });
                             var ids = data.status.map(status => status['product_id']).join(',');
                             var counts = data.status.map(status => status['counts']).join(',');
                             window.open('https://goshipping4.mybigcommerce.com' + '?ids=' + ids + '&counts=' + counts);
@@ -102,8 +104,8 @@ $(window).ready(function(){
                 var email = result.email;
                 console.log('email', email);
                 $.ajax({
-                    // url: 'https://cors-anywhere.herokuapp.com/https://e1676e34.ngrok.io/api/checkout/saveFavorite',
-                    url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveFavorite',
+                    url: 'https://cors-anywhere.herokuapp.com/https://57f6e4cd.ngrok.io/api/checkout/saveFavorite',
+                    // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveFavorite',
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -1201,18 +1203,32 @@ $(window).ready(function(){
 
                     $('.go-shipping').off('click');
                     $('.go-shipping').on('click', function () {
-                        goCheckout();
+                        $("#viewCartModal").css('filter', 'blur(2px)');
+                        $("#viewCartModal").css('background', 'rgba');
+                        $("#ConfirmCheckout").css('display', 'flex');
+
                     });
                     $('#favWishList').off('click');
                     $('#favWishList').on('click', function () {
                         favorite();
                     });
+                    $('#ConfirmButton').off('click');
+                    $('#ConfirmButton').on('click', function () {
+                        $('#viewCartModal').css('display', 'none');
+                        $("#ConfirmCheckout").css('display', 'none');
+                        $('#page-mask').css('display', 'none');
+                        $('#companyNotification').css('display', 'none');
+                        goCheckout();
+                    });
 
                     if ($('#viewCartModal').css('display') === 'block') {
                         $('#viewCartModal').css('display', 'none');
+                        $("#ConfirmCheckout").css('display', 'none');
                         $('#page-mask').css('display', 'none');
                     } else {
                         $('#viewCartModal').css('display', 'block');
+                        $('#viewCartModal').css('background', 'white');
+                        $('#viewCartModal').css('filter', 'unset');
                         $('#page-mask').css('display', 'block');
                     }
                     $('#addToCartModal').css('display', 'none');
@@ -1493,6 +1509,7 @@ $(window).ready(function(){
                 $('#page-mask').css('display', 'block');
             } else if (left && right && top && bottom) {
                 $('#viewCartModal').css('display', 'none');
+                $("#ConfirmCheckout").css('display', 'none');
                 $('#page-mask').css('display', 'none');
             }
         });
@@ -1514,10 +1531,10 @@ $(window).ready(function(){
                         $('#page-mask').css('display', 'none');
                         $('#addToCartModal').hide();
                     });
-                    $('.go-shipping').off('click');
-                    $('.go-shipping').on('click', function () {
-                        goCheckout();
-                    });
+                    // $('.go-shipping').off('click');
+                    // $('.go-shipping').on('click', function () {
+                    //     goCheckout();
+                    // });
                     $("#addToCartModal").on('click', function (e) {
                         e.stopPropagation();
                     });

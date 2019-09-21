@@ -48,10 +48,6 @@
                     <p style="color: rgba(255,126,24,1); font-size: 14px;font-weight: 600;line-height: 19px;text-align: center;">
                         Ensure your items are not restricted.</p>
 
-                    <button id="addToCart-checkOut" class="btn btn-block go-shipping"
-                            style="text-align: center; width: 270px; height: 44px; background: black; color: white;font-size: 14px; display: none;margin-left: 7px">
-                        Proceed to Checkout
-                    </button>
                 </div>
                 <div id="button-wrapper" style="display:flex; justify-content:space-between; padding: 0 33px">
                     <button id="resetCurrency" class="btn btn-block" style="width:270px; height: 44px; border-radius: 4px; background: black; color: white; display: none; margin: 0;">Reset</button>
@@ -87,6 +83,13 @@
                         <div id="favCartDetailSection" style="display:flex; flex-direction: column; "></div>
                         <button id="favWishList" class="btn" style="background: black; color: white; margin: 25px 0 0 0; width: 100%">Add to Wish List</button>
                     </div>
+                </div>
+                <div id="ConfirmCheckout" style="background: white; display: none; position: absolute; top: 200px; right: 20px; z-index: 9999;
+                    flex-direction: column; justify-content: center; align-items: center; width: 275px; height: 140px; text-align: center;padding: 15px; border-radius: 7px;">
+                    <div style="padding: 10px; font-weight: 700;">The products of your cart </br>will be reset.</div>
+                    <button id="ConfirmButton" class="btn btn-block" style="text-align: center; width: 200px; height: 44px; background: black; color: white;font-size: 14px; ">
+                        Ok
+                    </button>
                 </div>
             </div>
         </div>
