@@ -63,4 +63,9 @@ chrome.runtime.onMessage.addListener(
                 chrome.runtime.sendMessage({response: "signOutTrue", data: info}, function (response) {});
             })
         }
+
+        if (request.notifications === "welcome") {
+            $("#go-Modal-content").css('display', 'block')
+            console.log('aaaaaa')
+        }
     });

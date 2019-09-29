@@ -1,100 +1,106 @@
-.imageLogo{
-    background-image: url('/images/logo.png');
+.imageLogo {
     width: 35%;
     height: 7em;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: url('/images/logo.png') no-repeat center;
     background-size: contain;
     display: inline-block;
     position: absolute;
     z-index: 101;
     left: 8rem;
     top: 0.7em;
- }
-.titleHeading{
+}
+
+.titleHeading {
     color: black;
     margin-top: 10px;
 }
 
-.passwordErrorHeading{
+.passwordErrorHeading {
     color: red;
     margin-top: 10px;
 }
 
-.emailErrorHeading{
+.emailErrorHeading {
     color: red;
 }
 
-.successHeading{
+.successHeading {
     color: blue;
     margin-bottom: -20px;
     margin-top: 10px;
 }
 
-.buttonClass{
-    width:100%;
+.buttonClass {
+    width: 100%;
     margin-top: 0.2em;
 }
-.submitButtonClass{
+
+.submitButtonClass {
     margin-top: 0.7rem;
     width: 100%;
 }
-p{
-	margin-bottom: 0.1%;
-	display: block;
+
+p {
+    margin-bottom: 0.1%;
+    display: block;
 }
-i{
-	font-size: 24px;
+
+i {
+    font-size: 24px;
 }
-.iconSpan{
-	background-color: white;
-	border:0;
+
+.iconSpan {
+    background-color: white;
+    border: 0;
 }
-.inputClass{
-	border: 0;
-	outline: 0;
-	background: transparent;
-	border-radius: 0;
+
+.inputClass {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-radius: 0;
 }
-.inputDiv{
-	border-bottom: 1px solid black;
+
+.inputDiv {
+    border-bottom: 1px solid black;
 }
-body{
-	width: 400px;
-	min-width: 400px;
-	font-family: Helvetica;
+
+body {
+    width: 400px;
+    min-width: 400px;
 }
-#signupbody{
-	display:none;
+
+#signupbody {
+    display: none;
 }
+
 .inputClass:focus {
-    /*outline-width: 0;*/
     box-shadow: none;
 }
+
 ::-webkit-scrollbar {
-  width: 15px;
+    width: 15px;
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(89, 152, 247);
-  border-radius: 10px;
+    background: rgb(89, 152, 247);
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(33, 103, 209);
+    background: rgb(33, 103, 209);
 }
-#img_wrapper img{
+
+#img_wrapper img {
     max-width: 100%;
 }
-.btn-dark{
+
+.btn-dark {
     background: black !important;
 }
 
-#cartButton:hover{
-    cursor: pointer;
-}

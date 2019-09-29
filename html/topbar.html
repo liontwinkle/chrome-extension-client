@@ -12,6 +12,42 @@
         }
         #favButton:hover{
             cursor: pointer;
+        }#addToCartMM:hover{
+            cursor: pointer;
+        }
+        #favouriteCart:hover{
+            cursor: pointer;
+        }
+        #viewCart:hover{
+            cursor: pointer;
+        }
+        #browse-btn:focus{
+            outline: unset !important;
+        }
+
+        .store-item {
+            background: white;
+            margin: 10px;
+            width: 33%;
+            padding: 14px;
+            border-radius: 13px;
+            box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);
+        }
+
+        #searchBar {
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            width: 80%;
+            height: 56px;
+            border-radius: 28px;
+            box-shadow: 0 10px 20px 0 rgba(120, 121, 147, 0.09);
+            background-color: #4c4c4c;
         }
     </style>
 </head>
@@ -39,15 +75,11 @@
                     <div style="margin-top: 5px;color: rgba(163,163,163,1);	font-size: 13px;line-height: 16px;">Added
                         to your Cart
                     </div>
-
                     <img id="addToCartImage" src="#" style="height: 120px; margin: 25px auto;"/>
-
                     <p style="font-size: 13px;	letter-spacing: -0.5px;line-height: 16px; text-align: center;">Note:
                         Heavy or large items may cost more to ship.</p>
-
                     <p style="color: rgba(255,126,24,1); font-size: 14px;font-weight: 600;line-height: 19px;text-align: center;">
                         Ensure your items are not restricted.</p>
-
                 </div>
                 <div id="button-wrapper" style="display:flex; justify-content:space-between; padding: 0 33px">
                     <button id="resetCurrency" class="btn btn-block" style="width:270px; height: 44px; border-radius: 4px; background: black; color: white; display: none; margin: 0;">Reset</button>
@@ -97,20 +129,32 @@
 </div>
 <div class="modal fade" id="go-Modal" style="z-index: 9999999;" tabindex="-1" role="dialog"
      aria-labelledby="go-ModalLongTitle">
-    <div class="modal-dialog" role="document" id="go-Modal-content" style="position: absolute; left: 15px; top: 87px;">
-        <div class="modal-content" style="background: #f2f5f8">
-            <div class="modal-header">
-                <h5 class="modal-title" id="go-ModalLongTitle">STORES</h5>
+    <div class="modal-dialog" role="document" id="go-Modal-content" style="position: absolute; left: 35px; top: 110px;">
+        <div class="modal-content" style="background: #f2f5f8; border: unset;">
+            <div id="searchBar">
+                <img style="width: 30px; height: 30px;" id="magnify" src="#">
+                <span style="font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;">Search Retailer by name</span>
+                <img style="width: 30px; height: 30px;" id="setting" src="#">
+            </div>
+            <div class="modal-header" style="border: unset; background: #010101; height: 150px;">
                 <button type="button" class="close" id="close-btn" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span style="color: white;" aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="d-flex">
-                    <a href="https://www.amazon.com/" target="_blank" style="width: 33%"><img id="amazon" src="#" style="width: 100%"></a>
-                    <a href="https://www.ebay.com/" target="_blank" style="width: 33%"><img id="ebay" src="#" style="width: 100%"></a>
-                    <a href="https://www.nike.com" target="_blank" style="width: 33%"><img id="nike" src="#" style="width: 100%"></a>
+                <div class="d-flex" style="margin-top: -55px;">
+                    <a href="https://www.amazon.com/" target="_blank" class="store-item"><img id="amazon" src="#" style="width: 100%"></a>
+                    <a href="https://www.ebay.com/" target="_blank" class="store-item"><img id="ebay" src="#" style="width: 100%"></a>
+                    <a href="https://www.nike.com" target="_blank" class="store-item"><img id="nike" src="#" style="width: 100%"></a>
                 </div>
+                <div class="d-flex" style="">
+                    <a href="#" class="store-item"><img id="fashionNova" src="#" style="width: 100%"></a>
+                    <a href="#" class="store-item" style="display:flex; align-items: center; justify-content: center; font-size: 30px">revolve</a>
+                    <a href="#" class="store-item"><img id="color" src="#" style="width: 100%"></a>
+                </div>
+            </div>
+            <div class="modal-footer" style="background: black; height: 40px;">
+
             </div>
         </div>
     </div>

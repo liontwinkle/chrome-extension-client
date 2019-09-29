@@ -8,16 +8,23 @@ $(window).ready(function () {
     function callback(tabs) {
         var currentTabUrl = tabs[0].url;
 
-        if ((currentTabUrl.startsWith("https://www.amazon")) ||
-            (currentTabUrl.startsWith("https://www.ebay.com")) ||
-            (currentTabUrl.includes('ebay')) ||
-            (currentTabUrl.startsWith("https://www.nike"))) {
-            if (loggedIn === true) {
-                window.location.href = '/html/Orders.html'
+        // if ((currentTabUrl.startsWith("https://www.amazon")) ||
+        //     (currentTabUrl.startsWith("https://www.ebay.com")) ||
+        //     (currentTabUrl.includes('ebay')) ||
+        //     (currentTabUrl.startsWith("https://www.nike"))) {
+        if (loggedIn === true) {
+            if ((currentTabUrl.startsWith("https://www.amazon")) ||
+                (currentTabUrl.startsWith("https://www.ebay.com")) ||
+                (currentTabUrl.includes('ebay')) ||
+                (currentTabUrl.startsWith("https://www.nike"))) {
+                window.location.href = '/html/welcome.html'
+            } else {
+                window.location.href = '/html/store.html'
+            }
             } else {
                 window.location.href = '/html/index.html'
             }
-        }
+        // }
         if (currentTabUrl.startsWith("https://www.amazon.com/gp/buy/addressselect/handlers/")) {
             if (loggedIn === false || loggedIn == null) {
                 window.location.href = '/html/index.html';

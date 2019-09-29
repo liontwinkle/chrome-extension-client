@@ -77,7 +77,6 @@ $(window).ready(function () {
             function (request, sender, sendResponse) {
                 if (request.response === "signInTrue") {
                     var responseData = request.data;
-                    $('#user-name').text('aaa');
                     chrome.storage.local.set({'email': responseData['user']['email']}, function () {});
                     if (responseData.access_token !== undefined) {
                         localStorage.setItem('loggedIn', 'true');
@@ -91,7 +90,9 @@ $(window).ready(function () {
                             if ((currentTabUrl.startsWith("https://www.amazon.com")) ||
                                 (currentTabUrl.includes('ebay')) ||
                                 (currentTabUrl.startsWith("https://www.nike"))) {
-                                window.location.href = '/html/Orders.html';
+                                window.location.href = '/html/welcome.html';
+                            } else {
+                                window.location.href = '/html/store.html';
                             }
                         }
                         chrome.tabs.query(query, callback);
@@ -119,4 +120,11 @@ $(window).ready(function () {
             message: localStorage.getItem('details')
         }, function (response) {});
     });
+    $('#user-name').on('click', function () {
+        chrome.runtime.sendMessage({
+            notifications: "welcome",
+            message: localStorage.getItem('details')
+        }, function (response) {});
+    });
+
 });

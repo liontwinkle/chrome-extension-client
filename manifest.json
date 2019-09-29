@@ -109,15 +109,19 @@
  },
 
  "web_accessible_resources": [
-    "/html/topbar.html",
-    "/images/topbarLogo.png",
+    "/html/topBar.html",
+    "/images/topBarLogo.png",
     "/images/cartIcon.png",
     "/images/favourite.png",
     "/images/favouriteAdd.png",
     "/images/success.png",
     "/images/amazon.png",
     "/images/nike.png",
-    "/images/ebay.png"
+    "/images/ebay.png",
+    "/images/magnify.png",
+    "/images/setting.png",
+    "/images/fashionNova.png",
+    "/images/color.png"
   ],
 
  "content_security_policy":  "script-src 'self' https://code.jquery.com/jquery-3.3.1.slim.min.js https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js; object-src 'self'"

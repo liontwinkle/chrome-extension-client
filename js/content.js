@@ -1,6 +1,6 @@
 $(window).ready(function(){
-     // $("#addToCart_feature_div").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid #black; padding: 7px;font-size: 14px; margin-bottom: 10px;'>Add to LetsGoShip Cart</div>");
-    $("#selectQuantity").after(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding: 7px;font-size: 14px; margin-bottom: 10px;'>Add to LetsGoShip Cart</div>");
+    $("#atc-declarative").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding: 7px;font-size: 14px; margin-bottom: 10px;'>Add to LetsGoShip Cart</div>");
+    // $("#selectQuantity").after(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding: 7px;font-size: 14px; margin-bottom: 10px;'>Add to LetsGoShip Cart</div>");
     $("#binBtn_btn").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin-bottom: 10px;'>Add to LetsGoShip</div>");
     if (window.location.toString().match('^https://www.fashionnova.com/')) {
         $("#add-to-cart-button").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin-bottom: 10px;'>Add to LetsGoShip</div>");
@@ -67,7 +67,7 @@ $(window).ready(function(){
             chrome.storage.local.get(['email'], function (result) {
                 var email = result.email;
                 $.ajax({
-                    url: 'https://cors-anywhere.herokuapp.com/https://57f6e4cd.ngrok.io/api/checkout/saveProduct',
+                    url: 'https://cors-anywhere.herokuapp.com/https://bd76b9eb.ngrok.io/api/checkout/saveProduct',
                     // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveProduct',
                     type: 'post',
                     dataType: 'json',
@@ -79,9 +79,10 @@ $(window).ready(function(){
                         if (data) {
                             chrome.storage.local.remove(['cartDetails'], function (result) {
                             });
-                            var ids = data.status.map(status => status['product_id']).join(',');
-                            var counts = data.status.map(status => status['counts']).join(',');
-                            window.open('https://goshipping4.mybigcommerce.com' + '?ids=' + ids + '&counts=' + counts);
+                            // var ids = data.status.map(status => status['product_id']).join(',');
+                            // var counts = data.status.map(status => status['counts']).join(',');
+                            // window.open('https://lets-go-ship-new.mybigcommerce.com' + '?ids=' + ids + '&counts=' + counts);
+                            window.open(data.status);
                         }
                     }
                 });
@@ -104,8 +105,8 @@ $(window).ready(function(){
                 var email = result.email;
                 console.log('email', email);
                 $.ajax({
-                    url: 'https://cors-anywhere.herokuapp.com/https://57f6e4cd.ngrok.io/api/checkout/saveFavorite',
-                    // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveFavorite',
+                    // url: 'https://cors-anywhere.herokuapp.com/https://57f6e4cd.ngrok.io/api/checkout/saveFavorite',
+                    url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveFavorite',
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -114,7 +115,7 @@ $(window).ready(function(){
                     },
                     success: function (data) {
                         if (data) {
-                            window.open('https://goshipping4.mybigcommerce.com/wishlist.php');
+                            window.open('https://lets-go-ship-new.mybigcommerce.com/wishlist.php');
                         }
                     }
                 });
@@ -134,7 +135,7 @@ $(window).ready(function(){
         window.location.toString().match('^https://www.kyliecosmetics.com/')
         )
     {
-        $.get("chrome-extension://" + chrome.runtime.id + "/html/topbar.html", function (data) {
+        $.get("chrome-extension://" + chrome.runtime.id + "/html/topBar.html", function (data) {
             $("body").prepend(data);
         });
         var pageMaskElement = '<div id="page-mask" style="position:fixed;left : 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: none; z-index: 100;"></div>'
@@ -142,7 +143,7 @@ $(window).ready(function(){
         $('body').append(pageMaskElement);
 
         $('#companyLogo').ready(function () {
-            var logo = "chrome-extension://" + chrome.runtime.id + "/images/topbarLogo.png";
+            var logo = "chrome-extension://" + chrome.runtime.id + "/images/topBarLogo.png";
             setTimeout(function () {
                 chrome.storage.local.get(['favCartDetails'], function (result) {
                     if (result.favCartDetails) {
@@ -170,6 +171,10 @@ $(window).ready(function(){
                 $('#amazon').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/amazon.png");
                 $('#ebay').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/ebay.png");
                 $('#nike').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/nike.png");
+                $('#magnify').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/magnify.png");
+                $('#setting').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/setting.png");
+                $('#fashionNova').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/fashionNova.png");
+                $('#color').attr('src', "chrome-extension://" + chrome.runtime.id + "/images/color.png");
             }, 200)
         });
 
@@ -1204,7 +1209,7 @@ $(window).ready(function(){
                     $('.go-shipping').off('click');
                     $('.go-shipping').on('click', function () {
                         $("#viewCartModal").css('filter', 'blur(2px)');
-                        $("#viewCartModal").css('background', 'rgba');
+                        $("#viewCartModal").css('background', '#777');
                         $("#ConfirmCheckout").css('display', 'flex');
 
                     });
@@ -1373,6 +1378,7 @@ $(window).ready(function(){
                         for (i = 0; i < productList.length; i++) {
                             tempCount = tempCount + productList[i].itemCount
                         }
+                        $('#companyNotification').text(tempCount);
                     }
                 })
             });
