@@ -101,7 +101,21 @@
       "https://www.kyliecosmetics.com/*"
 
     ],
-	"js": ["/jquery-3.4.0.min.js", "/js/generate.js", "/js/content.js"]
+	"js": [
+      "/jquery-3.4.0.min.js",
+      "/js/generate.js",
+      "/js/content.js",
+
+      "/js/productAmazon.js",
+      "/js/productEbay.js",
+      "/js/productNike.js",
+      "/js/productNova.js",
+
+      "/js/wishAmazon.js",
+      "/js/wishEbay.js",
+      "/js/wishNike.js",
+      "/js/wishNova.js"
+    ]
   }],
 
  "background":{

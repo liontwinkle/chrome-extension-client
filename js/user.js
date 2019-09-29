@@ -120,11 +120,4 @@ $(window).ready(function () {
             message: localStorage.getItem('details')
         }, function (response) {});
     });
-    $('#user-name').on('click', function () {
-        chrome.runtime.sendMessage({
-            notifications: "welcome",
-            message: localStorage.getItem('details')
-        }, function (response) {});
-    });
-
 });
