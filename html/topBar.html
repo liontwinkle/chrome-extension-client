@@ -61,6 +61,12 @@
             overflow: hidden;
             outline: 0;
         }
+        .modal {
+            display: unset;
+        }
+        .modal__content{
+            opacity: 1 !important;
+        }
     </style>
 </head>
 <body>
@@ -80,14 +86,14 @@
                 <span style="font-weight: 600;font-size: 14px;line-height: 17px;letter-spacing: -0.5px;">View Items In Cart</span>
             </div>
             <div id="addToCartModal" style="z-index: 500;position: absolute;margin-left: -110px;width: 340px;background-color: white;overflow: auto;display: none; top: 65px; border-radius: 4px; text-align: center; padding-bottom: 28px;">
-                <div><img id="successIcon" style="margin: 25px 0;" src="#"></div>
+                <div><img id="successIcon" style="width: 35px; margin: 25px 0;" src="#"></div>
                 <div id="addToCartError" style="display: none; text-align: center; margin: 27px 0 20px 0; font-size: 14px; font-weight: 600;"></div>
                 <div id="addToCartProductDetail" style="text-align: center; display: none; margin: 0 28px;">
                     <p id="addToCartTitle" style="padding: 0; font-size: 14px; line-height: 19px;">Title</p>
                     <div style="margin-top: 5px;color: rgba(163,163,163,1);	font-size: 13px;line-height: 16px;">Added
                         to your Cart
                     </div>
-                    <img id="addToCartImage" src="#" style="height: 120px; margin: 25px auto;"/>
+                    <img id="addToCartImage" src="#" style="width: 100px; height: 120px; margin: 25px auto;"/>
                     <p style="font-size: 13px;	letter-spacing: -0.5px;line-height: 16px; text-align: center;">Note:
                         Heavy or large items may cost more to ship.</p>
                     <p style="color: rgba(255,126,24,1); font-size: 14px;font-weight: 600;line-height: 19px;text-align: center;">

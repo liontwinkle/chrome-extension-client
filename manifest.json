@@ -110,11 +110,13 @@
       "/js/productEbay.js",
       "/js/productNike.js",
       "/js/productNova.js",
+      "/js/productRevolve.js",
 
       "/js/wishAmazon.js",
       "/js/wishEbay.js",
       "/js/wishNike.js",
-      "/js/wishNova.js"
+      "/js/wishNova.js",
+      "/js/wishRevolve.js"
     ]
   }],
 

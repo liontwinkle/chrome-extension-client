@@ -1,25 +1,25 @@
-const wishNova = () => {
-    var tempProductPrice = $("[itemprop = offers] div span span").text();
+const wishRevolve = () => {
+    var tempProductPrice = $("#retailPrice").text();
     tempProductPrice = tempProductPrice.replace(',', '');
     console.log('tempProductPrice>>>>>>>>>', tempProductPrice);
     var regex = /[+-]?\d+(\.\d+)?/g;
     tempProductPrice = tempProductPrice.match(regex)[0];
     console.log('tempProductPrice.....regex......', tempProductPrice);
-    let tempProductCurrencySymbol = $("[itemprop = offers] div span span").text().replace(',', '');
+    let tempProductCurrencySymbol = $("#retailPrice").text().replace(',', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
     console.log('tempProductCurrencySymbol-fashion>>>>>>', tempProductCurrencySymbol);
-    var productName = $.trim($("[itemprop = name]").text());
+    var productName = $(".product-name--lg").text();
     productName = productName.replace("'", '');
-    var sizeTemp = $(".single-option-selector option:selected").text();
-    var size = sizeTemp ? sizeTemp : '';
+    var sizeExist = $("input[name=size-options]").attr('value');
+    var sizeTemp = $("input[name=size-options]:checked").attr('value');
+    var size = sizeExist ? ((sizeTemp) ? sizeTemp : 'select') : '';
     console.log('size>>>>>>', size);
-    var colorExist = $("a[aria-selected=false]").attr('title');
-    var color = colorExist ? ($("a[aria-selected=true]").attr('title')) : null;
-    var imageUrl = $.trim($("[alt^='" + productName + "']").attr('src'));
-    imageUrl = imageUrl.slice(0, imageUrl.indexOf('?'));
-    imageUrl = "https:" + imageUrl
+    var colorExist = $(".selectedColor").text();
+    var color = colorExist ? ($(".selectedColor").text()) : null;
+    var imageUrl = $('#img_2').attr('src');
+    console.log('color>>>>>>', color);
     console.log('imageUrl', imageUrl);
 
     if (tempProductCurrencySymbol == '$' ||
@@ -33,7 +33,7 @@ const wishNova = () => {
                 isAdded = true;
             }
             if (isAdded || result.tempProductCurrencySymbol === tempProductCurrencySymbol) {
-                productDetails = {
+                let productDetails = {
                     'productTitle': productName,
                     'productPrice': tempProductPrice,
                     'productImage': imageUrl,
@@ -46,6 +46,8 @@ const wishNova = () => {
                 };
                 chrome.storage.local.get(['favCartDetails'], function (result) {
                     if (result && result.favCartDetails && JSON.parse(result.favCartDetails).length > 0) {
+                        console.log('>>>>>>>???????????????')
+
                         var productListPostAdd = JSON.parse(result.favCartDetails);
                         var sameProductSKU = false;
                         for (i = 0; i < productListPostAdd.length; i++) {
@@ -193,6 +195,7 @@ const wishNova = () => {
                                 data: favCartDetails
                             }, function (response) {
                             });
+                            // $('#companyNotification').css('display', 'none')
                             $("#favouriteIcon").attr('src', "chrome-extension://" + chrome.runtime.id + "/images/favouriteAdd.png");
                         }
                     }

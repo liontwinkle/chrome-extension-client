@@ -89,6 +89,8 @@ $(window).ready(function () {
                             currentTabUrl = tabs[0].url;
                             if ((currentTabUrl.startsWith("https://www.amazon.com")) ||
                                 (currentTabUrl.includes('ebay')) ||
+                                (currentTabUrl.includes('fashionnova')) ||
+                                (currentTabUrl.includes('revolve')) ||
                                 (currentTabUrl.startsWith("https://www.nike"))) {
                                 window.location.href = '/html/welcome.html';
                             } else {
