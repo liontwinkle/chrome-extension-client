@@ -15,6 +15,7 @@ $(window).ready(function () {
     $("#atc-declarative").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding: 7px;font-size: 14px; margin-bottom: 10px;'>Add to LetsGoShip Cart</div>");
     $("#binBtn_btn").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin-bottom: 10px;'>Add to LetsGoShip</div>");
     $(".product-buttons").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:15px 5px;margin-bottom: 10px;font-size: 20px'>Add to LetsGoShip</div>");
+    $(".item-primary-cta").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:15px 5px;margin-bottom: 10px;font-size: 20px'>Add to LetsGoShip</div>");
     if (window.location.toString().match('^https://www.fashionnova.com/')) {
         $("#add-to-cart-button").before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin-bottom: 10px; '>Add to LetsGoShip</div>");
     }
@@ -93,7 +94,7 @@ $(window).ready(function () {
             chrome.storage.local.get(['email'], function (result) {
                 var email = result.email;
                 $.ajax({
-                    // url: 'https://cors-anywhere.herokuapp.com/https://bd76b9eb.ngrok.io/api/checkout/saveProduct',
+                    // url: 'https://cors-anywhere.herokuapp.com/https://2c00a2a9.ngrok.io/api/checkout/saveProduct',
                     url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/saveProduct',
                     type: 'post',
                     dataType: 'json',
@@ -161,7 +162,6 @@ $(window).ready(function () {
         window.location.toString().match('^https://www.fashionnova.com/') ||
         window.location.toString().match('^https://www.revolve.com/') ||
         window.location.toString().match('^https://www.prettylittlething.com/') ||
-        window.location.toString().match('^https://colourpop.com/') ||
         window.location.toString().match('^https://www.kyliecosmetics.com/')
     ) {
         $.get("chrome-extension://" + chrome.runtime.id + "/html/topBar.html", function (data) {
@@ -698,9 +698,10 @@ $(window).ready(function () {
         });
 
         $('#addToCartMM').ready(function () {
-
+            ``
             if (($.trim($('#productTitle').text()) !== '')
                 || ($.trim($('#itemTitle').text()) !== '')
+                || ($.trim($('.product-card-wrapper .product-title').text()) !== '')
                 || ($.trim($('#pdp_product_title').text()) !== '')
                 || ($("#product-info [itemprop = name]").text() !== '')
                 || ($(".product-name--lg").text() !== '')
@@ -757,7 +758,9 @@ $(window).ready(function () {
                                 if ($.trim($('#productTitle').text()) !== '') {
                                     productAmazon();
                                 }
-                                else if ($.trim($('#itemTitle').text()) !== '') {
+                                else if (($.trim($('#itemTitle').text()) !== '') ||
+                                    ($.trim($('.product-card-wrapper .product-title').text()) !== '')
+                                ) {
                                     productEbay();
                                 }
                                 else if ($.trim($('#pdp_product_title').text()) !== '') {

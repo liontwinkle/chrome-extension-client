@@ -2,6 +2,7 @@ const productEbay = () => {
     var tempProductPrice1 = $("[itemprop = price]") && $("[itemprop = price]").length > 0 && $("[itemprop = price]")[0].innerHTML ||
         $.trim($('#prcIsum').html()) ||
         $.trim($('#mm-saleDscPrc').html()) ||
+        $.trim($('.display-price').html()) ||
         $.trim($('#prcIsum_bidPrice').html());
     let tempProductPrice = tempProductPrice1.replace(',', '');
     var regex = /[+-]?\d+(\.\d+)?/g;
@@ -15,8 +16,11 @@ const productEbay = () => {
     if (tempProductCurrencySymbol === 'EUR') {
         tempProductCurrencySymbol = '€';
     }
+    // var productImage = $.trim($("#icImg").attr('src')) || $.trim($("li[data-index=0] .app-filmstrip__image").attr('src'))
+    var productImage = $.trim($("#icImg").attr('src')) || $.trim($(".vi-image-gallery__enlarge-link img").attr('src'))
+    console.log('image', productImage)
     console.log(tempProductCurrencySymbol);
-    var productName = $.trim($('#itemTitle').text());
+    var productName = $.trim($('#itemTitle').text()) || $.trim($('.product-card-wrapper .product-title').text());
     productName = productName.replace("'", '');
     var colorExist = $.trim($('#msku-sel-1[name="Color"]').text()) ||
         $.trim($('#msku-sel-2[name="Color"]').text()) ||
@@ -62,7 +66,7 @@ const productEbay = () => {
                 productDetails = {
                     'productTitle': productName,
                     'productPrice': tempProductPrice,
-                    'productImage': $.trim($("#icImg").attr('src')),
+                    'productImage': productImage,
                     'productColor': colorExist ? (
                         $.trim($('#msku-sel-1[name="Color"] option:selected').text()) ||
                         $.trim($('#msku-sel-2[name="Color"] option:selected').text()) ||
@@ -140,8 +144,8 @@ const productEbay = () => {
                                 $('#page-mask').css('display', 'block');
                                 $('#addToCartModal').css('display', 'block');
                                 $('#addToCartProductDetail').css('display', 'block');
-                                $('#addToCartTitle').text($.trim($('#itemTitle').text()));
-                                $('#addToCartImage').attr('src', $.trim($("#icImg").attr('src')));
+                                $('#addToCartTitle').text(productName);
+                                $('#addToCartImage').attr('src', productImage);
                                 $('#addToCart-checkOut').css('display', 'block');
                                 $('#resetCurrency').css('display', 'none');
                                 $('#addToCartError').css('display', 'none');
@@ -211,8 +215,8 @@ const productEbay = () => {
                                         $('#page-mask').css('display', 'block');
                                         $('#addToCartModal').css('display', 'block');
                                         $('#addToCartProductDetail').css('display', 'block');
-                                        $('#addToCartTitle').text($.trim($('#itemTitle').text()));
-                                        $('#addToCartImage').attr('src', $.trim($("#icImg").attr('src')));
+                                        $('#addToCartTitle').text(productName);
+                                        $('#addToCartImage').attr('src', productImage);
                                         $('#addToCart-Ok').css('display', 'none');
                                         $("#successIcon").css('display', 'inline');
                                         $('#addToCart-checkOut').css('display', 'block');
@@ -276,7 +280,7 @@ const productEbay = () => {
                             $('#addToCartProductDetail').css('display', 'block');
                             $("#successIcon").css('display', 'inline');
                             $('#addToCartTitle').text($.trim($('#pdp_product_title').text()));
-                            $('#addToCartImage').attr('src', $.trim($("#icImg").attr('src')));
+                            $('#addToCartImage').attr('src', productImage);
                             $('#addToCart-checkOut').css('display', 'block');
                             $('#addToCart-Ok').css('display', 'none');
                             $('#resetCurrency').css('display', 'none');
