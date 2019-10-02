@@ -1,16 +1,16 @@
-const wishRevolve = () => {
-    var tempProductPrice = $("#retailPrice").text();
-    tempProductPrice = tempProductPrice.replace(',', '');
-    console.log('tempProductPrice>>>>>>>>>', tempProductPrice);
+const productColourPop = () => {
+    var tempProductPriceStr = $(".product-details__right .product-details__price--sale").clone().children().remove().end().text();
+    tempProductPriceStr = tempProductPriceStr.replace(',', '');
+    console.log('tempProductPrice>>>>>>>>>', tempProductPriceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
-    tempProductPrice = tempProductPrice.match(regex)[0];
+    var tempProductPrice = tempProductPriceStr.match(regex)[0];
     console.log('tempProductPrice.....regex......', tempProductPrice);
-    let tempProductCurrencySymbol = $("#retailPrice").text().replace(',', '');
+    let tempProductCurrencySymbol = tempProductPriceStr.replace(',', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
     console.log('tempProductCurrencySymbol-fashion>>>>>>', tempProductCurrencySymbol);
-    var productName = $(".product-name--lg").text();
+    var productName = $(".product-details__title").text();
     productName = productName.replace("'", '');
     var sizeExist = $("input[name=size-options]").attr('value');
     var sizeTemp = $("input[name=size-options]:checked").attr('value');
@@ -18,7 +18,11 @@ const wishRevolve = () => {
     console.log('size>>>>>>', size);
     var colorExist = $(".selectedColor").text();
     var color = colorExist ? ($(".selectedColor").text()) : null;
-    var imageUrl = $('#img_2').attr('src');
+    var imageUrl = $('.product-images__carousel .product-image img').attr('src');
+    imageUrl =  'https:' + imageUrl;
+    imageUrl = imageUrl.split('?')[0];
+    var count = $(".product-actions__quantity--input").val();
+    console.log("count>>>>>>>>>>>", count);
     console.log('color>>>>>>', color);
     console.log('imageUrl', imageUrl);
 
@@ -41,20 +45,19 @@ const wishRevolve = () => {
                     'productCurrency': tempProductCurrencySymbol,
                     'productPage': location.href,
                     'productSize': size,
-                    'itemCount': 1,
+                    'itemCount': parseInt(count),
                     'productSKU': location.href
                 };
-                chrome.storage.local.get(['favCartDetails'], function (result) {
-                    if (result && result.favCartDetails && JSON.parse(result.favCartDetails).length > 0) {
-
-                        var productListPostAdd = JSON.parse(result.favCartDetails);
+                chrome.storage.local.get(['cartDetails'], function (result) {
+                    if (result && result.cartDetails && JSON.parse(result.cartDetails).length > 0) {
+                        var productListPostAdd = JSON.parse(result.cartDetails);
                         var sameProductSKU = false;
                         for (i = 0; i < productListPostAdd.length; i++) {
                             if ((productDetails.productSKU === productListPostAdd[i].productSKU)
                                 && (productDetails.productColor === productListPostAdd[i].productColor)
                                 && (productDetails.productSize === productListPostAdd[i].productSize)) {
                                 sameProductSKU = true;
-                                var newItemCount = productListPostAdd[i].itemCount + 1;
+                                var newItemCount = productListPostAdd[i].itemCount + parseInt(count);
                                 productListPostAdd[i].itemCount = newItemCount;
                                 newItemCount = parseInt(newItemCount);
                                 var oldPrice = productListPostAdd[i].productPrice;
@@ -69,19 +72,29 @@ const wishRevolve = () => {
                                     subtotal = subtotal + parseFloat(productListPostAdd[a].productPrice)
                                 }
                                 $('#subtotal').text(subtotal);
-                                chrome.storage.local.set({favCartDetails: JSON.stringify(productListPostAdd)}, function () {
+                                chrome.storage.local.set({cartDetails: JSON.stringify(productListPostAdd)}, function () {
                                 });
                                 chrome.runtime.sendMessage({
                                     greeting: "setCartDetails",
                                     data: productListPostAdd
                                 }, function (response) {
                                 });
-                                // $('#companyNotification').css('display', 'flex');
+                                $('#companyNotification').css('display', 'flex');
                                 var tempCount = 0;
                                 for (j = 0; j < productListPostAdd.length; j++) {
                                     tempCount = tempCount + productListPostAdd[j].itemCount
                                 }
-                                $("#favouriteIcon").attr('src', "chrome-extension://" + chrome.runtime.id + "/images/favouriteAdd.png");
+                                $('#companyNotification').text(tempCount);
+                                $('#page-mask').css('display', 'block');
+                                $('#addToCartModal').css('display', 'block');
+                                $('#addToCartProductDetail').css('display', 'block');
+                                $('#addToCartTitle').text(productName);
+                                $('#addToCartImage').attr('src', imageUrl);
+                                $('#addToCart-checkOut').css('display', 'block');
+                                $('#addToCartError').css('display', 'none');
+                                $("#successIcon").css('display', 'inline');
+                                $('#addToCart-Ok').css('display', 'none');
+                                $('#resetCurrency').css('display', 'none');
                             }
                         }
                         if (sameProductSKU == false) {
@@ -119,30 +132,40 @@ const wishRevolve = () => {
                                 $('#resetCurrency').css('display', 'none');
                                 $('#addToCart-checkOut').css('display', 'none');
                             } else {
-                                chrome.storage.local.get(['favCartDetails'], function (result) {
+                                chrome.storage.local.get(['cartDetails'], function (result) {
                                     if (result) {
-                                        var favCartDetails = JSON.parse(result.favCartDetails);
-                                        favCartDetails.push(productDetails);
-                                        chrome.storage.local.set({favCartDetails: JSON.stringify(favCartDetails)}, function () {
+                                        var cartDetails = JSON.parse(result.cartDetails);
+                                        cartDetails.push(productDetails);
+                                        chrome.storage.local.set({cartDetails: JSON.stringify(cartDetails)}, function () {
                                         });
                                         chrome.runtime.sendMessage({
                                             greeting: "setCartDetails",
-                                            data: favCartDetails
+                                            data: cartDetails
                                         }, function (response) {
                                         });
                                         var subtotal = 0;
                                         subtotal = parseInt(subtotal);
-                                        for (k = 0; k < favCartDetails.length; k++) {
-                                            subtotal = subtotal + parseFloat(favCartDetails[k].productPrice);
+                                        for (k = 0; k < cartDetails.length; k++) {
+                                            subtotal = subtotal + parseFloat(cartDetails[k].productPrice);
                                         }
                                         subtotal = subtotal.toFixed(2);
                                         $('#subtotal').text(subtotal);
-                                        // $('#companyNotification').css('display', 'flex');
+                                        $('#companyNotification').css('display', 'flex');
                                         var tempCount = 0;
-                                        for (l = 0; l < favCartDetails.length; l++) {
-                                            tempCount = tempCount + favCartDetails[l].itemCount
+                                        for (l = 0; l < cartDetails.length; l++) {
+                                            tempCount = tempCount + cartDetails[l].itemCount
                                         }
-                                        $("#favouriteIcon").attr('src', "chrome-extension://" + chrome.runtime.id + "/images/favouriteAdd.png");
+                                        $('#companyNotification').text(tempCount);
+                                        $('#page-mask').css('display', 'block');
+                                        $("#successIcon").css('display', 'inline');
+                                        $('#addToCartModal').css('display', 'block');
+                                        $('#addToCartProductDetail').css('display', 'block');
+                                        $('#addToCartTitle').text(productName);
+                                        $('#addToCartImage').attr('src', imageUrl);
+                                        $('#addToCart-Ok').css('display', 'none');
+                                        $('#addToCart-checkOut').css('display', 'block');
+                                        $('#addToCartError').css('display', 'none');
+                                        $('#resetCurrency').css('display', 'none');
                                     }
                                 });
                             }
@@ -183,19 +206,28 @@ const wishRevolve = () => {
                             $('#resetCurrency').css('display', 'none');
                             $('#addToCart-checkOut').css('display', 'none');
                         } else {
-                            var favCartDetails = [];
-                            favCartDetails.push(productDetails);
-                            chrome.storage.local.set({favCartDetails: JSON.stringify(favCartDetails)}, function () {
+                            var cartDetails = [];
+                            cartDetails.push(productDetails);
+                            chrome.storage.local.set({cartDetails: JSON.stringify(cartDetails)}, function () {
                             });
-                            chrome.storage.local.get(['favCartDetails'], function (result) {
+                            chrome.storage.local.get(['cartDetails'], function (result) {
                             });
                             chrome.runtime.sendMessage({
                                 greeting: "setCartDetails",
-                                data: favCartDetails
+                                data: cartDetails
                             }, function (response) {
                             });
-                            // $('#companyNotification').css('display', 'none')
-                            $("#favouriteIcon").attr('src', "chrome-extension://" + chrome.runtime.id + "/images/favouriteAdd.png");
+                            $('#companyNotification').css('display', 'flex');
+                            $('#companyNotification').text(cartDetails.length);
+                            $('#page-mask').css('display', 'block');
+                            $("#successIcon").css('display', 'inline');
+                            $('#addToCartModal').css('display', 'block');
+                            $('#addToCartProductDetail').css('display', 'block');
+                            $('#addToCartTitle').text(productName);
+                            $('#addToCartImage').attr('src', imageUrl);
+                            $('#addToCart-checkOut').css('display', 'block');
+                            $('#addToCart-Ok').css('display', 'none');
+                            $('#resetCurrency').css('display', 'none');
                         }
                     }
                 })

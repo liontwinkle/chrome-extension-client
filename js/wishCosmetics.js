@@ -1,16 +1,16 @@
-const wishRevolve = () => {
-    var tempProductPrice = $("#retailPrice").text();
-    tempProductPrice = tempProductPrice.replace(',', '');
-    console.log('tempProductPrice>>>>>>>>>', tempProductPrice);
+const wishCosmetics = () => {
+    var tempProductPriceStr = $(".product-price").text();
+    tempProductPriceStr = tempProductPriceStr.replace(',', '');
+    console.log('tempProductPrice>>>>>>>>>', tempProductPriceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
-    tempProductPrice = tempProductPrice.match(regex)[0];
+    var tempProductPrice = tempProductPriceStr.match(regex)[0];
     console.log('tempProductPrice.....regex......', tempProductPrice);
-    let tempProductCurrencySymbol = $("#retailPrice").text().replace(',', '');
+    let tempProductCurrencySymbol = tempProductPriceStr.replace(',', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
     console.log('tempProductCurrencySymbol-fashion>>>>>>', tempProductCurrencySymbol);
-    var productName = $(".product-name--lg").text();
+    var productName = $(".section-title h1").text();
     productName = productName.replace("'", '');
     var sizeExist = $("input[name=size-options]").attr('value');
     var sizeTemp = $("input[name=size-options]:checked").attr('value');
@@ -18,7 +18,11 @@ const wishRevolve = () => {
     console.log('size>>>>>>', size);
     var colorExist = $(".selectedColor").text();
     var color = colorExist ? ($(".selectedColor").text()) : null;
-    var imageUrl = $('#img_2').attr('src');
+    var imageUrl = $('#thumbnail-gallery img').attr('src');
+    imageUrl =  'https:' + imageUrl;
+    imageUrl = imageUrl.split('?')[0];
+    var count = $("input[aria-label=quantity]").val();
+    console.log("count>>>>>>>>>>>", count);
     console.log('color>>>>>>', color);
     console.log('imageUrl', imageUrl);
 
@@ -46,7 +50,6 @@ const wishRevolve = () => {
                 };
                 chrome.storage.local.get(['favCartDetails'], function (result) {
                     if (result && result.favCartDetails && JSON.parse(result.favCartDetails).length > 0) {
-
                         var productListPostAdd = JSON.parse(result.favCartDetails);
                         var sameProductSKU = false;
                         for (i = 0; i < productListPostAdd.length; i++) {
@@ -76,7 +79,6 @@ const wishRevolve = () => {
                                     data: productListPostAdd
                                 }, function (response) {
                                 });
-                                // $('#companyNotification').css('display', 'flex');
                                 var tempCount = 0;
                                 for (j = 0; j < productListPostAdd.length; j++) {
                                     tempCount = tempCount + productListPostAdd[j].itemCount
@@ -137,7 +139,6 @@ const wishRevolve = () => {
                                         }
                                         subtotal = subtotal.toFixed(2);
                                         $('#subtotal').text(subtotal);
-                                        // $('#companyNotification').css('display', 'flex');
                                         var tempCount = 0;
                                         for (l = 0; l < favCartDetails.length; l++) {
                                             tempCount = tempCount + favCartDetails[l].itemCount
@@ -194,7 +195,6 @@ const wishRevolve = () => {
                                 data: favCartDetails
                             }, function (response) {
                             });
-                            // $('#companyNotification').css('display', 'none')
                             $("#favouriteIcon").attr('src', "chrome-extension://" + chrome.runtime.id + "/images/favouriteAdd.png");
                         }
                     }
