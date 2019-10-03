@@ -19,7 +19,7 @@ $(window).ready(function () {
                 (currentTabUrl.includes('revolve')) ||
                 (currentTabUrl.includes('fashionnova')) ||
                 (currentTabUrl.startsWith("https://www.nike"))) {
-                window.location.href = '/html/welcome.html'
+                window.location.href = '/html/store.html'
             } else {
                 window.location.href = '/html/store.html'
             }

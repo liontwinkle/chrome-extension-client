@@ -105,6 +105,8 @@
       "/jquery-3.4.0.min.js",
       "/js/generate.js",
       "/js/content.js",
+      "/js/addProduct.js",
+      "/js/addWish.js",
 
       "/js/productAmazon.js",
       "/js/productEbay.js",
@@ -142,6 +144,7 @@
     "/images/setting.png",
     "/images/fashionNova.png",
     "/images/revolve.png",
+    "/images/cosmetics.png",
     "/images/color.png"
   ],
 

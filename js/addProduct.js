@@ -1,43 +1,4 @@
-const productAmazon = () => {
-    var isLargeValue = $('.price-large').text();
-    var productCount;
-    var tempProductPrice = "";
-    var tempProductCurrencySymbol = "";
-    if (isLargeValue) {
-        var optionValue = $('input[name=BuyboxType]:checked').val();
-        var selClass = "#new-button-price";
-        if (optionValue === 'new') {
-            selClass = "#new-button-price";
-        } else {
-            selClass = "#used-button-price";
-        }
-        tempProductPrice = $(selClass + " .majorValue").text() + "." + $(selClass + " .minorValue").text()
-    } else {
-        console.log($('#buyNew_noncbb span').html());
-        var tempProduct = $('#priceblock_ourprice').text() ||
-            $('#priceblock_dealprice').text() ||
-            $('#priceblock_saleprice').text() ||
-            $('#buyNew_noncbb span').text();
-        var splitIndex = tempProduct.indexOf("-");
-        if (splitIndex > 0) {
-            tempProduct = tempProduct.slice(0, splitIndex - 1);
-        }
-        console.log('>>>>>>>>>>>', tempProduct);
-        tempProductPrice = tempProduct.replace(',', '');
-        var regex = /[+-]?\d+(\.\d+)?/g;
-        tempProductPrice = tempProductPrice.match(regex) && tempProductPrice.match(regex)[0] || '';
-        tempProductCurrencySymbol = tempProduct.replace(',', '');
-        tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
-        tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
-        if (tempProductCurrencySymbol === '€') {
-            tempProductPrice = tempProductPrice.replace('.', '');
-            tempProductPrice = tempProductPrice / 100;
-        }
-        productCount = $('#quantity option:selected').text() || 1;
-        console.log('>>>>>>>>>>>count', productCount);
-    }
-    console.log('tempProductCurrencySymbol', tempProductCurrencySymbol);
-
+const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count) => {
     if (tempProductCurrencySymbol === '$' ||
         tempProductCurrencySymbol === '£' ||
         tempProductCurrencySymbol === '€') {
@@ -49,15 +10,15 @@ const productAmazon = () => {
                 isAdded = true;
             }
             if (isAdded || result.tempProductCurrencySymbol === tempProductCurrencySymbol) {
-                var productDetails = {
-                    'productTitle': $.trim($('#productTitle').text()).replace("'", ''),
+                let productDetails = {
+                    'productTitle': productName,
                     'productPrice': tempProductPrice,
+                    'productImage': imageUrl,
+                    'productColor': color,
                     'productCurrency': tempProductCurrencySymbol,
-                    'productImage': $('.a-dynamic-image').attr('src'),
-                    'productColor': $.trim($('#variation_color_name').find('.selection').text()),
                     'productPage': location.href,
-                    'productSize': $.trim($('#dropdown_selected_size_name').find('.a-dropdown-prompt').text()),
-                    'itemCount': parseInt(productCount),
+                    'productSize': size,
+                    'itemCount': parseInt(count),
                     'productSKU': location.href
                 };
                 chrome.storage.local.get(['cartDetails'], function (result) {
@@ -69,7 +30,7 @@ const productAmazon = () => {
                                 && (productDetails.productColor === productListPostAdd[i].productColor)
                                 && (productDetails.productSize === productListPostAdd[i].productSize)) {
                                 sameProductSKU = true;
-                                var newItemCount = productListPostAdd[i].itemCount + parseInt(productCount);
+                                var newItemCount = productListPostAdd[i].itemCount + 1;
                                 productListPostAdd[i].itemCount = newItemCount;
                                 newItemCount = parseInt(newItemCount);
                                 var oldPrice = productListPostAdd[i].productPrice;
@@ -99,18 +60,18 @@ const productAmazon = () => {
                                 $('#companyNotification').text(tempCount);
                                 $('#page-mask').css('display', 'block');
                                 $('#addToCartModal').css('display', 'block');
-                                $("#successIcon").css('display', 'initial');
                                 $('#addToCartProductDetail').css('display', 'block');
-                                $('#addToCartTitle').text($.trim($('#productTitle').text()));
-                                $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
+                                $('#addToCartTitle').text(productName);
+                                $('#addToCartImage').attr('src', imageUrl);
                                 $('#addToCart-checkOut').css('display', 'block');
-                                $('#resetCurrency').css('display', 'none');
                                 $('#addToCartError').css('display', 'none');
+                                $("#successIcon").css('display', 'inline');
                                 $('#addToCart-Ok').css('display', 'none');
+                                $('#resetCurrency').css('display', 'none');
                             }
                         }
                         if (sameProductSKU == false) {
-                            if (productDetails.productSize === "Select") {
+                            if (productDetails.productSize === 'select') {
                                 $('#page-mask').css('display', 'block');
                                 $("#successIcon").css('display', 'none');
                                 $('#addToCartModal').css('display', 'block');
@@ -121,7 +82,7 @@ const productAmazon = () => {
                                 $('#addToCart-Ok').css('width', '270px');
                                 $('#resetCurrency').css('display', 'none');
                                 $('#addToCart-checkOut').css('display', 'none');
-                            } else if (productDetails.productColor === "Select") {
+                            } else if (productDetails.productColor === '') {
                                 $('#page-mask').css('display', 'block');
                                 $("#successIcon").css('display', 'none');
                                 $('#addToCartModal').css('display', 'block');
@@ -132,7 +93,7 @@ const productAmazon = () => {
                                 $('#addToCart-Ok').css('width', '270px');
                                 $('#resetCurrency').css('display', 'none');
                                 $('#addToCart-checkOut').css('display', 'none');
-                            } else if (productDetails.productPrice == '') {
+                            } else if (productDetails.productPrice === '') {
                                 $('#page-mask').css('display', 'block');
                                 $("#successIcon").css('display', 'none');
                                 $('#addToCartModal').css('display', 'block');
@@ -158,7 +119,7 @@ const productAmazon = () => {
                                         var subtotal = 0;
                                         subtotal = parseInt(subtotal);
                                         for (k = 0; k < cartDetails.length; k++) {
-                                            subtotal = subtotal + parseFloat(cartDetails[k].productPrice)
+                                            subtotal = subtotal + parseFloat(cartDetails[k].productPrice);
                                         }
                                         subtotal = subtotal.toFixed(2);
                                         $('#subtotal').text(subtotal);
@@ -172,22 +133,22 @@ const productAmazon = () => {
                                         $("#successIcon").css('display', 'inline');
                                         $('#addToCartModal').css('display', 'block');
                                         $('#addToCartProductDetail').css('display', 'block');
-                                        $('#addToCartTitle').text($.trim($('#productTitle').text()));
-                                        $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
+                                        $('#addToCartTitle').text(productName);
+                                        $('#addToCartImage').attr('src', imageUrl);
                                         $('#addToCart-Ok').css('display', 'none');
                                         $('#addToCart-checkOut').css('display', 'block');
-                                        $('#resetCurrency').css('display', 'none');
                                         $('#addToCartError').css('display', 'none');
+                                        $('#resetCurrency').css('display', 'none');
                                     }
                                 });
                             }
                         }
                     }
                     else {
-                        if (productDetails.productSize === "Select") {
+                        if (productDetails.productSize === 'select') {
                             $('#page-mask').css('display', 'block');
-                            $("#successIcon").css('display', 'none');
                             $('#addToCartModal').css('display', 'block');
+                            $("#successIcon").css('display', 'none');
                             $('#addToCartProductDetail').css('display', 'none');
                             $('#addToCartError').css('display', 'block');
                             $('#addToCartError').text("Please select a product size.");
@@ -195,10 +156,10 @@ const productAmazon = () => {
                             $('#addToCart-Ok').css('width', '270px');
                             $('#resetCurrency').css('display', 'none');
                             $('#addToCart-checkOut').css('display', 'none');
-                        } else if (productDetails.productColor === "Select") {
+                        } else if (productDetails.productColor === '') {
                             $('#page-mask').css('display', 'block');
-                            $("#successIcon").css('display', 'none');
                             $('#addToCartModal').css('display', 'block');
+                            $("#successIcon").css('display', 'none');
                             $('#addToCartProductDetail').css('display', 'none');
                             $('#addToCartError').css('display', 'block');
                             $('#addToCartError').text("Please select a product color.");
@@ -206,7 +167,7 @@ const productAmazon = () => {
                             $('#addToCart-Ok').css('width', '270px');
                             $('#resetCurrency').css('display', 'none');
                             $('#addToCart-checkOut').css('display', 'none');
-                        } else if (productDetails.productPrice == '') {
+                        } else if (productDetails.productPrice === '') {
                             $('#page-mask').css('display', 'block');
                             $("#successIcon").css('display', 'none');
                             $('#addToCartModal').css('display', 'block');
@@ -229,21 +190,17 @@ const productAmazon = () => {
                                 data: cartDetails
                             }, function (response) {
                             });
-                            var tempCount = 0;
-                            for (l = 0; l < cartDetails.length; l++) {
-                                tempCount = tempCount + cartDetails[l].itemCount
-                            }
                             $('#companyNotification').css('display', 'flex');
-                            $('#companyNotification').text(tempCount);
+                            $('#companyNotification').text(cartDetails.length);
                             $('#page-mask').css('display', 'block');
                             $("#successIcon").css('display', 'inline');
                             $('#addToCartModal').css('display', 'block');
                             $('#addToCartProductDetail').css('display', 'block');
-                            $('#addToCartTitle').text($.trim($('#productTitle').text()));
-                            $('#addToCartImage').attr('src', $('.a-dynamic-image').attr('src'));
+                            $('#addToCartTitle').text(productName);
+                            $('#addToCartImage').attr('src', imageUrl);
                             $('#addToCart-checkOut').css('display', 'block');
-                            $('#resetCurrency').css('display', 'none');
                             $('#addToCart-Ok').css('display', 'none');
+                            $('#resetCurrency').css('display', 'none');
                         }
                     }
                 })
