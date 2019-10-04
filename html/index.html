@@ -6,7 +6,12 @@
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> <!-- Bootstrap -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/styling.css">																<!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/styling.css">
+    <style>
+        #loginButton:hover{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <div class="imageLogo"></div>
@@ -39,7 +44,8 @@
                     <input type="password" id="loginPass" class="form-control inputClass" placeholder="Enter Password Here" aria-label="Password">
                 </div>
             </div>
-            <a type="submit" id="loginButton" class="btn btn-dark submitButtonClass submitLoginForm" style="margin-bottom: 1.5rem;color: white;background: black !important;" href="#">Login Now</a>
+            <div id="loginButton" class="btn-dark submitButtonClass submitLoginForm"
+                 style="margin-bottom: 1.5rem;color: white;background: black !important; text-align: center; padding: 10px; border-radius: 5px;">Login Now</div>
         </form>
     </div>
     <div style="margin-top: 1em;" id="signupbody">

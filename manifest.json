@@ -115,6 +115,7 @@
       "/js/productRevolve.js",
       "/js/productColourPop.js",
       "/js/productCosmetics.js",
+      "/js/productPretty.js",
 
       "/js/wishAmazon.js",
       "/js/wishEbay.js",
@@ -122,7 +123,8 @@
       "/js/wishNova.js",
       "/js/wishRevolve.js",
       "/js/wishCosmetics.js",
-      "/js/wishColourPop.js"
+      "/js/wishColourPop.js",
+      "/js/wishPretty.js"
     ]
   }],
 
@@ -145,6 +147,7 @@
     "/images/fashionNova.png",
     "/images/revolve.png",
     "/images/cosmetics.png",
+    "/images/pretty.png",
     "/images/color.png"
   ],
 

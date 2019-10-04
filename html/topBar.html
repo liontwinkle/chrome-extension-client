@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/styling.css">
     <style>
+        /* prettylittlething start*/
+        body.b3-inactive {
+            padding-top: 0 !important;
+        }
+        body.b3-inactive .main {
+            margin-top: 40px;
+        }
+        body.b3-inactive #nav-links-block {
+            top: 50px !important;
+        }
+        /* prettylittleting end*/
         #cartButton:hover{
             cursor: pointer;
         }
@@ -29,7 +40,7 @@
         .store-item {
             background: white;
             margin: 10px;
-            width: 30%;
+            width: 29%;
             padding: 14px;
             border-radius: 13px;
             box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);
@@ -69,6 +80,15 @@
         .modal__content{
             opacity: 1 !important;
         }
+        .modal-body a, img {
+            outline: unset !important;
+        }
+        .modal-body img:focus{
+            outline: unset !important;
+        }
+        .modal-body img:focus{
+            outline: unset !important;
+        }
         .product--colourpop .product-details{
             display: flex !important;
             flex-direction: row !important;
@@ -81,6 +101,9 @@
         }
         .bodybackground .product-page {
             width: 100%;
+        }
+        .plt-addtocart #add-to-bag{
+            background-color: #515151 !important;
         }
     </style>
 </head>
@@ -97,10 +120,10 @@
             </button>
         </div>
         <div style="float: right;">
-            <div id="addToCartMM" class="" style="padding: 0 10px; background-color: #ffffff;float: left;height: 37px;border: none;border-radius: 4px;display: flex;justify-content: center;align-items: center; margin-top: 14px; ">
-                <span style="font-weight: 600;font-size: 14px;line-height: 17px;letter-spacing: -0.5px;">View Items In Cart</span>
-            </div>
-            <div id="addToCartModal" style="z-index: 500;position: absolute;margin-left: -110px;width: 340px;background-color: white;overflow: auto;display: none; top: 65px; border-radius: 4px; text-align: center; padding-bottom: 28px;">
+            <!--<div id="addToCartMM" class="" style="padding: 0 10px; background-color: #ffffff;float: left;height: 37px;border: none;border-radius: 4px;display: flex;justify-content: center;align-items: center; margin-top: 14px; ">-->
+                <!--<span style="font-weight: 600;font-size: 14px;line-height: 17px;letter-spacing: -0.5px;">View Items In Cart</span>-->
+            <!--</div>-->
+            <div id="addToCartModal" style="z-index: 500;position: absolute;margin-left: -235px;width: 340px;background-color: white;overflow: auto;display: none; top: 65px; border-radius: 4px; text-align: center; padding-bottom: 28px;">
                 <div><img id="successIcon" style="width: 35px; margin: 25px 0;" src="#"></div>
                 <div id="addToCartError" style="display: none; text-align: center; margin: 27px 0 20px 0; font-size: 14px; font-weight: 600;"></div>
                 <div id="addToCartProductDetail" style="text-align: center; display: none; margin: 0 28px;">
@@ -142,7 +165,7 @@
                             </div>
                         </div>
                         <div id="cartDetailSection" style="display:flex; flex-direction: column; "></div>
-                        <button id="checkOut" class="btn go-shipping" style="background: black; color: white; margin: 25px 0 0 0; width: 100%">Proceed to Checkout</button>
+                        <button id="checkOut" class="btn go-shipping" style="font-size: 16px;background: black; color: white; margin: 25px 0 0 0; width: 100%">Proceed to Checkout</button>
                     </div>
                     <div id="favWrapper" style="display: none;">
                         <div id="favCartDetailSection" style="display:flex; flex-direction: column; "></div>
@@ -162,7 +185,7 @@
 </div>
 <div class="modal-custom fade" id="go-Modal" style="z-index: 9999999;" tabindex="-1" role="dialog"
      aria-labelledby="go-ModalLongTitle">
-    <div class="modal-dialog" role="document" id="go-Modal-content" style="position: absolute; left: 35px; top: 110px;">
+    <div class="modal-dialog" role="document" id="go-Modal-content" style="position: absolute; left: 35px; top: 65px;">
         <div class="modal-content" style="background: #f2f5f8; border: unset;">
             <div id="searchBar">
                 <img style="width: 30px; height: 30px;" id="magnify" src="#">
@@ -171,7 +194,7 @@
             </div>
             <div class="modal-header" style="border: unset; background: #010101; height: 150px;">
                 <button type="button" class="close" id="close-btn" data-dismiss="modal" aria-label="Close">
-                    <span style="color: white;" aria-hidden="true">&times;</span>
+                    <span style="color: white; float: right" aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -187,6 +210,7 @@
                 </div>
                 <div class="d-flex">
                     <a href="https://www.colourpop.com/" target="_blank" class="store-item"><img id="color" src="#" style="width: 100%"></a>
+                    <a href="https://www.prettylittlething.com/" target="_blank" class="store-item"><img id="pretty" src="#" style="width: 100%"></a>
                 </div>
             </div>
             <div class="modal-footer" style="background: black; height: 40px;">

@@ -25,7 +25,7 @@ const wishNike = () => {
                 isAdded = true;
             }
             if (isAdded || result.tempProductCurrencySymbol === tempProductCurrencySymbol) {
-                productDetails = {
+                var productDetails = {
                     'productTitle': productName,
                     'productPrice': tempProductPrice,
                     'productImage': $.trim($("[alt^='" + productName + "']").attr('src')),

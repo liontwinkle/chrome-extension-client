@@ -63,6 +63,7 @@ $(window).ready(function () {
                         $("#signUpLockIcon").css("color", "red");
                     }
                 }
+                return true
             })
     });
 
@@ -113,6 +114,7 @@ $(window).ready(function () {
                     $('#passwordErrorHeading').text(request.data.responseJSON.errors);
                     $('#passwordErrorHeading').css('display', 'block');
                 }
+                return true
             })
     });
 

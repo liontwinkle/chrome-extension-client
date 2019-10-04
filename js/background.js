@@ -66,6 +66,6 @@ chrome.runtime.onMessage.addListener(
 
         if (request.notifications === "welcome") {
             $("#go-Modal-content").css('display', 'block')
-            console.log('aaaaaa')
         }
+        return true
     });

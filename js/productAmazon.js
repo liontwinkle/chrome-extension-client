@@ -58,7 +58,7 @@ const productAmazon = () => {
                     'productPage': location.href,
                     'productSize': $.trim($('#dropdown_selected_size_name').find('.a-dropdown-prompt').text()),
                     'itemCount': parseInt(productCount),
-                    'productSKU': location.href
+                    'productSKU': location.pathname.slice(1).replace('/', '-')
                 };
                 chrome.storage.local.get(['cartDetails'], function (result) {
                     if (result && result.cartDetails && JSON.parse(result.cartDetails).length > 0) {
