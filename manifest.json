@@ -6,7 +6,7 @@
  "version":"1",
 
  "browser_action":{
- 	"default_icon":"/images/logo.png",
+ 	"default_icon":"/images/Logo/logo.png",
     "default_popup":"/html/landing.html",
  	"default_title":"A popup will come here."
  },
@@ -34,11 +34,9 @@
       "https://www.amazon.com.tr/*",
       "https://www.amazon.ae/*",
       "https://www.amazon.co.uk/*",
-
       "https://www.nike.com/*",
       "https://www.nike.com.br/*",
       "https://www.nike.com.hk/*",
-
       "https://www.ebay.com/*",
       "https://ar.ebay.com/*",
       "https://www.ebay.at/*",
@@ -89,42 +87,42 @@
       "https://www.ebay.ca/*",
       "https://www.gittigidiyor.com/*",
       "https://www.ebay.com.au/*",
-
       "https://www.fashionnova.com/*",
-
       "https://www.revolve.com/*",
-
       "https://www.prettylittlething.com/*",
-
       "https://colourpop.com/*",
-
       "https://www.kyliecosmetics.com/*"
 
     ],
 	"js": [
       "/jquery-3.4.0.min.js",
-      "/js/generate.js",
-      "/js/content.js",
-      "/js/addProduct.js",
-      "/js/addWish.js",
+      "/js/Messages/store-modal.js",
+      "/js/Messages/favorite-add.js",
+      "/js/Messages/favorite-remove.js",
+      "/js/Messages/cart-modal.js",
+      "/js/Messages/switch-cart-wish.js",
+      "/js/Messages/product-change.js",
+      "/js/index.js",
+      "/js/Products/add-product.js",
+      "/js/WishLists/add-wish.js",
+      "/js/Products/amazon.js",
+      "/js/Products/ebay.js",
+      "/js/Products/nike.js",
+      "/js/Products/nova.js",
+      "/js/Products/revolve.js",
+      "/js/Products/colour-pop.js",
+      "/js/Products/cosmetics.js",
+      "/js/Products/pretty.js",
+      "/js/WishLists/amazon.js",
+      "/js/WishLists/ebay.js",
+      "/js/WishLists/nike.js",
+      "/js/WishLists/nova.js",
+      "/js/WishLists/revolve.js",
+      "/js/WishLists/cosmetics.js",
+      "/js/WishLists/colour-pop.js",
+      "/js/WishLists/pretty.js",
+      "/js/Utils/checkout.js"
 
-      "/js/productAmazon.js",
-      "/js/productEbay.js",
-      "/js/productNike.js",
-      "/js/productNova.js",
-      "/js/productRevolve.js",
-      "/js/productColourPop.js",
-      "/js/productCosmetics.js",
-      "/js/productPretty.js",
-
-      "/js/wishAmazon.js",
-      "/js/wishEbay.js",
-      "/js/wishNike.js",
-      "/js/wishNova.js",
-      "/js/wishRevolve.js",
-      "/js/wishCosmetics.js",
-      "/js/wishColourPop.js",
-      "/js/wishPretty.js"
     ]
   }],
 
@@ -133,22 +131,22 @@
  },
 
  "web_accessible_resources": [
-    "/html/topBar.html",
-    "/images/topBarLogo.png",
-    "/images/cartIcon.png",
-    "/images/favourite.png",
-    "/images/favouriteAdd.png",
-    "/images/success.png",
-    "/images/amazon.png",
-    "/images/nike.png",
-    "/images/ebay.png",
-    "/images/magnify.png",
-    "/images/setting.png",
-    "/images/fashionNova.png",
-    "/images/revolve.png",
-    "/images/cosmetics.png",
-    "/images/pretty.png",
-    "/images/color.png"
+    "/html/top-bar.html",
+    "/images/Logo/topBarLogo.png",
+    "/images/Carts/cartIcon.png",
+    "/images/Carts/favourite.png",
+    "/images/Carts/favouriteAdd.png",
+    "/images/Carts/success.png",
+    "/images/Carts/magnify.png",
+    "/images/Carts/setting.png",
+    "/images/Stores/amazon.png",
+    "/images/Stores/nike.png",
+    "/images/Stores/ebay.png",
+    "/images/Stores/fashionNova.png",
+    "/images/Stores/revolve.png",
+    "/images/Stores/cosmetics.png",
+    "/images/Stores/pretty.png",
+    "/images/Stores/color.png"
   ],
 
  "content_security_policy":  "script-src 'self' https://code.jquery.com/jquery-3.3.1.slim.min.js https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js; object-src 'self'"

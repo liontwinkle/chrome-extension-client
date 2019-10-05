@@ -19,7 +19,7 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                     'productPage': location.href,
                     'productSize': size,
                     'itemCount': parseInt(count),
-                    'productSKU': location.href
+                    'productSKU': location.pathname.slice(1).replace('/', '-')
                 };
                 chrome.storage.local.get(['cartDetails'], function (result) {
                     if (result && result.cartDetails && JSON.parse(result.cartDetails).length > 0) {
@@ -30,7 +30,7 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                                 && (productDetails.productColor === productListPostAdd[i].productColor)
                                 && (productDetails.productSize === productListPostAdd[i].productSize)) {
                                 sameProductSKU = true;
-                                var newItemCount = productListPostAdd[i].itemCount + 1;
+                                var newItemCount = productListPostAdd[i].itemCount + parseInt(count);
                                 productListPostAdd[i].itemCount = newItemCount;
                                 newItemCount = parseInt(newItemCount);
                                 var oldPrice = productListPostAdd[i].productPrice;
@@ -41,14 +41,14 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                                 productListPostAdd[i].productPrice = newPrice;
                                 var subtotal = 0;
                                 subtotal = parseInt(subtotal);
-                                for (a = 0; a < productListPostAdd.length; a++) {
+                                for (var a = 0; a < productListPostAdd.length; a++) {
                                     subtotal = subtotal + parseFloat(productListPostAdd[a].productPrice)
                                 }
                                 $('#subtotal').text(subtotal);
                                 chrome.storage.local.set({cartDetails: JSON.stringify(productListPostAdd)}, function () {
                                 });
                                 chrome.runtime.sendMessage({
-                                    greeting: "setCartDetails",
+                                    greeting: 'setCartDetails',
                                     data: productListPostAdd
                                 }, function (response) {
                                 });
@@ -64,42 +64,43 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                                 $('#addToCartTitle').text(productName);
                                 $('#addToCartImage').attr('src', imageUrl);
                                 $('#addToCart-checkOut').css('display', 'block');
-                                $('#addToCartError').css('display', 'none');
-                                $("#successIcon").css('display', 'inline');
+                                $('#successIcon').css('display', 'inline');
                                 $('#addToCart-Ok').css('display', 'none');
                                 $('#resetCurrency').css('display', 'none');
+                                $('#addToCartError').css('display', 'none');
+
                             }
                         }
-                        if (sameProductSKU == false) {
+                        if (sameProductSKU === false) {
                             if (productDetails.productSize === 'select') {
                                 $('#page-mask').css('display', 'block');
-                                $("#successIcon").css('display', 'none');
+                                $('#successIcon').css('display', 'none');
                                 $('#addToCartModal').css('display', 'block');
                                 $('#addToCartProductDetail').css('display', 'none');
                                 $('#addToCartError').css('display', 'block');
-                                $('#addToCartError').text("Please select a product size.");
+                                $('#addToCartError').text('Please select a product size.');
                                 $('#addToCart-Ok').css('display', 'block');
                                 $('#addToCart-Ok').css('width', '270px');
                                 $('#resetCurrency').css('display', 'none');
                                 $('#addToCart-checkOut').css('display', 'none');
                             } else if (productDetails.productColor === '') {
                                 $('#page-mask').css('display', 'block');
-                                $("#successIcon").css('display', 'none');
+                                $('#successIcon').css('display', 'none');
                                 $('#addToCartModal').css('display', 'block');
                                 $('#addToCartProductDetail').css('display', 'none');
                                 $('#addToCartError').css('display', 'block');
-                                $('#addToCartError').text("Please select a product color.");
+                                $('#addToCartError').text('Please select a product color.');
                                 $('#addToCart-Ok').css('display', 'block');
                                 $('#addToCart-Ok').css('width', '270px');
                                 $('#resetCurrency').css('display', 'none');
                                 $('#addToCart-checkOut').css('display', 'none');
                             } else if (productDetails.productPrice === '') {
                                 $('#page-mask').css('display', 'block');
-                                $("#successIcon").css('display', 'none');
+                                $('#successIcon').css('display', 'none');
                                 $('#addToCartModal').css('display', 'block');
                                 $('#addToCartProductDetail').css('display', 'none');
                                 $('#addToCartError').css('display', 'block');
-                                $('#addToCartError').text("Please select a product with price.");
+                                $('#addToCartError').text('Please select a product with price.');
                                 $('#addToCart-Ok').css('display', 'block');
                                 $('#addToCart-Ok').css('width', '270px');
                                 $('#resetCurrency').css('display', 'none');
@@ -112,7 +113,7 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                                         chrome.storage.local.set({cartDetails: JSON.stringify(cartDetails)}, function () {
                                         });
                                         chrome.runtime.sendMessage({
-                                            greeting: "setCartDetails",
+                                            greeting: 'setCartDetails',
                                             data: cartDetails
                                         }, function (response) {
                                         });
@@ -130,15 +131,16 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                                         }
                                         $('#companyNotification').text(tempCount);
                                         $('#page-mask').css('display', 'block');
-                                        $("#successIcon").css('display', 'inline');
+                                        $('#successIcon').css('display', 'inline');
                                         $('#addToCartModal').css('display', 'block');
                                         $('#addToCartProductDetail').css('display', 'block');
                                         $('#addToCartTitle').text(productName);
                                         $('#addToCartImage').attr('src', imageUrl);
                                         $('#addToCart-Ok').css('display', 'none');
                                         $('#addToCart-checkOut').css('display', 'block');
-                                        $('#addToCartError').css('display', 'none');
                                         $('#resetCurrency').css('display', 'none');
+                                        $('#addToCartError').css('display', 'none');
+
                                     }
                                 });
                             }
@@ -148,10 +150,10 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                         if (productDetails.productSize === 'select') {
                             $('#page-mask').css('display', 'block');
                             $('#addToCartModal').css('display', 'block');
-                            $("#successIcon").css('display', 'none');
+                            $('#successIcon').css('display', 'none');
                             $('#addToCartProductDetail').css('display', 'none');
                             $('#addToCartError').css('display', 'block');
-                            $('#addToCartError').text("Please select a product size.");
+                            $('#addToCartError').text('Please select a product size.');
                             $('#addToCart-Ok').css('display', 'block');
                             $('#addToCart-Ok').css('width', '270px');
                             $('#resetCurrency').css('display', 'none');
@@ -159,21 +161,21 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                         } else if (productDetails.productColor === '') {
                             $('#page-mask').css('display', 'block');
                             $('#addToCartModal').css('display', 'block');
-                            $("#successIcon").css('display', 'none');
+                            $('#successIcon').css('display', 'none');
                             $('#addToCartProductDetail').css('display', 'none');
                             $('#addToCartError').css('display', 'block');
-                            $('#addToCartError').text("Please select a product color.");
+                            $('#addToCartError').text('Please select a product color.');
                             $('#addToCart-Ok').css('display', 'block');
                             $('#addToCart-Ok').css('width', '270px');
                             $('#resetCurrency').css('display', 'none');
                             $('#addToCart-checkOut').css('display', 'none');
                         } else if (productDetails.productPrice === '') {
                             $('#page-mask').css('display', 'block');
-                            $("#successIcon").css('display', 'none');
+                            $('#successIcon').css('display', 'none');
                             $('#addToCartModal').css('display', 'block');
                             $('#addToCartProductDetail').css('display', 'none');
                             $('#addToCartError').css('display', 'block');
-                            $('#addToCartError').text("Please select a product with price.");
+                            $('#addToCartError').text('Please select a product with price.');
                             $('#addToCart-Ok').css('display', 'block');
                             $('#addToCart-Ok').css('width', '270px');
                             $('#resetCurrency').css('display', 'none');
@@ -186,14 +188,14 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                             chrome.storage.local.get(['cartDetails'], function (result) {
                             });
                             chrome.runtime.sendMessage({
-                                greeting: "setCartDetails",
+                                greeting: 'setCartDetails',
                                 data: cartDetails
                             }, function (response) {
                             });
                             $('#companyNotification').css('display', 'flex');
-                            $('#companyNotification').text(cartDetails.length);
+                            $('#companyNotification').text(count);
                             $('#page-mask').css('display', 'block');
-                            $("#successIcon").css('display', 'inline');
+                            $('#successIcon').css('display', 'inline');
                             $('#addToCartModal').css('display', 'block');
                             $('#addToCartProductDetail').css('display', 'block');
                             $('#addToCartTitle').text(productName);
@@ -201,6 +203,7 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                             $('#addToCart-checkOut').css('display', 'block');
                             $('#addToCart-Ok').css('display', 'none');
                             $('#resetCurrency').css('display', 'none');
+                            $('#addToCartError').css('display', 'none');
                         }
                     }
                 })
@@ -208,25 +211,25 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
             else {
                 $('#page-mask').css('display', 'block');
                 $('#addToCartModal').css('display', 'block');
-                $("#successIcon").css('display', 'none');
+                $('#successIcon').css('display', 'none');
                 $('#addToCartProductDetail').css('display', 'none');
                 $('#addToCartError').css('display', 'block');
                 $('#addToCartError').html("The currency doesn't not match.</br></br> Do you want to reset your cart and continue?");
-                $("#resetCurrency").css('display', 'block');
-                $("#resetCurrency").css('width', 'calc(50% - 5px)');
+                $('#resetCurrency').css('display', 'block');
+                $('#resetCurrency').css('width', 'calc(50% - 5px)');
                 $('#addToCart-Ok').css('display', 'block');
                 $('#addToCart-Ok').css('width', 'calc(50% - 5px)');
-                $('#addToCart-Ok').html("Cancel");
+                $('#addToCart-Ok').html('Cancel');
                 $('#addToCart-checkOut').css('display', 'none');
             }
         });
     } else {
         $('#page-mask').css('display', 'block');
         $('#addToCartModal').css('display', 'block');
-        $("#successIcon").css('display', 'none');
+        $('#successIcon').css('display', 'none');
         $('#addToCartProductDetail').css('display', 'none');
         $('#addToCartError').css('display', 'block');
-        $('#addToCartError').html("This currency is not allowed </br></br> USD, EUR and GBP are available");
+        $('#addToCartError').html('This currency is not allowed </br></br> USD, EUR and GBP are available');
         $('#addToCart-Ok').css('display', 'block');
         $('#addToCart-Ok').css('width', '270px');
         $('#resetCurrency').css('display', 'none');

@@ -1,8 +1,8 @@
-const wishRevolve = () => {
+const productRevolve = () => {
 
-    $.getScript("addWish.js");
+    $.getScript('addProduct.js');
 
-    var tempProductPriceStr = $("#retailPrice").text();
+    var tempProductPriceStr = $('#retailPrice').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
@@ -12,18 +12,18 @@ const wishRevolve = () => {
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
     console.log('tempProductCurrencySymbol-Revolve>>>>>>', tempProductCurrencySymbol);
-    var productName = $(".product-name--lg").text();
+    var productName = $('.product-name--lg').text();
     productName = productName.replace("'", '');
-    var sizeExist = $("input[name=size-options]").attr('value');
-    var sizeTemp = $("input[name=size-options]:checked").attr('value');
+    var sizeExist = $('input[name=size-options]').attr('value');
+    var sizeTemp = $('input[name=size-options]:checked').attr('value');
     var size = sizeExist ? ((sizeTemp) ? sizeTemp : 'select') : '';
     console.log('size>>>>>>', size);
-    var colorExist = $(".selectedColor").text();
-    var color = colorExist ? ($(".selectedColor").text()) : null;
+    var colorExist = $('.selectedColor').text();
+    var color = colorExist ? ($('.selectedColor').text()) : null;
     var imageUrl = $('#img_2').attr('src');
     var count = '1';
     console.log('color>>>>>>', color);
     console.log('imageUrl>>>>>', imageUrl);
 
-    addWish(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count);
 };

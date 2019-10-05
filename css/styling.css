@@ -1,7 +1,7 @@
 .imageLogo {
     width: 35%;
     height: 7em;
-    background: url('/images/logo.png') no-repeat center;
+    background: url('/images/Logo/logo.png') no-repeat center;
     background-size: contain;
     display: inline-block;
     position: absolute;
@@ -10,7 +10,7 @@
     top: 0.7em;
 }
 
-.titleHeading {
+.title-heading {
     color: black;
     margin-top: 10px;
 }

@@ -2,18 +2,18 @@ $(window).ready(function () {
 
     var loggedIn = JSON.parse(localStorage.getItem('loggedIn'));
     if (loggedIn === false) {
-        $("#logout").css("display", "none")
+        $('#logout').css('display', 'none')
     }
 
     if (loggedIn === true) {
-        $("#logOutButton").on("click", function () {
+        $('#logOutButton').on('click', function () {
             localStorage.setItem('loggedIn', JSON.stringify(false));
             chrome.storage.local.set({'loggedIn': JSON.stringify(false)}, function () {});
-            window.location.href = "/html/index.html"
+            window.location.href = '../../html/index.html'
         })
     }
     var flag = false;
-    $("#toggleButton1").on("click", function () {
+    $('#toggleButton1').on('click', function () {
         if (flag === false) {
             flag = !flag;
         }

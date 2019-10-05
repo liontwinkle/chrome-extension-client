@@ -1,8 +1,8 @@
 const productColourPop = () => {
 
-    $.getScript("addProduct.js");
+    $.getScript('addProduct.js');
 
-    var tempProductPriceStr = $(".product-details__right .product-details__price--sale").clone().children().remove().end().text();
+    var tempProductPriceStr = $('.product-details__right .product-details__price--sale').clone().children().remove().end().text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     console.log('tempProductPriceStr>>>>>>>>>', tempProductPriceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
@@ -12,21 +12,18 @@ const productColourPop = () => {
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
     console.log('tempProductCurrencySymbol-colourpop>>>>>>', tempProductCurrencySymbol);
-    var productName = $(".product-details__title").text();
+    var productName = $('.product-details__title').text();
     productName = productName.replace("'", '');
-    var sizeExist = $("input[name=size-options]").attr('value');
-    var sizeTemp = $("input[name=size-options]:checked").attr('value');
+    var sizeExist = $('input[name=size-options]').attr('value');
+    var sizeTemp = $('input[name=size-options]:checked').attr('value');
     var size = sizeExist ? ((sizeTemp) ? sizeTemp : 'select') : '';
     console.log('size>>>>>>', size);
-    var colorExist = $(".selectedColor").text();
-    var color = colorExist ? ($(".selectedColor").text()) : null;
+    var colorExist = $('.selectedColor').text();
+    var color = colorExist ? ($('.selectedColor').text()) : null;
     var imageUrl = $('.product-images__carousel .product-image img').attr('src');
     imageUrl =  'https:' + imageUrl;
     imageUrl = imageUrl.split('?')[0];
-    var count = $(".product-actions__quantity--input").val();
-    console.log("count>>>>>>>", count);
-    console.log('color>>>>>>', color);
-    console.log('imageUrl>>>>', imageUrl);
+    var count = $('.product-actions__quantity--input').val();
 
     addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count);
 };
