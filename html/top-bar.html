@@ -3,37 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Extension</title>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!--<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> &lt;!&ndash; Bootstrap &ndash;&gt;-->
+    <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"-->
+          <!--integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">-->
     <link rel="stylesheet" type="text/css" href="../css/styling.css">
     <style>
         /* prettylittlething start*/
         body.b3-inactive {
             padding-top: 0 !important;
         }
+
         body.b3-inactive .main {
             margin-top: 40px;
         }
+
         body.b3-inactive #nav-links-block {
             top: 50px !important;
         }
+
         /* prettylittleting end*/
-        #cartButton:hover{
+        #cartButton:hover {
             cursor: pointer;
         }
-        #favButton:hover{
+
+        #favButton:hover {
             cursor: pointer;
-        }#addToCartMM:hover{
+        }
+
+        #addToCartMM:hover {
             cursor: pointer;
             user-select: none;
         }
-        #favouriteCart:hover{
+
+        #favouriteCart:hover {
             cursor: pointer;
         }
-        #viewCart:hover{
+
+        #viewCart:hover {
             cursor: pointer;
         }
-        #browse-btn:focus{
+        #browse-btn {
+            display: flex;
+            align-items: center;
+            border: none;
+            background: none;
+            margin-left: 20px;
+        }
+        #browse-btn:hover{
+            cursor: pointer;
+        }
+        #browse-btn:focus {
             outline: unset !important;
         }
 
@@ -49,20 +68,20 @@
         }
 
         #searchBar {
-            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: white;
             position: absolute;
             top: 40px;
-            left: 10%;
-            width: 80%;
+            left: 5%;
+            width: 90%;
             height: 56px;
             border-radius: 28px;
             box-shadow: 0 10px 20px 0 rgba(120, 121, 147, 0.09);
             background-color: #4c4c4c;
         }
+
         .modal-custom {
             position: fixed;
             top: 0;
@@ -74,35 +93,45 @@
             overflow: hidden;
             outline: 0;
         }
-        .modal {
-            display: unset;
-        }
-        .modal__content{
-            opacity: 1 !important;
-        }
-        .modal-body a, img {
-            outline: unset !important;
-        }
-        .modal-body img:focus{
-            outline: unset !important;
-        }
-        .modal-body img:focus{
-            outline: unset !important;
-        }
-        .product--colourpop .product-details{
-            display: flex !important;
-            flex-direction: row !important;
-        }
-        .product-details .product-details__right {
-            position: relative !important;
-        }
-        .product-details .product-details__left {
-            position: relative !important;
-        }
-        .bodybackground .product-page {
-            width: 100%;
-        }
-        .plt-addtocart #add-to-bag{
+
+        /*.modal {*/
+            /*display: unset;*/
+        /*}*/
+
+        /*.modal__content {*/
+            /*opacity: 1 !important;*/
+        /*}*/
+
+        /*.modal-body a, img {*/
+            /*outline: unset !important;*/
+        /*}*/
+
+        /*.modal-body img:focus {*/
+            /*outline: unset !important;*/
+        /*}*/
+
+        /*.modal-body img:focus {*/
+            /*outline: unset !important;*/
+        /*}*/
+
+        /*.product .product-details {*/
+            /*display: flex !important;*/
+            /*flex-direction: row !important;*/
+        /*}*/
+
+        /*.product-details .product-details__right {*/
+            /*position: relative !important;*/
+        /*}*/
+
+        /*.product-details .product-details__left {*/
+            /*position: relative !important;*/
+        /*}*/
+
+        /*.bodybackground .product-page {*/
+            /*width: 100%;*/
+        /*}*/
+
+        .plt-addtocart #add-to-bag {
             background-color: #515151 !important;
         }
 
@@ -123,19 +152,32 @@
             border-radius: 3px;
             border: none;
         }
+
+        #close-btn {
+            padding: 10px;
+            float: right;
+            background: black;
+            border: navajowhite;
+            font-size: 28px;
+        }
+
+        #close-btn:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
 <div style="height: 65px;" id="topBarContainer">
-    <div id="usShopping" style="background: rgb(0, 0, 0);height: 65px;position: fixed;z-index: 999999;width: 100%;display: flex;justify-content: space-between;">
+    <div id="usShopping"
+         style="background: rgb(0, 0, 0);height: 65px;position: fixed;z-index: 999999;width: 100%;display: flex;justify-content: space-between;">
         <div style="display: flex;">
             <a href="http://letsgoship.com/" target="_blank" style="width: 127px; height: 54px; display: flex;">
                 <img id='companyLogo' src="#" style="margin: 6px 0 0 13px; width: 100%;"/>
             </a>
-            <button type="button" id="browse-btn" data-toggle="modal" data-target="#go-ModalLong11" style="border: none;background: none;margin-left: 20px;">
-           <span style="opacity: 0.7;color: rgba(255,255,255,1);font-size: 14px;font-weight: 600;line-height: 17px;padding-left: 13px;border-left: 1px solid rgba(255,255,255,0.7);">Stores</span>
-            </button>
+            <div id="browse-btn" data-toggle="modal" data-target="#go-ModalLong11">
+                <span style="opacity: 0.7;color: rgba(255,255,255,1);font-size: 18px;font-weight: 600;line-height: 17px;padding-left: 13px;border-left: 1px solid rgba(255,255,255,0.7);">Stores</span>
+            </div>
         </div>
         <div style="float: right;">
             <!--<div id="addToCartMM" class="" style="padding: 0 10px; background-color: #ffffff;float: left;height: 37px;border: none;border-radius: 4px;display: flex;justify-content: center;align-items: center; margin-top: 14px; ">-->
@@ -146,14 +188,10 @@
                 <div id="addToCartError" style="display: none; text-align: center; margin: 27px 0 20px 0; font-size: 14px; font-weight: 600;"></div>
                 <div id="addToCartProductDetail" style="text-align: center; display: none; margin: 0 28px;">
                     <p id="addToCartTitle" style="padding: 0; font-size: 14px; line-height: 19px;">Title</p>
-                    <div style="margin-top: 5px;color: rgba(163,163,163,1);	font-size: 13px;line-height: 16px;">Added
-                        to your Cart
-                    </div>
+                    <div style="margin-top: 5px;color: rgba(163,163,163,1);	font-size: 13px;line-height: 16px;">Added to your Cart</div>
                     <img id="addToCartImage" src="#" style="width: 100px; height: 120px; margin: 25px auto;"/>
-                    <p style="font-size: 13px;	letter-spacing: -0.5px;line-height: 16px; text-align: center;">Note:
-                        Heavy or large items may cost more to ship.</p>
-                    <p style="color: rgba(255,126,24,1); font-size: 14px;font-weight: 600;line-height: 19px;text-align: center;">
-                        Ensure your items are not restricted.</p>
+                    <p style="font-size: 13px;	letter-spacing: -0.5px;line-height: 16px; text-align: center;">Note: Heavy or large items may cost more to ship.</p>
+                    <p style="color: rgba(255,126,24,1); font-size: 14px;font-weight: 600;line-height: 19px;text-align: center;">Ensure your items are not restricted.</p>
                 </div>
                 <div id="button-wrapper" style="display:flex; justify-content:space-between; padding: 0 33px">
                     <button id="resetCurrency" class="btn btn-block" style="width:270px; height: 44px; border-radius: 4px; background: black; color: white; display: none; margin: 0;">Reset</button>
@@ -163,7 +201,7 @@
             <div id="favouriteCart" style="float: left;margin: 16px 10px 0 20px; width: 25px;">
                 <img id="favouriteIcon" src="#" class="mr-3 ml-1">
             </div>
-            <div id="viewCart" style="float: right;margin-top: 18px;margin-right: 30px; width: 27px;">
+            <div id="viewCart" style="float: right;margin-top: 20px;margin-right: 30px; width: 27px;">
                 <img id="viewCartIcon" src="#" class="mr-3 ml-1">
                 <span id="companyNotification" style="display: none;position: absolute;min-width: 7px;background-color: rgb(220, 53, 69);color: rgb(255, 255, 255);font-size: 13px; justify-content: center; align-items: center; border-radius: 50%;margin-left: 27px;margin-top: -34px; width: 20px; height: 20px;text-align: center" class="companyNotification">0</span>
                 <div id="viewCartModal" style="z-index: 500;position: absolute;top: 65px;right: 0;width: 320px;background-color: white;overflow: auto;height: calc(100vh - 65px);display: none; padding: 25px;">
@@ -193,8 +231,7 @@
                 <div id="ConfirmCheckout" style="background: white; display: none; position: absolute; top: 200px; right: 20px; z-index: 9999;
                     flex-direction: column; justify-content: center; align-items: center; width: 275px; height: 140px; text-align: center;padding: 15px; border-radius: 7px;">
                     <div style="padding: 10px; font-weight: 700;">The products of your cart </br>will be reset.</div>
-                    <button id="ConfirmButton" class="btn btn-block" style="text-align: center; width: 200px; height: 44px; background: black; color: white;font-size: 14px; ">
-                        Ok
+                    <button id="ConfirmButton" class="btn btn-block" style="text-align: center; width: 200px; height: 44px; background: black; color: white;font-size: 14px; ">Ok
                     </button>
                 </div>
             </div>
@@ -203,48 +240,49 @@
 </div>
 <div class="modal-custom fade" id="go-Modal" style="z-index: 9999999;" tabindex="-1" role="dialog"
      aria-labelledby="go-ModalLongTitle">
-    <div class="modal-dialog" role="document" id="go-Modal-content" style="position: absolute; left: 35px; top: 65px;">
+    <div class="modal-dialog" role="document" id="go-Modal-content"
+         style="width: 470px; position: absolute; left: 35px; top: 85px;">
         <div class="modal-content" style="background: #f2f5f8; border: unset;">
             <div id="searchBar">
-                <img style="width: 30px; height: 30px;" id="magnify" src="#">
+                <img style="width: 30px; height: 30px; margin-left: 10px;" id="magnify" src="#">
                 <span style="font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;">Search Retailer by name</span>
-                <img style="width: 30px; height: 30px;" id="setting" src="#">
+                <img style="width: 30px; height: 30px; margin-right: 10px;" id="setting" src="#">
             </div>
-            <div class="modal-header" style="border: unset; background: #010101; height: 150px;">
-                <button type="button" class="close" id="close-btn" data-dismiss="modal" aria-label="Close">
+            <div style="border: unset; background: #010101; height: 150px;">
+                <div id="close-btn" data-dismiss="modal" aria-label="Close">
                     <span style="color: white; float: right" aria-hidden="true">&times;</span>
-                </button>
+                </div>
             </div>
-            <div class="modal-body">
-                <div class="d-flex" style="margin-top: -55px;">
+            <div style="padding: 10px;">
+                <div style="margin-top: -50px; display: flex">
                     <a href="https://www.amazon.com/" target="_blank" class="store-item"><img id="amazon" src="#" style="width: 100%"></a>
                     <a href="https://www.ebay.com/" target="_blank" class="store-item"><img id="ebay" src="#" style="width: 100%"></a>
                     <a href="https://www.nike.com" target="_blank" class="store-item"><img id="nike" src="#" style="width: 100%"></a>
                 </div>
-                <div class="d-flex">
-                    <a href="https://www.fashionnova.com/" target="_blank" class="store-item"><img id="fashionNova" src="#" style="width: 100%"></a>
+                <div style="display:flex; height: 110px;">
+                    <a href="https://www.colourpop.com/" target="_blank" class="store-item"><img id="color" src="#" style="width: 100%"></a>
                     <a href="https://www.revolve.com/" target="_blank" class="store-item"><img id="revolve" src="#" style="width: 100%"></a>
                     <a href="https://www.kyliecosmetics.com/" target="_blank" class="store-item"><img id="cosmetics" src="#" style="width: 100%"></a>
                 </div>
-                <div class="d-flex">
-                    <a href="https://www.colourpop.com/" target="_blank" class="store-item"><img id="color" src="#" style="width: 100%"></a>
+                <div style="display:flex;height: 110px;">
+                    <a href="https://www.fashionnova.com/" target="_blank" class="store-item"><img id="fashionNova" src="#" style="width: 100%"></a>
                     <a href="https://www.prettylittlething.com/" target="_blank" class="store-item"><img id="pretty" src="#" style="width: 100%"></a>
+                    <a href="#" class="store-item"></a>
                 </div>
             </div>
             <div class="modal-footer" style="background: black; height: 40px;">
-
             </div>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"-->
-        <!--integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"-->
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
+        <!--integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
         <!--crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
+        <!--integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
+        <!--crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"-->
+<!--integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"-->
+<!--crossorigin="anonymous"></script>-->
 </body>
 </html>

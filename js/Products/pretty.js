@@ -20,7 +20,7 @@ const productPretty = () => {
     console.log('size>>>>>>', size);
     var colorExist = $('.colour-option-label .value').text();
     var color = colorExist ? colorExist : null;
-    var imageUrl = $('#js-id-imagegallery .slick-current img').attr('src');
+    var imageUrl = $('#js-id-imagegallery .slick-current img').attr('src') || $('#js-id-imagegallery .gallery-slide img').attr('src');
     var count = '1';
     console.log('color>>>>>>', color);
     console.log('imageUrl>>>>>', imageUrl);
