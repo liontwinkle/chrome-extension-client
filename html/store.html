@@ -11,37 +11,73 @@
             width: 400px;
             min-width: 400px;
         }
+        #logOutButton:hover{
+            cursor: pointer;
+        }
+        .tooltip-custom {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-custom .tooltip-text-custom {
+            visibility: hidden;
+            width: 120px;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            left: -100px;
+            top: -5px;
+        }
+
+        .tooltip-custom:hover .tooltip-text-custom {
+            visibility: visible;
+        }
+        .pop-store-item {
+            float: left;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            background: white;
+            margin: 7px;
+            width: 29%;
+            padding: 14px;
+            border-radius: 13px;
+            box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);
+        }
     </style>
 </head>
 <body>
 
 <div class="modal-content" style="background: #f2f5f8; border: unset;">
+
     <div id="searchBar" style="padding: 0 20px; display: flex; justify-content: space-between; align-items: center; color: white;
-                position: absolute; top: 40px; left: 10%; width: 80%; height: 56px; border-radius: 28px;
+                position: absolute; top: 50px; left: 10%; width: 80%; height: 56px; border-radius: 28px;
                  box-shadow: 0 10px 20px 0 rgba(120, 121, 147, 0.09);background-color: #4c4c4c;">
         <img style="width: 30px; height: 30px;" id="magnify" src="/images/Carts/magnify.png">
         <span style="font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;">Search Retailer by name</span>
         <img style="width: 30px; height: 30px;" id="setting" src="/images/Carts/setting.png">
     </div>
-    <div class="modal-header" style="border: unset; background: #010101; height: 150px;">
-        <button type="button" class="close" id="close-btn" data-dismiss="modal" aria-label="Close">
-
-        </button>
+    <div class="modal-header" style="border: unset; background: #010101; height: 150px;justify-content: flex-end;">
+        <div id="logOutButton" class="tooltip-custom" style="width: 22px; height: 22px">
+            <span class="tooltip-text-custom">Sign Out</span>
+            <img  style="width: 100%; fill: white" src="../images/Utils/logout.svg">
+        </div>
     </div>
     <div class="modal-body">
-        <div class="d-flex" style="margin-top: -55px;">
-            <a href="https://www.amazon.com/" target="_blank" style="background: white; margin: 10px;width: 30%; padding: 14px; border-radius: 13px;box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);"><img src="/images/Stores/amazon.png" style="width: 100%;"></a>
-            <a href="https://www.ebay.com/" target="_blank" style="background: white; margin: 10px;width: 30%; padding: 14px; border-radius: 13px;box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);"><img src="/images/Stores/ebay.png" style="width: 100%;"></a>
-            <a href="https://www.nike.com" target="_blank" style="background: white; margin: 10px;width: 30%; padding: 14px; border-radius: 13px;box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);"><img src="/images/Stores/nike.png" style="width: 100%;"></a>
-        </div>
-        <div class="d-flex">
-            <a href="https://www.fashionnova.com/" target="_blank" style="background: white; margin: 10px;width: 30%; padding: 14px; border-radius: 13px;box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);"><img src="/images/Stores/fashionNova.png" style="width: 100%;"></a>
-            <a href="https://www.revolve.com/" target="_blank" style="background: white; margin: 10px;width: 30%; padding: 14px; border-radius: 13px;box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14); display:flex; align-items: center; justify-content: center;"><img src="/images/Stores/revolve.png" style="width: 100%;"></a>
-            <a href="https://www.kyliecosmetics.com/" target="_blank" style="background: white; margin: 10px;width: 30%; padding: 14px; border-radius: 13px;box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14); display:flex; align-items: center"><img src="/images/Stores/cosmetics.png" style="width: 100%;"></a>
-        </div>
-        <div class="d-flex">
-            <a href="https://www.colourpop.com/" target="_blank" style="background: white; margin: 10px;width: 28%; padding: 14px; border-radius: 13px;box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);"><img src="/images/Stores/color.png" style="width: 100%;"></a>
-            <a href="https://www.prettylittlething.com/" target="_blank" style="background: white; margin: 10px;width: 28%; padding: 14px; border-radius: 13px;box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);"><img src="/images/Stores/pretty.png" style="width: 100%;"></a>
+        <div style="margin-top: -45px;">
+            <a href="https://www.amazon.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/amazon.png" style="width: 100%;"></a>
+            <a href="https://www.ebay.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/ebay.png" style="width: 100%;"></a>
+            <a href="https://www.nike.com" target="_blank" class="pop-store-item"><img src="/images/Stores/nike.png" style="width: 100%;"></a>
+
+            <a href="https://www.fashionnova.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/fashionNova.png" style="width: 100%;"></a>
+            <a href="https://www.revolve.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/revolve.png" style="width: 100%;"></a>
+            <a href="https://www.kyliecosmetics.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/cosmetics.png" style="width: 100%;"></a>
+
+            <a href="https://www.colourpop.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/color.png" style="width: 100%;"></a>
+            <a href="https://www.prettylittlething.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/pretty.png" style="width: 100%;"></a>
         </div>
     </div>
     <div class="modal-footer" style="background: black; height: 40px;">

@@ -19,7 +19,7 @@ const productNova = () => {
     console.log('size>>>>>>', size);
     var colorExist = $('a[aria-selected=false]').attr('title');
     var color = colorExist ? ($('a[aria-selected=true]').attr('title')) : null;
-    var imageUrl = $.trim($("[alt^='" + productName + "']").attr('src'));
+    var imageUrl = $('.slick-current .productImage img').attr('src');
     imageUrl = imageUrl.slice(0, imageUrl.indexOf('?'));
     imageUrl = 'https:' + imageUrl;
     console.log('imageUrl', imageUrl);

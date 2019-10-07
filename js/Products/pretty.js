@@ -2,7 +2,7 @@ const productPretty = () => {
 
     $.getScript('addProduct.js');
 
-    var tempProductPriceStr = $('.price-container .price').text();
+    var tempProductPriceStr = $('.price-container.new .price .price').text() || $('.price-container .price').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;

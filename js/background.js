@@ -1,9 +1,9 @@
 var lgsBaseUrl = 'http://ex.travelcast.us/api/';
 
 chrome.runtime.onMessage.addListener(
-    function (request) {
+    function (request, response, sendResponse) {
 
-        if (request.greeting = 'sendShoppingCartDetails') {
+        if (request.greeting === 'sendShoppingCartDetails') {
 
             $.ajax({
                 method: 'POST',
@@ -25,11 +25,9 @@ chrome.runtime.onMessage.addListener(
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }).done(function (info) {
-
-                chrome.runtime.sendMessage({response: 'signUpTrue', data: info}, function (response) {});
-
+                sendResponse({success: true, data: info});
             }).fail(function (info) {
-                chrome.runtime.sendMessage({response: 'signUpFalse', data: info}, function (response) {});
+                sendResponse({success: false, data: info});
             });
         }
 
@@ -40,10 +38,9 @@ chrome.runtime.onMessage.addListener(
                 data: request.message,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).done(function (info) {
-                chrome.runtime.sendMessage({response: 'signInTrue', data: info}, function (response) {});
-
+                sendResponse({success: true, data: info});
             }).fail(function (info) {
-                chrome.runtime.sendMessage({response: 'signInFalse', data: info}, function (response) {});
+                sendResponse({success: false, data: info});
             });
         }
 
@@ -60,7 +57,7 @@ chrome.runtime.onMessage.addListener(
             }).done(function (info) {
                 localStorage.removeItem('details');
                 localStorage.setItem('loggedIn', 'false');
-                chrome.runtime.sendMessage({response: 'signOutTrue', data: info}, function (response) {});
+                sendResponse({success: true, data: info});
             })
         }
 

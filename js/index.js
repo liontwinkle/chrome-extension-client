@@ -6,7 +6,7 @@ $(window).ready(function () {
     $('#submit.add-to-cart').before("<div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin-bottom: 10px; '>Add to LetsGoShip</div>");
 
     if (window.location.toString().includes('fashion')) {
-        $('#add-to-cart-button').before("<div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin-bottom: 10px; '>Add to LetsGoShip</div>");
+        $('#add-to-cart-button').before("<div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:15px 5px; font-size: 16px; margin-bottom: 10px; '>Add to LetsGoShip</div>");
     }
     else if (window.location.toString().includes('amazon')) {
         $('#atc-declarative').before("<div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding: 7px;font-size: 14px; margin-bottom: 10px;'>Add to LetsGoShip Cart</div>");
