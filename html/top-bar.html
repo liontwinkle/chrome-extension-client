@@ -56,12 +56,13 @@
         .store-item {
             background: white;
             margin: 10px;
-            width: 29%;
+            width: 28%;
             padding: 14px;
             border-radius: 13px;
             box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);
-            display: flex;
             align-items: center;
+            display: flex;
+            height: 85px;
         }
 
         #searchBar {
@@ -77,6 +78,62 @@
             border-radius: 28px;
             box-shadow: 0 10px 20px 0 rgba(120, 121, 147, 0.09);
             background-color: #4c4c4c;
+        }
+        #searchBar input{
+            box-shadow: none;
+            outline: none;
+        }
+        #searchBar input:focus, .clear-btn:focus, .apply-btn:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        .apply-btn {
+            width: 80%;
+            border-radius: 20px;
+            border: none;
+            margin: 10px;
+            height: 45px;
+            font-size: 18px;
+            color: white;
+            font-weight: 500;
+            background: black;
+        }
+
+        .clear-btn {
+            width: 80%;
+            border-radius: 20px;
+            border: none;
+            margin: 10px;
+            height: 45px;
+            font-size: 18px;
+            color: white;
+            font-weight: 500;
+            background-color: #a0a0a0;
+        }
+
+        .category-item{
+            margin: 2%;
+            width: 46%;
+            height: 40px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #filter-close:hover{
+            cursor: pointer;
+        }
+
+        #setting:hover{
+            cursor: pointer;
+        }
+        .category-selected {
+            background: black;
+            color: white;
         }
 
         .modal-custom {
@@ -207,11 +264,15 @@
      aria-labelledby="go-ModalLongTitle">
     <div class="modal-dialog" role="document" id="go-Modal-content"
          style="width: 470px; position: absolute; left: 35px; top: 85px;">
-        <div class="modal-content" style="background: #f2f5f8; border: unset;">
+
+        <div class="modal-content" id="popup-modal" style="background: #f2f5f8; border: unset;">
             <div id="searchBar">
-                <img style="width: 30px; height: 30px; margin-left: 10px;" id="magnify" src="#">
-                <span style="font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;">Search Retailer by name</span>
-                <img style="width: 30px; height: 30px; margin-right: 10px;" id="setting" src="#">
+                <img style="width: 30px; height: 30px; margin-left: 25px;" id="magnify" src="#">
+                <label>
+                    <input type="text" placeholder="Search Retailer by name"
+                           style="background: #4c4c4c;  border: none; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>
+                </label>
+                <img style="width: 30px; height: 30px; margin-right: 25px;" id="setting" src="#">
             </div>
             <div style="border: unset; background: #010101; height: 150px;">
                 <div id="close-btn" data-dismiss="modal" aria-label="Close">
@@ -219,23 +280,38 @@
                 </div>
             </div>
             <div style="padding: 10px;">
-                <div style="margin-top: -50px; display: flex">
-                    <a href="https://www.amazon.com/" target="_blank" class="store-item"><img id="amazon" src="#" style="width: 100%"></a>
-                    <a href="https://www.ebay.com/" target="_blank" class="store-item"><img id="ebay" src="#" style="width: 100%"></a>
-                    <a href="https://www.nike.com" target="_blank" class="store-item"><img id="nike" src="#" style="width: 100%"></a>
-                </div>
-                <div style="display:flex; height: 110px;">
-                    <a href="https://www.colourpop.com/" target="_blank" class="store-item"><img id="color" src="#" style="width: 100%"></a>
-                    <a href="https://www.revolve.com/" target="_blank" class="store-item"><img id="revolve" src="#" style="width: 100%"></a>
-                    <a href="https://www.kyliecosmetics.com/" target="_blank" class="store-item"><img id="cosmetics" src="#" style="width: 100%"></a>
-                </div>
-                <div style="display:flex;height: 110px;">
-                    <a href="https://www.fashionnova.com/" target="_blank" class="store-item"><img id="fashionNova" src="#" style="width: 100%"></a>
-                    <a href="https://www.prettylittlething.com/" target="_blank" class="store-item"><img id="pretty" src="#" style="width: 100%"></a>
-                    <a href="#" class="store-item"></a>
+                <div id="item-group" style="margin-top: -50px; display: flex; flex-wrap: wrap;">
+                    <a href="https://www.amazon.com/" target="_blank" class="store-item"><img id="amazon" src="#"></a>
+                    <a href="https://www.ebay.com/" target="_blank" class="store-item"><img id="ebay" src="#"></a>
+                    <a href="https://www.nike.com" target="_blank" class="store-item"><img id="nike" src="#"></a>
+                    <a href="https://www.fashionnova.com/" target="_blank" class="store-item"><img id="fashionNova" src="#"></a>
+                    <a href="https://www.revolve.com/" target="_blank" class="store-item"><img id="revolve" src="#"></a>
+                    <a href="https://www.kyliecosmetics.com/" target="_blank" class="store-item"><img id="cosmetics" src="#"></a>
+                    <a href="https://www.colourpop.com/" target="_blank" class="store-item"><img id="color" src="#"></a>
+                    <a href="https://www.prettylittlething.com/" target="_blank" class="store-item"><img id="pretty" src="#"></a>
                 </div>
             </div>
             <div class="modal-footer" style="background: black; height: 40px;">
+            </div>
+        </div>
+
+        <div id="filter-category" style="display: none;">
+            <div class="filter-header"
+                 style="display:flex; position: relative; align-items: center; justify-content: center;
+                height: 80px; background-color: black; color: white;">
+                <span id="filter-close" style="font-size: 40px; font-weight: 700; color: white; position: absolute; left: 30px;" aria-hidden="true">&times;</span>
+                <span style="font-size: 23px">Filter by categories</span>
+            </div>
+            <div class="filter-body" style="background: #eaedf1; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <div class="filter-content" style="display: flex; flex-wrap: wrap; padding: 15px 0; width: 86%">
+                    <span class="category-item">beauty</span>
+                    <span class="category-item">clothing</span>
+                    <span class="category-item">electronic</span>
+                    <span class="category-item">sports</span>
+                    <span class="category-item">books</span>
+                </div>
+                <button class="apply-btn">Apply Filters</button>
+                <button class="clear-btn">Clear</button>
             </div>
         </div>
     </div>

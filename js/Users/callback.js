@@ -23,7 +23,7 @@ $(window).ready(function () {
             window.location.href = '../../html/index.html'
         }
         if (currentTabUrl.startsWith("https://www.amazon.com/gp/buy/addressselect/handlers/")) {
-            if (loggedIn === false || loggedIn == null) {
+            if (loggedIn === false || loggedIn === null) {
                 window.location.href = '../../html/index.html';
             } else {
                 if (localStorage.getItem('lastUrl-letsGoShip')) {
@@ -33,7 +33,7 @@ $(window).ready(function () {
             }
         }
         else {
-            if (loggedIn === false || loggedIn == null) {
+            if (loggedIn === false || loggedIn === null) {
                 window.location.href = '../../html/index.html';
             }
             $('#btnMain').attr('class', 'btn btn-danger btn-lg disabled');

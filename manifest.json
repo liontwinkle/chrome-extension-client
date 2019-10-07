@@ -104,7 +104,6 @@
       "/js/Contents/product-change.js",
       "/js/index.js",
       "/js/Products/add-product.js",
-      "/js/WishLists/add-wish.js",
       "/js/Products/amazon.js",
       "/js/Products/ebay.js",
       "/js/Products/nike.js",
@@ -113,6 +112,7 @@
       "/js/Products/colour-pop.js",
       "/js/Products/cosmetics.js",
       "/js/Products/pretty.js",
+      "/js/WishLists/add-wish.js",
       "/js/WishLists/amazon.js",
       "/js/WishLists/ebay.js",
       "/js/WishLists/nike.js",
@@ -121,7 +121,8 @@
       "/js/WishLists/cosmetics.js",
       "/js/WishLists/colour-pop.js",
       "/js/WishLists/pretty.js",
-      "/js/Utils/checkout.js"
+      "/js/Utils/checkout.js",
+      "/js/Utils/wish-list.js"
 
     ]
   }],

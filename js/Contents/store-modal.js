@@ -1,5 +1,19 @@
 $(window).ready(function () {
 
+    var storeLists = [ 'amazon', 'ebay', 'nike', 'fashionnova', 'revolve', 'kyliecosmetics', 'colourpop', 'prettylittlething'];
+    var categoryList = [
+        ['sports', 'books', 'electronic', 'beauty', 'clothing'],
+        ['clothing', 'sports'],
+        ['sports', 'books', 'electronic', 'beauty', 'clothing'],
+        ['clothing'],
+        ['clothing'],
+        ['clothing'],
+        ['sports'],
+        ['books'],
+    ];
+    let checker = (arr, target) => target.every(v => arr.includes(v));
+    var selectedFilters = [];
+
     $('body').on('click', '#browse-btn', function () {
         $('#go-Modal').css('opacity', '1');
         $('#go-Modal').css('display', 'block');
@@ -25,6 +39,59 @@ $(window).ready(function () {
             $('#go-Modal').css('display', 'none');
             $('#go-Modal-content').css('opacity', '0');
             $('#go-Modal-content').css('display', 'none');
+        });
+
+        $('#searchBar').on('change paste keyup', function () {
+            const inputKey = $('#searchBar input').val();
+            storeLists.forEach((service, i) => {
+                if (service.includes(inputKey)) {
+                    $('#item-group').children().eq(i).css('display', 'flex');
+                } else {
+                    $('#item-group').children().eq(i).css('display', 'none');
+                }
+            });
+        });
+
+        $('#setting').on('click', function () {
+            $('#popup-modal').css('display', 'none');
+            $('#filter-category').css('display', 'block');
+        });
+
+        $('#filter-close').on('click', function () {
+            $('#popup-modal').css('display', 'block');
+            $('#filter-category').css('display', 'none');
+        });
+
+        $('.clear-btn').on('click', function () {
+            $('.category-item').removeClass('category-selected');
+            selectedFilters = [];
+            $('.apply-btn').text('Apply Filters');
+        });
+
+        $('.category-item').on('click', function () {
+
+            if ($(this).hasClass('category-selected')) {
+                $(this).removeClass('category-selected');
+                selectedFilters.splice(selectedFilters.indexOf($(this).text()), 1);
+            } else {
+                $(this).addClass('category-selected');
+                selectedFilters.push($(this).text());
+            }
+            $('.apply-btn').text('Apply Filters (' + selectedFilters.length + ')');
+        });
+
+        $('.apply-btn').on('click', function () {
+
+            categoryList.forEach((category, i) => {
+
+                if (checker(category, selectedFilters)) {
+                    $('#item-group').children().eq(i).css('display', 'flex');
+                } else {
+                    $('#item-group').children().eq(i).css('display', 'none');
+                }
+            });
+            $('#popup-modal').css('display', 'block');
+            $('#filter-category').css('display', 'none');
         });
     });
 });
