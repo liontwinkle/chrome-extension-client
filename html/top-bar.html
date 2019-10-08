@@ -57,12 +57,15 @@
             background: white;
             margin: 10px;
             width: 28%;
-            padding: 14px;
             border-radius: 13px;
             box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);
             align-items: center;
             display: flex;
             height: 85px;
+            justify-content: center;
+        }
+        .store-item img {
+            width: 80%;
         }
 
         #searchBar {
@@ -81,10 +84,14 @@
         }
         #searchBar input{
             box-shadow: none;
-            outline: none;
+            outline: none !important;
+        }
+        #searchBar input::placeholder {
+            color: white;
+            opacity: 0.6;
         }
         #searchBar input:focus, .clear-btn:focus, .apply-btn:focus {
-            outline: none;
+            outline: none !important;
             box-shadow: none;
         }
         .apply-btn {
@@ -97,6 +104,9 @@
             color: white;
             font-weight: 500;
             background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .clear-btn {
@@ -109,6 +119,9 @@
             color: white;
             font-weight: 500;
             background-color: #a0a0a0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .category-item{
@@ -124,6 +137,12 @@
             text-align: center;
         }
 
+        #item-group a:focus{
+            outline: none !important;
+        }
+        #item-group img:focus{
+            outline: none !important;
+        }
         #filter-close:hover{
             cursor: pointer;
         }
@@ -160,14 +179,15 @@
         /* revolve style end*/
         .custom-btn {
             text-transform: none;
-            padding: 8px;
-            font-size: 15px;
+            padding: 12px;
+            font-size: 18px;
             background: black !important;
             color: white;
             margin: 25px 0 0 0;
             width: 100%;
             border-radius: 3px;
             border: none;
+            text-align: center;
         }
 
         #close-btn {
@@ -243,11 +263,11 @@
                             </div>
                         </div>
                         <div id="cartDetailSection" style="display:flex; flex-direction: column; "></div>
-                        <button id="checkOut" class="go-shipping custom-btn">Proceed to Checkout</button>
+                        <div id="checkOut" class="go-shipping custom-btn">Proceed to Checkout</div>
                     </div>
                     <div id="favWrapper" style="display: none;">
                         <div id="favCartDetailSection" style="display:flex; flex-direction: column; "></div>
-                        <button id="favWishList" class="custom-btn">Add to Wish List</button>
+                        <div id="favWishList" class="custom-btn">Add to Wish List</div>
                     </div>
                 </div>
                 <div id="ConfirmCheckout" style="background: white; display: none; position: absolute; top: 200px; right: 20px; z-index: 9999;
@@ -270,7 +290,7 @@
                 <img style="width: 30px; height: 30px; margin-left: 25px;" id="magnify" src="#">
                 <label>
                     <input type="text" placeholder="Search Retailer by name"
-                           style="background: #4c4c4c;  border: none; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>
+                           style="margin: 0; background: #4c4c4c;  border: none; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>
                 </label>
                 <img style="width: 30px; height: 30px; margin-right: 25px;" id="setting" src="#">
             </div>
@@ -310,8 +330,8 @@
                     <span class="category-item">sports</span>
                     <span class="category-item">books</span>
                 </div>
-                <button class="apply-btn">Apply Filters</button>
-                <button class="clear-btn">Clear</button>
+                <div class="apply-btn">Apply Filters</div>
+                <div class="clear-btn">Clear</div>
             </div>
         </div>
     </div>
