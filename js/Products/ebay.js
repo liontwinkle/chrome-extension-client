@@ -299,7 +299,7 @@ const productEbay = () => {
                 $("#resetCurrency").css('width', 'calc(50% - 5px)');
                 $('#addToCart-Ok').css('display', 'block');
                 $('#addToCart-Ok').css('width', 'calc(50% - 5px)');
-                $('#addToCart-Ok').html("Cancel");
+                $('#addToCart-Ok').html("OK");
                 $('#addToCart-checkOut').css('display', 'none');
             }
         });

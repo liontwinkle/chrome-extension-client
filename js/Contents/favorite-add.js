@@ -44,7 +44,11 @@ $('#favouriteCart').ready(function () {
                 } else if ($('.product-view-title').text() !== '') {
                     $.getScript('WishList/pretty.js');
                     wishPretty();
-                } else {
+                } else if ($('#h1Title').text() !== '') {
+                    $.getScript('WishList/forever.js');
+                    wishForever();
+                }
+                else {
                     $('#page-mask').css('display', 'block');
                     $('#addToCartModal').css('display', 'block');
                     $('#addToCartProductDetail').css('display', 'none');

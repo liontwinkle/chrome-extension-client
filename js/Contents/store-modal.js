@@ -1,6 +1,6 @@
 $(window).ready(function () {
 
-    var storeLists = [ 'amazon', 'ebay', 'nike', 'fashionnova', 'revolve', 'kyliecosmetics', 'colourpop', 'prettylittlething'];
+    var storeLists = [ 'amazon', 'ebay', 'nike', 'fashionnova', 'revolve', 'kyliecosmetics', 'colourpop', 'prettylittlething', 'forever21'];
     var categoryList = [
         ['sports', 'books', 'electronic', 'beauty', 'clothing'],
         ['clothing', 'sports'],
@@ -9,6 +9,7 @@ $(window).ready(function () {
         ['clothing'],
         ['clothing'],
         ['sports'],
+        ['books'],
         ['books'],
     ];
     let checker = (arr, target) => target.every(v => arr.includes(v));

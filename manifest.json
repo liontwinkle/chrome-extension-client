@@ -91,7 +91,11 @@
       "https://www.revolve.com/*",
       "https://www.prettylittlething.com/*",
       "https://colourpop.com/*",
-      "https://www.kyliecosmetics.com/*"
+      "https://www.kyliecosmetics.com/*",
+      "https://www.forever21.com/*",
+      "https://www.forever21.co.jp/*",
+      "https://www.forever21.co.cn/*",
+      "https://www.forever21.co.kr/*"
 
     ],
 	"js": [
@@ -112,6 +116,7 @@
       "/js/Products/colour-pop.js",
       "/js/Products/cosmetics.js",
       "/js/Products/pretty.js",
+      "/js/Products/forever.js",
       "/js/WishLists/add-wish.js",
       "/js/WishLists/amazon.js",
       "/js/WishLists/ebay.js",
@@ -121,6 +126,7 @@
       "/js/WishLists/cosmetics.js",
       "/js/WishLists/colour-pop.js",
       "/js/WishLists/pretty.js",
+      "/js/WishLists/forever.js",
       "/js/Utils/checkout.js",
       "/js/Utils/wish-list.js"
 
@@ -147,7 +153,8 @@
     "/images/Stores/revolve.png",
     "/images/Stores/cosmetics.png",
     "/images/Stores/pretty.png",
-    "/images/Stores/color.png"
+    "/images/Stores/color.png",
+    "/images/Stores/forever.png"
   ],
 
  "content_security_policy":  "script-src 'self' https://code.jquery.com/jquery-3.3.1.slim.min.js https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js; object-src 'self'"
