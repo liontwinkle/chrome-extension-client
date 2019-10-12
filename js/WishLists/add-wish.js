@@ -1,4 +1,4 @@
-const addWish = (tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size) => {
+const addWish = (tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, width) => {
 
     if (tempProductCurrencySymbol === '$' ||
         tempProductCurrencySymbol === '£' ||
@@ -19,6 +19,7 @@ const addWish = (tempProductCurrencySymbol, tempProductPrice,  productName, imag
                     'productCurrency': tempProductCurrencySymbol,
                     'productPage': location.href,
                     'productSize': size,
+                    'productWidth': width || '',
                     'itemCount': 1,
                     'productSKU': location.href
                 };
@@ -73,6 +74,17 @@ const addWish = (tempProductCurrencySymbol, tempProductPrice,  productName, imag
                                 $('#addToCart-Ok').css('width', '270px');
                                 $('#resetCurrency').css('display', 'none');
                                 $('#addToCart-checkOut').css('display', 'none');
+                            } else if (productDetails.productWidth === 'select') {
+                                $('#page-mask').css('display', 'block');
+                                $('#successIcon').css('display', 'none');
+                                $('#addToCartModal').css('display', 'block');
+                                $('#addToCartProductDetail').css('display', 'none');
+                                $('#addToCartError').css('display', 'block');
+                                $('#addToCartError').text('Please select a product Width.');
+                                $('#addToCart-Ok').css('display', 'block');
+                                $('#addToCart-Ok').css('width', '270px');
+                                $('#resetCurrency').css('display', 'none');
+                                $('#addToCart-checkOut').css('display', 'none');
                             } else if (productDetails.productPrice === '') {
                                 $('#page-mask').css('display', 'block');
                                 $('#successIcon').css('display', 'none');
@@ -121,6 +133,17 @@ const addWish = (tempProductCurrencySymbol, tempProductPrice,  productName, imag
                             $('#addToCartProductDetail').css('display', 'none');
                             $('#addToCartError').css('display', 'block');
                             $('#addToCartError').text('Please select a product color.');
+                            $('#addToCart-Ok').css('display', 'block');
+                            $('#addToCart-Ok').css('width', '270px');
+                            $('#resetCurrency').css('display', 'none');
+                            $('#addToCart-checkOut').css('display', 'none');
+                        } else if (productDetails.productWidth === 'select') {
+                            $('#page-mask').css('display', 'block');
+                            $('#addToCartModal').css('display', 'block');
+                            $('#successIcon').css('display', 'none');
+                            $('#addToCartProductDetail').css('display', 'none');
+                            $('#addToCartError').css('display', 'block');
+                            $('#addToCartError').text('Please select a product Width.');
                             $('#addToCart-Ok').css('display', 'block');
                             $('#addToCart-Ok').css('width', '270px');
                             $('#resetCurrency').css('display', 'none');

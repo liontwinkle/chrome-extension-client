@@ -1,4 +1,4 @@
-const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count) => {
+const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, width) => {
     if (tempProductCurrencySymbol === '$' ||
         tempProductCurrencySymbol === '£' ||
         tempProductCurrencySymbol === '€') {
@@ -18,6 +18,7 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                     'productCurrency': tempProductCurrencySymbol,
                     'productPage': location.href,
                     'productSize': size,
+                    'productWidth': width || '',
                     'itemCount': parseInt(count),
                     'productSKU': location.pathname.slice(1).replace('/', '-')
                 };
@@ -28,6 +29,7 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                         for (i = 0; i < productListPostAdd.length; i++) {
                             if ((productDetails.productSKU === productListPostAdd[i].productSKU)
                                 && (productDetails.productColor === productListPostAdd[i].productColor)
+                                && (productDetails.productWidth === productListPostAdd[i].productWidth)
                                 && (productDetails.productSize === productListPostAdd[i].productSize)) {
                                 sameProductSKU = true;
                                 var newItemCount = productListPostAdd[i].itemCount + parseInt(count);
@@ -90,6 +92,17 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                                 $('#addToCartProductDetail').css('display', 'none');
                                 $('#addToCartError').css('display', 'block');
                                 $('#addToCartError').text('Please select a product color.');
+                                $('#addToCart-Ok').css('display', 'block');
+                                $('#addToCart-Ok').css('width', '270px');
+                                $('#resetCurrency').css('display', 'none');
+                                $('#addToCart-checkOut').css('display', 'none');
+                            } else if (productDetails.productWidth === 'select') {
+                                $('#page-mask').css('display', 'block');
+                                $('#successIcon').css('display', 'none');
+                                $('#addToCartModal').css('display', 'block');
+                                $('#addToCartProductDetail').css('display', 'none');
+                                $('#addToCartError').css('display', 'block');
+                                $('#addToCartError').text('Please select a product width.');
                                 $('#addToCart-Ok').css('display', 'block');
                                 $('#addToCart-Ok').css('width', '270px');
                                 $('#resetCurrency').css('display', 'none');
@@ -158,7 +171,18 @@ const addProduct = (tempProductCurrencySymbol, tempProductPrice,  productName, i
                             $('#addToCart-Ok').css('width', '270px');
                             $('#resetCurrency').css('display', 'none');
                             $('#addToCart-checkOut').css('display', 'none');
-                        } else if (productDetails.productColor === '') {
+                        } else if (productDetails.productWidth === 'select') {
+                            $('#page-mask').css('display', 'block');
+                            $('#addToCartModal').css('display', 'block');
+                            $('#successIcon').css('display', 'none');
+                            $('#addToCartProductDetail').css('display', 'none');
+                            $('#addToCartError').css('display', 'block');
+                            $('#addToCartError').text('Please select a product width.');
+                            $('#addToCart-Ok').css('display', 'block');
+                            $('#addToCart-Ok').css('width', '270px');
+                            $('#resetCurrency').css('display', 'none');
+                            $('#addToCart-checkOut').css('display', 'none');
+                        }else if (productDetails.productColor === '') {
                             $('#page-mask').css('display', 'block');
                             $('#addToCartModal').css('display', 'block');
                             $('#successIcon').css('display', 'none');

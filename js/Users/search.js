@@ -2,7 +2,7 @@ $(window).ready(function () {
 
     localStorage.setItem('lastUrl-letsGoShip', '/html/store.html');
 
-    var storeLists = [ 'amazon', 'ebay', 'nike', 'fashionnova', 'revolve', 'kyliecosmetics', 'colourpop', 'prettylittlething'];
+    var storeLists = [ 'amazon', 'ebay', 'nike', 'fashionnova', 'revolve', 'kyliecosmetics', 'colourpop', 'prettylittlething', 'forever21', '6pm', 'ralphlauren'];
     var categoryList = [
         ['sports', 'books', 'electronic', 'beauty', 'clothing'],
         ['clothing', 'sports'],
@@ -12,6 +12,9 @@ $(window).ready(function () {
         ['clothing'],
         ['sports'],
         ['books'],
+        ['books'],
+        ['clothing'],
+        ['clothing'],
     ];
     let checker = (arr, target) => target.every(v => arr.includes(v));
     var selectedFilters = [];

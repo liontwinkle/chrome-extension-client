@@ -47,6 +47,12 @@ $('#favouriteCart').ready(function () {
                 } else if ($('#h1Title').text() !== '') {
                     $.getScript('WishList/forever.js');
                     wishForever();
+                } else if ($('#overview .rr').text() !== '') {
+                    $.getScript('WishList/six.js');
+                    wishSix();
+                } else if ($('#product-detail-section .product-name').text() !== '') {
+                    $.getScript('WishList/ralph.js');
+                    wishRalph();
                 }
                 else {
                     $('#page-mask').css('display', 'block');
