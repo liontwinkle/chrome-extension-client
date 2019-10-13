@@ -1,7 +1,7 @@
 const productNike = () => {
 
     $.getScript('addProduct.js');
-
+    var available = true;
     var tempProductPrice = $('[data-test = product-price]')[0].innerHTML;
     var regex = /[+-]?\d+(\.\d+)?/g;
     tempProductPrice = tempProductPrice.match(regex)[0];
@@ -21,5 +21,5 @@ const productNike = () => {
     var imageUrl = $.trim($("[alt^='" + productName + "']").attr('src'));
     var count = '1';
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available);
 }

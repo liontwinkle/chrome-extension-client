@@ -19,7 +19,7 @@ const goCheckout = () => {
         chrome.storage.local.get(['accessToken'], function (result) {
             var accessToken = 'Bearer ' + result.accessToken;
             $.ajax({
-                // url: 'https://cors-anywhere.herokuapp.com/https://8fc534bc.ngrok.io/api/checkout/saveProduct',
+                // url: 'https://cors-anywhere.herokuapp.com/https://2908cd1b.ngrok.io/api/checkout/saveProduct',
                 url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/save-product',
                 type: 'post',
                 dataType: 'json',

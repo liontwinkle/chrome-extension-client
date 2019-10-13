@@ -1,7 +1,7 @@
 const productNova = () => {
 
     $.getScript('addProduct.js');
-
+    var available = true;
     var tempProductPriceStr = $('[itemprop = offers] .deal span span').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);
@@ -25,5 +25,5 @@ const productNova = () => {
     console.log('imageUrl', imageUrl);
     var count = 1;
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available);
 }

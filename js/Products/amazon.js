@@ -1,4 +1,7 @@
 const productAmazon = () => {
+
+    $.getScript('addProduct.js');
+    var available = true;
     var isLargeValue = $('.price-large').text();
     var tempProductPrice = '';
     var tempProductCurrencySymbol = '';
@@ -43,5 +46,5 @@ const productAmazon = () => {
     var size = sizeExist ? sizeExist : null;
     console.log('tempProductCurrencySymbol', tempProductCurrencySymbol);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available);
 }

@@ -85,6 +85,9 @@
         #searchBar input{
             box-shadow: none;
             outline: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            font-family: Helvetica,Arial,sans-serif !important;
         }
         #searchBar input::placeholder {
             color: white;
@@ -93,7 +96,11 @@
             letter-spacing: 0;
             text-transform: lowercase;
             text-align: center;
+            font-family: Helvetica,Arial,sans-serif;
+            margin: 0;
+            padding: 0;
         }
+
         #searchBar input:focus, .clear-btn:focus, .apply-btn:focus {
             outline: none !important;
             box-shadow: none;
@@ -222,12 +229,12 @@
                 <img id='companyLogo' src="#" style="margin: 6px 0 0 13px; width: 100%;"/>
             </a>
             <div id="browse-btn" data-toggle="modal" data-target="#go-ModalLong11">
-                <span style="opacity: 0.7;color: rgba(255,255,255,1);font-size: 18px;font-weight: 600;line-height: 17px;padding-left: 13px;border-left: 1px solid rgba(255,255,255,0.7);">Stores</span>
+                <span style="opacity: 0.7;color: rgba(255,255,255,1);font-size: 18px;font-weight: 600;line-height: 17px;padding-left: 13px;border-left: 1px solid rgba(255,255,255,0.7);font-family: Helvetica,Arial,sans-serif;">Stores</span>
             </div>
         </div>
         <div style="float: right;">
             <div id="addToCartMM" class="" style="padding: 0 10px; background-color: #ffffff;float: left;height: 37px;border: none;border-radius: 4px;display: flex;justify-content: center;align-items: center; margin-top: 14px; ">
-                <span style="font-weight: 600;font-size: 14px;line-height: 17px;letter-spacing: -0.5px;">Add to Cart</span>
+                <span style="font-weight: 600;font-size: 14px;line-height: 17px;letter-spacing: -0.5px; font-family: Helvetica,Arial,sans-serif !important;">Add to Cart</span>
             </div>
             <div id="addToCartModal" style="z-index: 500;position: absolute;margin-left: -135px;width: 340px;background-color: white;overflow: auto;display: none; top: 65px; border-radius: 4px; text-align: center; padding-bottom: 28px;">
                 <div><img id="successIcon" style="width: 35px; margin: 20px 0 10px 0;" src="#"></div>
@@ -324,7 +331,7 @@
             </div>
         </div>
 
-        <div id="filter-category" style="display: none;">
+        <div id="filter-category" style="display: none;font-family: Helvetica,Arial,sans-serif !important;">
             <div class="filter-header"
                  style="display:flex; position: relative; align-items: center; justify-content: center;
                 height: 80px; background-color: black; color: white;">

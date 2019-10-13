@@ -1,7 +1,7 @@
 const productForever = () => {
 
     $.getScript('addProduct.js');
-
+    var available = true;
     var tempProductPriceStr = $('#ItemPrice div:first-child span').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);
@@ -13,7 +13,7 @@ const productForever = () => {
     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace(/\u200C/g, '');
     console.log('tempProductCurrencySymbol-Pretty-Length>>>>>>', tempProductCurrencySymbol.length);
-    var productName = $('.product-view-title').text();
+    var productName = $('#h1Title').text();
     productName = productName.replace("'", '');
     var sizeExist = $('#sizeButton');
     var sizeTemp = $('#sizeButton .selected').text();
@@ -26,5 +26,5 @@ const productForever = () => {
     console.log('color>>>>>>', color);
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count);
+    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available);
 };

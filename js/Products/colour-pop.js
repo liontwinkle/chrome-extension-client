@@ -1,7 +1,7 @@
 const productColourPop = () => {
 
     $.getScript('addProduct.js');
-
+    var available = true;
     var tempProductPriceStr = $('.product-details__right .product-details__price--sale').clone().children().remove().end().text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     console.log('tempProductPriceStr>>>>>>>>>', tempProductPriceStr);
@@ -12,7 +12,7 @@ const productColourPop = () => {
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
     console.log('tempProductCurrencySymbol-colourpop>>>>>>', tempProductCurrencySymbol);
-    var productName = $('.product-details__title').text();
+    var productName = $('.showtablet .product-details__title').text();
     productName = productName.replace("'", '');
     var sizeExist = $('input[name=size-options]').attr('value');
     var sizeTemp = $('input[name=size-options]:checked').attr('value');
@@ -25,5 +25,5 @@ const productColourPop = () => {
     imageUrl = imageUrl.split('?')[0];
     var count = $('.product-actions__quantity--input').val();
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available);
 };

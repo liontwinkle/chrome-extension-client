@@ -2,7 +2,10 @@
 const productRalph = () => {
 
     $.getScript('addProduct.js');
-
+    var available = true;
+    if ($('#product-detail-section .price-sales').length > 1) {
+        available = false;
+    }
     var tempProductPriceStr = $('#product-detail-section .price-sales').text() || $('#product-detail-section .lowblack').text() || '';
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     tempProductPriceStr = tempProductPriceStr.includes('-') ? '' : tempProductPriceStr;
@@ -30,5 +33,5 @@ const productRalph = () => {
     var count = '1';
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available);
 };

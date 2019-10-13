@@ -35,9 +35,9 @@ $(window).ready(function () {
     else if (window.location.toString().includes('.6pm.')) {
         $('.Lq').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin: 10px 0; font-size: 17px; font-family: inherit '>Add to LetsGoShip</div>");
     }
-    else if (window.location.toString().includes('.ralphlauren.')) {
-        $('#add-to-cart').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin: 10px 0; font-size: 17px; font-family: inherit '>Add to LetsGoShip</div>");
-    }
+    // else if (window.location.toString().includes('.ralphlauren.')) {
+    //     $('#add-to-cart').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin: 10px 0; font-size: 17px; font-family: inherit '>Add to LetsGoShip</div>");
+    // }
 
     if (window.location.toString().match('^https://www.amazon') ||
         window.location.toString().includes('www.nike') ||

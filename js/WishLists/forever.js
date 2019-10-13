@@ -10,7 +10,7 @@ const wishForever = () => {
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace(/\u200C/g, '');
-    var productName = $('.product-view-title').text();
+    var productName = $('#h1Title').text();
     productName = productName.replace("'", '');
     var sizeExist = $('#sizeButton');
     var sizeTemp = $('#sizeButton .selected').text();
