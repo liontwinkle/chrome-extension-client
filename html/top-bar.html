@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Extension</title>
     <link rel="stylesheet" type="text/css" href="../css/styling.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
     <style>
         /* prettylittlething start*/
         body.b3-inactive {
@@ -217,7 +220,14 @@
             margin-top: 30px;
         }
         /*colourpop end*/
+        /*kkwbeauty start*/
+        .Header.js-header.js-home-ready{
+            top: 65px !important;
+            position: absolute !important;
+        }
+        /*kkwbeauty end*/
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -233,7 +243,7 @@
             </div>
         </div>
         <div style="float: right;">
-            <div id="addToCartMM" class="" style="padding: 0 10px; background-color: #ffffff;float: left;height: 37px;border: none;border-radius: 4px;display: flex;justify-content: center;align-items: center; margin-top: 14px; ">
+            <div id="addToCartMM" style="color: black; padding: 0 10px; background-color: #ffffff;float: left;height: 37px;border: none;border-radius: 4px;display: flex;justify-content: center;align-items: center; margin-top: 14px; ">
                 <span style="font-weight: 600;font-size: 14px;line-height: 17px;letter-spacing: -0.5px; font-family: Helvetica,Arial,sans-serif !important;">Add to Cart</span>
             </div>
             <div id="addToCartModal" style="z-index: 500;position: absolute;margin-left: -135px;width: 340px;background-color: white;overflow: auto;display: none; top: 65px; border-radius: 4px; text-align: center; padding-bottom: 28px;">
@@ -259,7 +269,7 @@
             <div id="viewCart" style="float: right;margin-top: 20px;margin-right: 30px; width: 27px;">
                 <img id="viewCartIcon" src="#" class="mr-3 ml-1">
                 <span id="companyNotification" style="display: none;position: absolute;min-width: 7px;background-color: rgb(220, 53, 69);color: rgb(255, 255, 255);font-size: 13px; justify-content: center; align-items: center; border-radius: 50%;margin-left: 27px;margin-top: -34px; width: 20px; height: 20px;text-align: center" class="companyNotification">0</span>
-                <div id="viewCartModal" style="z-index: 500;position: absolute;top: 65px;right: 0;width: 320px;background-color: white;overflow: auto;height: calc(100vh - 65px);display: none; padding: 25px; font-family: Geneva,sans-serif;">
+                <div id="viewCartModal" style="color: black; z-index: 500;position: absolute;top: 65px;right: 0;width: 320px;background-color: white;overflow: auto;height: calc(100vh - 65px);display: none; padding: 25px; font-family: Geneva,sans-serif;">
                     <div style="display: flex;">
                         <div id="cartButton" style="text-align: center; width: 50%; align-items: center; height: 38px; display: flex; justify-content: center; font-size: 13px; font-weight: 600; line-height: 16px; border-radius: 4px 0 0 4px;border: 1px solid #E2E5E6; background: #E2E5E6;">Shopping Cart</div>
                         <div id="favButton" style="text-align: center; width: 50%; align-items: center; height: 38px; display: flex; justify-content: center; border-radius: 0 4px 4px 0; font-size: 13px; font-weight: 600; opacity: 0.4; border: 1px solid #E2E5E6; background: white;">Wishlist</div>
@@ -325,6 +335,7 @@
                     <a href="https://www.forever21.com/" target="_blank" class="store-item"><img id="forever21" src="#"></a>
                     <a href="https://www.6pm.com/" target="_blank" class="store-item"><img id="six-pm" src="#"></a>
                     <a href="https://www.ralphlauren.com/" target="_blank" class="store-item"><img id="ralph" src="#"></a>
+                    <a href="https://kkwbeauty.com/" target="_blank" class="store-item"><img id="kkwbeauty" src="#"></a>
                 </div>
             </div>
             <div class="modal-footer" style="background: black; height: 40px;">

@@ -53,6 +53,9 @@ $('#favouriteCart').ready(function () {
                 } else if ($('#product-detail-section .product-name').text() !== '') {
                     $.getScript('WishList/ralph.js');
                     wishRalph();
+                } else if ($('.P__info .P__title').text() !== '') {
+                    $.getScript('WishList/kkwbeauty.js');
+                    wishKkwBeauty();
                 }
                 else {
                     $('#page-mask').css('display', 'block');

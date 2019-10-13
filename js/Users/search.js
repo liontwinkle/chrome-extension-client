@@ -2,7 +2,7 @@ $(window).ready(function () {
 
     localStorage.setItem('lastUrl-letsGoShip', '/html/store.html');
 
-    var storeLists = [ 'amazon', 'ebay', 'nike', 'fashionnova', 'revolve', 'kyliecosmetics', 'colourpop', 'prettylittlething', 'forever21', '6pm', 'ralphlauren'];
+    var storeLists = [ 'amazon', 'ebay', 'nike', 'fashionnova', 'revolve', 'kyliecosmetics', 'colourpop', 'prettylittlething', 'forever21', '6pm', 'ralphlauren', 'kkwbeauty'];
     var categoryList = [
         ['sports', 'books', 'electronic', 'beauty', 'clothing'],
         ['clothing', 'sports'],
@@ -13,6 +13,7 @@ $(window).ready(function () {
         ['sports'],
         ['books'],
         ['books'],
+        ['clothing'],
         ['clothing'],
         ['clothing'],
     ];

@@ -97,7 +97,8 @@
       "https://www.forever21.co.cn/*",
       "https://www.forever21.co.kr/*",
       "https://www.6pm.com/*",
-      "https://www.ralphlauren.com/*"
+      "https://www.ralphlauren.com/*",
+      "https://kkwbeauty.com/*"
     ],
 	"js": [
       "/jquery-3.4.0.min.js",
@@ -120,6 +121,7 @@
       "/js/Products/forever.js",
       "/js/Products/six.js",
       "/js/Products/ralph.js",
+      "/js/Products/kkwbeauty.js",
       "/js/WishLists/add-wish.js",
       "/js/WishLists/amazon.js",
       "/js/WishLists/ebay.js",
@@ -132,6 +134,7 @@
       "/js/WishLists/forever.js",
       "/js/WishLists/six.js",
       "/js/WishLists/ralph.js",
+      "/js/WishLists/kkwbeauty.js",
       "/js/Utils/checkout.js",
       "/js/Utils/wish-list.js"
     ]
@@ -160,7 +163,8 @@
     "/images/Stores/color.png",
     "/images/Stores/forever.png",
     "/images/Stores/six.png",
-    "/images/Stores/ralph.png"
+    "/images/Stores/ralph.png",
+    "/images/Stores/kkwbeauty.png"
   ],
 
  "content_security_policy":  "script-src 'self' https://code.jquery.com/jquery-3.3.1.slim.min.js https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js; object-src 'self'"

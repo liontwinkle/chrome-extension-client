@@ -1,8 +1,8 @@
-const productSix = () => {
+const productKkwBeauty = () => {
 
     $.getScript('addProduct.js');
     var available = true;
-    var tempProductPriceStr = $('.kg .Bj.Gj').text();
+    var tempProductPriceStr = $('.P__info .P__price').clone().children().remove().end().text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
@@ -12,7 +12,7 @@ const productSix = () => {
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
     console.log('tempProductCurrencySymbol-Revolve>>>>>>', tempProductCurrencySymbol);
-    var productName = $('#overview .rr').text();
+    var productName = $('.P__info .P__title').text();
     productName = productName.replace("'", '');
     var sizeExist = $('#pdp-size-select');
     var sizeTemp = $('#pdp-size-select option:selected').text();
@@ -25,15 +25,15 @@ const productSix = () => {
     width = $('.rg .Sp .Qp .bq').text() ? $('.rg .Sp .Qp .bq').clone().children().remove().end().text() : width
     console.log('width>>>>>>', width);
 
-    var colorExist = $('#pdp-color-select');
-    var colorTemp = $('#pdp-color-select option:selected').text();
-    var color = colorExist ? ((colorTemp !== 'Select a Color') ? colorTemp : 'select') : '';
-    color = $('meta[itemprop=color]').attr('content') ? $('meta[itemprop=color]').attr('content') : color
+    var colorExist = $('select[name=color].P__select');
+    var colorTemp = $('select[name=color].P__select option:selected').text();
+    var color = colorTemp ? colorTemp : null;
     console.log('color>>>>>>', color);
 
-    var imageUrl = $('.Sa.Wa img').attr('src');
+    var imageUrl = $('.P__main_img').css('background-image');
+    imageUrl = imageUrl.replace('url(','').replace(')','').replace(/\"/gi, "");
     var count = '1';
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, width);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available);
 };
