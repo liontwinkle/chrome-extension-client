@@ -16,6 +16,5 @@ const wishShopDisney = () => {
     var imageUrl = $('.thumbnail-carousel__img').attr('src');
     console.log('imageUrl>>>>>', imageUrl);
 
-
     addWish(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size);
 };

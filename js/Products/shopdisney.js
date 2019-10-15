@@ -1,6 +1,9 @@
 const productShopDisney = () => {
 
     var available = true;
+    if ($('.prices .sales .value').length > 1) {
+        available = false;
+    }
     var tempProductPriceStr = $('.prices .sales .value').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);
