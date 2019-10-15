@@ -56,6 +56,9 @@ $('#favouriteCart').ready(function () {
                 } else if ($('.P__info .P__title').text() !== '') {
                     $.getScript('WishList/kkwbeauty.js');
                     wishKkwBeauty();
+                } else if ($('.prod-ProductTitle').text() !== '') {
+                    $.getScript('WishList/walmart.js');
+                    wishWalmart();
                 }
                 else {
                     $('#page-mask').css('display', 'block');

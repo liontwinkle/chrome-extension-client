@@ -41,6 +41,9 @@ $(window).ready(function () {
     else if (window.location.toString().includes('kkwbeauty')) {
         $('.P__button').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;font-size: 17px; font-family: inherit; margin: 0 auto 10px; width: 50%; '>Add to LetsGoShip</div>");
     }
+    else if (window.location.toString().includes('walmart')) {
+        $('.prod-product-cta-add-to-cart button').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 10px; text-align: center; border:1px solid black; padding:10px 5px;font-size: 17px; font-family: inherit; margin: 10px auto; '>Add to LetsGoShip</div>");
+    }
 
     if (window.location.toString().match('^https://www.amazon') ||
         window.location.toString().includes('www.nike') ||
@@ -53,7 +56,8 @@ $(window).ready(function () {
         window.location.toString().includes('forever21') ||
         window.location.toString().includes('.6pm.') ||
         window.location.toString().includes('ralphlauren') ||
-        window.location.toString().includes('kkwbeauty')
+        window.location.toString().includes('kkwbeauty') ||
+        window.location.toString().includes('walmart')
     ) {
         $.get('chrome-extension://' + chrome.runtime.id + '/html/top-bar.html', function (data) {
             $('body').prepend(data);
@@ -102,6 +106,7 @@ $(window).ready(function () {
                 $('#six-pm').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/six.png');
                 $('#ralph').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/ralph.png');
                 $('#kkwbeauty').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/kkwbeauty.png');
+                $('#walmart').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/walmart.png');
             }, 200)
         });
 
@@ -167,6 +172,8 @@ $(window).ready(function () {
                                     var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>ralphlauren.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
                                 } else if (cartProducts[i].productPage.includes('kkwbeauty')) {
                                     var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>ralphlauren.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
+                                } else if (cartProducts[i].productPage.includes('walmart')) {
+                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>walmart.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
                                 }
                                 $('#cartDetailSection').prepend(element);
                             }
@@ -219,6 +226,7 @@ $(window).ready(function () {
                 || ($('#overview .rr').text() !== '')
                 || ($('#product-detail-section .product-name').text() !== '')
                 || ($('.P__info .P__title').text() !== '')
+                || ($('.prod-ProductTitle').text() !== '')
             ) {
                 $('body').on('click', '#addToCartMM', function () {
 
@@ -315,6 +323,10 @@ $(window).ready(function () {
                                 else if ($('.P__info .P__title').text() !== '') {
                                     $.getScript('Products/kkwbeauty.js');
                                     productKkwBeauty();
+                                }
+                                else if ($('.prod-ProductTitle').text() !== '') {
+                                    $.getScript('Products/walmart.js');
+                                    productWalmart();
                                 }
                                 else {
                                     $('#page-mask').css('display', 'block');
