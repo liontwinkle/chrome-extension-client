@@ -59,6 +59,9 @@ $('#favouriteCart').ready(function () {
                 } else if ($('.prod-ProductTitle').text() !== '') {
                     $.getScript('WishList/walmart.js');
                     wishWalmart();
+                } else if ($('.product-detail__content-summary .product-name').text() !== '') {
+                    $.getScript('WishList/shopdisney.js');
+                    wishShopDisney();
                 }
                 else {
                     $('#page-mask').css('display', 'block');
