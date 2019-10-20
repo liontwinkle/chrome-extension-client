@@ -47,7 +47,7 @@ $('#favouriteCart').ready(function () {
                 } else if ($('#h1Title').text() !== '') {
                     $.getScript('WishList/forever.js');
                     wishForever();
-                } else if ($('#overview .rr').text() !== '') {
+                } else if ($('#overview span[itemprop=name]').text() !== '') {
                     $.getScript('WishList/six.js');
                     wishSix();
                 } else if ($('#product-detail-section .product-name').text() !== '') {

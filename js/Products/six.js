@@ -12,7 +12,7 @@ const productSix = () => {
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
     console.log('tempProductCurrencySymbol-Revolve>>>>>>', tempProductCurrencySymbol);
-    var productName = $('#overview .rr').text();
+    var productName = $('#overview span[itemprop=name]').text();
     productName = productName.replace("'", '');
     var sizeExist = $('#pdp-size-select');
     var sizeTemp = $('#pdp-size-select option:selected').text();

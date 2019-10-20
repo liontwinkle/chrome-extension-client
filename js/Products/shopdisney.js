@@ -26,6 +26,7 @@ const productShopDisney = () => {
     console.log('imageUrl>>>>>', imageUrl);
     console.log('count>>>>>', count);
     console.log('size>>>>>', size);
+    var color = null;
 
 
     addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available);

@@ -3,49 +3,44 @@ $(window).ready(function () {
     $.getScript("Utils/checkout.js");
     $.getScript("Utils/wish-list.js");
 
-    $('#submit.add-to-cart').before("<div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin-bottom: 10px; '>Add to LetsGoShip</div>");
-
-    if (window.location.toString().includes('fashion')) {
-        $('#add-to-cart-button').before("<div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:15px 5px; font-size: 16px; margin-bottom: 10px; '>Add to LetsGoShip</div>");
-    }
-    else if (window.location.toString().includes('amazon')) {
-        $('#atc-declarative').before("<div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding: 7px;font-size: 14px; margin-bottom: 10px;'>Add to LetsGoShip Cart</div>");
+    if (window.location.toString().includes('amazon')) {
+        $('#atc-declarative').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('ebay')) {
-        $('#binBtn_btn').before("<div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin-bottom: 10px;'>Add to LetsGoShip</div>");
+        $('#binBtn_btn').before("<img id='addToCartMM' style='display: flex; width:170px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
-    else if (window.location.toString().match('^https://www.fashionnova.com/')) {
-        $('.item-primary-cta').before("<div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:15px 5px;margin-bottom: 10px;font-size: 20px'>Add to LetsGoShip</div>");
+    else if (window.location.toString().includes('fashionnova')) {
+        $('#add-to-cart-button').before("<img id='addToCartMM' style='display: flex; width:100%; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('revolve')) {
-        $('.product-buttons').before("<div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:15px 5px;margin-bottom: 10px;font-size: 20px'>Add to LetsGoShip</div>");
+        $('.product-buttons').before("<img id='addToCartMM' style='display: flex; width:100%; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+    }
+    else if (window.location.toString().includes('kyliecosmetics')) {
+        $('#AddToCart').after("<img id='addToCartMM' style='display: flex; height: 50px; width:270px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('colourpop')) {
-        $('.product-details__actions').after("<div id='addToCartMM' style='background: black;color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:15px 5px;margin: 10px 0;font-size: 14px'>Add to LetsGoShip</div>");
-    }
-    else if (window.location.toString().match('^https://www.kyliecosmetics.com/')) {
-        $('#AddToCart').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:12px 5px;margin-bottom: 10px; font-size: 16px; '>Add to LetsGoShip</div>");
+        $('.product-details__actions').after("<img id='addToCartMM' style='display: flex; width:100%; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('prettylittlething')) {
-        $('#add-to-bag').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:12px 5px;margin: 10px 0; font-size: 17px; font-family: inherit '>Add to LetsGoShip</div>");
+        $('#add-to-bag').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('forever21')) {
-        $('#AddToBagButton').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin: 10px 0; font-size: 17px; font-family: inherit '>Add to LetsGoShip</div>");
+        $('#AddToBagButton').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('.6pm.')) {
-        $('.Lq').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin: 10px 0; font-size: 17px; font-family: inherit '>Add to LetsGoShip</div>");
+        $('.Lq').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     // else if (window.location.toString().includes('.ralphlauren.')) {
-    //     $('#add-to-cart').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;margin: 10px 0; font-size: 17px; font-family: inherit '>Add to LetsGoShip</div>");
+    //     $('#add-to-cart').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     // }
     else if (window.location.toString().includes('kkwbeauty')) {
-        $('.P__button').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:10px 5px;font-size: 17px; font-family: inherit; margin: 0 auto 10px; width: 50%; '>Add to LetsGoShip</div>");
+        $('.P__button').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('walmart')) {
-        $('.prod-product-cta-add-to-cart button').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 10px; text-align: center; border:1px solid black; padding:10px 5px;font-size: 17px; font-family: inherit; margin: 10px auto; '>Add to LetsGoShip</div>");
+        $('.prod-product-cta-add-to-cart button').after("<img id='addToCartMM' style='display: flex; width:140px; height:40px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('shopdisney')) {
-        $('.add-to-cart').after("<div id='addToCartMM' style='background: black; color:white;border-radius: 4px; text-align: center; border:1px solid black; padding:13px 5px;font-size: 17px; font-family: inherit; margin: 10px auto; '>Add to LetsGoShip</div>");
+        $('.add-to-cart').after("<img id='addToCartMM' style='display: flex; width:80%; height: 65px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
 
     if (window.location.toString().match('^https://www.amazon') ||
@@ -95,7 +90,7 @@ $(window).ready(function () {
                 });
 
                 $('#companyLogo').attr('src', logo);
-                $('div[data-browse-component=ATCButton]').before(" <div id='addToCartMM' style='background: black;color:white;border-radius: 30px; text-align: center; border:1px solid black; padding:12px 24px; font-size: 1.25rem;margin-bottom: 10px;'>Add to LetsGoShip Cart</div>");
+                $('div[data-browse-component=ATCButton]').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
                 $('#magnify').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/magnify.png');
                 $('#setting').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/setting.png');
                 $('#amazon').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/amazon.png');
@@ -112,7 +107,7 @@ $(window).ready(function () {
                 $('#kkwbeauty').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/kkwbeauty.png');
                 $('#walmart').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/walmart.png');
                 $('#shopdisney').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/shopdisney.png');
-            }, 200)
+            }, 2000)
         });
 
         $('#viewCartIcon').ready(function () {
@@ -188,7 +183,6 @@ $(window).ready(function () {
                             }
                         }
                     });
-
                     $('#viewCart-continueShopping').off('click');
                     $('#viewCart-continueShopping').on('click', function () {
                         $('#viewCartModal').css('display', 'none');
@@ -222,7 +216,6 @@ $(window).ready(function () {
         });
 
         $('#addToCartMM').ready(function () {
-            console.log('aaaaaaaa', $('.gl-price__value').length);
             if (($.trim($('#productTitle').text()) !== '')
                 || ($.trim($('#itemTitle').text()) !== '')
                 || ($.trim($('.product-card-wrapper .product-title').text()) !== '')
@@ -233,7 +226,7 @@ $(window).ready(function () {
                 || ($('.section-title h1').text() !== '')
                 || ($('.product-view-title').text() !== '')
                 || ($('#h1Title').text() !== '')
-                || ($('#overview .rr').text() !== '')
+                || ($('#overview span[itemprop=name]').text() !== '')
                 || ($('#product-detail-section .product-name').text() !== '')
                 || ($('.P__info .P__title').text() !== '')
                 || ($('.prod-ProductTitle').text() !== '')
@@ -273,7 +266,6 @@ $(window).ready(function () {
                     $('#successIcon').attr('src', 'chrome-extension://' + chrome.runtime.id + "/images/Carts/success.png");
 
                         chrome.storage.local.get(['loggedIn'], function (result) {
-                            // let count;
                             if (result.loggedIn === 'false' || result.loggedIn === undefined) {
                                 $('#page-mask').css('display', 'block');
                                 $('#addToCartModal').css('display', 'block');
@@ -286,7 +278,6 @@ $(window).ready(function () {
                                 $('#resetCurrency').css('display', 'none');
                                 $('#addToCart-checkOut').css('display', 'none');
                             } else {
-                                // var productDetails = {};
 
                                 if ($.trim($('#productTitle').text()) !== '') {
                                     $.getScript('Products/amazon.js');
@@ -326,7 +317,7 @@ $(window).ready(function () {
                                     $.getScript('Products/forever.js');
                                     productForever();
                                 }
-                                else if ($('#overview .rr').text() !== '') {
+                                else if ($('#overview span[itemprop=name]').text() !== '') {
                                     $.getScript('Products/six.js');
                                     productSix();
                                 }
