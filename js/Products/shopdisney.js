@@ -1,5 +1,6 @@
 const productShopDisney = () => {
 
+    var store = 'shopdisney';
     var available = true;
     if ($('.prices .sales .value').length > 1) {
         available = false;
@@ -29,5 +30,5 @@ const productShopDisney = () => {
     var color = null;
 
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available);
+    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store);
 };

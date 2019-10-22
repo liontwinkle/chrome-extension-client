@@ -4,7 +4,8 @@ $(window).ready(function () {
     $.getScript("Utils/wish-list.js");
 
     if (window.location.toString().includes('amazon')) {
-        $('#atc-declarative').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('#submit\\.add-to-cart-ubb').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('#submit\\.add-to-cart').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('ebay')) {
         $('#binBtn_btn').before("<img id='addToCartMM' style='display: flex; width:170px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
@@ -107,7 +108,7 @@ $(window).ready(function () {
                 $('#kkwbeauty').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/kkwbeauty.png');
                 $('#walmart').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/walmart.png');
                 $('#shopdisney').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/shopdisney.png');
-            }, 2000)
+            }, 200)
         });
 
         $('#viewCartIcon').ready(function () {
@@ -233,7 +234,6 @@ $(window).ready(function () {
                 || ($('.product-detail__content-summary .product-name').text() !== '')
                 || ($('.gl-price__value').text() !== '')
             ) {
-                console.log('bbbb');
 
                 $('body').on('click', '#addToCartMM', function () {
 

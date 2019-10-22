@@ -1,6 +1,6 @@
 const productCosmetics = () => {
 
-    $.getScript('addProduct.js');
+    var store = 'comsetics';
     var available = true;
     var tempProductPriceStr = $('.product-price').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
@@ -26,5 +26,5 @@ const productCosmetics = () => {
     imageUrl = imageUrl.split('?')[0];
     var count = $('input[aria-label=quantity]').val();
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store);
 };

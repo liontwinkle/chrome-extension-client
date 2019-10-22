@@ -1,6 +1,6 @@
 const productSix = () => {
 
-    $.getScript('addProduct.js');
+    var store = '6pm';
     var available = true;
     var tempProductPriceStr = $('.kg .Bj.Gj').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
@@ -35,5 +35,5 @@ const productSix = () => {
     var count = '1';
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, width);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store, width);
 };

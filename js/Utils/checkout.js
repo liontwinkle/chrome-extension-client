@@ -8,7 +8,7 @@ const goCheckout = () => {
         data: location.href
     }, function (response) {
     });
-    chrome.storage.local.get(['cartDetails'], function (result) {
+    chrome.storage.local.get(['cartDetails', 'accessToken'], function (result) {
         var products = JSON.parse(result.cartDetails);
         console.log('>>>>>>>>product', products);
         chrome.runtime.sendMessage({
@@ -16,11 +16,12 @@ const goCheckout = () => {
             data: products
         }, function (response) {
         });
-        chrome.storage.local.get(['accessToken'], function (result) {
-            var accessToken = 'Bearer ' + result.accessToken;
+        var count = 0;
+        var accessToken = 'Bearer ' + result.accessToken;
+        // for (var i = 0; i < products.length; i++) {
             $.ajax({
-                // url: 'https://cors-anywhere.herokuapp.com/https://c07ebb24.ngrok.io/api/checkout/saveProduct',
-                url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/save-product',
+                url: 'https://cors-anywhere.herokuapp.com/https://44774f5b.ngrok.io/api/checkout/save-product',
+                // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/save-product',
                 type: 'post',
                 dataType: 'json',
                 data: {
@@ -30,13 +31,15 @@ const goCheckout = () => {
                     xhr.setRequestHeader('Authorization', accessToken);
                 },
                 success: function (data) {
+                    // count += 1;
+                    // if (data && count === products.length) {
                     if (data) {
-                        chrome.storage.local.remove(['cartDetails'], function (result) {
-                        });
+                        // chrome.storage.local.remove(['cartDetails'], function (result) {
+                        // });
                         window.open(data.status);
                     }
                 }
             });
-        });
+        // }
     });
 };

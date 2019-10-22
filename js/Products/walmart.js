@@ -1,6 +1,6 @@
 const productWalmart = () => {
 
-    $.getScript('addProduct.js');
+    var store = 'walmart';
     var available = true
     var tempProductPrice = $('.prod-PriceSection span[itemprop=price]').attr('content');
     console.log('tempProductPrice>>>>>', tempProductPrice);
@@ -34,5 +34,5 @@ const productWalmart = () => {
     console.log('size>>>>>>', size);
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available);
+    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store);
 };

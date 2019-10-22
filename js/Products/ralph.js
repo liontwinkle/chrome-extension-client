@@ -1,7 +1,7 @@
 
 const productRalph = () => {
 
-    $.getScript('addProduct.js');
+    var store = 'ralph';
     var available = true;
     if ($('#product-detail-section .price-sales').length > 1) {
         available = false;
@@ -33,5 +33,5 @@ const productRalph = () => {
     var count = '1';
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store);
 };

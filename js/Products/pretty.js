@@ -1,6 +1,7 @@
 const productPretty = () => {
 
     $.getScript('addProduct.js');
+    var store = 'pretty';
     var available = true;
     var tempProductPriceStr = $('.price-container.new .price .price').text() || $('.price-container .price').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
@@ -25,5 +26,5 @@ const productPretty = () => {
     console.log('color>>>>>>', color);
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available);
+    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store);
 };

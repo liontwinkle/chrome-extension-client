@@ -1,6 +1,6 @@
 const productForever = () => {
 
-    $.getScript('addProduct.js');
+    var store = 'forever21';
     var available = true;
     var tempProductPriceStr = $('#ItemPrice div:first-child span').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
@@ -26,5 +26,5 @@ const productForever = () => {
     console.log('color>>>>>>', color);
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available);
+    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store);
 };

@@ -1,6 +1,6 @@
 const productRevolve = () => {
 
-    $.getScript('addProduct.js');
+    var store = 'revolve';
     var available = true;
     var tempProductPriceStr = $('#retailPrice').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
@@ -25,5 +25,5 @@ const productRevolve = () => {
     console.log('color>>>>>>', color);
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store);
 };

@@ -1,6 +1,6 @@
 const productColourPop = () => {
 
-    $.getScript('addProduct.js');
+    var store = 'colourpop';
     var available = true;
     var tempProductPriceStr = $('.product-details__right .product-details__price--sale').clone().children().remove().end().text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
@@ -25,5 +25,5 @@ const productColourPop = () => {
     imageUrl = imageUrl.split('?')[0];
     var count = $('.product-actions__quantity--input').val();
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store);
 };

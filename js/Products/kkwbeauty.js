@@ -1,6 +1,6 @@
 const productKkwBeauty = () => {
 
-    $.getScript('addProduct.js');
+    var store = 'kkwbeauty';
     var available = true;
     var tempProductPriceStr = $('.P__info .P__price').clone().children().remove().end().text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
@@ -35,5 +35,5 @@ const productKkwBeauty = () => {
     var count = '1';
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available);
+    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store);
 };
