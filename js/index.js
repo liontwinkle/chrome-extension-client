@@ -1,11 +1,23 @@
 $(window).ready(function () {
-
     $.getScript("Utils/checkout.js");
     $.getScript("Utils/wish-list.js");
-
+    var targetNode = null;
+    var callback = null;
+    const config = { attributes: true, childList: true, subtree: true };
     if (window.location.toString().includes('amazon')) {
         $('#submit\\.add-to-cart-ubb').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
         $('#submit\\.add-to-cart').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        targetNode = document.getElementById('desktop_buybox');
+        callback = function(mutationsList, observer) {
+            for(let mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    if ($('#addToCart_feature_div #addToCartMM').length === 0) {
+                        $('#submit\\.add-to-cart-ubb').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+                        $('#submit\\.add-to-cart').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+                    }
+                }
+            }
+        };
     }
     else if (window.location.toString().includes('ebay')) {
         $('#binBtn_btn').before("<img id='addToCartMM' style='display: flex; width:170px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
@@ -43,6 +55,9 @@ $(window).ready(function () {
     else if (window.location.toString().includes('shopdisney')) {
         $('.add-to-cart').after("<img id='addToCartMM' style='display: flex; width:80%; height: 65px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
+
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
 
     if (window.location.toString().match('^https://www.amazon') ||
         window.location.toString().includes('www.nike') ||
