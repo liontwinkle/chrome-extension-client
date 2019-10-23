@@ -10,6 +10,20 @@ function showMessage(message) {
     $('#resetCurrency').css('display', 'none');
     $('#addToCart-checkOut').css('display', 'none');
 }
+function showProductInfo(count, productName, imageUrl) {
+    $('#companyNotification').css('display', 'flex');
+    $('#companyNotification').text(count);
+    $('#page-mask').css('display', 'block');
+    $('#successIcon').css('display', 'inline');
+    $('#addToCartModal').css('display', 'block');
+    $('#addToCartProductDetail').css('display', 'block');
+    $('#addToCartTitle').text(productName);
+    $('#addToCartImage').attr('src', imageUrl);
+    $('#addToCart-checkOut').css('display', 'block');
+    $('#addToCart-Ok').css('display', 'none');
+    $('#resetCurrency').css('display', 'none');
+    $('#addToCartError').css('display', 'none');
+}
 const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl, color, size, count, available, store, width, isImageAvailable) => {
     if (available === true) {
         if (!isImageAvailable) {
@@ -44,6 +58,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                 var isAddedProduct = false;
                                 for (i = 0; i < productListPostAdd.length; i++) {
                                     if ((productDetails.productColor === productListPostAdd[i].productColor)
+                                        && (productDetails.productTitle === productListPostAdd[i].productTitle)
                                         && (productDetails.productWidth === productListPostAdd[i].productWidth)
                                         && (productDetails.productSize === productListPostAdd[i].productSize)) {
                                         isAddedProduct = true;
@@ -72,19 +87,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                         for (j = 0; j < productListPostAdd.length; j++) {
                                             tempCount = tempCount + productListPostAdd[j].itemCount
                                         }
-                                        $('#companyNotification').css('display', 'flex');
-                                        $('#companyNotification').text(tempCount);
-                                        $('#page-mask').css('display', 'block');
-                                        $('#addToCartModal').css('display', 'block');
-                                        $('#addToCartProductDetail').css('display', 'block');
-                                        $('#addToCartTitle').text(productName);
-                                        $('#addToCartImage').attr('src', imageUrl);
-                                        $('#addToCart-checkOut').css('display', 'block');
-                                        $('#successIcon').css('display', 'inline');
-                                        $('#addToCart-Ok').css('display', 'none');
-                                        $('#resetCurrency').css('display', 'none');
-                                        $('#addToCartError').css('display', 'none');
-
+                                        showProductInfo(tempCount, productName, imageUrl)
                                     }
                                 }
                                 if (isAddedProduct === false) {
@@ -98,7 +101,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                         message = 'Please select a product width.';
                                         showMessage(message);
                                     } else if (productDetails.productPrice === '') {
-                                        message = 'Please select a product with price.'
+                                        message = 'Please select a product with price.';
                                        showMessage(message);
                                     } else {
                                         chrome.storage.local.get(['cartDetails'], function (result) {
@@ -119,22 +122,18 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                                 }
                                                 subtotal = subtotal.toFixed(2);
                                                 $('#subtotal').text(subtotal);
-                                                $('#companyNotification').css('display', 'flex');
+
                                                 var tempCount = 0;
                                                 for (l = 0; l < cartDetails.length; l++) {
                                                     tempCount = tempCount + cartDetails[l].itemCount
                                                 }
-                                                $('#companyNotification').text(tempCount);
-                                                $('#page-mask').css('display', 'block');
-                                                $('#successIcon').css('display', 'inline');
-                                                $('#addToCartModal').css('display', 'block');
-                                                $('#addToCartProductDetail').css('display', 'block');
-                                                $('#addToCartTitle').text(productName);
-                                                $('#addToCartImage').attr('src', imageUrl);
-                                                $('#addToCart-Ok').css('display', 'none');
-                                                $('#addToCart-checkOut').css('display', 'block');
-                                                $('#resetCurrency').css('display', 'none');
-                                                $('#addToCartError').css('display', 'none');
+                                                showProductInfo(tempCount, productName, imageUrl)
+
+                                                chrome.storage.local.set({productOne: JSON.stringify(productDetails)}, function () {
+                                                });
+                                                chrome.storage.local.get(['productOne'], function (result) {
+                                                    addProductOne();
+                                                });
                                             }
                                         });
                                     }
@@ -157,25 +156,19 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                     var cartDetails = [];
                                     cartDetails.push(productDetails);
                                     chrome.storage.local.set({cartDetails: JSON.stringify(cartDetails)}, function () {});
-                                    // chrome.storage.local.get(['cartDetails'], function (result) {
-                                    // });
+                                    chrome.storage.local.get(['cartDetails'], function (result) {
+                                    });
                                     chrome.runtime.sendMessage({
                                         greeting: 'setCartDetails',
                                         data: cartDetails
                                     }, function (response) {
                                     });
-                                    $('#companyNotification').css('display', 'flex');
-                                    $('#companyNotification').text(count);
-                                    $('#page-mask').css('display', 'block');
-                                    $('#successIcon').css('display', 'inline');
-                                    $('#addToCartModal').css('display', 'block');
-                                    $('#addToCartProductDetail').css('display', 'block');
-                                    $('#addToCartTitle').text(productName);
-                                    $('#addToCartImage').attr('src', imageUrl);
-                                    $('#addToCart-checkOut').css('display', 'block');
-                                    $('#addToCart-Ok').css('display', 'none');
-                                    $('#resetCurrency').css('display', 'none');
-                                    $('#addToCartError').css('display', 'none');
+                                    showProductInfo(count, productName, imageUrl)
+                                    chrome.storage.local.set({productOne: JSON.stringify(productDetails)}, function () {
+                                    });
+                                    chrome.storage.local.get(['productOne'], function (result) {
+                                        addProductOne();
+                                    });
                                 }
                             }
                         })

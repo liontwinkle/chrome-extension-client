@@ -1,6 +1,4 @@
 const productPretty = () => {
-
-    $.getScript('addProduct.js');
     var store = 'pretty';
     var available = true;
     var tempProductPriceStr = $('.price-container.new .price .price').text() || $('.price-container .price').text();

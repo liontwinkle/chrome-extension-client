@@ -1,6 +1,4 @@
 $(window).ready(function () {
-    $.getScript("Utils/checkout.js");
-    $.getScript("Utils/wish-list.js");
     var targetNode = null;
     var callback = null;
     const config = { attributes: true, childList: true, subtree: true };
@@ -18,6 +16,8 @@ $(window).ready(function () {
                 }
             }
         };
+        const observer = new MutationObserver(callback);
+        observer.observe(targetNode, config);
     }
     else if (window.location.toString().includes('ebay')) {
         $('#binBtn_btn').before("<img id='addToCartMM' style='display: flex; width:170px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
@@ -55,9 +55,6 @@ $(window).ready(function () {
     else if (window.location.toString().includes('shopdisney')) {
         $('.add-to-cart').after("<img id='addToCartMM' style='display: flex; width:80%; height: 65px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
-
-    const observer = new MutationObserver(callback);
-    observer.observe(targetNode, config);
 
     if (window.location.toString().match('^https://www.amazon') ||
         window.location.toString().includes('www.nike') ||
@@ -295,61 +292,47 @@ $(window).ready(function () {
                             } else {
 
                                 if ($.trim($('#productTitle').text()) !== '') {
-                                    $.getScript('Products/amazon.js');
                                     productAmazon();
                                 }
                                 else if (($.trim($('#itemTitle').text()) !== '') ||
                                     ($.trim($('.product-card-wrapper .product-title').text()) !== '')
                                 ) {
-                                    $.getScript('Products/ebay.js');
                                     productEbay();
                                 }
                                 else if ($.trim($('#pdp_product_title').text()) !== '') {
-                                    $.getScript('Products/nike.js');
                                     productNike();
                                 }
                                 else if ($.trim($('#product-info [itemprop = name]').text()) !== '') {
-                                    $.getScript('Products/nova.js');
                                     productNova();
                                 }
                                 else if ($.trim($('.product-name--lg').text()) !== '') {
-                                    $.getScript('Products/revolve.js');
                                     productRevolve();
                                 }
                                 else if ($('.product-details__title').text() !== '') {
-                                    $.getScript('Products/colourPop.js');
                                     productColourPop();
                                 }
                                 else if ($('.section-title h1').text() !== '') {
-                                    $.getScript('Products/cosmetics.js');
                                     productCosmetics();
                                 }
                                 else if ($('.product-view-title').text() !== '') {
-                                    $.getScript('Products/pretty.js');
                                     productPretty();
                                 }
                                 else if ($('#h1Title').text() !== '') {
-                                    $.getScript('Products/forever.js');
                                     productForever();
                                 }
                                 else if ($('#overview span[itemprop=name]').text() !== '') {
-                                    $.getScript('Products/six.js');
                                     productSix();
                                 }
                                 else if ($('#product-detail-section .product-name').text() !== '') {
-                                    $.getScript('Products/ralph.js');
                                     productRalph();
                                 }
                                 else if ($('.P__info .P__title').text() !== '') {
-                                    $.getScript('Products/kkwbeauty.js');
                                     productKkwBeauty();
                                 }
                                 else if ($('.prod-ProductTitle').text() !== '') {
-                                    $.getScript('Products/walmart.js');
                                     productWalmart();
                                 }
                                 else if ($('.product-detail__content-summary .product-name').text() !== '') {
-                                    $.getScript('Products/shopdisney.js');
                                     productShopDisney();
                                 }
                                 else {

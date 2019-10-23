@@ -1,7 +1,4 @@
 const wishKkwBeauty = () => {
-
-    $.getScript('addWish.js');
-
     var tempProductPriceStr = $('.P__info .P__price').clone().children().remove().end().text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);

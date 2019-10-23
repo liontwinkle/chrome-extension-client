@@ -1,7 +1,4 @@
 const wishWalmart = () => {
-
-    $.getScript('addWish.js');
-
     var tempProductPrice = $('.prod-PriceSection span[itemprop=price]').attr('content');
     tempProductPrice = $('.prod-PriceSection span[itemprop=priceCurrency]').length > 1 ? '' : tempProductPrice;
     var tempProductCurrencySymbol = $('.prod-PriceSection span[itemprop=priceCurrency]:eq(0)').text();

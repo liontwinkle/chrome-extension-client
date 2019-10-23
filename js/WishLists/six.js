@@ -1,7 +1,4 @@
 const wishSix = () => {
-
-    $.getScript('addWish.js');
-
     var tempProductPriceStr = $('.kg .Bj.Gj').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);

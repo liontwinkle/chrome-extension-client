@@ -1,7 +1,4 @@
 const wishPretty = () => {
-
-    $.getScript('addWish.js');
-
     var tempProductPriceStr = $('.price-container .price').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     var regex = /[+-]?\d+(\.\d+)?/g;

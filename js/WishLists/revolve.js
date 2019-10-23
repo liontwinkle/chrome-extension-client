@@ -1,7 +1,4 @@
 const wishRevolve = () => {
-
-    $.getScript('addWish.js');
-
     var tempProductPriceStr = $('#retailPrice').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     var regex = /[+-]?\d+(\.\d+)?/g;

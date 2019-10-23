@@ -1,7 +1,4 @@
 const wishColourPop = () => {
-
-    $.getScript("addWish.js");
-
     var tempProductPriceStr = $('.product-details__right .product-details__price--sale').clone().children().remove().end().text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     var regex = /[+-]?\d+(\.\d+)?/g;

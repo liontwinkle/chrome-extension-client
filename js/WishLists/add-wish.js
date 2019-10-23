@@ -4,13 +4,13 @@ const addWish = (tempProductCurrencySymbol, tempProductPrice,  productName, imag
         tempProductCurrencySymbol === '£' ||
         tempProductCurrencySymbol === '€') {
         chrome.storage.local.get(['tempProductCurrencySymbol'], function (result) {
-            var isAdded = false;
+            var isAddedProduct = false;
             if (!result.tempProductCurrencySymbol) {
                 chrome.storage.local.set({'tempProductCurrencySymbol': tempProductCurrencySymbol}, function () {
                 });
-                isAdded = true;
+                isAddedProduct = true;
             }
-            if (isAdded || result.tempProductCurrencySymbol === tempProductCurrencySymbol) {
+            if (isAddedProduct || result.tempProductCurrencySymbol === tempProductCurrencySymbol) {
                 var productDetails = {
                     'productTitle': productName,
                     'productPrice': tempProductPrice,
@@ -20,16 +20,16 @@ const addWish = (tempProductCurrencySymbol, tempProductPrice,  productName, imag
                     'productPage': location.href,
                     'productSize': size,
                     'productWidth': width || '',
-                    'itemCount': 1,
-                    'productSKU': location.href
+                    'itemCount': 1
                 };
                 chrome.storage.local.get(['favCartDetails'], function (result) {
                     if (result && result.favCartDetails && JSON.parse(result.favCartDetails).length > 0) {
                         var productListPostAdd = JSON.parse(result.favCartDetails);
                         var sameProductSKU = false;
                         for (i = 0; i < productListPostAdd.length; i++) {
-                            if ((productDetails.productSKU === productListPostAdd[i].productSKU)
+                            if ((productDetails.productTitle === productListPostAdd[i].productTitle)
                                 && (productDetails.productColor === productListPostAdd[i].productColor)
+                                && (productDetails.productWidth === productListPostAdd[i].productWidth)
                                 && (productDetails.productSize === productListPostAdd[i].productSize)) {
                                 sameProductSKU = true;
                                 var newItemCount = productListPostAdd[i].itemCount + 1;

@@ -1,13 +1,6 @@
 // The checkout function, link to bigCommerce cart page
 
 const goCheckout = () => {
-    // chrome.storage.local.set({lastPageCompany: location.href}, function () {
-    // });
-    // chrome.runtime.sendMessage({
-    //     greeting: 'updateLastPageCompany',
-    //     data: location.href
-    // }, function (response) {
-    // });
     chrome.storage.local.get(['cartDetails', 'accessToken'], function (result) {
         var products = JSON.parse(result.cartDetails);
         chrome.runtime.sendMessage({
@@ -17,8 +10,8 @@ const goCheckout = () => {
         });
         var accessToken = 'Bearer ' + result.accessToken;
             $.ajax({
-                url: 'https://cors-anywhere.herokuapp.com/https://2d0c4f6c.ngrok.io/api/checkout/save-product',
-                // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout/save-product',
+                url: 'https://cors-anywhere.herokuapp.com/https://2d0c4f6c.ngrok.io/api/checkout',
+                // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout',
                 type: 'post',
                 dataType: 'json',
                 data: {
@@ -29,8 +22,6 @@ const goCheckout = () => {
                 },
                 success: function (data) {
                     if (data) {
-                        // chrome.storage.local.remove(['cartDetails'], function (result) {
-                        // });
                         window.open(data.status);
                     }
                 }

@@ -1,7 +1,4 @@
 const wishShopDisney = () => {
-
-    $.getScript('addWish.js');
-
     var tempProductPriceStr = $('.prices .sales .value').text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     var regex = /[+-]?\d+(\.\d+)?/g;

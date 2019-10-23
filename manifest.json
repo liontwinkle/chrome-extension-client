@@ -142,7 +142,8 @@
       "/js/WishLists/walmart.js",
       "/js/WishLists/shopdisney.js",
       "/js/Utils/checkout.js",
-      "/js/Utils/wish-list.js"
+      "/js/Utils/wish-list.js",
+      "/js/Utils/add-product.js"
     ]
   }],
 
