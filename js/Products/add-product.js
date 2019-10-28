@@ -132,7 +132,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                                 chrome.storage.local.set({productOne: JSON.stringify(productDetails)}, function () {
                                                 });
                                                 chrome.storage.local.get(['productOne'], function (result) {
-                                                    addProductOne();
+                                                    saveProduct();
                                                 });
                                             }
                                         });
@@ -167,7 +167,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                     chrome.storage.local.set({productOne: JSON.stringify(productDetails)}, function () {
                                     });
                                     chrome.storage.local.get(['productOne'], function (result) {
-                                        addProductOne();
+                                        saveProduct();
                                     });
                                 }
                             }

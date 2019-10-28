@@ -23,7 +23,7 @@ const productColourPop = () => {
     var imageUrl = $('.product-images__carousel .product-image img').attr('src');
     imageUrl =  'https:' + imageUrl;
     imageUrl = imageUrl.split('?')[0];
-    var count = $('.product-actions__quantity--input').val();
+    var count = $('.product-actions__quantity--input').val() || 1;
 
     addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store);
 };

@@ -22,7 +22,7 @@ const productShopDisney = () => {
     var sizeTemp = $('.select-size .selected a span').text();
     var size =sizeExist.length > 0 ? (sizeTemp ? sizeTemp : 'select'): null;
     var count = $('input[name=product__qty_input]').attr('data-url');
-    count = count.slice(count.indexOf('&quantity') + 10)
+    count = count.slice(count.indexOf('&quantity') + 10) || 1;
     var imageUrl = $('.thumbnail-carousel__img').attr('src');
     console.log('imageUrl>>>>>', imageUrl);
     console.log('count>>>>>', count);

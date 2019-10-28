@@ -13,9 +13,13 @@ const productAmazon = () => {
         } else {
             selClass = '#used-button-price';
         }
-        tempProductPrice = $(selClass + ' .majorValue').text() + '.' + $(selClass + ' .minorValue').text();
-        console.log('tempProductPrice', tempProductPrice);
-        tempProductCurrencySymbol = $(selClass + ' .currencySymbol').text();
+        if ($(selClass + ' .majorValue').text() || $(selClass + ' .minorValue').text()) {
+            tempProductPrice = $(selClass + ' .majorValue').text() + '.' + $(selClass + ' .minorValue').text();
+            console.log('tempProductPrice', tempProductPrice);
+            tempProductCurrencySymbol = $(selClass + ' .currencySymbol').text();
+        } else {
+            available = false;
+        }
     } else {
         var tempProduct =
             $('#priceblock_ourprice').text() ||
@@ -47,7 +51,7 @@ const productAmazon = () => {
     var colorExist = $.trim($('#variation_color_name').find('.selection').text());
     var color = colorExist ? colorExist : null;
     console.log('color', color);
-    var sizeExist =  $.trim($('#dropdown_selected_size_name').find('.a-dropdown-prompt').text());
+    var sizeExist = $.trim($('#dropdown_selected_size_name').find('.a-dropdown-prompt').text());
     var size = sizeExist ? sizeExist : null;
     console.log('size', size);
     var width = null;
@@ -55,5 +59,5 @@ const productAmazon = () => {
     console.log('tempProductPrice', tempProductPrice);
     console.log('count', count);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store, width, isImageAvailable);
+    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store, width, isImageAvailable);
 };

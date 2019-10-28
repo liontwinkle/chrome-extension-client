@@ -1,4 +1,4 @@
-const addProductOne = () => {
+const saveProduct = () => {
 
     chrome.storage.local.get(['productOne', 'accessToken'], function (result) {
         var product = JSON.parse(result.productOne);
@@ -9,8 +9,8 @@ const addProductOne = () => {
         });
         var accessToken = 'Bearer ' + result.accessToken;
         $.ajax({
-            url: 'https://cors-anywhere.herokuapp.com/https://2d0c4f6c.ngrok.io/api/save-product',
-            // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/save-product',
+            // url: 'https://cors-anywhere.herokuapp.com/https://d73724f1.ngrok.io/api/save-product',
+            url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/save-product',
             type: 'post',
             dataType: 'json',
             data: {

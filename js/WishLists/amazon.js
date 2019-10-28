@@ -14,7 +14,6 @@ const wishAmazon = () => {
             selClass = '#used-button-price';
         }
         tempProductPrice = $(selClass + ' .majorValue').text() + '.' + $(selClass + ' .minorValue').text();
-        console.log('tempProductPrice', tempProductPrice);
         tempProductCurrencySymbol = $(selClass + ' .currencySymbol').text();
     } else {
         var tempProduct =
@@ -37,20 +36,15 @@ const wishAmazon = () => {
             tempProductPrice = tempProductPrice / 100;
         }
     }
-    var count = $('#quantity option:selected').text() || 1;
+    var count = 1;
     var productName = $.trim($('#productTitle').text()).replace("'", '').slice(0, 100);
-    console.log('productName', productName);
     var imageUrl = $('.image.selected .imgTagWrapper img').attr('src') || $('.a-button-selected img').attr('src');
-    console.log('imageUrl', imageUrl);
+    var isImageAvailable = imageUrl.includes('data:image');
     var colorExist = $.trim($('#variation_color_name').find('.selection').text());
     var color = colorExist ? colorExist : null;
-    console.log('color', color);
     var sizeExist =  $.trim($('#dropdown_selected_size_name').find('.a-dropdown-prompt').text());
     var size = sizeExist ? sizeExist : null;
-    console.log('size', size);
-    console.log('tempProductCurrencySymbol', tempProductCurrencySymbol);
-    console.log('tempProductPrice', tempProductPrice);
-    console.log('count', count);
+    var width = null;
 
-    addWish(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size);
-}
+    addWish(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store, width, isImageAvailable);
+};

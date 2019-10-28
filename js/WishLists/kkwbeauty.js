@@ -1,4 +1,6 @@
 const wishKkwBeauty = () => {
+    var store = 'kkwbeauty';
+    var available = true;
     var tempProductPriceStr = $('.P__info .P__price').clone().children().remove().end().text();
     tempProductPriceStr = tempProductPriceStr.replace(',', '');
     console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);
@@ -29,8 +31,9 @@ const wishKkwBeauty = () => {
 
     var imageUrl = $('.P__main_img').css('background-image');
     imageUrl = imageUrl.replace('url(','').replace(')','').replace(/\"/gi, "");
+    var count = '1';
     console.log('imageUrl>>>>>', imageUrl);
 
-    addWish(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size);
+    addWish(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store, width);
 
 };

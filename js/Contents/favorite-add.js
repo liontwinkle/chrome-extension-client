@@ -6,19 +6,21 @@ $('#favouriteCart').ready(function () {
             $('#page-mask').css('display', 'none');
             $('#addToCartModal').hide();
         });
-
+        var message  = null;
         chrome.storage.local.get(['loggedIn'], function (result) {
             if (result.loggedIn === 'false' || result.loggedIn === undefined) {
-                $('#page-mask').css('display', 'block');
-                $('#addToCartModal').css('display', 'block');
-                $('#successIcon').css('display', 'none');
-                $('#addToCartProductDetail').css('display', 'none');
-                $('#addToCartError').css('display', 'block');
-                $('#addToCartError').text('Please Login.');
-                $('#addToCart-Ok').css('display', 'block');
-                $('#addToCart-Ok').css('width', '270px');
-                $('#resetCurrency').css('display', 'none');
-                $('#addToCart-checkOut').css('display', 'none');
+                message = 'Please Login.'
+                showMessage(message);
+                // $('#page-mask').css('display', 'block');
+                // $('#addToCartModal').css('display', 'block');
+                // $('#successIcon').css('display', 'none');
+                // $('#addToCartProductDetail').css('display', 'none');
+                // $('#addToCartError').css('display', 'block');
+                // $('#addToCartError').text('Please Login.');
+                // $('#addToCart-Ok').css('display', 'block');
+                // $('#addToCart-Ok').css('width', '270px');
+                // $('#resetCurrency').css('display', 'none');
+                // $('#addToCart-checkOut').css('display', 'none');
             } else {
                 if ($.trim($('#productTitle').text()) !== '') {
                     wishAmazon();
@@ -50,14 +52,16 @@ $('#favouriteCart').ready(function () {
                     wishShopDisney();
                 }
                 else {
-                    $('#page-mask').css('display', 'block');
-                    $('#addToCartModal').css('display', 'block');
-                    $('#addToCartProductDetail').css('display', 'none');
-                    $('#addToCartError').css('display', 'block');
-                    $('#successIcon').css('display', 'none');
-                    $('#addToCartError').text('Please select a product.');
-                    $('#addToCart-Ok').css('display', 'block');
-                    $('#addToCart-checkOut').css('display', 'none');
+                    message = 'Please select a product';
+                    showMessage(message);
+                    // $('#page-mask').css('display', 'block');
+                    // $('#addToCartModal').css('display', 'block');
+                    // $('#addToCartProductDetail').css('display', 'none');
+                    // $('#addToCartError').css('display', 'block');
+                    // $('#successIcon').css('display', 'none');
+                    // $('#addToCartError').text('Please select a product.');
+                    // $('#addToCart-Ok').css('display', 'block');
+                    // $('#addToCart-checkOut').css('display', 'none');
                 }
             }
         });

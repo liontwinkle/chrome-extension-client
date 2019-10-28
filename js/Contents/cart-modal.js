@@ -1,11 +1,12 @@
 $('body').on('click', function (e) {
     var posX = 1 * e.clientX;
     var posY = 1 * e.clientY;
-    var left = 1 * $('#addToCartModal')[0].offsetLeft;
-    var right = left + 1 * $('#addToCartModal')[0].offsetWidth;
-    var top = 1 * $('#addToCartModal')[0].offsetTop;
-    var bottom = top + 1 * $('#addToCartModal')[0].offsetHeight;
-
+    if ($('#addToCartModal')) {
+        var left = 1 * $('#addToCartModal')[0].offsetLeft;
+        var right = left + 1 * $('#addToCartModal')[0].offsetWidth;
+        var top = 1 * $('#addToCartModal')[0].offsetTop;
+        var bottom = top + 1 * $('#addToCartModal')[0].offsetHeight;
+    }
     if (posX === 0 && posY === 0) return;
     if (posX >= left && posX <= right && posY >= top && posY <= bottom) {
         $('#addToCartModal').css('display', 'block');

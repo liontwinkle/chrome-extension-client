@@ -1,11 +1,14 @@
 const wishNike = () => {
-    var tempProductPriceStr = $('[data-test = product-price]')[0].innerHTML;
-    tempProductPriceStr = tempProductPriceStr.replace(',', '');
+    var store =  'nike';
+    var available = true;
+    var tempProductPrice = $('[data-test = product-price]')[0].innerHTML;
     var regex = /[+-]?\d+(\.\d+)?/g;
-    var tempProductPrice = tempProductPriceStr.match(regex)[0];
-    var tempProductCurrencySymbol = tempProductPriceStr.replace(tempProductPrice, '');
+    tempProductPrice = tempProductPrice.match(regex)[0];
+    var tempProductCurrencySymbol = $('[data-test = product-price]')[0].innerHTML.replace(',', '');
+    tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
     tempProductCurrencySymbol = tempProductCurrencySymbol.replace('GBP', '£');
     tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
+    console.log('tempProductCurrencySymbol-Nike>>>>>>', tempProductCurrencySymbol);
     var productName = $.trim($('#pdp_product_title').text());
     productName = productName.replace("'", '');
     var sizeExist = $('input[name=skuAndSize]').attr('aria-label');
@@ -14,5 +17,8 @@ const wishNike = () => {
     var colorExist = $('a[aria-selected=false]').attr('title');
     var color = colorExist ? ($('a[aria-selected=true]').attr('title')) : null;
 
-    addWish(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size);
+    var imageUrl = $.trim($("[alt^='" + productName + "']").attr('src'));
+    var count = '1';
+
+    addWish(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store)
 };

@@ -9,16 +9,7 @@ $(window).ready(function () {
         var currentTabUrl = tabs[0].url;
 
         if (loggedIn === true) {
-            // if ((currentTabUrl.startsWith("https://www.amazon")) ||
-            //     (currentTabUrl.startsWith("https://www.ebay.com")) ||
-            //     (currentTabUrl.includes('ebay')) ||
-            //     (currentTabUrl.includes('revolve')) ||
-            //     (currentTabUrl.includes('fashionnova')) ||
-            //     (currentTabUrl.startsWith("https://www.nike"))) {
-            //     window.location.href = '../../html/welcome.html'
-            // } else {
             window.location.href = '../../html/store.html'
-            // }
         } else {
             window.location.href = '../../html/index.html'
         }

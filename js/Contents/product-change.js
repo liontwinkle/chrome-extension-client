@@ -47,7 +47,7 @@ $('#cartDetailSection').ready(function () {
             }
         })
     });
-    $('body').on('click', '.addItem', function (event) {
+    $('body').on('click', '.addItem', function () {
         const id = $(this).siblings('.itemCount').attr('id');
         chrome.storage.local.get(['cartDetails'], function (result) {
             var productList = JSON.parse(result.cartDetails);
@@ -112,7 +112,7 @@ $('#cartDetailSection').ready(function () {
             }
         });
     });
-    $('body').on('click', '.removeButton', function (event) {
+    $('body').on('click', '.removeButton', function () {
         const id = $(this).attr('id');
         chrome.storage.local.get(['cartDetails'], function (result) {
             var productList = JSON.parse(result.cartDetails);

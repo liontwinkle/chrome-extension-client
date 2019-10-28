@@ -1,16 +1,16 @@
-$(window).ready(function () {
+$(window).on('load', function () {
     var targetNode = null;
     var callback = null;
     const config = { attributes: true, childList: true, subtree: true };
     if (window.location.toString().includes('amazon')) {
-        $('#submit\\.add-to-cart-ubb').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('#submit\\.add-to-cart-ubb').before("<img id='addToCartMM' style='margin: 10px 0; height: 45px;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
         $('#submit\\.add-to-cart').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
-        targetNode = document.getElementById('desktop_buybox');
+        targetNode = document.getElementById('dp-container');
         callback = function(mutationsList, observer) {
             for(let mutation of mutationsList) {
                 if (mutation.type === 'childList') {
-                    if ($('#addToCart_feature_div #addToCartMM').length === 0) {
-                        $('#submit\\.add-to-cart-ubb').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+                    if ($('#addToCartMM').length === 0) {
+                        $('#submit\\.add-to-cart-ubb').before("<img id='addToCartMM' style='margin: 10px 0; height: 45px;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
                         $('#submit\\.add-to-cart').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
                     }
                 }
@@ -20,19 +20,19 @@ $(window).ready(function () {
         observer.observe(targetNode, config);
     }
     else if (window.location.toString().includes('ebay')) {
-        $('#binBtn_btn').before("<img id='addToCartMM' style='display: flex; width:170px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('#binBtn_btn').before("<img id='addToCartMM' style='display: flex; width:170px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('fashionnova')) {
-        $('#add-to-cart-button').before("<img id='addToCartMM' style='display: flex; width:100%; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('#add-to-cart-button').before("<img id='addToCartMM' style='display: flex; width:80%; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('revolve')) {
-        $('.product-buttons').before("<img id='addToCartMM' style='display: flex; width:100%; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('.product-buttons').before("<img id='addToCartMM' style='display: flex; width:90%; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('kyliecosmetics')) {
         $('#AddToCart').after("<img id='addToCartMM' style='display: flex; height: 50px; width:270px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('colourpop')) {
-        $('.product-details__actions').after("<img id='addToCartMM' style='display: flex; width:100%; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('.product-details__actions').after("<img id='addToCartMM' style='display: flex; width:75%; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('prettylittlething')) {
         $('#add-to-bag').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
@@ -41,11 +41,35 @@ $(window).ready(function () {
         $('#AddToBagButton').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('.6pm.')) {
-        $('.Lq').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('button[data-track-value="Add-To-Cart"]').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        targetNode = document.getElementById('main');
+        callback = function (mutationsList, observer) {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    if ($('form #addToCartMM').length === 0) {
+                        $('button[data-track-value="Add-To-Cart"]').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+                    }
+                }
+            }
+        };
+        const observer = new MutationObserver(callback);
+        observer.observe(targetNode, config);
     }
-    // else if (window.location.toString().includes('.ralphlauren.')) {
-    //     $('#add-to-cart').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
-    // }
+    else if (window.location.toString().includes('.ralphlauren.')) {
+        $('#add-to-cart').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        targetNode = document.getElementById('pdpMain');
+        callback = function (mutationsList, observer) {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    if ($('.addtocart  #addToCartMM').length === 0) {
+                        $('#add-to-cart').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+                    }
+                }
+            }
+        };
+        const observer = new MutationObserver(callback);
+        observer.observe(targetNode, config);
+    }
     else if (window.location.toString().includes('kkwbeauty')) {
         $('.P__button').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
@@ -157,42 +181,16 @@ $(window).ready(function () {
                             chrome.storage.local.get(['tempProductCurrencySymbol'], function (result) {
                                 $('#currency').text(result.tempProductCurrencySymbol);
                             });
-                            for (var i = 0; i < cartProducts.length; i++) {
+                            for (let i = 0; i < cartProducts.length; i++) {
                                 $('#checkOut').css('display', 'block');
                                 $('#emptyCartMM').css('display', 'none');
                                 $('#viewCartModal').css('height', 'calc(100vh - 65px)');
-                                if (cartProducts[i].productPage.includes('amazon')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>Amazon.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('nike')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>Nike.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('ebay')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>Ebay.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('fashionnova')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>fashionnova.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('revolve')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>revolve.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('colourpop')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>colourpop.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('kyliecosmetics')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>kyliecosmetics.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('prettylittle')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>prettylittlething.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('forever21')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>forever21.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('.6pm.')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>6pm.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('.ralphlauren.')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>ralphlauren.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('kkwbeauty')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>ralphlauren.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('walmart')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>walmart.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('shopdisney')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>shopdisney.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
-                                } else if (cartProducts[i].productPage.includes('.adidas')) {
-                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>adidas.com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
+                                var storeLists = ['amazon', 'nike', 'ebay', 'fashionnova', 'revolve', 'colourpop', 'kyliecosmetics', 'prettylittlething', 'forever21', '6pm', 'ralphlauren', 'kkwbeauty', 'walmart', 'shopdisney'];
+                                const storeItem = storeLists.find(item => cartProducts[i].productPage.includes(item));
+                                if (storeItem) {
+                                    var element = "<div style='padding: 20px 0; border-bottom: 1px solid #D1D1D1'><div style='float: right;width: 100%;'><div style='float: left; width: 55%;'><a href='" + cartProducts[i].productPage + "' style='text-decoration: none;color: #FF7E18;font-size: 14px;line-height: 19px;'>" + storeItem + ".com</a><div style='font-size: 14px;line-height: 19px; margin-top: 10px;'>Title: " + cartProducts[i].productTitle + "</div><div style='font-size: 16px;font-weight: 600;line-height: 20px; margin-top: 10px;'>" + cartProducts[i].productCurrency + cartProducts[i].productPrice + "</div><div style='user-select: none; display: flex; margin-top: 15px; box-shadow: 0 4px 8px 0rgba(0,0,0,0.03);	border: 1px solid #E2E5E6;	border-radius: 5px; width: min-content;'><span class='removeItem' style='padding: 2px 10px;cursor: pointer;'>-</span><span class='itemCount' id='" + i + "' style=' padding: 2px 7px;'>" + cartProducts[i].itemCount + "</span><span class='addItem' style='padding: 2px 10px;cursor: pointer;'>+</span></div></div><div style='float: right; width: 100px;'><div style='width: 100px; height: 100px;display: flex; justify-content: center'><img style='max-width: 100%; max-height: 100%; width: unset;' src='" + cartProducts[i].productImage + "'/></div><div id='" + i + "'  class='removeButton' style='float: right;margin-top: 40px;color: #D0021B;font-size: 14px;border: none;background: white;'>Remove</div></div></div></div>";
+                                    $('#cartDetailSection').prepend(element);
                                 }
-                                $('#cartDetailSection').prepend(element);
                             }
                         }
                     });
@@ -229,6 +227,7 @@ $(window).ready(function () {
         });
 
         $('#addToCartMM').ready(function () {
+            var message = null;
             if (($.trim($('#productTitle').text()) !== '')
                 || ($.trim($('#itemTitle').text()) !== '')
                 || ($.trim($('.product-card-wrapper .product-title').text()) !== '')
@@ -263,7 +262,7 @@ $(window).ready(function () {
                         });
 
                         $('#resetCurrency').on('click', function () {
-                            chrome.storage.local.remove(['tempProductCurrencySymbol', 'cartDetails'], function (result) {
+                            chrome.storage.local.remove(['ProductCurrencySymbol', 'cartDetails'], function (result) {
                             });
                             var element = "<div id='emptyCartMM'><div>Your Cart is Empty</div></div>";
                             $('#cartDetailSection').prepend(element);
@@ -279,16 +278,18 @@ $(window).ready(function () {
 
                         chrome.storage.local.get(['loggedIn'], function (result) {
                             if (result.loggedIn === 'false' || result.loggedIn === undefined) {
-                                $('#page-mask').css('display', 'block');
-                                $('#addToCartModal').css('display', 'block');
-                                $('#successIcon').css('display', 'none');
-                                $('#addToCartProductDetail').css('display', 'none');
-                                $('#addToCartError').css('display', 'block');
-                                $('#addToCartError').text('Please Login.');
-                                $('#addToCart-Ok').css('display', 'block');
-                                $('#addToCart-Ok').css('width', '270px');
-                                $('#resetCurrency').css('display', 'none');
-                                $('#addToCart-checkOut').css('display', 'none');
+                               message = 'Please Login.';
+                                showMessage(message);
+                                // $('#page-mask').css('display', 'block');
+                                // $('#addToCartModal').css('display', 'block');
+                                // $('#successIcon').css('display', 'none');
+                                // $('#addToCartProductDetail').css('display', 'none');
+                                // $('#addToCartError').css('display', 'block');
+                                // $('#addToCartError').text('Please Login.');
+                                // $('#addToCart-Ok').css('display', 'block');
+                                // $('#addToCart-Ok').css('width', '270px');
+                                // $('#resetCurrency').css('display', 'none');
+                                // $('#addToCart-checkOut').css('display', 'none');
                             } else {
 
                                 if ($.trim($('#productTitle').text()) !== '') {
@@ -336,14 +337,16 @@ $(window).ready(function () {
                                     productShopDisney();
                                 }
                                 else {
-                                    $('#page-mask').css('display', 'block');
-                                    $('#addToCartModal').css('display', 'block');
-                                    $('#addToCartProductDetail').css('display', 'none');
-                                    $('#addToCartError').css('display', 'block');
-                                    $('#successIcon').css('display', 'none');
-                                    $('#addToCartError').text('Please select a product.');
-                                    $('#addToCart-Ok').css('display', 'block');
-                                    $('#addToCart-checkOut').css('display', 'none');
+                                    message = 'Please select a product.';
+                                    showMessage(message);
+                                    // $('#page-mask').css('display', 'block');
+                                    // $('#addToCartModal').css('display', 'block');
+                                    // $('#addToCartProductDetail').css('display', 'none');
+                                    // $('#addToCartError').css('display', 'block');
+                                    // $('#successIcon').css('display', 'none');
+                                    // $('#addToCartError').text('Please select a product.');
+                                    // $('#addToCart-Ok').css('display', 'block');
+                                    // $('#addToCart-checkOut').css('display', 'none');
                                 }
                             }
                         });
