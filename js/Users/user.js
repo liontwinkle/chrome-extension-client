@@ -37,12 +37,17 @@ $(window).ready(function () {
             'email': $('.userEmail').val(),
             'password': $('.userPassword').val()
         };
+        var loaderElement = '<div id="page-mask-custom" style="position:fixed;left : 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: flex; align-items: center; justify-content: center; z-index: 99999;"><div class="loader-custom"></div></div>';
+        $('body').append(loaderElement);
         if ($('.userPassword').val() !== $('.confirmPassword').val()) {
+            $('#page-mask-custom').remove();
             $('#pwdMatchErrorHeading').css('display', 'block');
             $('#pwdMatchErrorHeading').css('color', 'red');
         }
+
         chrome.runtime.sendMessage({notifications: 'signUp', message: signUpDetails}, function (response) {
             var responseData = response.data;
+            $('#page-mask-custom').remove();
             if (response.success) {
                 $('#loginbody').css('display', 'block');
                 $('#signupbody').css('display', 'none');
@@ -53,6 +58,7 @@ $(window).ready(function () {
                 $('#titleHeadingId').text('Please Login');
                 $('#pwdMatchErrorHeading').css('display', 'none');
                 $('#successHeading').css('display', 'none');
+
             }
             else {
                 var responseSignUpData = responseData;
@@ -77,10 +83,12 @@ $(window).ready(function () {
             'email': $('#loginEmail').val(),
             'password': $('#loginPass').val()
         };
+        var loaderElement = '<div id="page-mask-custom" style="position:fixed;left : 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: flex; align-items: center; justify-content: center; z-index: 99999;"><div class="loader-custom"></div></div>';
+        $('body').append(loaderElement);
         chrome.runtime.sendMessage({notifications: 'logIn', message: logInDetails}, function (response) {
             var responseData = response.data;
+            $('#page-mask-custom').remove();
             if (response.success) {
-                // chrome.storage.local.set({'email': responseData['user']['email']}, function () {});
                 if (responseData.access_token !== undefined) {
                     chrome.storage.local.set({'accessToken': responseData.access_token}, function () {
                     });
@@ -92,15 +100,8 @@ $(window).ready(function () {
                     var query = {active: true, currentWindow: true};
                     function callback(tabs) {
                         currentTabUrl = tabs[0].url;
-                        // if ((currentTabUrl.startsWith("https://www.amazon.com")) ||
-                        //     (currentTabUrl.includes('ebay')) ||
-                        //     (currentTabUrl.includes('fashionnova')) ||
-                        //     (currentTabUrl.includes('revolve')) ||
-                        //     (currentTabUrl.startsWith("https://www.nike"))) {
-                        //     window.location.href = '../../html/welcome.html';
-                        // } else {
                         window.location.href = '../../html/store.html';
-                        // }
+
                     }
                     chrome.tabs.query(query, callback);
                 } else {

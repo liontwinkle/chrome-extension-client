@@ -115,7 +115,7 @@ const addWish = (ProductCurrencySymbol, ProductPrice, productName, imageUrl, col
                         })
                     }
                     else {
-                        var message = 'he currency doesn\'t not match';
+                        var message = 'The currency doesn\'t not match';
                         showMessage(message);
                     }
                 });

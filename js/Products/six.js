@@ -2,7 +2,8 @@ const productSix = () => {
 
     var store = '6pm';
     var available = true;
-    var tempProductPriceStr = $('.lv').first().text();
+    var tempProductPriceStr = $('#buyBox').prev().children('div').children('div').children('span').first().text();
+    console.log('tempProductPriceStr', tempProductPriceStr);
     if (tempProductPriceStr.length === 0) {
         available = false;
     } else {

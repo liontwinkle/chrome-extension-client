@@ -32,6 +32,8 @@ chrome.runtime.onMessage.addListener(
         }
 
         if (request.notifications === 'logIn') {
+            var loaderElement = '<div id="page-mask-custom" style="position:fixed;left : 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: block; z-index: 99999;"><div class="loader-custom"></div></div>';
+            $('body').append(loaderElement);
             $.ajax({
                 method: 'POST',
                 url: lgsBaseUrl + 'login',
