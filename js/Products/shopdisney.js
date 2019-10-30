@@ -28,7 +28,7 @@ const productShopDisney = () => {
     console.log('count>>>>>', count);
     console.log('size>>>>>', size);
     var color = null;
-
+    tempProductPrice = tempProductPrice * count;
 
     addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store);
 };

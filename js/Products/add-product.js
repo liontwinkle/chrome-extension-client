@@ -5,8 +5,7 @@ function showMessage(message) {
     $('#addToCartProductDetail').css('display', 'none');
     $('#addToCartError').css('display', 'block');
     $('#addToCartError').html(message);
-    $('#addToCart-Ok').css('display', 'block');
-    $('#addToCart-Ok').css('width', '270px');
+    $('#addToCart-Ok').css({'display': 'block', 'width': '270px'});
     $('#resetCurrency').css('display', 'none');
     $('#addToCart-checkOut').css('display', 'none');
 }
@@ -127,11 +126,11 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                                 for (l = 0; l < cartDetails.length; l++) {
                                                     tempCount = tempCount + cartDetails[l].itemCount
                                                 }
-                                                showProductInfo(tempCount, productName, imageUrl)
+                                                showProductInfo(tempCount, productName, imageUrl);
 
                                                 chrome.storage.local.set({productOne: JSON.stringify(productDetails)}, function () {
                                                 });
-                                                chrome.storage.local.get(['productOne'], function (result) {
+                                                chrome.storage.local.get(['productOne'], function () {
                                                     saveProduct();
                                                 });
                                             }
@@ -163,10 +162,10 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                         data: cartDetails
                                     }, function (response) {
                                     });
-                                    showProductInfo(count, productName, imageUrl)
+                                    showProductInfo(count, productName, imageUrl);
                                     chrome.storage.local.set({productOne: JSON.stringify(productDetails)}, function () {
                                     });
-                                    chrome.storage.local.get(['productOne'], function (result) {
+                                    chrome.storage.local.get(['productOne'], function () {
                                         saveProduct();
                                     });
                                 }

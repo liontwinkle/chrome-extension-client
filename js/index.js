@@ -44,13 +44,16 @@ $(window).on('load', function () {
     }
     else if (window.location.toString().includes('.6pm.')) {
         $('button[data-track-value="Add-To-Cart"]').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
-        targetNode = document.getElementById('main');
+        targetNode = document.getElementById('root');
         if (targetNode) {
             callback = function (mutationsList, observer) {
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList') {
-                        if ($('form #addToCartMM').length === 0) {
-                            $('button[data-track-value="Add-To-Cart"]').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+                        if ($('#addToCartMM').length === 0) {
+                            if ($('button[data-track-value="Add-To-Cart"]').length > 0) {
+                                location.reload();
+                            }
+                            // $('button[data-track-value="Add-To-Cart"]').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
                         }
                     }
                 }
@@ -60,14 +63,14 @@ $(window).on('load', function () {
         }
     }
     else if (window.location.toString().includes('.ralphlauren.')) {
-        $('#add-to-cart').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('#add-to-cart').after("<img id='addToCartMM' style='display: flex; width:80%; height: 50px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
         targetNode = document.getElementById('pdpMain');
         if (targetNode) {
             callback = function (mutationsList, observer) {
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList') {
                         if ($('.addtocart  #addToCartMM').length === 0) {
-                            $('#add-to-cart').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+                            $('#add-to-cart').after("<img id='addToCartMM' style='display: flex; width:80%; height: 50px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
                         }
                     }
                 }
@@ -77,7 +80,8 @@ $(window).on('load', function () {
         }
     }
     else if (window.location.toString().includes('kkwbeauty')) {
-        $('.P__button').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('.js-add-to-cart-button').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        // $('.P__button').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('walmart')) {
         $('.prod-product-cta-add-to-cart button').after("<img id='addToCartMM' style='display: flex; width:140px; height:40px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
@@ -242,7 +246,7 @@ $(window).on('load', function () {
                 || ($('#h1Title').text() !== '')
                 || ($('#overview span[itemprop=name]').text() !== '')
                 || ($('#product-detail-section .product-name').text() !== '')
-                || ($('.P__info .P__title').text() !== '')
+                || ($('h2[itemprop=name]').text() !== '')
                 || ($('.prod-ProductTitle').text() !== '')
                 || ($('.product-detail__content-summary .product-name').text() !== '')
                 || ($('.gl-price__value').text() !== '')
@@ -319,7 +323,7 @@ $(window).on('load', function () {
                                 else if ($('#product-detail-section .product-name').text() !== '') {
                                     productRalph();
                                 }
-                                else if ($('.P__info .P__title').text() !== '') {
+                                else if ($('h2[itemprop=name]').text() !== '') {
                                     productKkwBeauty();
                                 }
                                 else if ($('.prod-ProductTitle').text() !== '') {

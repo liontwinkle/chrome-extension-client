@@ -17,7 +17,7 @@ $('#cartDetailSection').ready(function () {
                 $(this).siblings('.itemCount').text(count);
                 var oldPrice = productList[id].productPrice;
                 oldPrice = parseFloat(oldPrice);
-                var count = count;
+                // var count = count;
                 count = parseInt(count);
                 var newPrice = oldPrice - oldPrice / (count + 1);
                 newPrice = newPrice.toFixed('2');
@@ -53,7 +53,7 @@ $('#cartDetailSection').ready(function () {
             var productList = JSON.parse(result.cartDetails);
             var count = productList[id].itemCount;
             count++;
-            if (count == 0) {
+            if (count === 0) {
                 productList.splice(id, 1);
                 chrome.storage.local.set({cartDetails: JSON.stringify(productList)}, function () {
                 });
@@ -82,7 +82,7 @@ $('#cartDetailSection').ready(function () {
                 $(this).siblings('.itemCount').text(count);
                 var oldPrice = productList[id].productPrice;
                 oldPrice = parseFloat(oldPrice);
-                var count = count;
+                // var count = count;
                 count = parseInt(count);
                 var newPrice = oldPrice + oldPrice / (count - 1);
                 newPrice = newPrice.toFixed(2);
@@ -104,7 +104,7 @@ $('#cartDetailSection').ready(function () {
                 subtotal = subtotal.toFixed(2);
                 $('#subtotal').text(subtotal);
                 $('#companyNotification').css('display', 'flex');
-                var tempCount = 0;
+                tempCount = 0;
                 for (i = 0; i < productList.length; i++) {
                     tempCount = tempCount + productList[i].itemCount
                 }

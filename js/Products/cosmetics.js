@@ -25,6 +25,7 @@ const productCosmetics = () => {
     imageUrl =  'https:' + imageUrl;
     imageUrl = imageUrl.split('?')[0];
     var count = $('input[name=quantity]').val() || 1;
+    tempProductPrice = tempProductPrice * count;
 
     addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store);
 };

@@ -11,10 +11,16 @@ const productEbay = () => {
             $.trim($('#mm-saleDscPrc').html()) ||
             $.trim($('.display-price').html()) ||
             $.trim($('#prcIsum_bidPrice').html());
-        var tempProductPrice = tempProductPriceStr.replace(',', '');
-        var regex = /[+-]?\d+(\.\d+)?/g;
-        tempProductPrice = tempProductPrice.match(regex)[0];
-        var ProductPrice = tempProductPrice / 100;
+        var ProductPrice = null;
+        if (tempProductPriceStr.includes(',')) {
+            var tempProductPrice = tempProductPriceStr.replace(',', '');
+            var regex = /[+-]?\d+(\.\d+)?/g;
+            tempProductPrice = tempProductPrice.match(regex)[0];
+            ProductPrice = tempProductPrice / 100;
+        } else {
+            var regex = /[+-]?\d+(\.\d+)?/g;
+            ProductPrice = tempProductPriceStr.match(regex)[0];
+        }
         console.log('tempProductPriceStr', tempProductPriceStr);
         console.log('ProductPrice', ProductPrice);
         var ProductCurrencySymbol = tempProductPriceStr.replace(',', '');
@@ -27,7 +33,7 @@ const productEbay = () => {
         if (ProductCurrencySymbol === 'EUR') {
             ProductCurrencySymbol = '€';
         }
-        var imageUrl = $.trim($("#icImg").attr('src')) || $.trim($(".vi-image-gallery__enlarge-link img").attr('src'))
+        var imageUrl = $.trim($("#icImg").attr('src')) || $.trim($(".vi-image-gallery__enlarge-link img").attr('src'));
         console.log('image', imageUrl);
         console.log(ProductCurrencySymbol);
         var productName = $.trim($('#itemTitle').text()) || $.trim($('.product-card-wrapper .product-title').text());

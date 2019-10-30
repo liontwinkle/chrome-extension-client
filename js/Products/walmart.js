@@ -33,6 +33,7 @@ const productWalmart = () => {
     console.log('color>>>>>>', color);
     console.log('size>>>>>>', size);
     console.log('imageUrl>>>>>', imageUrl);
+    tempProductPrice = tempProductPrice * count;
 
     addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store);
 };

@@ -58,6 +58,7 @@ const productAmazon = () => {
     console.log('tempProductCurrencySymbol', tempProductCurrencySymbol);
     console.log('tempProductPrice', tempProductPrice);
     console.log('count', count);
+    tempProductPrice = tempProductPrice * count;
 
     addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store, width, isImageAvailable);
 };
