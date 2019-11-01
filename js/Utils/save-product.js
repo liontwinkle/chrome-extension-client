@@ -9,7 +9,7 @@ const saveProduct = () => {
         });
         var accessToken = 'Bearer ' + result.accessToken;
         $.ajax({
-            // url: 'https://cors-anywhere.herokuapp.com/https://d73724f1.ngrok.io/api/save-product',
+            // url: 'https://cors-anywhere.herokuapp.com/https://b94f3505.ngrok.io/api/save-product',
             url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/save-product',
             type: 'post',
             dataType: 'json',
@@ -21,6 +21,9 @@ const saveProduct = () => {
             },
             success: function (data) {
                 console.log('productOne success', data);
+            },
+            error: function (data) {
+                console.log('error', data)
             }
         });
     });

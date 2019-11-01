@@ -1,10 +1,10 @@
 const productAmazon = () => {
-
     var store = 'amazon';
     var available = true;
     var isLargeValue = $('.price-large').text();
-    var tempProductPrice = '';
-    var tempProductCurrencySymbol = '';
+    var price = '';
+    var width = null;
+    var currencySymbol = '';
     if (isLargeValue) {
         var optionValue = $('input[name=BuyboxType]:checked').val();
         var selClass = '#new-button-price';
@@ -14,9 +14,9 @@ const productAmazon = () => {
             selClass = '#used-button-price';
         }
         if ($(selClass + ' .majorValue').text() || $(selClass + ' .minorValue').text()) {
-            tempProductPrice = $(selClass + ' .majorValue').text() + '.' + $(selClass + ' .minorValue').text();
-            console.log('tempProductPrice', tempProductPrice);
-            tempProductCurrencySymbol = $(selClass + ' .currencySymbol').text();
+            price = $(selClass + ' .majorValue').text() + '.' + $(selClass + ' .minorValue').text();
+            console.log('price', price);
+            currencySymbol = $(selClass + ' .currencySymbol').text();
         } else {
             available = false;
         }
@@ -30,21 +30,20 @@ const productAmazon = () => {
         if (splitIndex > 0) {
             tempProduct = tempProduct.slice(0, splitIndex - 1);
         }
-        tempProductPrice = tempProduct.replace(',', '');
+        price = tempProduct.replace(',', '');
         var regex = /[+-]?\d+(\.\d+)?/g;
-        tempProductPrice = tempProductPrice.match(regex) && tempProductPrice.match(regex)[0] || '';
-        tempProductCurrencySymbol = tempProduct.replace(',', '');
-        tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
-        tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
-        if (tempProductCurrencySymbol === '€') {
-            tempProductPrice = tempProductPrice.replace('.', '');
-            tempProductPrice = tempProductPrice / 100;
+        price = price.match(regex) && price.match(regex)[0] || '';
+        currencySymbol = tempProduct.replace(',', '');
+        currencySymbol = currencySymbol.replace(price, '');
+        currencySymbol = currencySymbol.trim();
+        if (currencySymbol === '€') {
+            price = price.replace('.', '');
+            price = price / 100;
         }
     }
     var count = $('#quantity option:selected').text() || 1;
-    var productName = $.trim($('#productTitle').text()).replace("'", '').slice(0, 100);
-    console.log('productName', productName);
-    // var imageUrl = $('.a-dynamic-image').attr('src');
+    var title = $.trim($('#productTitle').text()).replace("'", '').slice(0, 100);
+    console.log('title', title);
     var imageUrl = $('.image.selected .imgTagWrapper img').attr('src') || $('.a-button-selected img').attr('src');
     console.log('imageUrl', imageUrl);
     var isImageAvailable = imageUrl.includes('data:image');
@@ -54,11 +53,10 @@ const productAmazon = () => {
     var sizeExist = $.trim($('#dropdown_selected_size_name').find('.a-dropdown-prompt').text());
     var size = sizeExist ? sizeExist : null;
     console.log('size', size);
-    var width = null;
-    console.log('tempProductCurrencySymbol', tempProductCurrencySymbol);
-    console.log('tempProductPrice', tempProductPrice);
+    console.log('currencySymbol', currencySymbol);
+    console.log('price', price);
     console.log('count', count);
-    tempProductPrice = tempProductPrice * count;
+    price = price * count;
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store, width, isImageAvailable);
+    return {currencySymbol, price, title, imageUrl, color, size, count, available, store, width, isImageAvailable};
 };

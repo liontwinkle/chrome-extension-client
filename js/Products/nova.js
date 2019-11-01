@@ -1,19 +1,21 @@
 const productNova = () => {
-
     var store = 'fashionnova';
     var available = true;
-    var tempProductPriceStr = $('[itemprop = offers] .deal span span').text();
-    tempProductPriceStr = tempProductPriceStr.replace(',', '');
-    console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);
+    var count = 1;
+    var width = null;
+    var isImageAvailable = null;
+    var priceStr = $('[itemprop = offers] .deal span span').text();
+    priceStr = priceStr.replace(',', '');
+    console.log('priceStr>>>>>>', priceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
-    var tempProductPrice = tempProductPriceStr.match(regex)[0];
-    console.log('tempProductPrice>>>>>>>', tempProductPrice);
-    var tempProductCurrencySymbol = tempProductPriceStr.replace(tempProductPrice, '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
-    console.log('tempProductCurrencySymbol-Nova>>>>>>', tempProductCurrencySymbol);
-    var productName = $.trim($('[itemprop = name]').text());
-    productName = productName.replace("'", '');
+    var price = priceStr.match(regex)[0];
+    console.log('price>>>>>>>', price);
+    var currencySymbol = priceStr.replace(price, '');
+    currencySymbol = currencySymbol.replace('USD', '');
+    currencySymbol = currencySymbol.trim();
+    console.log('currencySymbol-Nova>>>>>>', currencySymbol);
+    var title = $.trim($('[itemprop = name]').text());
+    title = title.replace("'", '');
     var sizeTemp = $('.single-option-selector option:selected').text();
     var size = sizeTemp ? sizeTemp : '';
     console.log('size>>>>>>', size);
@@ -23,7 +25,6 @@ const productNova = () => {
     imageUrl = imageUrl.slice(0, imageUrl.indexOf('?'));
     imageUrl = 'https:' + imageUrl;
     console.log('imageUrl', imageUrl);
-    var count = 1;
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store);
-}
+    return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
+};

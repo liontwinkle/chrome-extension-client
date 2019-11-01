@@ -1,23 +1,23 @@
-const addWish = (ProductCurrencySymbol, ProductPrice, productName, imageUrl, color, size, count, available, store, width, isImageAvailable) => {
+const addWish = (currencySymbol, price, title, imageUrl, color, size, count, available, store, width, isImageAvailable) => {
     if (available === true) {
         if (!isImageAvailable) {
-            if (ProductCurrencySymbol === '$' ||
-                ProductCurrencySymbol === '£' ||
-                ProductCurrencySymbol === '€') {
-                chrome.storage.local.get(['tempProductCurrencySymbol'], function (result) {
+            if (currencySymbol === '$' ||
+                currencySymbol === '£' ||
+                currencySymbol === '€') {
+                chrome.storage.local.get(['currencySymbol'], function (result) {
                     var isAddedProduct = false;
-                    if (!result.tempProductCurrencySymbol) {
-                        chrome.storage.local.set({'tempProductCurrencySymbol': ProductCurrencySymbol}, function () {
+                    if (!result.currencySymbol) {
+                        chrome.storage.local.set({'currencySymbol': currencySymbol}, function () {
                         });
                         isAddedProduct = true;
                     }
-                    if (isAddedProduct || result.tempProductCurrencySymbol === ProductCurrencySymbol) {
+                    if (isAddedProduct || result.currencySymbol === currencySymbol) {
                         var productDetails = {
-                            'productTitle': productName,
-                            'productPrice': ProductPrice,
+                            'productTitle': title,
+                            'price': price,
                             'productImage': imageUrl,
                             'productColor': color,
-                            'productCurrency': ProductCurrencySymbol,
+                            'productCurrency': currencySymbol,
                             'productPage': location.href,
                             'productSize': size,
                             'productWidth': width || '',
@@ -37,12 +37,12 @@ const addWish = (ProductCurrencySymbol, ProductPrice, productName, imageUrl, col
                                         var newItemCount = productListPostAdd[i].itemCount + 1;
                                         productListPostAdd[i].itemCount = newItemCount;
                                         newItemCount = parseInt(newItemCount);
-                                        var oldPrice = productListPostAdd[i].productPrice;
+                                        var oldPrice = productListPostAdd[i].price;
                                         oldPrice = parseFloat(oldPrice);
-                                        ProductPrice = parseFloat(ProductPrice);
-                                        var newPrice = oldPrice + ProductPrice;
+                                        price = parseFloat(price);
+                                        var newPrice = oldPrice + price;
                                         newPrice = newPrice.toFixed('2');
-                                        productListPostAdd[i].productPrice = newPrice;
+                                        productListPostAdd[i].price = newPrice;
                                         chrome.storage.local.set({favCartDetails: JSON.stringify(productListPostAdd)}, function () {
                                         });
                                         chrome.runtime.sendMessage({
@@ -63,7 +63,7 @@ const addWish = (ProductCurrencySymbol, ProductPrice, productName, imageUrl, col
                                     } else if (productDetails.productWidth === 'select') {
                                         message = 'Please select a product width.';
                                         showMessage(message);
-                                    } else if (productDetails.productPrice === '') {
+                                    } else if (productDetails.price === '') {
                                         message = 'Please select a product price.';
                                         showMessage(message);
                                     } else {
@@ -94,7 +94,7 @@ const addWish = (ProductCurrencySymbol, ProductPrice, productName, imageUrl, col
                                 } else if (productDetails.productWidth === 'select') {
                                     message = 'Please select a product width.';
                                     showMessage(message);
-                                } else if (productDetails.productPrice === '') {
+                                } else if (productDetails.price === '') {
                                     message = 'Please select a product with price.';
                                     showMessage(message);
                                 } else {

@@ -13,7 +13,7 @@ const goCheckout = () => {
             $('body').append(loaderElement);
             var accessToken = 'Bearer ' + result.accessToken;
             $.ajax({
-                // url: 'https://cors-anywhere.herokuapp.com/https://d73724f1.ngrok.io/api/checkout',
+                // url: 'https://cors-anywhere.herokuapp.com/https://b94f3505.ngrok.io/api/checkout',
                 url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout',
                 type: 'post',
                 dataType: 'json',

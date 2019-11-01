@@ -1,20 +1,21 @@
 const productCosmetics = () => {
-
     var store = 'comsetics';
     var available = true;
-    var tempProductPriceStr = $('.product-price').text();
-    tempProductPriceStr = tempProductPriceStr.replace(',', '');
-    console.log('tempProductPriceStr>>>>>>>>>', tempProductPriceStr);
+    var width = null;
+    var isImageAvailable = null;
+    var priceStr = $('.product-price').text();
+    priceStr = priceStr.replace(',', '');
+    console.log('priceStr>>>>>>>>>', priceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
-    var tempProductPrice = tempProductPriceStr.match(regex)[0];
-    console.log('tempProductPrice>>>>>>.', tempProductPrice);
-    let tempProductCurrencySymbol = tempProductPriceStr.replace(',', '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.replace(tempProductPrice, '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
-    console.log('tempProductCurrencySymbol-cosmetics>>>>>>', tempProductCurrencySymbol);
-    var productName = $('.section-title h1').text();
-    productName = productName.replace("'", '');
+    var price = priceStr.match(regex)[0];
+    console.log('price>>>>>>.', price);
+    let currencySymbol = priceStr.replace(',', '');
+    currencySymbol = currencySymbol.replace(price, '');
+    currencySymbol = currencySymbol.replace('USD', '');
+    currencySymbol = currencySymbol.trim();
+    console.log('currencySymbol-cosmetics>>>>>>', currencySymbol);
+    var title = $('.section-title h1').text();
+    title = title.replace("'", '');
     var sizeExist = $('input[name=size-options]').attr('value');
     var sizeTemp = $('input[name=size-options]:checked').attr('value');
     var size = sizeExist ? ((sizeTemp) ? sizeTemp : 'select') : '';
@@ -25,7 +26,7 @@ const productCosmetics = () => {
     imageUrl =  'https:' + imageUrl;
     imageUrl = imageUrl.split('?')[0];
     var count = $('input[name=quantity]').val() || 1;
-    tempProductPrice = tempProductPrice * count;
+    price = price * count;
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store);
+    return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
 };

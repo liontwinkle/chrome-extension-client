@@ -2,18 +2,20 @@ const productRevolve = () => {
 
     var store = 'revolve';
     var available = true;
-    var tempProductPriceStr = $('#retailPrice').text();
-    tempProductPriceStr = tempProductPriceStr.replace(',', '');
-    console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);
+    var width = null;
+    var isImageAvailable = null;
+    var priceStr = $('#retailPrice').text();
+    priceStr = priceStr.replace(',', '');
+    console.log('priceStr>>>>>>', priceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
-    var tempProductPrice = tempProductPriceStr.match(regex)[0];
-    console.log('tempProductPrice>>>>>', tempProductPrice);
-    var tempProductCurrencySymbol = tempProductPriceStr.replace(tempProductPrice, '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
-    console.log('tempProductCurrencySymbol-Revolve>>>>>>', tempProductCurrencySymbol);
-    var productName = $('.product-name--lg').text();
-    productName = productName.replace("'", '');
+    var price = priceStr.match(regex)[0];
+    console.log('price>>>>>', price);
+    var currencySymbol = priceStr.replace(price, '');
+    currencySymbol = currencySymbol.replace('USD', '');
+    currencySymbol = currencySymbol.trim();
+    console.log('currencySymbol-Revolve>>>>>>', currencySymbol);
+    var title = $('.product-name--lg').text();
+    title = title.replace("'", '');
     var sizeExist = $('input[name=size-options]').attr('value');
     var sizeTemp = $('input[name=size-options]:checked').attr('value');
     var size = sizeExist ? ((sizeTemp) ? sizeTemp : 'select') : '';
@@ -25,5 +27,5 @@ const productRevolve = () => {
     console.log('color>>>>>>', color);
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store);
+    return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
 };

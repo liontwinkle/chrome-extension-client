@@ -1,14 +1,16 @@
 const productWalmart = () => {
 
     var store = 'walmart';
-    var available = true
-    var tempProductPrice = $('.prod-PriceSection span[itemprop=price]').attr('content');
-    console.log('tempProductPrice>>>>>', tempProductPrice);
-    tempProductPrice = $('.prod-PriceSection span[itemprop=priceCurrency]').length > 1 ? '' : tempProductPrice;
-    var tempProductCurrencySymbol = $('.prod-PriceSection span[itemprop=priceCurrency]:eq(0)').text();
-    console.log('currency>>>>>>>>>>>', tempProductCurrencySymbol);
-    var productName = $('.prod-ProductTitle').text();
-    productName = productName.replace("'", '');
+    var available = true;
+    var width = null;
+    var isImageAvailable = null;
+    var price = $('.prod-PriceSection span[itemprop=price]').attr('content');
+    console.log('price>>>>>', price);
+    price = $('.prod-PriceSection span[itemprop=priceCurrency]').length > 1 ? '' : price;
+    var currencySymbol = $('.prod-PriceSection span[itemprop=priceCurrency]:eq(0)').text();
+    console.log('currency>>>>>>>>>>>', currencySymbol);
+    var title = $('.prod-ProductTitle').text();
+    title = title.replace("'", '');
     var color = null;
     var size = null;
     if ($('.varslabel__content:eq(0)').prev().text().toLowerCase().includes('color')) {
@@ -33,7 +35,7 @@ const productWalmart = () => {
     console.log('color>>>>>>', color);
     console.log('size>>>>>>', size);
     console.log('imageUrl>>>>>', imageUrl);
-    tempProductPrice = tempProductPrice * count;
+    price = price * count;
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store);
+    return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
 };

@@ -2,21 +2,24 @@ const productShopDisney = () => {
 
     var store = 'shopdisney';
     var available = true;
+    var width = null;
+    var isImageAvailable = null;
+    var color = null;
     if ($('.prices .sales .value').length > 1) {
         available = false;
     }
-    var tempProductPriceStr = $('.prices .sales .value').text();
-    tempProductPriceStr = tempProductPriceStr.replace(',', '');
-    console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);
+    var priceStr = $('.prices .sales .value').text();
+    priceStr = priceStr.replace(',', '');
+    console.log('priceStr>>>>>>', priceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
-    var tempProductPrice = tempProductPriceStr.match(regex)[0];
-    console.log('tempProductPrice>>>>>', tempProductPrice);
-    var tempProductCurrencySymbol = tempProductPriceStr.replace(tempProductPrice, '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
-    console.log('tempProductCurrencySymbol-shopdisney>>>>>>', tempProductCurrencySymbol);
-    var productName = $('.product-detail__content-summary .product-name').text();
-    productName = productName.replace("'", '');
+    var price = priceStr.match(regex)[0];
+    console.log('price>>>>>', price);
+    var currencySymbol = priceStr.replace(price, '');
+    currencySymbol = currencySymbol.replace('USD', '');
+    currencySymbol = currencySymbol.trim();
+    console.log('currencySymbol-shopdisney>>>>>>', currencySymbol);
+    var title = $('.product-detail__content-summary .product-name').text();
+    title = title.replace("'", '');
     var sizeExist = $('.select-size');
     console.log('sizeExist', sizeExist);
     var sizeTemp = $('.select-size .selected a span').text();
@@ -27,8 +30,8 @@ const productShopDisney = () => {
     console.log('imageUrl>>>>>', imageUrl);
     console.log('count>>>>>', count);
     console.log('size>>>>>', size);
-    var color = null;
-    tempProductPrice = tempProductPrice * count;
+    price = price * count;
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store);
+
+    return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
 };

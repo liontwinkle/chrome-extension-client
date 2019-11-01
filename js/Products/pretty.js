@@ -1,18 +1,20 @@
 const productPretty = () => {
     var store = 'pretty';
     var available = true;
-    var tempProductPriceStr = $('.price-container.new .price .price').text() || $('.price-container .price').text();
-    tempProductPriceStr = tempProductPriceStr.replace(',', '');
-    console.log('tempProductPriceStr>>>>>>', tempProductPriceStr);
+    var width = null;
+    var isImageAvailable = null;
+    var priceStr = $('.price-container.new .price .price').text() || $('.price-container .price').text();
+    priceStr = priceStr.replace(',', '');
+    console.log('priceStr>>>>>>', priceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
-    var tempProductPrice = tempProductPriceStr.match(regex)[0];
-    console.log('tempProductPrice>>>>>', tempProductPrice);
-    var tempProductCurrencySymbol = tempProductPriceStr.replace(tempProductPrice, '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
-    console.log('tempProductCurrencySymbol-Pretty>>>>>>', tempProductCurrencySymbol);
-    var productName = $('.product-view-title').text();
-    productName = productName.replace("'", '');
+    var price = priceStr.match(regex)[0];
+    console.log('price>>>>>', price);
+    var currencySymbol = priceStr.replace(price, '');
+    currencySymbol = currencySymbol.replace('USD', '');
+    currencySymbol = currencySymbol.trim();
+    console.log('currencySymbol-Pretty>>>>>>', currencySymbol);
+    var title = $('.product-view-title').text();
+    title = title.replace("'", '');
     var sizeExist = $('.selproduct-size-ect');
     var sizeTemp = $('.selproduct-size-ect .selected').text();
     var size = sizeExist ? ((sizeTemp) ? sizeTemp : 'select') : '';
@@ -24,5 +26,5 @@ const productPretty = () => {
     console.log('color>>>>>>', color);
     console.log('imageUrl>>>>>', imageUrl);
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice, productName, imageUrl, color, size, count, available, store);
+    return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
 };

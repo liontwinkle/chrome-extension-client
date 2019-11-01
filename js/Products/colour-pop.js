@@ -1,19 +1,20 @@
 const productColourPop = () => {
-
     var store = 'colourpop';
     var available = true;
-    var tempProductPriceStr = $('.product-details__right .product-details__price--sale').clone().children().remove().end().text();
-    tempProductPriceStr = tempProductPriceStr.replace(',', '');
-    console.log('tempProductPriceStr>>>>>>>>>', tempProductPriceStr);
+    var width = null;
+    var isImageAvailable = null;
+    var priceStr = $('.product-details__right .product-details__price--sale').clone().children().remove().end().text();
+    priceStr = priceStr.replace(',', '');
+    console.log('priceStr>>>>>>>>>', priceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
-    var tempProductPrice = tempProductPriceStr.match(regex)[0];
-    console.log('tempProductPrice>>>>>', tempProductPrice);
-    var tempProductCurrencySymbol = tempProductPriceStr.replace(tempProductPrice, '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.replace('USD', '');
-    tempProductCurrencySymbol = tempProductCurrencySymbol.trim();
-    console.log('tempProductCurrencySymbol-colourpop>>>>>>', tempProductCurrencySymbol);
-    var productName = $('.showtablet .product-details__title').text();
-    productName = productName.replace("'", '');
+    var price = priceStr.match(regex)[0];
+    console.log('price>>>>>', price);
+    var currencySymbol = priceStr.replace(price, '');
+    currencySymbol = currencySymbol.replace('USD', '');
+    currencySymbol = currencySymbol.trim();
+    console.log('currencySymbol-colourpop>>>>>>', currencySymbol);
+    var title = $('.showtablet .product-details__title').text();
+    title = title.replace("'", '');
     var sizeExist = $('input[name=size-options]').attr('value');
     var sizeTemp = $('input[name=size-options]:checked').attr('value');
     var size = sizeExist ? ((sizeTemp) ? sizeTemp : 'select') : '';
@@ -24,7 +25,7 @@ const productColourPop = () => {
     imageUrl =  'https:' + imageUrl;
     imageUrl = imageUrl.split('?')[0];
     var count = $('.product-actions__quantity--input').val() || 1;
-    tempProductPrice = tempProductPrice * count;
+    price = price * count;
 
-    addProduct(tempProductCurrencySymbol, tempProductPrice,  productName, imageUrl, color, size, count, available, store);
+    return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
 };

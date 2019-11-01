@@ -9,21 +9,21 @@ function showMessage(message) {
     $('#resetCurrency').css('display', 'none');
     $('#addToCart-checkOut').css('display', 'none');
 }
-function showProductInfo(count, productName, imageUrl) {
+function showProductInfo(count, title, imageUrl) {
     $('#companyNotification').css('display', 'flex');
     $('#companyNotification').text(count);
     $('#page-mask').css('display', 'block');
     $('#successIcon').css('display', 'inline');
     $('#addToCartModal').css('display', 'block');
     $('#addToCartProductDetail').css('display', 'block');
-    $('#addToCartTitle').text(productName);
+    $('#addToCartTitle').text(title);
     $('#addToCartImage').attr('src', imageUrl);
     $('#addToCart-checkOut').css('display', 'block');
     $('#addToCart-Ok').css('display', 'none');
     $('#resetCurrency').css('display', 'none');
     $('#addToCartError').css('display', 'none');
 }
-const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl, color, size, count, available, store, width, isImageAvailable) => {
+const addProduct = (ProductCurrencySymbol, ProductPrice,  title, imageUrl, color, size, count, available, store, width, isImageAvailable) => {
     if (available === true) {
         if (!isImageAvailable) {
             if (ProductCurrencySymbol === '$' ||
@@ -39,7 +39,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                     if (isAddedCurrency || result.ProductCurrencySymbol === ProductCurrencySymbol) {
                         console.log('location.href', location.href);
                         let productDetails = {
-                            'productTitle': productName,
+                            'productTitle': title,
                             'productPrice': ProductPrice,
                             'productImage': imageUrl,
                             'productColor': color,
@@ -86,7 +86,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                         for (j = 0; j < productListPostAdd.length; j++) {
                                             tempCount = tempCount + productListPostAdd[j].itemCount
                                         }
-                                        showProductInfo(tempCount, productName, imageUrl)
+                                        showProductInfo(tempCount, title, imageUrl)
                                     }
                                 }
                                 if (isAddedProduct === false) {
@@ -126,7 +126,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                                 for (l = 0; l < cartDetails.length; l++) {
                                                     tempCount = tempCount + cartDetails[l].itemCount
                                                 }
-                                                showProductInfo(tempCount, productName, imageUrl);
+                                                showProductInfo(tempCount, title, imageUrl);
 
                                                 chrome.storage.local.set({productOne: JSON.stringify(productDetails)}, function () {
                                                 });
@@ -162,7 +162,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  productName, imageUrl,
                                         data: cartDetails
                                     }, function (response) {
                                     });
-                                    showProductInfo(count, productName, imageUrl);
+                                    showProductInfo(count, title, imageUrl);
                                     chrome.storage.local.set({productOne: JSON.stringify(productDetails)}, function () {
                                     });
                                     chrome.storage.local.get(['productOne'], function () {

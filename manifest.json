@@ -57,7 +57,10 @@
       "https://www.ralphlauren.com/*",
       "https://kkwbeauty.com/*",
       "https://www.walmart.com/*",
-      "https://www.shopdisney.com/*"
+      "https://www.shopdisney.com/*",
+      "https://us.boohoo.com/*",
+      "https://www.boohoo.com/*",
+      "https://www.modaoperandi.com/*"
     ],
 	"js": [
       "/jquery-3.4.0.min.js",
@@ -68,7 +71,11 @@
       "/js/Contents/switch-cart-wish.js",
       "/js/Contents/product-change.js",
       "/js/index.js",
-      "/js/Products/add-product.js",
+      "/js/Utils/checkout.js",
+      "/js/Utils/wish-list.js",
+      "/js/Utils/save-product.js",
+      "/js/Utils/add-product.js",
+      "/js/Utils/add-wish.js",
       "/js/Products/amazon.js",
       "/js/Products/ebay.js",
       "/js/Products/nike.js",
@@ -83,24 +90,8 @@
       "/js/Products/kkwbeauty.js",
       "/js/Products/walmart.js",
       "/js/Products/shopdisney.js",
-      "/js/WishLists/add-wish.js",
-      "/js/WishLists/amazon.js",
-      "/js/WishLists/ebay.js",
-      "/js/WishLists/nike.js",
-      "/js/WishLists/nova.js",
-      "/js/WishLists/revolve.js",
-      "/js/WishLists/cosmetics.js",
-      "/js/WishLists/colour-pop.js",
-      "/js/WishLists/pretty.js",
-      "/js/WishLists/forever.js",
-      "/js/WishLists/six.js",
-      "/js/WishLists/ralph.js",
-      "/js/WishLists/kkwbeauty.js",
-      "/js/WishLists/walmart.js",
-      "/js/WishLists/shopdisney.js",
-      "/js/Utils/checkout.js",
-      "/js/Utils/wish-list.js",
-      "/js/Utils/save-product.js"
+      "/js/Products/boohoo.js",
+      "/js/Products/modaoperandi.js"
     ]
   }],
 
