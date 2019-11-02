@@ -53,7 +53,7 @@ const addWish = (currencySymbol, price, title, imageUrl, color, size, count, ava
                                         $('#favouriteIcon').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/favouriteAdd.png');
                                     }
                                 }
-                                if (sameProductSKU == false) {
+                                if (sameProductSKU === false) {
                                     if (productDetails.productSize === 'select') {
                                         message = 'Please select a product size.';
                                         showMessage(message);

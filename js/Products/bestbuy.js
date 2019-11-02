@@ -1,0 +1,34 @@
+const productBestbuy = () => {
+    var store = 'bestbuy';
+    var available = true;
+    var priceStr = $('.priceView-hero-price span[aria-hidden=true]').first().text();
+    priceStr = priceStr.replace(',', '');
+    console.log('priceStr>>>>>>', priceStr);
+    var regex = /[+-]?\d+(\.\d+)?/g;
+    var price = priceStr.match(regex)[0];
+    console.log('price>>>>>', price);
+    var currencySymbol = priceStr.replace(price, '');
+    currencySymbol = currencySymbol.replace('USD', '');
+    currencySymbol = currencySymbol.trim();
+    console.log('currencySymbol-missguieded>>>>>>', currencySymbol);
+    var title = $('.sku-title h1').first().text();
+    title = title.replace("'", '');
+    console.log('title', title);
+    var width = null;
+    var sizeExist = $('.sizes-list .selected').text();
+    var size = sizeExist ? sizeExist : null;
+    var colorExist = $('.swatch-colour--selected span').text();
+    var color = colorExist ? colorExist : null;
+    console.log('size>>>>>>', size);
+    console.log('width>>>>>>', width);
+    console.log('color>>>>>>', color);
+    var imageUrl = $('.primary-media-wrapper img').attr('src');
+    imageUrl = imageUrl.slice(0, imageUrl.indexOf('?'));
+    imageUrl = imageUrl.slice(0, imageUrl.indexOf(';'));
+    var count = 1;
+    console.log('imageUrl>>>>>', imageUrl);
+    console.log('count>>>>>', count);
+    var isImageAvailable = null;
+
+    return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
+};

@@ -60,7 +60,14 @@
       "https://www.shopdisney.com/*",
       "https://us.boohoo.com/*",
       "https://www.boohoo.com/*",
-      "https://www.modaoperandi.com/*"
+      "https://www.modaoperandi.com/*",
+      "https://www.missguidedus.com/*",
+      "https://www.bestbuy.com/*",
+      "https://us.shein.com/*",
+      "https://www.shein.com/*",
+      "https://www2.hm.com/*",
+      "https://www.hm.com/*"
+
     ],
 	"js": [
       "/jquery-3.4.0.min.js",
@@ -91,7 +98,11 @@
       "/js/Products/walmart.js",
       "/js/Products/shopdisney.js",
       "/js/Products/boohoo.js",
-      "/js/Products/modaoperandi.js"
+      "/js/Products/modaoperandi.js",
+      "/js/Products/missguided.js",
+      "/js/Products/bestbuy.js",
+      "/js/Products/shein.js",
+      "/js/Products/hm.js"
     ]
   }],
 

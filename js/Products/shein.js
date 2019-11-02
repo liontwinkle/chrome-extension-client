@@ -1,0 +1,33 @@
+const productShein = () => {
+    var store = 'shein';
+    var available = true;
+    var priceStr = $('.price-discount').text();
+    priceStr = priceStr.replace(',', '');
+    console.log('priceStr>>>>>>', priceStr);
+    var regex = /[+-]?\d+(\.\d+)?/g;
+    var price = priceStr.match(regex)[0];
+    console.log('price>>>>>', price);
+    var currencySymbol = priceStr.replace(price, '');
+    currencySymbol = currencySymbol.replace('US$', '$');
+    currencySymbol = currencySymbol.trim();
+    console.log('currencySymbol-missguieded>>>>>>', currencySymbol);
+    var title = $('.goodsd-right .name').first().text();
+    title = title.replace("'", '');
+    console.log('title', title);
+    var width = null;
+    var sizeExist = $('.sizes-list .selected').text();
+    var size = sizeExist ? sizeExist : null;
+    var colorExist = $('.swatch-colour--selected span').text();
+    var color = colorExist ? colorExist : null;
+    console.log('size>>>>>>', size);
+    console.log('width>>>>>>', width);
+    console.log('color>>>>>>', color);
+    var imageUrl = $('.swiper-slide-active .j-change-main_image').attr('src');
+    imageUrl = 'https:' + imageUrl;
+    var count = 1;
+    console.log('imageUrl>>>>>', imageUrl);
+    console.log('count>>>>>', count);
+    var isImageAvailable = null;
+
+    return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
+};

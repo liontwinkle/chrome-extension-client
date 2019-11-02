@@ -1,0 +1,32 @@
+const productHm = () => {
+    var store = 'hm';
+    var available = true;
+    var priceStr = $('.name-price .price-value').text();
+    priceStr = priceStr.replace(',', '');
+    console.log('priceStr>>>>>>', priceStr);
+    var regex = /[+-]?\d+(\.\d+)?/g;
+    var price = priceStr.match(regex)[0];
+    console.log('price>>>>>', price);
+    var currencySymbol = priceStr.replace(price, '');
+    currencySymbol = currencySymbol.replace('USD', '');
+    currencySymbol = currencySymbol.trim();
+    console.log('currencySymbol-hm>>>>>>', currencySymbol);
+    var title = $('.product-item-headline').text();
+    title = title.replace("'", '');
+    console.log('title', title);
+    var width = null;
+    var color = $('.product-colors .product-input-label').text();
+    var sizeTemp = $('#picker-1 .trigger-button .value');
+    var size = sizeTemp ? (sizeTemp.text().includes('Select') ? 'select' : sizeTemp.text()) : null;
+    console.log('size>>>>>>', size);
+    console.log('width>>>>>>', width);
+    console.log('color>>>>>>', color);
+    var imageUrl = $('.product-detail-main-image-container img').attr('src');
+    imageUrl = 'https:' + imageUrl;
+    var count = 1;
+    console.log('imageUrl>>>>>', imageUrl);
+    console.log('count>>>>>', count);
+    var isImageAvailable = null;
+
+    return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
+};

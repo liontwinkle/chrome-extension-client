@@ -1,7 +1,5 @@
 $('#favouriteCart').ready(function () {
-
     $('body').on('click', '#favouriteCart', function () {
-
         $('#addToCart-Ok').on('click', function () {
             $('#page-mask').css('display', 'none');
             $('#addToCartModal').hide();
@@ -45,6 +43,10 @@ $('#favouriteCart').ready(function () {
                     wish = productBoohoo();
                 } else if ($('.product_description .product_title').text() !== '') {
                     wish = productModaoperandi();
+                } else if ($('.product-essential__title .product-essential__name').text() !== '') {
+                    wish = productMissguided();
+                } else if ($('.sku-title h1').text() !== '') {
+                    wish = productBestbuy();
                 }
                 else {
                     message = 'Please select a product';

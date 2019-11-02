@@ -37,7 +37,6 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  title, imageUrl, color
                         isAddedCurrency = true;
                     }
                     if (isAddedCurrency || result.ProductCurrencySymbol === ProductCurrencySymbol) {
-                        console.log('location.href', location.href);
                         let productDetails = {
                             'productTitle': title,
                             'productPrice': ProductPrice,
@@ -50,6 +49,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  title, imageUrl, color
                             'productStore': store,
                             'itemCount': parseInt(count)
                         };
+
                         chrome.storage.local.get(['cartDetails'], function (result) {
                             var message = null;
                             if (result && result.cartDetails && JSON.parse(result.cartDetails).length > 0) {
@@ -59,6 +59,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  title, imageUrl, color
                                     if ((productDetails.productColor === productListPostAdd[i].productColor)
                                         && (productDetails.productTitle === productListPostAdd[i].productTitle)
                                         && (productDetails.productWidth === productListPostAdd[i].productWidth)
+                                        && (productDetails.productPrice === productListPostAdd[i].productPrice)
                                         && (productDetails.productSize === productListPostAdd[i].productSize)) {
                                         isAddedProduct = true;
                                         var newItemCount = productListPostAdd[i].itemCount + parseInt(count);
@@ -165,6 +166,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice,  title, imageUrl, color
                                     showProductInfo(count, title, imageUrl);
                                     chrome.storage.local.set({productOne: JSON.stringify(productDetails)}, function () {
                                     });
+                                    console.log('productDetails title', productDetails.productTitle);
                                     chrome.storage.local.get(['productOne'], function () {
                                         saveProduct();
                                     });

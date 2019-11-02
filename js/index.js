@@ -21,8 +21,9 @@ $(window).on('load', function () {
             observer.observe(targetNode, config);
         }
     }
-    else if (window.location.toString().includes('ebay')) {
-        $('#binBtn_btn').before("<img id='addToCartMM' style='display: flex; width:240px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+    else if (window.location.toString().includes('.ebay.')) {
+        // $('#binBtn_btn').after("<img id='addToCartMM' style='display: flex; width:240px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        ($('.watchListCmp') || $('#binBtn_btn')).after("<img id='addToCartMM' style='display: flex; width:240px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('fashionnova')) {
         $('#add-to-cart-button').before("<img id='addToCartMM' style='display: flex; width:80%; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
@@ -63,7 +64,7 @@ $(window).on('load', function () {
         }
     }
     else if (window.location.toString().includes('.ralphlauren.')) {
-        $('#add-to-cart').after("<img id='addToCartMM' style='display: flex; width:80%; height: 50px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('#add-to-cart').after("<img id='addToCartMM' style='display:flex; width:80%; height: 50px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
         targetNode = document.getElementById('pdpMain');
         if (targetNode) {
             callback = function (mutationsList, observer) {
@@ -81,7 +82,6 @@ $(window).on('load', function () {
     }
     else if (window.location.toString().includes('kkwbeauty')) {
         $('.js-add-to-cart-button').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
-        // $('.P__button').after("<img id='addToCartMM' style='display: flex; width:270px; height: 50px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('walmart')) {
         $('.prod-product-cta-add-to-cart button').after("<img id='addToCartMM' style='display: flex; width:140px; height:40px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
@@ -93,7 +93,7 @@ $(window).on('load', function () {
         $('.product-add-to-cart #add-to-cart').after("<img id='addToCartMM' style='display: flex; width:350px; height: 70px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
         targetNode = document.getElementById('pdpMain');
         if (targetNode) {
-            callback = function (mutationsList, observer) {
+            callback = function (mutationsList) {
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList') {
                         if ($('#addToCartMM').length === 0) {
@@ -107,10 +107,10 @@ $(window).on('load', function () {
         }
     }
     else if (window.location.toString().includes('modaoperandi')) {
-        $('.add_to_bag').before("<img id='addToCartMM' style='display: flex; width:80%; height: 65px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        $('.add_to_bag').before("<img id='addToCartMM' style='display: flex; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
         targetNode = document.getElementById('wraps-body-content');
         if (targetNode) {
-            callback = function (mutationsList, observer) {
+            callback = function (mutationsList) {
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList') {
                         if ($('#addToCartMM').length === 0) {
@@ -122,6 +122,15 @@ $(window).on('load', function () {
             const observer = new MutationObserver(callback);
             observer.observe(targetNode, config);
         }
+    }
+    else if (window.location.toString().includes('missguided')) {
+        $('#add-to-cart').before("<img id='addToCartMM' style='display: flex; width:80%; height: 65px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+    }
+    // else if (window.location.toString().includes('shein.')) {
+    //     $('.goodsd-btn button').first().before("<img id='addToCartMM' style='display: flex; width:70%; height: 65px; margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+    // }
+    else if (window.location.toString().includes('.hm.')) {
+        $('.product-button-wrapper').first().before("<img id='addToCartMM' style='display: flex;margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
 
     if (window.location.toString().match('^https://www.amazon') ||
@@ -139,12 +148,19 @@ $(window).on('load', function () {
         window.location.toString().includes('walmart') ||
         window.location.toString().includes('shopdisney') ||
         window.location.toString().includes('.boohoo.') ||
-        window.location.toString().includes('modaoperandi')
+        window.location.toString().includes('modaoperandi') ||
+        window.location.toString().includes('missguided') ||
+        window.location.toString().includes('bestbuy') ||
+        // window.location.toString().includes('shein.') ||
+        window.location.toString().includes('.hm.')
     ) {
+        // add-to-cart button for bestbuy
+        $('.v-border-top .fulfillment-add-to-cart-button').before("<img id='addToCartMM' style='display: flex; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+
         $.get('chrome-extension://' + chrome.runtime.id + '/html/top-bar.html', function (data) {
             $('body').prepend(data);
         });
-        var pageMaskElement = '<div id="page-mask" style="position:fixed;left : 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: none; z-index: 99999;"></div>'
+        var pageMaskElement = '<div id="page-mask" style="position:fixed;left: 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: none; z-index: 99999;"></div>'
         var favouriteIcon = '';
         $('body').append(pageMaskElement);
 
@@ -155,7 +171,6 @@ $(window).on('load', function () {
                     if (result.favCartDetails) {
                         var cartProducts = JSON.parse(result.favCartDetails);
                         var isFav = false;
-
                         for (var i = 0; i < cartProducts.length; i++) {
                             if (cartProducts[i].productPage === location.href) {
                                 isFav = true;
@@ -285,10 +300,13 @@ $(window).on('load', function () {
                 || ($('#product-detail-section .product-name').text() !== '')
                 || ($('h2[itemprop=name]').text() !== '')
                 || ($('.prod-ProductTitle').text() !== '')
-                || ($('.product-detail__content-summary .product-name').text() !== '')
-                || ($('.gl-price__value').text() !== '')
-                || ($('.product-detail .product-name').text() !== '')
-                || ($('.product_description .product_title').text() !== '')
+                || ($('.product-detail__content-summary .product-name').text() !== '') //shopdisney
+                || ($('.product-detail .product-name').text() !== '') //boohoo
+                || ($('.product-essential__title .product-essential__name').text() !== '') //missguided
+                || ($('.product_description .product_title').text() !== '') //modaoperandi
+                || ($('.sku-title h1').text() !== '') //bestbuy
+                || ($('.goodsd-right .name').text() !== '') //shein
+                || ($('.product-item-headline').text() !== '') //hm
             ) {
 
                 $('body').on('click', '#addToCartMM', function () {
@@ -359,6 +377,14 @@ $(window).on('load', function () {
                                     product = productBoohoo();
                                 } else if ($('.product_description .product_title').text() !== '') {
                                     product = productModaoperandi();
+                                } else if ($('.product-essential__title .product-essential__name').text() !== '') {
+                                    product = productMissguided();
+                                } else if ($('.sku-title h1').text() !== '') {
+                                    product = productBestbuy();
+                                } else if ($('.goodsd-right .name').text() !== '') {
+                                    product = productShein();
+                                } else if ($('.product-item-headline').text() !== '') {
+                                    product = productHm();
                                 }
                                 else {
                                     message = 'Please select a product.';
@@ -378,4 +404,3 @@ $(window).on('load', function () {
     }
 
 });
-

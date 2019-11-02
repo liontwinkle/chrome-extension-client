@@ -44,7 +44,7 @@ const productAmazon = () => {
     var count = $('#quantity option:selected').text() || 1;
     var title = $.trim($('#productTitle').text()).replace("'", '').slice(0, 100);
     console.log('title', title);
-    var imageUrl = $('.image.selected .imgTagWrapper img').attr('src') || $('.a-button-selected img').attr('src');
+    var imageUrl = "https://lp2.hm.com/hmgoepprod?set=source[/87/71/87712c91e735c5705e35475271e6bbdbc1e2352a.jpg],origin[dam],category[men_socks],type[DESCRIPTIVESTILLLIFE],res[m],hmver[1]&call=url[file:/product/main]";
     console.log('imageUrl', imageUrl);
     var isImageAvailable = imageUrl.includes('data:image');
     var colorExist = $.trim($('#variation_color_name').find('.selection').text());
