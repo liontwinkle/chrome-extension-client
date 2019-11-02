@@ -44,14 +44,15 @@ const productAmazon = () => {
     var count = $('#quantity option:selected').text() || 1;
     var title = $.trim($('#productTitle').text()).replace("'", '').slice(0, 100);
     console.log('title', title);
-    var imageUrl = "https://lp2.hm.com/hmgoepprod?set=source[/87/71/87712c91e735c5705e35475271e6bbdbc1e2352a.jpg],origin[dam],category[men_socks],type[DESCRIPTIVESTILLLIFE],res[m],hmver[1]&call=url[file:/product/main]";
+    // var imageUrl = $('.image.selected .imgTagWrapper img').attr('src') || $('.a-button-selected img').attr('src');
+    var imageUrl = "https://images.asos-media.com/products/casio-aq-230ga-9dmqyes-digital-bracelet-watch/6763906-1-gold?$XXL$&wid=513&fit=constrain";
     console.log('imageUrl', imageUrl);
     var isImageAvailable = imageUrl.includes('data:image');
     var colorExist = $.trim($('#variation_color_name').find('.selection').text());
     var color = colorExist ? colorExist : null;
     console.log('color', color);
-    var sizeExist = $.trim($('#dropdown_selected_size_name').find('.a-dropdown-prompt').text());
-    var size = sizeExist ? sizeExist : null;
+    var sizeExist = $('#dropdown_selected_size_name .a-dropdown-prompt').text();
+    var size = sizeExist ? (sizeExist.includes('Select') ? 'select' : sizeExist) : null;
     console.log('size', size);
     console.log('currencySymbol', currencySymbol);
     console.log('price', price);
