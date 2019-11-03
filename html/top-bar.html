@@ -117,7 +117,7 @@
             font-size: 18px;
             color: white;
             font-weight: 500;
-            background: black;
+            background: #0b3068;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -165,7 +165,7 @@
             cursor: pointer;
         }
         .category-selected {
-            background: black;
+            background: #0b3068;
             color: white;
         }
 
@@ -191,22 +191,40 @@
         }
 
         /* revolve style end*/
-        .custom-btn {
+        .custom-btn-checkout {
             text-transform: none;
-            padding: 12px;
+            width: 140px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 18px;
-            background: black !important;
+            background: #0b3068 !important;
             color: white;
-            margin: 15px 0 0 0;
-            border-radius: 3px;
+            border-radius: 22px;
             border: none;
             text-align: center;
+        }
+        .custom-btn-wish{
+            text-transform: none;
+            height: 44px;
+            width: 80%;
+            font-size: 18px;
+            background: #0b3068 !important;
+            color: white;
+            margin: 15px auto;
+            border-radius: 22px;
+            border: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #close-btn {
             padding: 10px;
             float: right;
-            background: black;
+            background: #0b3068;
             border: navajowhite;
             font-size: 28px;
         }
@@ -244,7 +262,7 @@
 
 <div style="height: 65px;" id="topBarContainer">
     <div id="usShopping"
-         style="top:0;background: rgb(0, 0, 0);height: 65px;position: fixed;z-index: 999999;width: 100%;display: flex;justify-content: space-between;">
+         style="top:0;background: #0b3068 ;height: 65px;position: fixed;z-index: 999999;width: 100%;display: flex;justify-content: space-between;">
         <div style="display: flex;">
             <a href="http://letsgoship.com/" target="_blank" style="width: 127px; height: 54px; display: flex;">
                 <img id='companyLogo' src="#" style="margin: 6px 0 0 13px; width: 100%;"/>
@@ -270,46 +288,55 @@
                     <p style="font-family: Geneva,sans-serif; letter-spacing: 0; color: rgba(255,126,24,1); font-size: 14px;font-weight: 600;line-height: 19px;text-align: center;">Ensure your items are not restricted.</p>
                 </div>
                 <div id="button-wrapper" style="display:flex; justify-content:space-between; padding: 0 33px">
-                    <button id="resetCurrency" class="btn btn-block" style="font-family: Geneva,sans-serif; width:270px; height: 44px; border-radius: 4px; background: black; color: white; display: none; margin: 0;">Reset</button>
-                    <button id="addToCart-Ok" class="btn btn-block" style="font-family: Geneva,sans-serif; width:270px; height: 44px; border-radius: 4px; background: black; color: white; display: none; margin: 0;">OK</button>
+                    <button id="resetCurrency" class="btn btn-block" style="font-family: Geneva,sans-serif; width:270px; height: 44px; border-radius: 4px; background: #0b3068; color: white; display: none; margin: 0;">Reset</button>
+                    <button id="addToCart-Ok" class="btn btn-block" style="font-family: Geneva,sans-serif; width:270px; height: 44px; border-radius: 4px; background: #0b3068; color: white; display: none; margin: 0;">OK</button>
                 </div>
             </div>
-            <div id="favouriteCart" style="float: left;margin: 17px 10px 0 20px; width: 25px;">
-                <img id="favouriteIcon" src="#" class="mr-3 ml-1">
+            <div id="userAvatar" style="float: left;margin: 20px 15px 0 20px; width: 27px;">
+                <img id="userIcon" src="#" class="mr-3 ml-1" style="width: 100%;">
+            </div>
+            <div id="favouriteCart" style="float: left;margin: 20px 15px 0 0; width: 27px;">
+                <img id="favouriteIcon" src="#" class="mr-3 ml-1" style="width: 100%;">
             </div>
             <div id="viewCart" style="float: right;margin-top: 20px;margin-right: 30px; width: 27px;">
                 <img id="viewCartIcon" src="#" class="mr-3 ml-1">
-                <span id="companyNotification" style="display: none;position: absolute;min-width: 7px;background-color: rgb(220, 53, 69);color: rgb(255, 255, 255);font-size: 13px; justify-content: center; align-items: center; border-radius: 50%;margin-left: 27px;margin-top: -34px; width: 20px; height: 20px;text-align: center" class="companyNotification">0</span>
-                <div id="viewCartModal" style="color: black; z-index: 500;position: absolute;top: 65px;right: 0;width: 320px;background-color: white;overflow: auto;height: calc(100vh - 65px);display: none; padding: 10px 25px; font-family: Geneva,sans-serif;">
+                <span style="display: none;position: absolute;min-width: 7px;background-color: rgb(220, 53, 69);color: rgb(255, 255, 255);font-size: 13px; justify-content: center; align-items: center; border-radius: 50%;margin-left: 17px;margin-top: -35px; width: 20px; height: 20px;text-align: center" class="companyNotification">0</span>
+                <div id="viewCartModal" style="color: black; z-index: 500;position: absolute;top: 65px;right: 0;width: 320px;background-color: white;overflow: auto;height: calc(100vh - 65px);display: none; padding: 25px; font-family: Geneva,sans-serif;">
                     <div style="display: flex;">
-                        <div id="cartButton" style="text-align: center; width: 50%; align-items: center; height: 38px; display: flex; justify-content: center; font-size: 13px; font-weight: 600; line-height: 16px; border-radius: 4px 0 0 4px;border: 1px solid #E2E5E6; background: #E2E5E6;">Shopping Cart</div>
-                        <div id="favButton" style="text-align: center; width: 50%; align-items: center; height: 38px; display: flex; justify-content: center; border-radius: 0 4px 4px 0; font-size: 13px; font-weight: 600; opacity: 0.4; border: 1px solid #E2E5E6; background: white;">Wishlist</div>
+                        <div id="cartButton" style="text-align: center; width: 50%; align-items: center; height: 38px; display: flex; justify-content: center; font-size: 13px; font-weight: 600; line-height: 16px; border-radius: 19px 0 0 19px;border: 1px solid #E2E5E6; background: #E2E5E6;">Shopping Cart</div>
+                        <div id="favButton" style="text-align: center; width: 50%; align-items: center; height: 38px; display: flex; justify-content: center; border-radius: 0 19px 19px 0; font-size: 13px; font-weight: 600; border: 1px solid #E2E5E6; background: white;">Wishlist</div>
                     </div>
                     <div id="cartsWrapper">
-                        <div style="padding: 20px 0 11px 0; border-bottom: 1px solid #D1D1D1;">
-                            <div style="display:flex; justify-content: space-between ">
-                                <div style="font-size: 16px;font-weight: 600;line-height: 20px;">Shopping Cart</div>
-                                <div style="font-size: 16px;font-weight: 600;line-height: 20px;"><span id="currency"></span><span id="subtotal"></span></div>
-                            </div>
-                            <div style="display:flex; justify-content: space-between; padding-top: 7px">
-                                <div style="color: #A3A3A3;font-size: 13px;	line-height: 16px;">items</div>
-                                <div style="color: #A3A3A3;font-size: 13px;	line-height: 16px;">Subtotal</div>
+                        <!--<div style="padding: 20px 0 11px 0; border-bottom: 1px solid #D1D1D1;">-->
+                            <!--<div style="display:flex; justify-content: space-between ">-->
+                                <!--<div style="font-size: 16px;font-weight: 600;line-height: 20px;">Shopping Cart</div>-->
+                                <!--<div style="font-size: 16px;font-weight: 600;line-height: 20px;"><span id="currency"></span><span id="subtotal"></span></div>-->
+                            <!--</div>-->
+                            <!--<div style="display:flex; justify-content: space-between; padding-top: 7px">-->
+                                <!--<div style="color: #A3A3A3;font-size: 13px;	line-height: 16px;">items</div>-->
+                                <!--<div style="color: #A3A3A3;font-size: 13px;	line-height: 16px;">Subtotal</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div id="cartDetailSection" style="display:flex; flex-direction: column; "></div>
+                        <div style="display:flex; margin: 30px 0; justify-content: space-between;">
+                            <div id="checkOut" class="go-shipping custom-btn-checkout">Checkout</div>
+                            <div>
+                                <div style="font-size: 13px;font-weight: 400;line-height: 20px; display: flex; opacity: 0.7; justify-content: flex-end;">Total Items<span style="padding-left: 8px" class="companyNotification"></span></div>
+                                <div style="font-size: 24px;font-weight: 600;line-height: 20px; color: #0b3068"><span id="currency"></span><span id="subtotal"></span></div>
                             </div>
                         </div>
-                        <div id="cartDetailSection" style="display:flex; flex-direction: column; "></div>
-                        <div id="checkOut" class="go-shipping custom-btn">Proceed to Checkout</div>
                     </div>
                     <div id="favWrapper" style="display: none;">
                         <div id="favCartDetailSection" style="display:flex; flex-direction: column; "></div>
-                        <div id="favWishList" class="custom-btn">Add to Wish List</div>
+                        <div id="favWishList" class="custom-btn-wish">Add to Wish List</div>
                     </div>
                 </div>
-                <div id="ConfirmCheckout" style="background: white; display: none; position: absolute; top: 200px; right: 20px; z-index: 9999;
-                    flex-direction: column; justify-content: center; align-items: center; width: 275px; height: 140px; text-align: center;padding: 15px; border-radius: 7px;">
-                    <div style="padding: 10px; font-weight: 700;">The products of your cart </br>will be reset.</div>
-                    <button id="ConfirmButton" class="btn btn-block" style="text-align: center; width: 200px; height: 44px; background: black; color: white;font-size: 14px; ">Ok
-                    </button>
-                </div>
+                <!--<div id="ConfirmCheckout" style="background: white; display: none; position: absolute; top: 200px; right: 20px; z-index: 9999;-->
+                    <!--flex-direction: column; justify-content: center; align-items: center; width: 275px; height: 140px; text-align: center;padding: 15px; border-radius: 7px;">-->
+                    <!--<div style="padding: 10px; font-weight: 700;">The products of your cart </br>will be reset.</div>-->
+                    <!--<button id="ConfirmButton" class="btn btn-block" style="text-align: center; width: 200px; height: 44px; background: #0b3068; color: white;font-size: 14px; ">Ok-->
+                    <!--</button>-->
+                <!--</div>-->
             </div>
         </div>
     </div>
@@ -318,62 +345,63 @@
      aria-labelledby="go-ModalLongTitle">
     <div class="modal-dialog" role="document" id="go-Modal-content"
          style="width: 470px; position: absolute; left: 35px; top: 85px;">
+        <iframe src="https://letsgoship.com/shop-retailers" width="600" height="800"></iframe>
 
-        <div class="modal-content" id="popup-modal" style="background: #f2f5f8; border: unset;">
-            <div id="searchBar">
-                <img style="width: 30px; height: 30px; margin-left: 25px;" id="magnify" src="#">
-                <label style="margin: 0; position: relative;">
-                    <input type="text" placeholder="Search Retailer by name"
-                           style="margin: 0; background: #4c4c4c;  border: none !important; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>
-                </label>
-                <img style="width: 30px; height: 30px; margin-right: 25px;" id="setting" src="#">
-            </div>
-            <div style="border: unset; background: #010101; height: 150px;">
-                <div id="close-btn" data-dismiss="modal" aria-label="Close">
-                    <span style="color: white; float: right" aria-hidden="true">&times;</span>
-                </div>
-            </div>
-            <div style="padding: 10px;">
-                <div id="item-group" style="margin-top: -50px; display: flex; flex-wrap: wrap;">
-                    <a href="https://www.amazon.com/" target="_blank" class="store-item"><img id="amazon" src="#"></a>
-                    <a href="https://www.ebay.com/" target="_blank" class="store-item"><img id="ebay" src="#"></a>
-                    <a href="https://www.nike.com" target="_blank" class="store-item"><img id="nike" src="#"></a>
-                    <a href="https://www.fashionnova.com/" target="_blank" class="store-item"><img id="fashionNova" src="#"></a>
-                    <a href="https://www.revolve.com/" target="_blank" class="store-item"><img id="revolve" src="#"></a>
-                    <a href="https://www.kyliecosmetics.com/" target="_blank" class="store-item"><img id="cosmetics" src="#"></a>
-                    <a href="https://www.colourpop.com/" target="_blank" class="store-item"><img id="color" src="#"></a>
-                    <a href="https://www.prettylittlething.com/" target="_blank" class="store-item"><img id="pretty" src="#"></a>
-                    <a href="https://www.forever21.com/" target="_blank" class="store-item"><img id="forever21" src="#"></a>
-                    <a href="https://www.6pm.com/" target="_blank" class="store-item"><img id="six-pm" src="#"></a>
-                    <a href="https://www.ralphlauren.com/" target="_blank" class="store-item"><img id="ralph" src="#"></a>
-                    <a href="https://kkwbeauty.com/" target="_blank" class="store-item"><img id="kkwbeauty" src="#"></a>
-                    <a href="https://www.walmart.com/" target="_blank" class="store-item"><img id="walmart" src="#"></a>
-                    <a href="https://www.shopdisney.com/" target="_blank" class="store-item"><img id="shopdisney" src="#"></a>
-                </div>
-            </div>
-            <div class="modal-footer" style="background: black; height: 40px;">
-            </div>
-        </div>
+        <!--<div class="" id="popup-modal" style="background: #f2f5f8; border: unset;">-->
+            <!--<div id="searchBar">-->
+                <!--<img style="width: 30px; height: 30px; margin-left: 25px;" id="magnify" src="#">-->
+                <!--<label style="margin: 0; position: relative;">-->
+                    <!--<input type="text" placeholder="Search Retailer by name"-->
+                           <!--style="margin: 0; background: #4c4c4c;  border: none !important; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>-->
+                <!--</label>-->
+                <!--<img style="width: 30px; height: 30px; margin-right: 25px;" id="setting" src="#">-->
+            <!--</div>-->
+            <!--<div style="border: unset; background: #0b3068; height: 150px;">-->
+                <!--<div id="close-btn" data-dismiss="modal" aria-label="Close">-->
+                    <!--<span style="color: white; float: right">&times;</span>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div style="padding: 10px;">-->
+                <!--<div id="item-group" style="margin-top: -50px; display: flex; flex-wrap: wrap;">-->
+                    <!--<a href="https://www.amazon.com/" target="_blank" class="store-item"><img id="amazon" src="#"></a>-->
+                    <!--<a href="https://www.ebay.com/" target="_blank" class="store-item"><img id="ebay" src="#"></a>-->
+                    <!--<a href="https://www.nike.com" target="_blank" class="store-item"><img id="nike" src="#"></a>-->
+                    <!--<a href="https://www.fashionnova.com/" target="_blank" class="store-item"><img id="fashionNova" src="#"></a>-->
+                    <!--<a href="https://www.revolve.com/" target="_blank" class="store-item"><img id="revolve" src="#"></a>-->
+                    <!--<a href="https://www.kyliecosmetics.com/" target="_blank" class="store-item"><img id="cosmetics" src="#"></a>-->
+                    <!--<a href="https://www.colourpop.com/" target="_blank" class="store-item"><img id="color" src="#"></a>-->
+                    <!--<a href="https://www.prettylittlething.com/" target="_blank" class="store-item"><img id="pretty" src="#"></a>-->
+                    <!--<a href="https://www.forever21.com/" target="_blank" class="store-item"><img id="forever21" src="#"></a>-->
+                    <!--<a href="https://www.6pm.com/" target="_blank" class="store-item"><img id="six-pm" src="#"></a>-->
+                    <!--<a href="https://www.ralphlauren.com/" target="_blank" class="store-item"><img id="ralph" src="#"></a>-->
+                    <!--<a href="https://kkwbeauty.com/" target="_blank" class="store-item"><img id="kkwbeauty" src="#"></a>-->
+                    <!--<a href="https://www.walmart.com/" target="_blank" class="store-item"><img id="walmart" src="#"></a>-->
+                    <!--<a href="https://www.shopdisney.com/" target="_blank" class="store-item"><img id="shopdisney" src="#"></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="modal-footer" style="background: #0b3068; height: 40px;">-->
+            <!--</div>-->
+        <!--</div>-->
 
-        <div id="filter-category" style="display: none;font-family: Helvetica,Arial,sans-serif !important;">
-            <div class="filter-header"
-                 style="display:flex; position: relative; align-items: center; justify-content: center;
-                height: 80px; background-color: black; color: white;">
-                <span id="filter-close" style="font-size: 40px; font-weight: 700; color: white; position: absolute; left: 30px;" aria-hidden="true">&times;</span>
-                <span style="font-size: 23px">Filter by categories</span>
-            </div>
-            <div class="filter-body" style="background: #eaedf1; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                <div class="filter-content" style="display: flex; flex-wrap: wrap; padding: 15px 0; width: 86%">
-                    <span class="category-item">beauty</span>
-                    <span class="category-item">clothing</span>
-                    <span class="category-item">electronic</span>
-                    <span class="category-item">sports</span>
-                    <span class="category-item">books</span>
-                </div>
-                <div class="apply-btn">Apply Filters</div>
-                <div class="clear-btn">Clear</div>
-            </div>
-        </div>
+        <!--<div id="filter-category" style="display: none;font-family: Helvetica,Arial,sans-serif !important;">-->
+            <!--<div class="filter-header"-->
+                 <!--style="display:flex; position: relative; align-items: center; justify-content: center;-->
+                <!--height: 80px; background-color: #0b3068; color: white;">-->
+                <!--<span id="filter-close" style="font-size: 40px; font-weight: 700; color: white; position: absolute; left: 30px;">&times;</span>-->
+                <!--<span style="font-size: 23px">Filter by categories</span>-->
+            <!--</div>-->
+            <!--<div class="filter-body" style="background: #eaedf1; display: flex; align-items: center; justify-content: center; flex-direction: column;">-->
+                <!--<div class="filter-content" style="display: flex; flex-wrap: wrap; padding: 15px 0; width: 86%">-->
+                    <!--<span class="category-item">beauty</span>-->
+                    <!--<span class="category-item">clothing</span>-->
+                    <!--<span class="category-item">electronic</span>-->
+                    <!--<span class="category-item">sports</span>-->
+                    <!--<span class="category-item">books</span>-->
+                <!--</div>-->
+                <!--<div class="apply-btn">Apply Filters</div>-->
+                <!--<div class="clear-btn">Clear</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </div>
 </body>

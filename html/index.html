@@ -15,81 +15,85 @@
 </head>
 <body>
 <div class="imageLogo"></div>
-<div class="container" id='signupLoginPage' style="display: block; padding: 0 25px;">
-
-    <div class="btn-group buttonClass" role="group" aria-label="Basic example" style="margin-top: 120px;">
-        <button type="button" class="btn btn-dark" id="login">Login</button>
-        <button type="button" class="btn btn-outline-dark" id="signup">Sign Up</button>
+<div class="container" id='signupLoginPage' style="display: block; padding: 0 50px;">
+    <span style="position: absolute;left: 30px;top: 10px;font-size: 40px; display: none;" id="login">&times;</span>
+    <div style="margin-top: 190px;">
+        <!--<button type="button" class="btn btn-dark" id="login">Login</button>-->
+        <!--<button type="button" class="btn btn-outline-dark" id="signup">Sign Up</button>-->
     </div>
-    <div class="titleHeading"><h6 style="text-align: center; margin-top: 15px;" id="titleHeadingId">Please Login</h6></div>
+    <div class="titleHeading"><div style="text-align: center; margin-top: 15px; font-size: 18px; font-weight: 700" id="titleHeadingId"></div></div>
 
     <div class="successHeading" id="successHeading" style="display: none;"><h6 style="text-align: center;" >Successfully Signed Up</h6></div>
     <div style="margin-top: 1em;" id="loginbody">
         <form>
             <div>
                 <p>Email</p>
-                <div class="input-group mb-3 inputDiv errorLogin">
-                    <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan" ><i id="envelopeIcon" class="fas fa-envelope" style="color:rgb(0,0,0)"></i></span>
-                    </div>
-                    <input type="email" id="loginEmail" class="form-control inputClass" placeholder="creative@gmail.com" aria-label="Email" >
+                <div class="input-group inputDiv errorLogin">
+                    <!--<div class="input-group-prepend iconDiv">-->
+                        <!--<span class="input-group-text iconSpan" ><i id="envelopeIcon" class="fas fa-envelope" style="color:rgb(0,0,0)"></i></span>-->
+                    <!--</div>-->
+                    <input type="email" id="loginEmail" class="inputClass" placeholder="creative@gmail.com" aria-label="Email" >
                 </div>
             </div>
             <div>
                 <p>Password</p>
-                <div class="input-group mb-3 inputDiv errorLogin">
-                    <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan"><i id="lockIcon" class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>
-                    </div>
-                    <input type="password" id="loginPass" class="form-control inputClass" placeholder="Enter Password Here" aria-label="Password">
+                <div class="input-group inputDiv errorLogin">
+                    <!--<div class="input-group-prepend iconDiv">-->
+                        <!--<span class="input-group-text iconSpan"><i id="lockIcon" class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>-->
+                    <!--</div>-->
+                    <input type="password" id="loginPass" class="inputClass" placeholder="Enter Password Here" aria-label="Password">
                 </div>
             </div>
-            <div id="loginButton" class="btn-dark submitButtonClass submitLoginForm"
-                 style="margin-bottom: 1.5rem;color: white;background: black !important; text-align: center; padding: 10px; border-radius: 5px;">Login Now</div>
+            <div style="height: 30px;"></div>
+            <div id="loginButton" class="submitButtonClass submitLoginForm sign-custom">Login</div>
+            <div class="sign-custom" id="signup">Sign Up</div>
+            <div style="font-size: 10px; margin: 30px 0 10px; text-align: center;">
+                Copyright@ Lets go Ship. All Rights Reserved
+            </div>
         </form>
     </div>
     <div style="margin-top: 1em;" id="signupbody">
         <form>
             <div>
                 <p>Name</p>
-                <div class="input-group mb-3 inputDiv">
-                    <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan"><i class="fas fa-user-circle" style="color:rgb(0,0,0)"></i></span>
-                    </div>
-                    <input type="text" class="form-control inputClass userName" placeholder="This is my Username" aria-label="Username">
+                <div class="input-group inputDiv">
+                    <!--<div class="input-group-prepend iconDiv">-->
+                        <!--<span class="input-group-text iconSpan"><i class="fas fa-user-circle" style="color:rgb(0,0,0)"></i></span>-->
+                    <!--</div>-->
+                    <input type="text" class="inputClass userName" placeholder="This is my Username" aria-label="Username">
                 </div>
             </div>
             <div>
                 <p>Email</p>
-                <div class="input-group mb-3 inputDiv errorSignUpEmail">
-                    <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan lockIcon signUpEmailLock"><i class="fas fa-envelope" style="color:rgb(0,0,0)"></i></span>
-                    </div>
-                    <input type="email" class="form-control inputClass userEmail" placeholder="creative@gmail.com" aria-label="Email" >
+                <div class="input-group inputDiv errorSignUpEmail">
+                    <!--<div class="input-group-prepend iconDiv">-->
+                        <!--<span class="input-group-text iconSpan lockIcon signUpEmailLock"><i class="fas fa-envelope" style="color:rgb(0,0,0)"></i></span>-->
+                    <!--</div>-->
+                    <input type="email" class="inputClass userEmail" placeholder="creative@gmail.com" aria-label="Email" >
                 </div>
             </div>
             <div class="emailErrorHeading" id="emailErrorHeading" style="display: none;"><h6 style="text-align: center;" >Please enter valid email id</h6></div>
             <div>
                 <p>Password</p>
-                <div class="input-group mb-3 inputDiv errorSignUpPassword">
-                    <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan lockIcon"><i class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>
-                    </div>
-                    <input type="password" class="form-control inputClass userPassword" placeholder="Enter Password Here" aria-label="Password">
+                <div class="input-group inputDiv errorSignUpPassword">
+                    <!--<div class="input-group-prepend iconDiv">-->
+                        <!--<span class="input-group-text iconSpan lockIcon"><i class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>-->
+                    <!--</div>-->
+                    <input type="password" class="inputClass userPassword" placeholder="Enter Password Here" aria-label="Password">
                 </div>
             </div>
             <div class="passwordErrorHeading" id="passwordErrorHeading" style="display: none;"><h6 style="text-align: center;" >Minimum 6 characters password</h6></div>
             <div>
                 <p>Confirm Password</p>
-                <div class="input-group mb-3 inputDiv errorSignUpPassword">
-                    <div class="input-group-prepend iconDiv">
-                        <span class="input-group-text iconSpan"><i class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>
-                    </div>
-                    <input type="password" class="form-control inputClass confirmPassword" aria-label="Password">
+                <div class="input-group inputDiv errorSignUpPassword">
+                    <!--<div class="input-group-prepend iconDiv">-->
+                        <!--<span class="input-group-text iconSpan"><i class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>-->
+                    <!--</div>-->
+                    <input type="password" class="inputClass confirmPassword" placeholder="Enter password again" aria-label="Password">
                 </div>
             </div>
             <div class="pwdMatchErrorHeading" id="pwdMatchErrorHeading" style="display: none;"><h6>Passwords don't match</h6></div>
-            <button type="button" class="btn btn-dark submitButtonClass submitSignupForm" style="margin-bottom: 1.5rem; background: black !important;" href='#'>Sign Up Now</button>
+            <button type="button" class="sign-custom submitButtonClass submitSignupForm" href='#'>Sign Up Now</button>
         </form>
     </div>
 </div>

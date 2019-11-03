@@ -14,7 +14,7 @@ const addWish = (currencySymbol, price, title, imageUrl, color, size, count, ava
                     if (isAddedProduct || result.currencySymbol === currencySymbol) {
                         var productDetails = {
                             'productTitle': title,
-                            'price': price,
+                            'productPrice': price,
                             'productImage': imageUrl,
                             'productColor': color,
                             'productCurrency': currencySymbol,
@@ -63,7 +63,7 @@ const addWish = (currencySymbol, price, title, imageUrl, color, size, count, ava
                                     } else if (productDetails.productWidth === 'select') {
                                         message = 'Please select a product width.';
                                         showMessage(message);
-                                    } else if (productDetails.price === '') {
+                                    } else if (productDetails.productPrice === '') {
                                         message = 'Please select a product price.';
                                         showMessage(message);
                                     } else {
@@ -94,7 +94,7 @@ const addWish = (currencySymbol, price, title, imageUrl, color, size, count, ava
                                 } else if (productDetails.productWidth === 'select') {
                                     message = 'Please select a product width.';
                                     showMessage(message);
-                                } else if (productDetails.price === '') {
+                                } else if (productDetails.productPrice === '') {
                                     message = 'Please select a product with price.';
                                     showMessage(message);
                                 } else {

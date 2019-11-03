@@ -13,13 +13,13 @@ $('#viewCartModal').ready(function () {
         $('#cartsWrapper').css('display', 'block');
         $('#favWrapper').css('display', 'none');
         $('#cartButton').css({'background': '#E2E5E6', 'opacity': '1'});
-        $('#favButton').css({'background': 'none', 'opacity': '0.4'});
+        $('#favButton').css({'background': 'none', 'opacity': '1'});
     });
 
     $('body').on('click', '#favButton', function () {
         $('#cartsWrapper').css('display', 'none');
         $('#favWrapper').css('display', 'block');
-        $('#cartButton').css({'background': 'none', 'opacity': '0.4'});
+        $('#cartButton').css('background', 'none');
         $('#favButton').css({'background': '#E2E5E6', 'opacity': '1'});
 
         $('#favCartDetailSection').empty();

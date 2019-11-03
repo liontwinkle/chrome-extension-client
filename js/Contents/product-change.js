@@ -38,12 +38,12 @@ $('#cartDetailSection').ready(function () {
                 }
                 subtotal = subtotal.toFixed(2);
                 $('#subtotal').text(subtotal);
-                $('#companyNotification').css('display', 'flex');
+                $('.companyNotification').css('display', 'flex');
                 var tempCount = 0;
                 for (i = 0; i < productList.length; i++) {
                     tempCount = tempCount + productList[i].itemCount
                 }
-                $('#companyNotification').text(tempCount);
+                $('.companyNotification').text(tempCount);
             }
         })
     });
@@ -62,14 +62,14 @@ $('#cartDetailSection').ready(function () {
                     data: productList
                 }, function (response) {
                 });
-                $('#companyNotification').css('display', 'flex');
+                $('.companyNotification').css('display', 'flex');
                 var tempCount = 0;
                 for (i = 0; i < productList.length; i++) {
                     tempCount = tempCount + productList[i].itemCount
                 }
-                $('#companyNotification').text(tempCount);
+                $('.companyNotification').text(tempCount);
                 if (productList.length === 0) {
-                    $('#companyNotification').css('display', 'none');
+                    $('.companyNotification').css('display', 'none');
                 }
                 $('#cartDetailSection').empty();
                 chrome.storage.local.get(['cartDtails'], function (result) {
@@ -103,12 +103,12 @@ $('#cartDetailSection').ready(function () {
                 }
                 subtotal = subtotal.toFixed(2);
                 $('#subtotal').text(subtotal);
-                $('#companyNotification').css('display', 'flex');
+                $('.companyNotification').css('display', 'flex');
                 tempCount = 0;
                 for (i = 0; i < productList.length; i++) {
                     tempCount = tempCount + productList[i].itemCount
                 }
-                $('#companyNotification').text(tempCount);
+                $('.companyNotification').text(tempCount);
             }
         });
     });
@@ -122,7 +122,7 @@ $('#cartDetailSection').ready(function () {
             chrome.runtime.sendMessage({greeting: 'setCartDetails', data: productList}, function (response) {
             });
             if (productList.length === 0) {
-                $('#companyNotification').css('display', 'none');
+                $('.companyNotification').css('display', 'none');
                 $('#subtotal').text(0);
             }
             else {
@@ -133,12 +133,12 @@ $('#cartDetailSection').ready(function () {
                 }
                 subtotal = subtotal.toFixed(2);
                 $('#subtotal').text(subtotal);
-                $('#companyNotification').css('display', 'flex');
+                $('.companyNotification').css('display', 'flex');
                 var tempCount = 0;
                 for (i = 0; i < productList.length; i++) {
                     tempCount = tempCount + productList[i].itemCount
                 }
-                $('#companyNotification').text(tempCount);
+                $('.companyNotification').text(tempCount);
             }
             $('#cartDetailSection').empty();
 

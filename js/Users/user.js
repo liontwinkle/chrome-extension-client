@@ -9,21 +9,21 @@ $(window).ready(function () {
     $('#login').on('click', function () {
         $('#loginbody').css('display', 'block');
         $('#signupbody').css('display', 'none');
-        $('#login').attr('class', 'btn btn-dark');
-        $('#signup').attr('class', 'btn btn-outline-dark');
-        $('#titleHeadingId').text('Please Login');
+        // $('#signup').attr('class', 'btn btn-outline-dark');
+        $('#titleHeadingId').text('');
         $('#passwordErrorHeading').css('display', 'none');
         $('#emailErrorHeading').css('display', 'none');
         $('#pwdMatchErrorHeading').css('display', 'none');
         $('#successHeading').css('display', 'none');
         $('#successHeading').css('display', 'none');
+        $('#login').css('display', 'none');
     });
 
     $('#signup').on('click', function () {
         $('#loginbody').css('display', 'none');
         $('#signupbody').css('display', 'block');
-        $('#login').attr('class', 'btn btn-outline-dark');
-        $('#signup').attr('class', 'btn btn-dark');
+        $('#login').css('display', 'block');
+        // $('#signup').attr('class', 'btn btn-dark');
         $('#titleHeadingId').text('Please Create Account');
         $('#passwordErrorHeading').css('display', 'none');
         $('#pwdMatchErrorHeading').css('display', 'none');
@@ -51,11 +51,12 @@ $(window).ready(function () {
             if (response.success) {
                 $('#loginbody').css('display', 'block');
                 $('#signupbody').css('display', 'none');
-                $('#login').attr('class', 'btn btn-dark');
-                $('#signup').attr('class', 'btn btn-outline-dark');
+                // $('#login').attr('class', 'btn btn-dark');
+                $('#login').css('display', 'none');
+                // $('#signup').attr('class', 'btn btn-outline-dark');
                 $('#emailErrorHeading').css('display', 'none');
                 $('#passwordErrorHeading').css('display', 'none');
-                $('#titleHeadingId').text('Please Login');
+                $('#titleHeadingId').text('');
                 $('#pwdMatchErrorHeading').css('display', 'none');
                 $('#successHeading').css('display', 'none');
 

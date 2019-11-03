@@ -10,8 +10,8 @@ function showMessage(message) {
     $('#addToCart-checkOut').css('display', 'none');
 }
 function showProductInfo(count, title, imageUrl) {
-    $('#companyNotification').css('display', 'flex');
-    $('#companyNotification').text(count);
+    $('.companyNotification').css('display', 'flex');
+    $('.companyNotification').text(count);
     $('#page-mask').css('display', 'block');
     $('#successIcon').css('display', 'inline');
     $('#addToCartModal').css('display', 'block');
