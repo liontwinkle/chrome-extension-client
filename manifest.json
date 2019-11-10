@@ -78,11 +78,17 @@
       "/js/Contents/switch-cart-wish.js",
       "/js/Contents/product-change.js",
       "/js/index.js",
-      "/js/Utils/checkout.js",
-      "/js/Utils/wish-list.js",
-      "/js/Utils/save-product.js",
+
+      "/js/Api/checkout.js",
+      "/js/Api/favorite.js",
+      "/js/Api/save-product.js",
+      "/js/Api/save-favorite.js",
+
       "/js/Utils/add-product.js",
-      "/js/Utils/add-wish.js",
+      "/js/Utils/product-storage.js",
+      "/js/Utils/add-favorite.js",
+      "/js/Utils/favorite-storage.js",
+
       "/js/Products/amazon.js",
       "/js/Products/ebay.js",
       "/js/Products/nike.js",

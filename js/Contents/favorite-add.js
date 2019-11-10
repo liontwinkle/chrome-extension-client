@@ -53,7 +53,7 @@ $('#favouriteCart').ready(function () {
                     showMessage(message);
                 }
                 if (wish) {
-                    addWish(wish.currencySymbol, wish.price, wish.title, wish.imageUrl, wish.color, wish.size, wish.count, wish.available, wish.store, wish.width, wish.isImageAvailable);
+                    addFavorite(wish.currencySymbol, wish.price, wish.title, wish.imageUrl, wish.color, wish.size, wish.count, wish.available, wish.store, wish.width, wish.isImageAvailable);
                 }
             }
         });

@@ -345,63 +345,70 @@
      aria-labelledby="go-ModalLongTitle">
     <div class="modal-dialog" role="document" id="go-Modal-content"
          style="width: 470px; position: absolute; left: 35px; top: 85px;">
-        <iframe src="https://letsgoship.com/shop-retailers" width="600" height="800"></iframe>
+        <div class="" id="popup-modal" style="background: #f2f5f8; border: unset;">
+            <div id="searchBar">
+                <img style="width: 30px; height: 30px; margin-left: 25px;" id="magnify" src="#">
+                <label style="margin: 0; position: relative;">
+                    <input type="text" placeholder="Search Retailer by name"
+                           style="margin: 0; background: #4c4c4c;  border: none !important; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>
+                </label>
+                <img style="width: 30px; height: 30px; margin-right: 25px;" id="setting" src="#">
+            </div>
+            <div style="border: unset; background: #0b3068; height: 150px;">
+                <div id="close-btn" data-dismiss="modal" aria-label="Close">
+                    <span style="color: white; float: right">&times;</span>
+                </div>
+            </div>
+            <div style="padding: 10px;">
+                <div id="item-group" style="margin-top: -50px; display: flex; flex-wrap: wrap;">
+                    <a href="https://www.amazon.com/" target="_blank" class="store-item"><img id="amazon" src="#"></a>
+                    <a href="https://www.ebay.com/" target="_blank" class="store-item"><img id="ebay" src="#"></a>
+                    <a href="https://www.nike.com" target="_blank" class="store-item"><img id="nike" src="#"></a>
+                    <a href="https://www.fashionnova.com/" target="_blank" class="store-item"><img id="fashionNova" src="#"></a>
+                    <a href="https://www.revolve.com/" target="_blank" class="store-item"><img id="revolve" src="#"></a>
+                    <a href="https://www.kyliecosmetics.com/" target="_blank" class="store-item"><img id="cosmetics" src="#"></a>
+                    <a href="https://www.colourpop.com/" target="_blank" class="store-item"><img id="color" src="#"></a>
+                    <a href="https://www.prettylittlething.com/" target="_blank" class="store-item"><img id="pretty" src="#"></a>
+                    <a href="https://www.forever21.com/" target="_blank" class="store-item"><img id="forever21" src="#"></a>
+                    <a href="https://www.6pm.com/" target="_blank" class="store-item"><img id="six-pm" src="#"></a>
+                    <a href="https://www.ralphlauren.com/" target="_blank" class="store-item"><img id="ralph" src="#"></a>
+                    <a href="https://kkwbeauty.com/" target="_blank" class="store-item"><img id="kkwbeauty" src="#"></a>
+                    <a href="https://www.walmart.com/" target="_blank" class="store-item"><img id="walmart" src="#"></a>
+                    <a href="https://www.shopdisney.com/" target="_blank" class="store-item"><img id="shopdisney" src="#"></a>
+                </div>
+            </div>
+            <div class="modal-footer" style="background: #0b3068; height: 40px;">
+            </div>
+        </div>
 
-        <!--<div class="" id="popup-modal" style="background: #f2f5f8; border: unset;">-->
-            <!--<div id="searchBar">-->
-                <!--<img style="width: 30px; height: 30px; margin-left: 25px;" id="magnify" src="#">-->
-                <!--<label style="margin: 0; position: relative;">-->
-                    <!--<input type="text" placeholder="Search Retailer by name"-->
-                           <!--style="margin: 0; background: #4c4c4c;  border: none !important; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>-->
-                <!--</label>-->
-                <!--<img style="width: 30px; height: 30px; margin-right: 25px;" id="setting" src="#">-->
-            <!--</div>-->
-            <!--<div style="border: unset; background: #0b3068; height: 150px;">-->
-                <!--<div id="close-btn" data-dismiss="modal" aria-label="Close">-->
-                    <!--<span style="color: white; float: right">&times;</span>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div style="padding: 10px;">-->
-                <!--<div id="item-group" style="margin-top: -50px; display: flex; flex-wrap: wrap;">-->
-                    <!--<a href="https://www.amazon.com/" target="_blank" class="store-item"><img id="amazon" src="#"></a>-->
-                    <!--<a href="https://www.ebay.com/" target="_blank" class="store-item"><img id="ebay" src="#"></a>-->
-                    <!--<a href="https://www.nike.com" target="_blank" class="store-item"><img id="nike" src="#"></a>-->
-                    <!--<a href="https://www.fashionnova.com/" target="_blank" class="store-item"><img id="fashionNova" src="#"></a>-->
-                    <!--<a href="https://www.revolve.com/" target="_blank" class="store-item"><img id="revolve" src="#"></a>-->
-                    <!--<a href="https://www.kyliecosmetics.com/" target="_blank" class="store-item"><img id="cosmetics" src="#"></a>-->
-                    <!--<a href="https://www.colourpop.com/" target="_blank" class="store-item"><img id="color" src="#"></a>-->
-                    <!--<a href="https://www.prettylittlething.com/" target="_blank" class="store-item"><img id="pretty" src="#"></a>-->
-                    <!--<a href="https://www.forever21.com/" target="_blank" class="store-item"><img id="forever21" src="#"></a>-->
-                    <!--<a href="https://www.6pm.com/" target="_blank" class="store-item"><img id="six-pm" src="#"></a>-->
-                    <!--<a href="https://www.ralphlauren.com/" target="_blank" class="store-item"><img id="ralph" src="#"></a>-->
-                    <!--<a href="https://kkwbeauty.com/" target="_blank" class="store-item"><img id="kkwbeauty" src="#"></a>-->
-                    <!--<a href="https://www.walmart.com/" target="_blank" class="store-item"><img id="walmart" src="#"></a>-->
-                    <!--<a href="https://www.shopdisney.com/" target="_blank" class="store-item"><img id="shopdisney" src="#"></a>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="modal-footer" style="background: #0b3068; height: 40px;">-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div id="filter-category" style="display: none;font-family: Helvetica,Arial,sans-serif !important;">-->
-            <!--<div class="filter-header"-->
-                 <!--style="display:flex; position: relative; align-items: center; justify-content: center;-->
-                <!--height: 80px; background-color: #0b3068; color: white;">-->
-                <!--<span id="filter-close" style="font-size: 40px; font-weight: 700; color: white; position: absolute; left: 30px;">&times;</span>-->
-                <!--<span style="font-size: 23px">Filter by categories</span>-->
-            <!--</div>-->
-            <!--<div class="filter-body" style="background: #eaedf1; display: flex; align-items: center; justify-content: center; flex-direction: column;">-->
-                <!--<div class="filter-content" style="display: flex; flex-wrap: wrap; padding: 15px 0; width: 86%">-->
-                    <!--<span class="category-item">beauty</span>-->
-                    <!--<span class="category-item">clothing</span>-->
-                    <!--<span class="category-item">electronic</span>-->
-                    <!--<span class="category-item">sports</span>-->
-                    <!--<span class="category-item">books</span>-->
-                <!--</div>-->
-                <!--<div class="apply-btn">Apply Filters</div>-->
-                <!--<div class="clear-btn">Clear</div>-->
-            <!--</div>-->
-        <!--</div>-->
+        <div id="filter-category" style="display: none;font-family: Helvetica,Arial,sans-serif !important;">
+            <div class="filter-header"
+                 style="display:flex; position: relative; align-items: center; justify-content: center;
+                height: 80px; background-color: #0b3068; color: white;">
+                <span id="filter-close" style="font-size: 40px; font-weight: 700; color: white; position: absolute; left: 30px;">&times;</span>
+                <span style="font-size: 23px">Filter by categories</span>
+            </div>
+            <div class="filter-body" style="background: #eaedf1; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <div class="filter-content" style="display: flex; flex-wrap: wrap; padding: 15px 0; width: 86%">
+                    <span class="category-item">Automotive & Industrial</span>
+                    <span class="category-item">Beauty & Health</span>
+                    <span class="category-item">Books</span>
+                    <span class="category-item">Clothing & Shoes</span>
+                    <span class="category-item">Electronics & Computers</span>
+                    <span class="category-item">Eyewear</span>
+                    <span class="category-item">Fashion & Lingerie</span>
+                    <span class="category-item">Gaming</span>
+                    <span class="category-item">Home & Garden</span>
+                    <span class="category-item">Jewelry & Watches</span>
+                    <span class="category-item">Pet Supplies</span>
+                    <span class="category-item">Specialty Supply</span>
+                    <span class="category-item">Sports & Outdoors</span>
+                    <span class="category-item">Toys, Kids & Baby</span>
+                </div>
+                <div class="apply-btn">Apply Filters</div>
+                <div class="clear-btn">Clear</div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

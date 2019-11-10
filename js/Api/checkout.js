@@ -2,7 +2,11 @@
 
 const goCheckout = () => {
     chrome.storage.local.get(['cartDetails', 'accessToken'], function (result) {
-        var products = JSON.parse(result.cartDetails);
+        var products = JSON.parse(result.cartDetails).map(product => ({
+            productId: product.productId,
+            productCount: product.productCount
+        }));
+        console.log('products', products);
         if (products.length > 0) {
             chrome.runtime.sendMessage({
                 greeting: 'sendShoppingCartDetails',
@@ -13,12 +17,12 @@ const goCheckout = () => {
             $('body').append(loaderElement);
             var accessToken = 'Bearer ' + result.accessToken;
             $.ajax({
-                // url: 'https://cors-anywhere.herokuapp.com/https://b94f3505.ngrok.io/api/checkout',
-                url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout',
+                url: 'https://cors-anywhere.herokuapp.com/https://eed1b2ba.ngrok.io/api/checkout-url',
+                // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout-url',
                 type: 'post',
                 dataType: 'json',
                 data: {
-                    'product': products
+                    'products': products
                 },
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', accessToken);

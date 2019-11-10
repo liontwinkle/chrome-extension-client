@@ -87,15 +87,15 @@ $(window).ready(function () {
         });
 
         $('.apply-btn').on('click', function () {
-
-            categoryList.forEach((category, i) => {
-
-                if (checker(category, selectedFilters)) {
-                    $('#item-group').children().eq(i).css('display', 'flex');
-                } else {
-                    $('#item-group').children().eq(i).css('display', 'none');
-                }
-            });
+            FilterCategory(selectedFilters);
+            // categoryList.forEach((category, i) => {
+            //
+            //     if (checker(category, selectedFilters)) {
+            //         $('#item-group').children().eq(i).css('display', 'flex');
+            //     } else {
+            //         $('#item-group').children().eq(i).css('display', 'none');
+            //     }
+            // });
             $('#popup-modal').css('display', 'block');
             $('#filter-category').css('display', 'none');
         });

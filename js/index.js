@@ -267,7 +267,7 @@ $(window).on('load', function () {
                     });
                     $('#favWishList').off('click');
                     $('#favWishList').on('click', function () {
-                        favorite();
+                        goFavorite();
                     });
                     if ($('#viewCartModal').css('display') === 'block') {
                         $('#viewCartModal').css('display', 'none');
