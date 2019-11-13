@@ -59,17 +59,13 @@ $(window).ready(function () {
     });
 
     $('.apply-btn').on('click', function () {
-        console.log('ssssssssssss');
-        FilterCategory(selectedFilters);
-
-        // categoryList.forEach((category, i) => {
-        //
-        //     if (checker(category, selectedFilters)) {
-        //         $('#item-group').children().eq(i).css('display', 'flex');
-        //     } else {
-        //         $('#item-group').children().eq(i).css('display', 'none');
-        //     }
-        // });
+        categoryList.forEach((category, i) => {
+            if (checker(category, selectedFilters)) {
+                $('#item-group').children().eq(i).css('display', 'flex');
+            } else {
+                $('#item-group').children().eq(i).css('display', 'none');
+            }
+        });
         $('#popup-modal').css('display', 'flex');
         $('#filter-category').css('display', 'none');
     });

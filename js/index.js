@@ -188,23 +188,29 @@ $(window).on('load', function () {
                 });
 
                 $('#companyLogo').attr('src', logo);
+                var selectedFilters = null;
+                var searchKey = null;
+                fetchCategory();
+                fetchRetailer(selectedFilters, searchKey);
+                // $("#retailerWrapper").lazyScrollLoading({isDefaultLazyImageMode :true });
+
                 $('div[data-browse-component=ATCButton]').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
                 $('#magnify').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/magnify.png');
                 $('#setting').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/setting.png');
-                $('#amazon').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/amazon.png');
-                $('#ebay').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/ebay.png');
-                $('#nike').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/nike.png');
-                $('#fashionNova').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/fashionNova.png');
-                $('#revolve').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/revolve.png');
-                $('#color').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/color.png');
-                $('#cosmetics').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/cosmetics.png');
-                $('#pretty').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/pretty.png');
-                $('#forever21').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/forever.png');
-                $('#six-pm').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/six.png');
-                $('#ralph').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/ralph.png');
-                $('#kkwbeauty').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/kkwbeauty.png');
-                $('#walmart').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/walmart.png');
-                $('#shopdisney').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/shopdisney.png');
+                // $('#amazon').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/amazon.png');
+                // $('#ebay').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/ebay.png');
+                // $('#nike').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/nike.png');
+                // $('#fashionNova').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/fashionNova.png');
+                // $('#revolve').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/revolve.png');
+                // $('#color').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/color.png');
+                // $('#cosmetics').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/cosmetics.png');
+                // $('#pretty').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/pretty.png');
+                // $('#forever21').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/forever.png');
+                // $('#six-pm').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/six.png');
+                // $('#ralph').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/ralph.png');
+                // $('#kkwbeauty').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/kkwbeauty.png');
+                // $('#walmart').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/walmart.png');
+                // $('#shopdisney').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/shopdisney.png');
             }, 200)
         });
 

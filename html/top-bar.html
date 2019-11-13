@@ -251,6 +251,14 @@
             height: 100px;
             animation: spin 2s linear infinite;
         }
+        .loader-retailer {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+        }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -360,21 +368,7 @@
                 </div>
             </div>
             <div style="padding: 10px;">
-                <div id="item-group" style="margin-top: -50px; display: flex; flex-wrap: wrap;">
-                    <a href="https://www.amazon.com/" target="_blank" class="store-item"><img id="amazon" src="#"></a>
-                    <a href="https://www.ebay.com/" target="_blank" class="store-item"><img id="ebay" src="#"></a>
-                    <a href="https://www.nike.com" target="_blank" class="store-item"><img id="nike" src="#"></a>
-                    <a href="https://www.fashionnova.com/" target="_blank" class="store-item"><img id="fashionNova" src="#"></a>
-                    <a href="https://www.revolve.com/" target="_blank" class="store-item"><img id="revolve" src="#"></a>
-                    <a href="https://www.kyliecosmetics.com/" target="_blank" class="store-item"><img id="cosmetics" src="#"></a>
-                    <a href="https://www.colourpop.com/" target="_blank" class="store-item"><img id="color" src="#"></a>
-                    <a href="https://www.prettylittlething.com/" target="_blank" class="store-item"><img id="pretty" src="#"></a>
-                    <a href="https://www.forever21.com/" target="_blank" class="store-item"><img id="forever21" src="#"></a>
-                    <a href="https://www.6pm.com/" target="_blank" class="store-item"><img id="six-pm" src="#"></a>
-                    <a href="https://www.ralphlauren.com/" target="_blank" class="store-item"><img id="ralph" src="#"></a>
-                    <a href="https://kkwbeauty.com/" target="_blank" class="store-item"><img id="kkwbeauty" src="#"></a>
-                    <a href="https://www.walmart.com/" target="_blank" class="store-item"><img id="walmart" src="#"></a>
-                    <a href="https://www.shopdisney.com/" target="_blank" class="store-item"><img id="shopdisney" src="#"></a>
+                <div id="retailerWrapper" style="margin-top: -50px; display: flex; flex-wrap: wrap;">
                 </div>
             </div>
             <div class="modal-footer" style="background: #0b3068; height: 40px;">
@@ -389,21 +383,7 @@
                 <span style="font-size: 23px">Filter by categories</span>
             </div>
             <div class="filter-body" style="background: #eaedf1; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                <div class="filter-content" style="display: flex; flex-wrap: wrap; padding: 15px 0; width: 86%">
-                    <span class="category-item">Automotive & Industrial</span>
-                    <span class="category-item">Beauty & Health</span>
-                    <span class="category-item">Books</span>
-                    <span class="category-item">Clothing & Shoes</span>
-                    <span class="category-item">Electronics & Computers</span>
-                    <span class="category-item">Eyewear</span>
-                    <span class="category-item">Fashion & Lingerie</span>
-                    <span class="category-item">Gaming</span>
-                    <span class="category-item">Home & Garden</span>
-                    <span class="category-item">Jewelry & Watches</span>
-                    <span class="category-item">Pet Supplies</span>
-                    <span class="category-item">Specialty Supply</span>
-                    <span class="category-item">Sports & Outdoors</span>
-                    <span class="category-item">Toys, Kids & Baby</span>
+                <div id="categoryWrapper" class="filter-content" style="display: flex; flex-wrap: wrap; padding: 15px 0; width: 86%">
                 </div>
                 <div class="apply-btn">Apply Filters</div>
                 <div class="clear-btn">Clear</div>
