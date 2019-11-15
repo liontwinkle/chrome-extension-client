@@ -6,6 +6,7 @@ const goCheckout = () => {
             productId: product.productId,
             productCount: product.productCount
         }));
+        console.log('ee', result.cartDetails);
         console.log('products', products);
         if (products.length > 0) {
             chrome.runtime.sendMessage({
@@ -17,8 +18,8 @@ const goCheckout = () => {
             $('body').append(loaderElement);
             var accessToken = 'Bearer ' + result.accessToken;
             $.ajax({
-                url: 'https://cors-anywhere.herokuapp.com/https://c1e97312.ngrok.io/api/checkout-url',
-                // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout-url',
+                // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/checkout-url',
+                url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/checkout-url',
                 type: 'post',
                 dataType: 'json',
                 data: {

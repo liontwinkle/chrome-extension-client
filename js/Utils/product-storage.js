@@ -26,15 +26,19 @@ const productStorage = (data) => {
     };
 
     chrome.storage.local.get(['cartDetails'], function (result) {
+        console.log('cartDetails');
         if (result && result.cartDetails && JSON.parse(result.cartDetails).length > 0) {
+            console.log('result.cartDetails');
             var productListPostAdd = JSON.parse(result.cartDetails);
             var isAddedProduct = false;
             for (i = 0; i < productListPostAdd.length; i++) {
+                console.log('cartDetails-for');
                 if ((productDetails.productColor === productListPostAdd[i].productColor)
                     && (productDetails.productTitle === productListPostAdd[i].productTitle)
                     && (productDetails.productWidth === productListPostAdd[i].productWidth)
                     && (productDetails.productPrice === productListPostAdd[i].productPrice)
                     && (productDetails.productSize === productListPostAdd[i].productSize)) {
+                    console.log('isAddedProduct');
                     isAddedProduct = true;
                     var newItemCount = productListPostAdd[i].itemCount + parseInt(count);
                     productListPostAdd[i].itemCount = newItemCount;
@@ -64,7 +68,7 @@ const productStorage = (data) => {
                 }
             }
             if (isAddedProduct === false) {
-
+                console.log('isaddedprodcut false');
                 chrome.storage.local.get(['cartDetails'], function (result) {
                     if (result) {
                         var cartDetails = JSON.parse(result.cartDetails);

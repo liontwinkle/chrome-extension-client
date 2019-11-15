@@ -8,18 +8,18 @@ const saveProduct = () => {
         });
         var accessToken = 'Bearer ' + result.accessToken;
         $.ajax({
-            url: 'https://cors-anywhere.herokuapp.com/https://c1e97312.ngrok.io/api/product',
-            // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/product',
+            // url: 'https://cors-anywhere.herokuapp.com/https://37db1bf9.ngrok.io/api/products',
+            url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/products',
             type: 'post',
             dataType: 'json',
             data: {
-                'product': product
+                'products': product
             },
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', accessToken);
             },
             success: function (data) {
-                productStorage(data.product);
+                productStorage(data.products);
             },
             error: function (data) {
                 console.log('error', data);

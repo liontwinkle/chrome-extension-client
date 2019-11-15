@@ -1,0 +1,32 @@
+const productFabletics = () => {
+    var store = 'fabletics';
+    var available = true;
+    var priceStr = $('.price-value[itemprop=price]').text();
+    // var priceStr = $('.P__info .P__price').clone().children().remove().end().text();
+    priceStr = priceStr.replace(',', '');
+    console.log('priceStr>>>>>>', priceStr);
+    var regex = /[+-]?\d+(\.\d+)?/g;
+    var price = priceStr.match(regex)[0];
+    console.log('price>>>>>', price);
+    var currencySymbol = priceStr.replace(price, '');
+    currencySymbol = currencySymbol.trim();
+    console.log('currencySymbol-Revolve>>>>>>', currencySymbol);
+    var title = $('.manhattan-detail-heading .product-name[itemprop=name]').text();
+    title = title.replace("'", '');
+    console.log('size>>>>>>', size);
+    var tempColor = $('.product-panel-option-color').text();
+    var color = tempColor ? $('.product-panel-option-color span[data-option-value=color]').text() : null;
+    var tempSize = $('.product-panel-option-size').text();
+    var size = tempSize ? $('.product-panel-option-size span[data-option-value=size]').text() : null;
+    console.log('color>>>>>>', color);
+    var imageUrl = $('.product-image.is-selected img').attr('src');
+    imageUrl = 'https:' + imageUrl;
+    var count = $('.product-panel-option-value.styledSelect-drop-value-display').val() || 1;
+    console.log('imageUrl>>>>>', imageUrl);
+    console.log('count>>>>>', count);
+    price = price * count;
+    var isImageAvailable = null;
+    var width = null;
+
+    return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
+};

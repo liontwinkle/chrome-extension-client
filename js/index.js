@@ -132,6 +132,9 @@ $(window).on('load', function () {
     else if (window.location.toString().includes('.hm.')) {
         $('.product-button-wrapper').first().before("<img id='addToCartMM' style='display: flex;margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
+    else if (window.location.toString().includes('.fabletics.')) {
+        $('.product-cta').first().before("<img id='addToCartMM' style='display: flex;margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+    }
 
     if (window.location.toString().match('^https://www.amazon') ||
         window.location.toString().includes('www.nike') ||
@@ -152,7 +155,8 @@ $(window).on('load', function () {
         window.location.toString().includes('missguided') ||
         window.location.toString().includes('bestbuy') ||
         // window.location.toString().includes('shein.') ||
-        window.location.toString().includes('.hm.')
+        window.location.toString().includes('.hm.') ||
+        window.location.toString().includes('.fabletics.')
     ) {
         // add-to-cart button for bestbuy
         $('.v-border-top .fulfillment-add-to-cart-button').before("<img id='addToCartMM' style='display: flex; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
@@ -315,6 +319,8 @@ $(window).on('load', function () {
                 || ($('.sku-title h1').text() !== '') //bestbuy
                 || ($('.goodsd-right .name').text() !== '') //shein
                 || ($('.product-item-headline').text() !== '') //hm
+                // || ($('.product-description .pdp-title div').text() !== '') //lululemon
+                || ($('.manhattan-detail-heading .product-name[itemprop=name]').text() !== '') //fabletics
             ) {
 
                 $('body').on('click', '#addToCartMM', function () {
@@ -393,6 +399,8 @@ $(window).on('load', function () {
                                     product = productShein();
                                 } else if ($('.product-item-headline').text() !== '') {
                                     product = productHm();
+                                } else if ($('.manhattan-detail-heading .product-name[itemprop=name]').text() !== '') {
+                                    product = productFabletics();
                                 }
                                 else {
                                     message = 'Please select a product.';
