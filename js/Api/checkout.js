@@ -6,8 +6,6 @@ const goCheckout = () => {
             productId: product.productId,
             productCount: product.productCount
         }));
-        console.log('ee', result.cartDetails);
-        console.log('products', products);
         if (products.length > 0) {
             chrome.runtime.sendMessage({
                 greeting: 'sendShoppingCartDetails',

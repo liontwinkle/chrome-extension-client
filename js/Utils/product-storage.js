@@ -28,17 +28,14 @@ const productStorage = (data) => {
     chrome.storage.local.get(['cartDetails'], function (result) {
         console.log('cartDetails');
         if (result && result.cartDetails && JSON.parse(result.cartDetails).length > 0) {
-            console.log('result.cartDetails');
             var productListPostAdd = JSON.parse(result.cartDetails);
             var isAddedProduct = false;
-            for (i = 0; i < productListPostAdd.length; i++) {
-                console.log('cartDetails-for');
+            for (var i = 0; i < productListPostAdd.length; i++) {
                 if ((productDetails.productColor === productListPostAdd[i].productColor)
                     && (productDetails.productTitle === productListPostAdd[i].productTitle)
                     && (productDetails.productWidth === productListPostAdd[i].productWidth)
-                    && (productDetails.productPrice === productListPostAdd[i].productPrice)
+                    // && (productDetails.productPrice === productListPostAdd[i].productPrice)
                     && (productDetails.productSize === productListPostAdd[i].productSize)) {
-                    console.log('isAddedProduct');
                     isAddedProduct = true;
                     var newItemCount = productListPostAdd[i].itemCount + parseInt(count);
                     productListPostAdd[i].itemCount = newItemCount;
@@ -65,6 +62,8 @@ const productStorage = (data) => {
                     for (j = 0; j < productListPostAdd.length; j++) {
                         tempCount = tempCount + productListPostAdd[j].itemCount
                     }
+                    $('.companyNotification').css('display', 'flex');
+                    $('.companyNotification').text(tempCount);
                 }
             }
             if (isAddedProduct === false) {
@@ -92,6 +91,8 @@ const productStorage = (data) => {
                         for (l = 0; l < cartDetails.length; l++) {
                             tempCount = tempCount + cartDetails[l].itemCount
                         }
+                        $('.companyNotification').css('display', 'flex');
+                        $('.companyNotification').text(tempCount);
                     }
                 });
             }
@@ -101,7 +102,15 @@ const productStorage = (data) => {
             cartDetails.push(productDetails);
             chrome.storage.local.set({cartDetails: JSON.stringify(cartDetails)}, function () {
             });
+            chrome.storage.local.get(['cartDetails'], function (result) {
+            });
+            chrome.runtime.sendMessage({
+                greeting: 'setCartDetails',
+                data: cartDetails
+            }, function (response) {
+            });
+            $('.companyNotification').css('display', 'flex');
+            $('.companyNotification').text(count);
         }
     })
-
 };

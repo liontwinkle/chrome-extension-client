@@ -128,6 +128,7 @@
             color: black;
             border-radius: 10px;
             text-align: center;
+            font-size: 14px;
         }
 
         #filter-close:hover{
@@ -140,6 +141,18 @@
         .category-selected {
             background: #0b3068;
             color: white;
+        }
+        .loader-retailer {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -159,21 +172,21 @@
         </div>
     </div>
     <div class="modal-body">
-        <div id="item-group" style="margin-top: -45px;">
-            <a href="https://www.amazon.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/amazon.png" style="width: 100%;"></a>
-            <a href="https://www.ebay.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/ebay.png" style="width: 100%;"></a>
-            <a href="https://www.nike.com" target="_blank" class="pop-store-item"><img src="/images/Stores/nike.png" style="width: 100%;"></a>
-            <a href="https://www.fashionnova.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/fashionNova.png" style="width: 100%;"></a>
-            <a href="https://www.revolve.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/revolve.png" style="width: 100%;"></a>
-            <a href="https://www.kyliecosmetics.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/cosmetics.png" style="width: 100%;"></a>
-            <a href="https://www.colourpop.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/color.png" style="width: 100%;"></a>
-            <a href="https://www.prettylittlething.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/pretty.png" style="width: 100%;"></a>
-            <a href="https://www.forever21.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/forever.png" style="width: 100%;"></a>
-            <a href="https://www.6pm.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/six.png" style="width: 100%;"></a>
-            <a href="https://www.ralphlauren.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/ralph.png" style="width: 100%;"></a>
-            <a href="https://kkwbeauty.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/kkwbeauty.png" style="width: 100%;"></a>
-            <a href="https://www.walmart.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/walmart.png" style="width: 100%;"></a>
-            <a href="https://www.shopdisney.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/shopdisney.png" style="width: 100%;"></a>
+        <div class="retailer-content" style="margin-top: -45px; max-height: 400px; overflow-y: scroll">
+            <!--<a href="https://www.amazon.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/amazon.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.ebay.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/ebay.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.nike.com" target="_blank" class="pop-store-item"><img src="/images/Stores/nike.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.fashionnova.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/fashionNova.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.revolve.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/revolve.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.kyliecosmetics.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/cosmetics.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.colourpop.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/color.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.prettylittlething.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/pretty.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.forever21.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/forever.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.6pm.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/six.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.ralphlauren.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/ralph.png" style="width: 100%;"></a>-->
+            <!--<a href="https://kkwbeauty.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/kkwbeauty.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.walmart.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/walmart.png" style="width: 100%;"></a>-->
+            <!--<a href="https://www.shopdisney.com/" target="_blank" class="pop-store-item"><img src="/images/Stores/shopdisney.png" style="width: 100%;"></a>-->
         </div>
     </div>
     <div class="modal-footer" style="background: #0b3068; height: 40px;">
@@ -188,12 +201,12 @@
         <span style="font-size: 23px">Filter by categories</span>
     </div>
     <div class="filter-body" style="background: #eaedf1; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-        <div class="filter-content" style="display: flex; flex-wrap: wrap; padding: 15px 0; width: 86%">
-            <span class="category-item">beauty</span>
-            <span class="category-item">clothing</span>
-            <span class="category-item">electronic</span>
-            <span class="category-item">sports</span>
-            <span class="category-item">books</span>
+        <div class="category-content" style="display: flex; flex-wrap: wrap; padding: 15px 0; width: 90%; max-height: 370px; overflow-y: scroll">
+            <!--<span class="category-item">beauty</span>-->
+            <!--<span class="category-item">clothing</span>-->
+            <!--<span class="category-item">electronic</span>-->
+            <!--<span class="category-item">sports</span>-->
+            <!--<span class="category-item">books</span>-->
         </div>
         <button class="apply-btn">Apply Filters</button>
         <button class="clear-btn">Clear</button>

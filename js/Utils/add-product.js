@@ -11,7 +11,7 @@ function showMessage(message) {
 }
 
 function showProductInfo(count, title, imageUrl) {
-    $('.companyNotification').css('display', 'flex');
+    $('.companyNotification').css('display', 'none');
     $('.companyNotification').text(count);
     $('#page-mask').css('display', 'block');
     $('#successIcon').css('display', 'inline');

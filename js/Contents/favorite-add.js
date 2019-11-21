@@ -47,6 +47,8 @@ $('#favouriteCart').ready(function () {
                     wish = productMissguided();
                 } else if ($('.sku-title h1').text() !== '') {
                     wish = productBestbuy();
+                }  else if ($('.manhattan-detail-heading .product-name[itemprop=name]').text() !== '') {
+                    wish = productFabletics();
                 }
                 else {
                     message = 'Please select a product';

@@ -3,8 +3,8 @@ const saveFavorite = () => {
         var favorite = JSON.parse(result.productTwo);
         var accessToken = 'Bearer ' + result.accessToken;
         $.ajax({
-            // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/favorite',
-            url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/favorite',
+            // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/favorites',
+            url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/favorites',
             type: 'post',
             dataType: 'json',
             data: {
