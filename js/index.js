@@ -199,8 +199,8 @@ $(window).on('load', function () {
                 // $("#retailerWrapper").lazyScrollLoading({isDefaultLazyImageMode :true });
 
                 $('div[data-browse-component=ATCButton]').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
-                $('#magnify').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/magnify.png');
-                $('#setting').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/setting.png');
+                $('.magnify').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/magnify-top.png');
+                $('.setting').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/setting-top.png');
                 // $('#amazon').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/amazon.png');
                 // $('#ebay').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/ebay.png');
                 // $('#nike').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Stores/nike.png');

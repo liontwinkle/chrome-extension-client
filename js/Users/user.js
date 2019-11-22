@@ -2,7 +2,7 @@ $(window).ready(function () {
 
     localStorage.setItem('lastUrl-letsGoShip', '/html/index.html');
 
-    $('#searchBar').on('click', function () {
+    $('.searchBar').on('click', function () {
         $('#item-amazon').css('display', 'none !important');
     });
 

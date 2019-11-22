@@ -89,8 +89,8 @@ $(window).ready(function () {
     //     ['clothing'],
     // ];
     // let checker = (arr, target) => target.every(v => arr.includes(v));
-    $('#searchBar').on('change paste keyup', function () {
-        const inputKey = $('#searchBar input').val();
+    $('.searchBar').on('change paste keyup', function () {
+        const inputKey = $('.searchBar input').val();
         fetchRetailer(selectedFilters, inputKey);
         // storeLists.forEach((service, i) => {
         //    if (service.includes(inputKey)) {
@@ -101,7 +101,7 @@ $(window).ready(function () {
         // });
     });
 
-    $('#setting').on('click', function () {
+    $('.setting').on('click', function () {
         $('#popup-modal').css('display', 'none');
         $('#filter-category').css('display', 'block');
     });
@@ -142,6 +142,6 @@ $(window).ready(function () {
         // });
         $('#popup-modal').css('display', 'flex');
         $('#filter-category').css('display', 'none');
-        $('#searchBar input').val('');
+        $('.searchBar input').val('');
     });
 });

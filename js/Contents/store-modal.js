@@ -1,7 +1,9 @@
 var selectedFilters = [];
-$('body').on('click', '#browse-btn', function () {
+$('body').on('click', '.browse-btn', function () {
     $('#go-Modal').css('opacity', '1');
     $('#go-Modal').css('display', 'block');
+    $('#popup-modal').css('display', 'block');
+    $('#filter-category').css('display', 'none');
     $('#go-Modal').css('background-color', 'rgba(0,0,0,0.5)');
     $('#go-Modal-content').css('opacity', '1');
     $('#go-Modal-content').css('display', 'block');
@@ -23,11 +25,13 @@ $('body').on('click', '#browse-btn', function () {
         $('#go-Modal-content').css('opacity', '0');
         $('#go-Modal-content').css('display', 'none');
     });
-    $('#searchBar').on('change paste keyup', function () {
-        const inputKey = $('#searchBar input').val();
-        fetchRetailer(selectedFilters, inputKey);
+    $('.searchBar').on('keyup', function (e) {
+        if(e.keyCode === 13) {
+            const inputKey = $('.searchBar input').val();
+            fetchRetailer(selectedFilters, inputKey);
+        }
     });
-    $('#setting').on('click', function () {
+    $('.setting').on('click', function () {
         $('#popup-modal').css('display', 'none');
         $('#filter-category').css('display', 'block');
     });
@@ -53,7 +57,7 @@ $('body').on('click', '#browse-btn', function () {
     // });
     $('.apply-btn').on('click', function () {
         $('#retailerWrapper').empty();
-        $('#searchBar input').val('');
+        $('.searchBar input').val('');
         var searchKey = '';
         console.log('selectedFilters apply', selectedFilters);
         fetchRetailer(selectedFilters, searchKey);

@@ -42,17 +42,17 @@
         #viewCart:hover {
             cursor: pointer;
         }
-        #browse-btn {
+        .browse-btn {
             display: flex;
             align-items: center;
             border: none;
             background: none;
             margin-left: 20px;
         }
-        #browse-btn:hover{
+        .browse-btn:hover{
             cursor: pointer;
         }
-        #browse-btn:focus {
+        .browse-btn:focus {
             outline: unset !important;
         }
 
@@ -71,7 +71,7 @@
             width: 80%;
         }
 
-        #searchBar {
+        .searchBar {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -85,14 +85,29 @@
             box-shadow: 0 10px 20px 0 rgba(120, 121, 147, 0.09);
             background-color: #4c4c4c;
         }
-        #searchBar input{
+        .top-bar-searchBar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            margin-top: 13px;
+            width: 666px;
+            height: 39px;
+            border-radius: 28px;
+            box-shadow: 0 10px 20px 0 rgba(120, 121, 147, 0.09);
+            background-color: rgb(82, 108, 147);
+            position: relative;
+            top: unset;
+            left: unset;
+        }
+        .searchBar input{
             box-shadow: none;
             outline: none !important;
             padding: 0 !important;
             margin: 0 !important;
             font-family: Helvetica,Arial,sans-serif !important;
         }
-        #searchBar input::placeholder {
+        .searchBar input::placeholder {
             color: white;
             opacity: 0.6;
             font-size: 18px !important;
@@ -104,7 +119,7 @@
             padding: 0;
         }
 
-        #searchBar input:focus, .clear-btn:focus, .apply-btn:focus {
+        .searchBar input:focus, .clear-btn:focus, .apply-btn:focus {
             outline: none !important;
             box-shadow: none;
         }
@@ -161,7 +176,7 @@
             cursor: pointer;
         }
 
-        #setting:hover{
+        .setting:hover{
             cursor: pointer;
         }
         .category-selected {
@@ -275,9 +290,17 @@
             <a href="http://letsgoship.com/" target="_blank" style="width: 127px; height: 54px; display: flex;">
                 <img id='companyLogo' src="#" style="margin: 6px 0 0 13px; width: 100%;"/>
             </a>
-            <div id="browse-btn" data-toggle="modal" data-target="#go-ModalLong11">
-                <span style="opacity: 0.7;color: rgba(255,255,255,1);font-size: 18px;font-weight: 600;line-height: 17px;padding-left: 13px;border-left: 1px solid rgba(255,255,255,0.7);font-family: Helvetica,Arial,sans-serif;">Stores</span>
-            </div>
+            <!--<div class="browse-btn">-->
+                <!--<span style="opacity: 0.7;color: rgba(255,255,255,1);font-size: 18px;font-weight: 600;line-height: 17px;padding-left: 13px;border-left: 1px solid rgba(255,255,255,0.7);font-family: Helvetica,Arial,sans-serif;">Stores</span>-->
+            <!--</div>-->
+        </div>
+        <div class="top-bar-searchBar searchBar">
+            <img style="width: 20px; height: 20px; margin-left: 25px;" class="magnify" src="#">
+            <label style="margin: 0; position: relative;">
+                <input type="text" class="browse-btn" placeholder="Search Retailer by name"
+                       style="margin: 0; border: none !important; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>
+            </label>
+            <img style="width: 20px; height: 20px; margin-right: 25px;" class="setting" src="#">
         </div>
         <div style="float: right;">
             <!--<div id="addToCartMM" style="color: black; padding: 0 10px; background-color: #ffffff;float: left;height: 37px;border: none;border-radius: 4px;display: flex;justify-content: center;align-items: center; margin-top: 14px; ">-->
@@ -349,22 +372,22 @@
         </div>
     </div>
 </div>
-<div class="modal-custom fade" id="go-Modal" style="z-index: 9999999;" tabindex="-1" role="dialog"
+<div class="modal-custom fade" id="go-Modal" style="z-index: 9999999; top: 65px;" tabindex="-1" role="dialog"
      aria-labelledby="go-ModalLongTitle">
     <div class="modal-dialog" role="document" id="go-Modal-content"
-         style="width: 470px; position: absolute; left: 35px; top: 85px;">
+         style="width: 470px; position: absolute; left: calc(50% - 235px); top: 15px;">
         <div class="" id="popup-modal" style="background: #f2f5f8; border: unset;">
-            <div id="searchBar">
-                <img style="width: 30px; height: 30px; margin-left: 25px;" id="magnify" src="#">
-                <label style="margin: 0; position: relative;">
-                    <input type="text" placeholder="Search Retailer by name"
-                           style="margin: 0; background: #4c4c4c;  border: none !important; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>
-                </label>
-                <img style="width: 30px; height: 30px; margin-right: 25px;" id="setting" src="#">
-            </div>
-            <div style="border: unset; background: #0b3068; height: 150px;">
+            <!--<div class="searchBar">-->
+                <!--<img style="width: 30px; height: 30px; margin-left: 25px;" class="magnify" src="#">-->
+                <!--<label style="margin: 0; position: relative;">-->
+                    <!--<input type="text" placeholder="Search Retailer by name"-->
+                           <!--style="margin: 0; background: #4c4c4c;  border: none !important; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>-->
+                <!--</label>-->
+                <!--<img style="width: 30px; height: 30px; margin-right: 25px;" class="setting" src="#">-->
+            <!--</div>-->
+            <div style="border: unset; background: #0b3068; height: 80px;">
                 <div id="close-btn" data-dismiss="modal" aria-label="Close">
-                    <span style="color: white; float: right">&times;</span>
+                    <span style="color: white; float: right; font-size: 40px;">&times;</span>
                 </div>
             </div>
             <div style="padding: 10px;">

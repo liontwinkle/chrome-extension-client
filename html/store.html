@@ -49,7 +49,7 @@
             box-shadow: 0 5px 25px 1px rgba(55, 58, 64, 0.14);
         }
 
-        #searchBar {
+        .searchBar {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -63,14 +63,14 @@
             box-shadow: 0 10px 20px 0 rgba(120, 121, 147, 0.09);
             background-color: #4c4c4c;
         }
-        #searchBar input{
+        .searchBar input{
             box-shadow: none;
             outline: none !important;
             padding: 0 !important;
             margin: 0 !important;
             font-family: Helvetica,Arial,sans-serif !important;
         }
-        #searchBar input::placeholder {
+        .searchBar input::placeholder {
             color: white;
             opacity: 0.6;
             font-size: 18px !important;
@@ -82,7 +82,7 @@
             padding: 0;
         }
 
-        #searchBar input:focus, .clear-btn:focus, .apply-btn:focus {
+        .searchBar input:focus, .clear-btn:focus, .apply-btn:focus {
             outline: none !important;
             box-shadow: none;
         }
@@ -135,7 +135,7 @@
             cursor: pointer;
         }
 
-        #setting:hover{
+        .setting:hover{
             cursor: pointer;
         }
         .category-selected {
@@ -159,11 +159,11 @@
 <body>
 
 <div class="modal-content" id="popup-modal" style="background: #f2f5f8; border: unset;">
-    <div id="searchBar">
+    <div class="searchBar">
         <img style="width: 30px; height: 30px; margin-left: 15px;" id="magnify" src="/images/Carts/magnify.png">
         <input type="text" placeholder="Search Retailer by name"
                style="background: #4c4c4c;  border: none; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>
-        <img style="width: 30px; height: 30px; margin-right: 15px;" id="setting" src="/images/Carts/setting.png">
+        <img style="width: 30px; height: 30px; margin-right: 15px;" class="setting" src="/images/Carts/setting.png">
     </div>
     <div class="modal-header" style="border: unset; background: #0b3068; height: 150px;justify-content: flex-end;">
         <div id="logOutButton" class="tooltip-custom" style="width: 22px; height: 22px">
