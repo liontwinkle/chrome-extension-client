@@ -278,6 +278,11 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .apply-btn:hover,
+        .category-item:hover,
+        .clear-btn:hover{
+            cursor: pointer;
+        }
     </style>
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
 </head>
@@ -362,12 +367,6 @@
                         <div id="favWishList" class="custom-btn-wish">Add to Wish List</div>
                     </div>
                 </div>
-                <!--<div id="ConfirmCheckout" style="background: white; display: none; position: absolute; top: 200px; right: 20px; z-index: 9999;-->
-                    <!--flex-direction: column; justify-content: center; align-items: center; width: 275px; height: 140px; text-align: center;padding: 15px; border-radius: 7px;">-->
-                    <!--<div style="padding: 10px; font-weight: 700;">The products of your cart </br>will be reset.</div>-->
-                    <!--<button id="ConfirmButton" class="btn btn-block" style="text-align: center; width: 200px; height: 44px; background: #0b3068; color: white;font-size: 14px; ">Ok-->
-                    <!--</button>-->
-                <!--</div>-->
             </div>
         </div>
     </div>
@@ -377,14 +376,6 @@
     <div class="modal-dialog" role="document" id="go-Modal-content"
          style="width: 470px; position: absolute; left: calc(50% - 235px); top: 15px;">
         <div class="" id="popup-modal" style="background: #f2f5f8; border: unset;">
-            <!--<div class="searchBar">-->
-                <!--<img style="width: 30px; height: 30px; margin-left: 25px;" class="magnify" src="#">-->
-                <!--<label style="margin: 0; position: relative;">-->
-                    <!--<input type="text" placeholder="Search Retailer by name"-->
-                           <!--style="margin: 0; background: #4c4c4c;  border: none !important; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>-->
-                <!--</label>-->
-                <!--<img style="width: 30px; height: 30px; margin-right: 25px;" class="setting" src="#">-->
-            <!--</div>-->
             <div style="border: unset; background: #0b3068; height: 80px;">
                 <div id="close-btn" data-dismiss="modal" aria-label="Close">
                     <span style="color: white; float: right; font-size: 40px;">&times;</span>

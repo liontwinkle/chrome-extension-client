@@ -8,7 +8,11 @@
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/styling.css">
     <style>
-        #loginButton:hover{
+        #loginButton:hover,
+        #signup:hover{
+            cursor: pointer;
+        }
+        .close-btn:hover{
             cursor: pointer;
         }
     </style>
@@ -16,10 +20,9 @@
 <body>
 <div class="imageLogo"></div>
 <div class="container" id='signupLoginPage' style="display: block; padding: 0 50px;">
-    <span style="position: absolute;left: 30px;top: 10px;font-size: 40px; display: none;" id="login">&times;</span>
+    <span class="close-btn" style="position: absolute;left: 30px;top: 10px;font-size: 40px; display: none;" id="login">&times;</span>
     <div style="margin-top: 190px;">
-        <!--<button type="button" class="btn btn-dark" id="login">Login</button>-->
-        <!--<button type="button" class="btn btn-outline-dark" id="signup">Sign Up</button>-->
+
     </div>
     <div class="titleHeading"><div style="text-align: center; margin-top: 15px; font-size: 18px; font-weight: 700" id="titleHeadingId"></div></div>
 
@@ -29,18 +32,12 @@
             <div>
                 <p>Email</p>
                 <div class="input-group inputDiv errorLogin">
-                    <!--<div class="input-group-prepend iconDiv">-->
-                        <!--<span class="input-group-text iconSpan" ><i id="envelopeIcon" class="fas fa-envelope" style="color:rgb(0,0,0)"></i></span>-->
-                    <!--</div>-->
                     <input type="email" id="loginEmail" class="inputClass" placeholder="creative@gmail.com" aria-label="Email" >
                 </div>
             </div>
             <div>
                 <p>Password</p>
                 <div class="input-group inputDiv errorLogin">
-                    <!--<div class="input-group-prepend iconDiv">-->
-                        <!--<span class="input-group-text iconSpan"><i id="lockIcon" class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>-->
-                    <!--</div>-->
                     <input type="password" id="loginPass" class="inputClass" placeholder="Enter Password Here" aria-label="Password">
                 </div>
             </div>
@@ -57,18 +54,12 @@
             <div>
                 <p>Name</p>
                 <div class="input-group inputDiv">
-                    <!--<div class="input-group-prepend iconDiv">-->
-                        <!--<span class="input-group-text iconSpan"><i class="fas fa-user-circle" style="color:rgb(0,0,0)"></i></span>-->
-                    <!--</div>-->
                     <input type="text" class="inputClass userName" placeholder="This is my Username" aria-label="Username">
                 </div>
             </div>
             <div>
                 <p>Email</p>
                 <div class="input-group inputDiv errorSignUpEmail">
-                    <!--<div class="input-group-prepend iconDiv">-->
-                        <!--<span class="input-group-text iconSpan lockIcon signUpEmailLock"><i class="fas fa-envelope" style="color:rgb(0,0,0)"></i></span>-->
-                    <!--</div>-->
                     <input type="email" class="inputClass userEmail" placeholder="creative@gmail.com" aria-label="Email" >
                 </div>
             </div>
@@ -76,9 +67,6 @@
             <div>
                 <p>Password</p>
                 <div class="input-group inputDiv errorSignUpPassword">
-                    <!--<div class="input-group-prepend iconDiv">-->
-                        <!--<span class="input-group-text iconSpan lockIcon"><i class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>-->
-                    <!--</div>-->
                     <input type="password" class="inputClass userPassword" placeholder="Enter Password Here" aria-label="Password">
                 </div>
             </div>
@@ -86,9 +74,6 @@
             <div>
                 <p>Confirm Password</p>
                 <div class="input-group inputDiv errorSignUpPassword">
-                    <!--<div class="input-group-prepend iconDiv">-->
-                        <!--<span class="input-group-text iconSpan"><i class="fas fa-lock" style="color:rgb(0,0,0)"></i></span>-->
-                    <!--</div>-->
                     <input type="password" class="inputClass confirmPassword" placeholder="Enter password again" aria-label="Password">
                 </div>
             </div>
