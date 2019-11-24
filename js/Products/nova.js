@@ -4,13 +4,14 @@ const productNova = () => {
     var count = 1;
     var width = null;
     var isImageAvailable = null;
-    var priceStr = $('[itemprop = offers] .deal span span').text();
+    var priceStr = $('[itemprop = offers] .deal span').text();
     priceStr = priceStr.replace(',', '');
     console.log('priceStr>>>>>>', priceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;
-    var price = priceStr.match(regex)[0];
+    var priceTemp = priceStr.match(regex)[0];
+    var price = $('[itemprop = offers] .deal [itemprop=price]').attr('content');
     console.log('price>>>>>>>', price);
-    var currencySymbol = priceStr.replace(price, '');
+    var currencySymbol = priceStr.replace(priceTemp, '');
     currencySymbol = currencySymbol.replace('USD', '');
     currencySymbol = currencySymbol.trim();
     console.log('currencySymbol-Nova>>>>>>', currencySymbol);
@@ -21,7 +22,7 @@ const productNova = () => {
     console.log('size>>>>>>', size);
     var colorExist = $('a[aria-selected=false]').attr('title');
     var color = colorExist ? ($('a[aria-selected=true]').attr('title')) : null;
-    var imageUrl = $('.slick-current .productImage img').attr('src');
+    var imageUrl = $('.slide.is-selected img').attr('src');
     imageUrl = imageUrl.slice(0, imageUrl.indexOf('?'));
     imageUrl = 'https:' + imageUrl;
     console.log('imageUrl', imageUrl);
