@@ -192,12 +192,9 @@ $(window).on('load', function () {
                 });
 
                 $('#companyLogo').attr('src', logo);
-                var selectedFilters = null;
-                var searchKey = null;
                 fetchCategory();
-                fetchRetailer(selectedFilters, searchKey);
+                fetchRetailers();
                 // $("#retailerWrapper").lazyScrollLoading({isDefaultLazyImageMode :true });
-
                 $('div[data-browse-component=ATCButton]').before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
                 $('.magnify').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/magnify-top.png');
                 $('.setting').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/setting-top.png');

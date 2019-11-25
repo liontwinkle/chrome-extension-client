@@ -28,7 +28,7 @@ $('body').on('click', '.browse-btn', function () {
     $('.searchBar').on('keyup', function (e) {
         if(e.keyCode === 13) {
             const inputKey = $('.searchBar input').val();
-            fetchRetailer(selectedFilters, inputKey);
+            searchRetailer(selectedFilters, inputKey);
         }
     });
     $('.setting').on('click', function () {
@@ -60,7 +60,7 @@ $('body').on('click', '.browse-btn', function () {
         $('.searchBar input').val('');
         var searchKey = '';
         console.log('selectedFilters apply', selectedFilters);
-        fetchRetailer(selectedFilters, searchKey);
+        searchRetailer(selectedFilters, searchKey);
         $('#popup-modal').css('display', 'block');
         $('#filter-category').css('display', 'none');
     });

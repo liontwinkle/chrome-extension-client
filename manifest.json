@@ -85,7 +85,8 @@
       "/js/Api/save-product.js",
       "/js/Api/save-favorite.js",
       "/js/Api/fetch-category.js",
-      "/js/Api/fetch-retailer.js",
+      "/js/Api/search-retailer.js",
+      "/js/Api/fetch-retailers.js",
       "/js/Api/delete-favorite.js",
 
       "/js/Utils/add-product.js",
