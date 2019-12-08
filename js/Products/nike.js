@@ -12,14 +12,14 @@ const productNike = () => {
     currencySymbol = currencySymbol.replace('GBP', '£');
     currencySymbol = currencySymbol.trim();
     console.log('currencySymbol-Nike>>>>>>', currencySymbol);
-    var title = $.trim($('#pdp_product_title').text());
+    var title = $('#pdp_product_title').text();
     title = title.replace("'", '');
     var sizeExist = $('input[name=skuAndSize]').attr('aria-label');
     var sizeTemp = $('input[name=skuAndSize]:checked').attr('aria-label');
     var size = sizeExist ? ((sizeTemp) ? sizeTemp : 'select') : '';
     var colorExist = $('a[aria-selected=false]').attr('title');
     var color = colorExist ? ($('a[aria-selected=true]').attr('title')) : null;
-    var imageUrl = $.trim($("[alt^='" + title + "']").attr('src'));
+    var imageUrl = $("[alt^='" + title + "']").attr('src');
 
     return {currencySymbol, price,  title, imageUrl, color, size, count, available, store, width, isImageAvailable};
 };

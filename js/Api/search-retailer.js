@@ -1,4 +1,6 @@
 const searchRetailer = (selectedFilters, searchKey) => {
+    console.log('selectedFilters111111', selectedFilters);
+    console.log('searchKey111111    ', searchKey);
     chrome.storage.local.get(['accessToken'], function (result) {
         var accessToken = 'Bearer ' + result.accessToken;
         var loaderElement = '<div id="retailer-page-mask" style="position:absolute;left : 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: flex; justify-content: center; align-items: center; z-index: 99999;"><div class="loader-retailer" style="width: 50px; height: 50px;"></div></div>';
@@ -13,7 +15,8 @@ const searchRetailer = (selectedFilters, searchKey) => {
             dataType: 'json',
             data: {
                 'categories': selectedFilters,
-                'tags' : searchKey
+                'tags' : searchKey,
+                'app_type' : 'extension'
             },
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', accessToken);

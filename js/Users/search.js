@@ -1,5 +1,7 @@
 var selectedFilters = [];
 const fetchRetailer = (selectedFilters, searchKey) => {
+    console.log('selectedFilters2222', selectedFilters);
+    console.log('searchKey2222', searchKey);
     chrome.storage.local.get(['accessToken'], function (result) {
         var accessToken = 'Bearer ' + result.accessToken;
         var loaderElement = '<div id="retailer-page-mask" style="position:absolute;left : 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: flex; justify-content: center; align-items: center; z-index: 99999;"><div class="loader-retailer" style="width: 50px; height: 50px;"></div></div>';
@@ -12,7 +14,8 @@ const fetchRetailer = (selectedFilters, searchKey) => {
             dataType: 'json',
             data: {
                 'categories': selectedFilters,
-                'tags': searchKey
+                'tags': searchKey,
+                'app_type' : 'extension'
             },
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', accessToken);
@@ -97,7 +100,7 @@ $(window).ready(function () {
 
     $('.apply-btn').on('click', function () {
         $('.retailer-content').empty();
-        console.log('selectedFilters apply aaa ', selectedFilters);
+        console.log('selectedFilters apply', selectedFilters);
         fetchRetailer(selectedFilters, searchKey);
         $('#popup-modal').css('display', 'flex');
         $('#filter-category').css('display', 'none');

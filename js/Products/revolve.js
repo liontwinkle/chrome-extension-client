@@ -13,6 +13,7 @@ const productRevolve = () => {
     var currencySymbol = priceStr.replace(price, '');
     currencySymbol = currencySymbol.replace('USD', '');
     currencySymbol = currencySymbol.trim();
+    if (currencySymbol ==='€') price =  price / 100;
     console.log('currencySymbol-Revolve>>>>>>', currencySymbol);
     var title = $('.product-name--lg').text();
     title = title.replace("'", '');

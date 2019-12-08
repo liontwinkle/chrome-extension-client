@@ -6,13 +6,14 @@ const fetchRetailers = ( ) => {
             $('#go-Modal-content').append(loaderElement);
         }
         $.ajax({
-            url: 'https://cors-anywhere.herokuapp.com/https://08dafb32.ngrok.io/api/retailers',
-            // url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/retailers',
+            // url: 'https://cors-anywhere.herokuapp.com/https://08dafb32.ngrok.io/api/retailers',
+            url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/retailers',
             type: 'post',
             dataType: 'json',
             data: {
                 'categories': null,
-                'tags' : null
+                'tags' : null,
+                'app_type' : 'extension'
             },
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', accessToken);

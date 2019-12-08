@@ -4,7 +4,7 @@ const productNova = () => {
     var count = 1;
     var width = null;
     var isImageAvailable = null;
-    var priceStr = $('[itemprop = offers] .deal span').text();
+    var priceStr = $('[itemprop = offers] .deal span').first().text();
     priceStr = priceStr.replace(',', '');
     console.log('priceStr>>>>>>', priceStr);
     var regex = /[+-]?\d+(\.\d+)?/g;

@@ -11,7 +11,7 @@ const productStorage = (data) => {
     var id = data.product_id;
 
     let productDetails = {
-        'productTitle': title + store + size + ProductPrice + color,
+        'productTitle': title,
         'productPrice': ProductPrice,
         'productImage': imageUrl,
         'productColor': color,

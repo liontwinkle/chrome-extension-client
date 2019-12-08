@@ -41,7 +41,7 @@ const addProduct = (ProductCurrencySymbol, ProductPrice, title, imageUrl, color,
                     }
                     if (isAddedCurrency || result.ProductCurrencySymbol === ProductCurrencySymbol) {
                         let productDetails = {
-                            'productTitle': title + store + size + ProductPrice + color,
+                            'productTitle': title + store + (size || '') + ProductPrice + (color || ''),
                             'productPrice': ProductPrice,
                             'productImage': imageUrl,
                             'productColor': color,

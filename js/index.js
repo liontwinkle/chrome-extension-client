@@ -32,6 +32,7 @@ $(window).on('load', function () {
         $('.product-buttons').before("<img id='addToCartMM' style='display: flex; width:90%; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('kyliecosmetics')) {
+        console.log('kyliecosmetics');
         $('#AddToCart').after("<img id='addToCartMM' style='display: flex; height: 50px; width:270px; margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
     else if (window.location.toString().includes('colourpop')) {
@@ -136,14 +137,14 @@ $(window).on('load', function () {
         $('.product-cta').first().before("<img id='addToCartMM' style='display: flex;margin: 10px auto;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
     }
 
-    if (window.location.toString().match('^https://www.amazon') ||
+    if (window.location.toString().includes('amazon') ||
         window.location.toString().includes('www.nike') ||
         window.location.toString().includes('.ebay.') ||
-        window.location.toString().match('^https://www.fashionnova.com/') ||
-        window.location.toString().match('^https://www.revolve.com/') ||
-        window.location.toString().match('^https://www.prettylittlething.com/') ||
-        window.location.toString().match('^https://colourpop.com/') ||
-        window.location.toString().match('^https://www.kyliecosmetics.com/') ||
+        window.location.toString().includes('fashionnova') ||
+        window.location.toString().includes('revolve') ||
+        window.location.toString().includes('prettylittlething') ||
+        window.location.toString().includes('colourpop') ||
+        // window.location.toString().includes('kyliecosmetics') ||
         window.location.toString().includes('forever21') ||
         window.location.toString().includes('.6pm.') ||
         window.location.toString().includes('ralphlauren') ||

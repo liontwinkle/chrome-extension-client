@@ -1,5 +1,7 @@
 const productAmazon = () => {
     var store = 'amazon';
+    var retailers = localStorage.getItem('retailers');
+    const filtered = JSON.parse(retailers).find(item => item.name === store);
     var available = true;
     var isLargeValue = $('.price-large').text();
     var price = '';

@@ -15,11 +15,10 @@ const productKkwBeauty = () => {
     var title = $('h2[itemprop=name]').text();
     title = title.replace("'", '');
     var size = null;
-    var color = null;
     var width = null;
     console.log('size>>>>>>', size);
     console.log('width>>>>>>', width);
-    color = $('.js-item-dropdown span.width-100').text() || null;
+    var color = $('.js-item-dropdown span.width-100').text() || null;
     console.log('color>>>>>>', color);
     var imageUrl = $('.swiper-slide-active>div>img').attr('src');
     imageUrl = imageUrl.slice(0, imageUrl.indexOf('?'));

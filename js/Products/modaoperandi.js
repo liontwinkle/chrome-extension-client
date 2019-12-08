@@ -13,11 +13,10 @@ const productModaoperandi = () => {
     console.log('currencySymbol-Revolve>>>>>>', currencySymbol);
     var title = $('.product_description .product_title').text();
     title = title.replace("'", '');
-    var size = null;
     var color = null;
     var width = null;
     var sizeExist = $('.select_size_message').text();
-    size = $('.select_size_message').clone().children().remove().end().text().replace('—','');
+    var size = $('.select_size_message').clone().children().remove().end().text().replace('—','');
     size = sizeExist.includes('select') ? 'select' : size;
     console.log('size>>>>>>', size);
     console.log('width>>>>>>', width);
