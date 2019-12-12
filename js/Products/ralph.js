@@ -20,7 +20,7 @@ const productRalph = () => {
     console.log('currencySymbol-Revolve>>>>>>', currencySymbol);
     var title = $('#product-detail-section .product-name').text();
     title = title.replace("'", '');
-    var sizeExist = $('#product-detail-section .primarysize .selectable.selected a')
+    var sizeExist = $('#product-detail-section .primarysize .selectable.selected a');
     var sizeTemp = $('#product-detail-section .primarysize .selectable.selected a').text();
     var size = sizeExist ? ( sizeTemp ? sizeTemp : 'select') : '';
     console.log('size>>>>>>', size);

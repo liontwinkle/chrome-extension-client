@@ -5,6 +5,7 @@ $('#favouriteCart').ready(function () {
             $('#addToCartModal').hide();
         });
         var message  = null;
+        var retailers = localStorage.getItem('retailers');
         chrome.storage.local.get(['loggedIn'], function (result) {
             var wish = null;
             if (result.loggedIn === 'false' || result.loggedIn === undefined) {
@@ -13,46 +14,19 @@ $('#favouriteCart').ready(function () {
             } else {
                 if ($.trim($('#productTitle').text()) !== '') {
                     wish = productAmazon();
-                } else if ($.trim($('#pdp_product_title').text()) !== '') {
-                    wish = productNike();
-                } else if ($.trim($('#itemTitle').text()) !== '') {
-                    wish = productEbay();
-                } else if ($.trim($('#product-info [itemprop = name]').text()) !== '') {
-                    wish = productNova();
-                } else if ($.trim($('.product-name--lg').text()) !== '') {
-                    wish = productRevolve();
-                } else if ($('.product-details__title').text() !== '') {
-                    wish = productColourPop();
-                } else if ($('.section-title h1').text() !== '') {
-                    wish = productCosmetics();
-                } else if ($('.product-view-title').text() !== '') {
-                    wish = productPretty();
-                } else if ($('#h1Title').text() !== '') {
-                    wish = productForever();
-                } else if ($('#overview span[itemprop=name]').text() !== '') {
-                    wish = productSix();
-                } else if ($('#product-detail-section .product-name').text() !== '') {
-                    wish = productRalph();
-                } else if ($('h2[itemprop=name]').text() !== '') {
-                    wish = productKkwBeauty();
-                } else if ($('.prod-ProductTitle').text() !== '') {
-                    wish = productWalmart();
-                } else if ($('.product-detail__content-summary .product-name').text() !== '') {
-                    wish = productShopDisney();
-                } else if ($('.product-detail .product-name').text() !== '') {
-                    wish = productBoohoo();
-                } else if ($('.product_description .product_title').text() !== '') {
-                    wish = productModaoperandi();
-                } else if ($('.product-essential__title .product-essential__name').text() !== '') {
-                    wish = productMissguided();
-                } else if ($('.sku-title h1').text() !== '') {
-                    wish = productBestbuy();
-                }  else if ($('.manhattan-detail-heading .product-name[itemprop=name]').text() !== '') {
-                    wish = productFabletics();
                 }
                 else {
-                    message = 'Please select a product';
-                    showMessage(message);
+                    const currentRetailerTitle = JSON.parse(retailers).find(item => window.location.toString().includes('.' + item.name + '.'));
+                    if (currentRetailerTitle) {
+                        console.log('currentRetailerTitle', currentRetailerTitle);
+                        if ($(currentRetailerTitle.selectors[0].title).text() !== '') {
+                            console.log('currentRetailerTitle Name', currentRetailerTitle.name);
+                            wish = productAdd(currentRetailerTitle.name);
+                        }
+                    } else {
+                        message = 'Please select a product';
+                        showMessage(message);
+                    }
                 }
                 if (wish) {
                     addFavorite(wish.currencySymbol, wish.price, wish.title, wish.imageUrl, wish.color, wish.size, wish.count, wish.available, wish.store, wish.width, wish.isImageAvailable);

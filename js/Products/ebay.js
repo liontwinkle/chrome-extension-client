@@ -25,14 +25,14 @@ const productEbay = () => {
     console.log('count', count);
     var colorTemp1 = $('#msku-sel-1 option:selected').text() || '';
     var colorTemp2 = $('#msku-sel-2 option:selected').text() || '';
-    var color = ($('#msku-sel-1').attr('name') || '').toLowerCase().includes('colo') ?
-        (colorTemp1.toLowerCase().includes('select') ? '' : colorTemp1) :
-        (($('#msku-sel-2').attr('name') || '').toLowerCase().includes('colo') ?
-            (colorTemp2.toLowerCase().includes('select') ? '' : colorTemp2) : null);
     var size = ($('#msku-sel-1').attr('name') || '').toLowerCase().includes('size') ?
         (colorTemp1.toLowerCase().includes('select') ? 'select' : colorTemp1) :
         (($('#msku-sel-2').attr('name') || '').toLowerCase().includes('size') ?
             (colorTemp2.toLowerCase().includes('select') ? 'select' : colorTemp2) : null);
+    var color = ($('#msku-sel-1').attr('name') || '').toLowerCase().includes('colo') ?
+        (colorTemp1.toLowerCase().includes('select') ? '' : colorTemp1) :
+        (($('#msku-sel-2').attr('name') || '').toLowerCase().includes('colo') ?
+            (colorTemp2.toLowerCase().includes('select') ? '' : colorTemp2) : null);
     console.log('size', size);
     console.log('color', color);
     console.log('title', title);

@@ -4,10 +4,10 @@ const productSix = () => {
     const filtered = JSON.parse(retailers).find(item => item.name === store);
     var available = true;
     var isImageAvailable = null;
-    var priceStr = $('#buyBox').prev().children('div').children('div').children('span').first().text();
-    // console.log('filtered', filtered.selectors);
-    // var priceStr = $(filtered.selectors.price).prev().children('div').children('div').children('span').first().text();
-    console.log('priceStr', priceStr);
+    // var priceStr = $('#buyBox').prev().children('div').children('div').children('span').first().text();
+    console.log('filtered', filtered.selectors);
+    var priceStr = $(filtered.selectors[0].price).prev().children('div').children('div').children('span').first().text();
+    console.log('priceStr', filtered.selectors[0].price);
     if (priceStr.length === 0) {
         available = false;
     } else {
@@ -32,7 +32,6 @@ const productSix = () => {
         // var widthTemp = $('#pdp-width-select option:selected').text();
         var widthTemp = $(filtered.style).text();
         var width = widthExist ? ((widthTemp !== 'Select a Width') ? widthTemp : 'select') : '';
-        width = $('.rg .Sp .Qp .bq').text() ? $('.rg .Sp .Qp .bq').clone().children().remove().end().text() : width;
         console.log('width>>>>>>', width);
         var colorExist = $('#pdp-color-select');
         var colorTemp = $('#pdp-color-select option:selected').text();

@@ -4,7 +4,7 @@ const productWalmart = () => {
     var available = true;
     var width = null;
     var isImageAvailable = null;
-    var price = $('.prod-PriceSection span[itemprop=price]').attr('content');
+    var price = $('.prod-PriceSection #price .visuallyhidden').first().text();
     console.log('price>>>>>', price);
     price = $('.prod-PriceSection span[itemprop=priceCurrency]').length > 1 ? '' : price;
     var currencySymbol = $('.prod-PriceSection span[itemprop=priceCurrency]:eq(0)').text();

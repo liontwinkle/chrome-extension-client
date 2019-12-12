@@ -21,7 +21,6 @@ const productShopDisney = () => {
     var title = $('.product-detail__content-summary .product-name').text();
     title = title.replace("'", '');
     var sizeExist = $('.select-size');
-    console.log('sizeExist', sizeExist);
     var sizeTemp = $('.select-size .selected a span').text();
     var size =sizeExist.length > 0 ? (sizeTemp ? sizeTemp : 'select'): null;
     var count = $('input[name=product__qty_input]').attr('data-url');

@@ -1,4 +1,4 @@
-const fetchCategory = () => {
+const fetchCategories = () => {
     chrome.storage.local.get(['accessToken'], function (result) {
         var accessToken = 'Bearer ' + result.accessToken;
         $.ajax({
@@ -6,6 +6,11 @@ const fetchCategory = () => {
             url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/categories',
             type: 'get',
             dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'content-type': 'application/json',
+                "X-Requested-With": "XMLHttpRequest"
+            },
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', accessToken);
             },
