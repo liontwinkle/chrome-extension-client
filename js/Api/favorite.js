@@ -1,7 +1,4 @@
-// Link to bigcommerce wish list page.
-
 const goFavorite = () => {
-
     chrome.storage.local.get(['favCartDetails'], function (result) {
         var favorites = JSON.parse(result.favCartDetails);
         chrome.runtime.sendMessage({
@@ -13,9 +10,14 @@ const goFavorite = () => {
             var accessToken = 'Bearer ' + result.accessToken;
             $.ajax({
                 // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/favorite-url',
-                url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/favorite-url',
+                url: 'https://cors-anywhere.herokuapp.com/http://api.letsgoship.com/api/favorite-url',
                 type: 'get',
                 dataType: 'json',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'content-type': 'application/json',
+                    "X-Requested-With": "XMLHttpRequest"
+                },
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', accessToken);
                 },

@@ -7,11 +7,11 @@ $(window).on('load', function () {
     var retailers = localStorage.getItem('retailers');
 
     console.log('all retailers', JSON.parse(retailers));
-    const currentRetailer = JSON.parse(retailers).find(item => window.location.toString().includes('.' + item.name + '.'));
+    const currentRetailer = JSON.parse(retailers) && JSON.parse(retailers).find(item => window.location.toString().includes(item.name + '.'));
     console.log('current retailer', currentRetailer);
     if (currentRetailer.selectors[0].cart_button) {
         console.log('current cart_button', currentRetailer.selectors[0].cart_button);
-        eval(currentRetailer.selectors[0].cart_button).before("<img id='addToCartMM' style='margin: 10px 0;' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
+        eval(currentRetailer.selectors[0].cart_button).before("<img id='addToCartMM' style='margin: 10px auto; display: flex' src='chrome-extension://" + chrome.runtime.id + "/images/Carts/add-to-cart.png'>");
         if (currentRetailer.selectors[0].cart_wrapper) {
             targetNode = document.getElementById(currentRetailer.selectors[0].cart_wrapper);
             if (targetNode) {
@@ -29,7 +29,7 @@ $(window).on('load', function () {
             }
         }
     }
-    if (JSON.parse(retailers).some(item => window.location.toString().includes('.' + item.name + '.'))) {
+    if (JSON.parse(retailers).some(item => window.location.toString().includes(item.name + '.'))) {
         $.get('chrome-extension://' + chrome.runtime.id + '/html/top-bar.html', function (data) {
             $('body').prepend(data);
         });
@@ -59,9 +59,7 @@ $(window).on('load', function () {
                         $('#favouriteIcon').attr('src', 'chrome-extension://' + chrome.runtime.id + "/images/Carts/favourite.png");
                     }
                 });
-
                 $('#companyLogo').attr('src', logo);
-
                 $('.magnify').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/magnify.png');
                 $('.setting').attr('src', 'chrome-extension://' + chrome.runtime.id + '/images/Carts/setting.png');
             }, 200)
@@ -185,7 +183,7 @@ $(window).on('load', function () {
                                     product = productAmazon();
                                 }
                                 else {
-                                    const currentRetailerTitle = JSON.parse(retailers).find(item => window.location.toString().includes('.' + item.name + '.'));
+                                    const currentRetailerTitle = JSON.parse(retailers).find(item => window.location.toString().includes(item.name + '.'));
                                     if (currentRetailerTitle) {
                                         console.log('currentRetailerTitle', currentRetailerTitle);
                                         if ($(currentRetailerTitle.selectors[0].title).text() !== '') {

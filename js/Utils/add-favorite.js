@@ -13,7 +13,8 @@ const addFavorite = (currencySymbol, price, title, imageUrl, color, size, count,
                     }
                     if (isAddedProduct || result.currencySymbol === currencySymbol) {
                         var productDetails = {
-                            'productTitle': title + store + size + price + color,
+                            // 'productTitle': title + store + size + price + color,
+                            'productTitle': title,
                             'productPrice': price,
                             'productImage': imageUrl,
                             'productColor': color,

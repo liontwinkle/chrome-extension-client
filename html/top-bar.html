@@ -283,6 +283,10 @@
         .browse-btn {
             background-color: #526c93 !important;
         }
+        #resetCurrency::selection, #addToCart-Ok::selection {
+            color: unset !important;
+            background: unset !important;
+        }
     </style>
 </head>
 <body>
@@ -301,7 +305,7 @@
         <div class="top-bar-searchBar searchBar">
             <img style="width: 20px; height: 20px; margin-left: 25px;" class="magnify" src="#">
             <label style="margin: 0; position: relative;">
-                <input type="text" class="browse-btn" placeholder="Search Retailer by name"
+                <input type="text" class="browse-btn" id="search-input" placeholder="Search Retailer by name"
                        style="height: unset; margin: 0; border: none !important; font-family: Poppins,serif;font-size: 18px;font-weight: normal;color:#ffffff;"/>
             </label>
             <img style="width: 20px; height: 20px; margin-right: 25px;" class="setting" src="#">
@@ -323,8 +327,8 @@
                     <p style="font-family: Geneva,sans-serif; letter-spacing: 0; color: rgba(255,126,24,1); font-size: 14px;font-weight: 600;line-height: 19px;text-align: center;">Ensure your items are not restricted.</p>
                 </div>
                 <div id="button-wrapper" style="display:flex; justify-content:space-between; padding: 0 33px">
-                    <button id="resetCurrency" class="btn btn-block" style="font-family: Geneva,sans-serif; width:270px; height: 44px; border-radius: 4px; background: #0b3068; color: white; display: none; margin: 0;">Reset</button>
-                    <button id="addToCart-Ok" class="btn btn-block" style="font-family: Geneva,sans-serif; width:270px; height: 44px; border-radius: 4px; background: #0b3068; color: white; display: none; margin: 0;">OK</button>
+                    <button id="resetCurrency" class="btn btn-block" style="font-size: 14px; font-family: Geneva,sans-serif; width:270px; height: 44px; border-radius: 4px; background: #0b3068; color: white; display: none; margin: 0;">Reset</button>
+                    <button id="addToCart-Ok" class="btn btn-block" style="font-size: 14px; font-family: Geneva,sans-serif; width:270px; height: 44px; border-radius: 4px; background: #0b3068; color: white; display: none; margin: 0;">OK</button>
                 </div>
             </div>
             <div id="userAvatar" style="float: left;margin: 20px 15px 0 20px; width: 27px;">

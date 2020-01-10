@@ -3,7 +3,7 @@ const fetchCategories = () => {
         var accessToken = 'Bearer ' + result.accessToken;
         $.ajax({
             // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/categories',
-            url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/categories',
+            url: 'https://cors-anywhere.herokuapp.com/http://api.letsgoship.com/api/categories',
             type: 'get',
             dataType: 'json',
             headers: {

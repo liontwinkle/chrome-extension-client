@@ -10,7 +10,7 @@ const searchRetailer = (selectedFilters, searchKey) => {
         if (selectedFilters && selectedFilters.length === 0) selectedFilters = null;
         $.ajax({
             // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/retailers',
-            url: 'https://cors-anywhere.herokuapp.com/https://ex.travelcast.us/api/retailers',
+            url: 'https://cors-anywhere.herokuapp.com/http://api.letsgoship.com/api/retailers',
             type: 'post',
             dataType: 'json',
             data: {

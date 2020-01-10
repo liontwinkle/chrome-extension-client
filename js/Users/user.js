@@ -1,11 +1,8 @@
 $(window).ready(function () {
-
     localStorage.setItem('lastUrl-letsGoShip', '/html/index.html');
-
     $('.searchBar').on('click', function () {
         $('#item-amazon').css('display', 'none !important');
     });
-
     $('#login').on('click', function () {
         $('#loginbody').css('display', 'block');
         $('#signupbody').css('display', 'none');
@@ -18,7 +15,6 @@ $(window).ready(function () {
         $('#successHeading').css('display', 'none');
         $('#login').css('display', 'none');
     });
-
     $('#signup').on('click', function () {
         $('#loginbody').css('display', 'none');
         $('#signupbody').css('display', 'block');
@@ -30,7 +26,6 @@ $(window).ready(function () {
         $('#emailErrorHeading').css('display', 'none');
         $('#successHeading').css('display', 'none');
     });
-
     $('.submitSignupForm').on('click', function () {
         var signUpDetails = {
             'name': $('.userName').val(),
@@ -44,7 +39,6 @@ $(window).ready(function () {
             $('#pwdMatchErrorHeading').css('display', 'block');
             $('#pwdMatchErrorHeading').css('color', 'red');
         }
-
         chrome.runtime.sendMessage({notifications: 'signUp', message: signUpDetails}, function (response) {
             var responseData = response.data;
             $('#page-mask-custom').remove();
@@ -59,7 +53,6 @@ $(window).ready(function () {
                 $('#titleHeadingId').text('');
                 $('#pwdMatchErrorHeading').css('display', 'none');
                 $('#successHeading').css('display', 'none');
-
             }
             else {
                 var responseSignUpData = responseData;
@@ -102,7 +95,6 @@ $(window).ready(function () {
                     function callback(tabs) {
                         currentTabUrl = tabs[0].url;
                         window.location.href = '../../html/store.html';
-
                     }
                     chrome.tabs.query(query, callback);
                 } else {

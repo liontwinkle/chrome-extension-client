@@ -12,7 +12,7 @@ function showMessage(message) {
 
 function showProductInfo(count, title, imageUrl) {
     $('.companyNotification').css('display', 'none');
-    $('.companyNotification').text(count);
+    // $('.companyNotification').text(count);
     $('#page-mask').css('display', 'block');
     $('#successIcon').css('display', 'inline');
     $('#addToCartModal').css('display', 'block');
@@ -41,7 +41,8 @@ const addProduct = (ProductCurrencySymbol, ProductPrice, title, imageUrl, color,
                     }
                     if (isAddedCurrency || result.ProductCurrencySymbol === ProductCurrencySymbol) {
                         let productDetails = {
-                            'productTitle': title + store + (size || '') + ProductPrice + (color || ''),
+                            // 'productTitle': title + store + (size || '') + ProductPrice + (color || ''),
+                            'productTitle': title,
                             'productPrice': ProductPrice,
                             'productImage': imageUrl,
                             'productColor': color,

@@ -16,7 +16,7 @@ $('#favouriteCart').ready(function () {
                     wish = productAmazon();
                 }
                 else {
-                    const currentRetailerTitle = JSON.parse(retailers).find(item => window.location.toString().includes('.' + item.name + '.'));
+                    const currentRetailerTitle = JSON.parse(retailers).find(item => window.location.toString().includes(item.name + '.'));
                     if (currentRetailerTitle) {
                         console.log('currentRetailerTitle', currentRetailerTitle);
                         if ($(currentRetailerTitle.selectors[0].title).text() !== '') {

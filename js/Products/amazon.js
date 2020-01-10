@@ -5,8 +5,7 @@ const productAmazon = () => {
     var price = '';
     var width = null;
     var currencySymbol = '';
-    if (isLargeValue) {
-        var optionValue = $('input[name=BuyboxType]:checked').val();
+    if (isLargeValue) {        var optionValue = $('input[name=BuyboxType]:checked').val();
         var selClass = '#new-button-price';
         if (optionValue === 'new') {
             selClass = '#new-button-price';

@@ -12,7 +12,7 @@
  },
 
  "permissions": [
-    "activeTab", "http://ex.travelcast.us/api/*", "webRequest", "webRequestBlocking" , "storage"
+    "activeTab", "http://api.letsgoship.com/api/*", "webRequest", "webRequestBlocking" , "storage"
  ],
 
  "content_scripts": [
