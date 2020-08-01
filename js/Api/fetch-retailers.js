@@ -7,7 +7,7 @@ const fetchRetailers = ( ) => {
         }
         $.ajax({
             // url: 'https://cors-anywhere.herokuapp.com/https://08dafb32.ngrok.io/api/retailers',
-            url: 'https://cors-anywhere.herokuapp.com/http://api.letsgoship.com/api/retailers',
+            url: 'https://cors-anywhere.herokuapp.com/https://letsgoship.com/api/retailers',
             type: 'post',
             dataType: 'json',
             data: {

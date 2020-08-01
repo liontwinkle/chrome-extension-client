@@ -4,7 +4,7 @@ const saveFavorite = () => {
         var accessToken = 'Bearer ' + result.accessToken;
         $.ajax({
             // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/favorites',
-            url: 'https://cors-anywhere.herokuapp.com/http://api.letsgoship.com/api/favorites',
+            url: 'https://cors-anywhere.herokuapp.com/https://letsgoship.com/api/favorites',
             type: 'post',
             dataType: 'json',
             data: {

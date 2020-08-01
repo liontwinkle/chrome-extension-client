@@ -1,4 +1,4 @@
-var lgsBaseUrl = 'http://api.letsgoship.com/api/';
+var lgsBaseUrl = 'https://letsgoship.com/api/';
 chrome.runtime.onMessage.addListener(
     function (request, response, sendResponse) {
         if (request.greeting === 'sendShoppingCartDetails') {

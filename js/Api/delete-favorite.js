@@ -4,7 +4,7 @@ const deleteFavorite = (productId) => {
         var accessToken = 'Bearer ' + result.accessToken;
         $.ajax({
             // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/favorite-url',
-            url: 'https://cors-anywhere.herokuapp.com/http://api.letsgoship.com/api/favorites/' + productId,
+            url: 'https://cors-anywhere.herokuapp.com/https://letsgoship.com/api/favorites/' + productId,
             type: 'delete',
             dataType: 'json',
             beforeSend: function (xhr) {

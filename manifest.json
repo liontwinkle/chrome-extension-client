@@ -12,7 +12,7 @@
  },
 
  "permissions": [
-    "activeTab", "http://api.letsgoship.com/api/*", "webRequest", "webRequestBlocking" , "storage"
+    "activeTab", "https://letsgoship.com/api/*", "webRequest", "webRequestBlocking" , "storage"
  ],
 
  "content_scripts": [

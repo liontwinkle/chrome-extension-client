@@ -9,7 +9,7 @@ const saveProduct = () => {
         var accessToken = 'Bearer ' + result.accessToken;
         $.ajax({
             // url: 'https://cors-anywhere.herokuapp.com/https://37db1bf9.ngrok.io/api/products',
-            url: 'https://cors-anywhere.herokuapp.com/http://api.letsgoship.com/api/products',
+            url: 'https://cors-anywhere.herokuapp.com/https://letsgoship.com/api/products',
             type: 'post',
             dataType: 'json',
             data: {

@@ -10,7 +10,7 @@ const goFavorite = () => {
             var accessToken = 'Bearer ' + result.accessToken;
             $.ajax({
                 // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/favorite-url',
-                url: 'https://cors-anywhere.herokuapp.com/http://api.letsgoship.com/api/favorite-url',
+                url: 'https://cors-anywhere.herokuapp.com/https://letsgoship.com/api/favorite-url',
                 type: 'get',
                 dataType: 'json',
                 headers: {

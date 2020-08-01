@@ -17,7 +17,7 @@ const goCheckout = () => {
             var accessToken = 'Bearer ' + result.accessToken;
             $.ajax({
                 // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/checkout-url',
-                url: 'https://cors-anywhere.herokuapp.com/http://api.letsgoship.com/api/checkout-url',
+                url: 'https://cors-anywhere.herokuapp.com/https://letsgoship.com/api/checkout-url',
                 type: 'post',
                 dataType: 'json',
                 data: {

@@ -1,7 +1,5 @@
 var selectedFilters = [];
 const fetchRetailer = (selectedFilters, searchKey) => {
-    console.log('selectedFilters2222', selectedFilters);
-    console.log('searchKey2222', searchKey);
     chrome.storage.local.get(['accessToken'], function (result) {
         var accessToken = 'Bearer ' + result.accessToken;
         var loaderElement = '<div id="retailer-page-mask" style="position:absolute;left : 0;right: 0;bottom: 0;top: 0;background-color: rgba(0,0,0,0.6);display: flex; justify-content: center; align-items: center; z-index: 99999;"><div class="loader-retailer" style="width: 50px; height: 50px;"></div></div>';
@@ -9,7 +7,7 @@ const fetchRetailer = (selectedFilters, searchKey) => {
         if (selectedFilters && selectedFilters.length === 0) selectedFilters = null;
         $.ajax({
             // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/retailers',
-            url: 'https://cors-anywhere.herokuapp.com/http://api.letsgoship.com/api/retailers',
+            url: 'https://cors-anywhere.herokuapp.com/https://letsgoship.com/api/retailers',
             type: 'post',
             dataType: 'json',
             data: {
@@ -23,7 +21,6 @@ const fetchRetailer = (selectedFilters, searchKey) => {
             success: function (data) {
                 $('#retailer-page-mask').remove();
                 $('.retailer-content').empty();
-                console.log('retailers', data);
                 const retailerItems = data.retailers.reduce((all, item) => `${all}<a href="${item.link}" target="_blank" class="pop-store-item"><img id=${item.name} src="${item.logoUrl}" style="width: 100%;"></a>`, '');
                 $('.retailer-content').append(retailerItems);
             },
@@ -40,26 +37,27 @@ const fetchCategory = () => {
         var accessToken = 'Bearer ' + result.accessToken;
         $.ajax({
             // url: 'https://cors-anywhere.herokuapp.com/https://a657b664.ngrok.io/api/categories',
-            url: 'https://cors-anywhere.herokuapp.com/http://api.letsgoship.com/api/categories',
+            url: 'https://cors-anywhere.herokuapp.com/https://letsgoship.com/api/categories',
             type: 'get',
             dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'content-type': 'application/json',
+                "X-Requested-With": "XMLHttpRequest"
+            },
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', accessToken);
             },
             success: function (data) {
-
                 const categoryItems = data.categories.reduce((all, item) => `${all}<span class="category-item" categoryId=${item.id}>${item.name}</span>`, '');
                 $('.category-content').append(categoryItems);
-                console.log('cat', data.categories);
                 $('.category-item').on('click', function () {
                     if ($(this).hasClass('category-selected')) {
                         $(this).removeClass('category-selected');
                         selectedFilters.splice(selectedFilters.indexOf($(this).text()), 1);
                     } else {
                         $(this).addClass('category-selected');
-                        console.log('this', $(this).attr('categoryId'));
                         selectedFilters.push($(this).attr('categoryId'));
-                        console.log('selectedFilters push', selectedFilters);
                     }
                     $('.apply-btn').text('Apply Filters (' + selectedFilters.length + ')');
                 });
